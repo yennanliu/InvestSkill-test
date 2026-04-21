@@ -146,7 +146,7 @@ def generate_report(ticker: str, prompt: str, model: str, max_tokens: int) -> st
     user_message = (
         prompt
         + "\n\n---\n\n"
-        + f"Please perform the above stock valuation analysis for **{ticker.upper()}**.\n\n"
+        + f"Please perform the above stock valuation analysis for **{ticker.upper()}**. Write the full report in Traditional Chinese (繁體中文).\n\n"
         + stock_data
     )
 
@@ -160,7 +160,8 @@ def generate_report(ticker: str, prompt: str, model: str, max_tokens: int) -> st
                 "content": (
                     "You are a professional equity research analyst. "
                     "Produce detailed, structured investment reports in Markdown. "
-                    "Be data-driven, objective, and thorough."
+                    "Be data-driven, objective, and thorough. "
+                    "Write the entire report in Traditional Chinese (繁體中文)."
                 ),
             },
             {"role": "user", "content": user_message},
@@ -173,11 +174,12 @@ def generate_report(ticker: str, prompt: str, model: str, max_tokens: int) -> st
 # Output
 # ---------------------------------------------------------------------------
 
-def save_report(ticker: str, content: str, output_dir: Path) -> Path:
+def save_report(ticker: str, content: str, output_dir: Path, model: str = "openai") -> Path:
     """Save report with YAML frontmatter and same-day deduplication."""
     output_dir.mkdir(parents=True, exist_ok=True)
     today = date.today().isoformat()
-    base = f"stock_eval_{today}"
+    # Filename: stock_eval_YYYY-MM-DD_<model>.md  e.g. stock_eval_2026-04-21_gpt-4o.md
+    base = f"stock_eval_{today}_{model}"
 
     path = output_dir / f"{base}.md"
     counter = 2
@@ -194,6 +196,8 @@ def save_report(ticker: str, content: str, output_dir: Path) -> Path:
         "skill_source: https://github.com/yennanliu/InvestSkill\n"
         "prompt_file: prompts/stock-valuation.md\n"
         "provider: openai\n"
+        f"model: {model}\n"
+        "language: zh-TW\n"
         f"generated_by: OpenAI API (scripts/stock_eval.py)\n"
         "---\n\n"
     )
@@ -233,7 +237,7 @@ def main() -> None:
 
     prompt = load_prompt(prompt_file)
     report = generate_report(ticker, prompt, args.model, args.max_tokens)
-    path = save_report(ticker, report, output_dir)
+    path = save_report(ticker, report, output_dir, model=args.model)
     print(f"Report saved to: {path}")
 
 
