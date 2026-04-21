@@ -1,7 +1,11 @@
-name: Stock Evaluation (OpenAI)
+name: Stock Evaluation (InvestSkill + OpenAI)
 
-# Run manually with a stock ticker, or on a schedule.
-# Output is saved to output/stock_eval/<ticker>/ and committed back to the repo.
+# Runs a stock valuation using:
+#   - Prompt: yennanliu/InvestSkill prompts/stock-valuation.md  (cloned at runtime)
+#   - Data:   live yfinance financial data
+#   - AI:     OpenAI API (key stored as OPENAI_API_KEY secret)
+#
+# Output saved to: output/stock_eval/<ticker>/stock_eval_YYYY-MM-DD.md
 
 on:
   workflow_dispatch:
@@ -19,14 +23,15 @@ on:
           - gpt-4o
           - gpt-4o-mini
           - gpt-4-turbo
+
       max_tokens:
         description: "Max output tokens"
         required: false
         default: "16000"
 
   schedule:
-    # Run every weekday at 07:00 UTC with the default ticker set below.
-    # To change the scheduled ticker, update DEFAULT_TICKER in the job below.
+    # Runs every weekday at 07:00 UTC.
+    # Edit DEFAULT_TICKER below to change the scheduled ticker.
     - cron: "0 7 * * 1-5"
 
 permissions:
@@ -38,35 +43,43 @@ concurrency:
 
 jobs:
   stock-eval:
-    name: Generate Stock Evaluation Report
+    name: Generate Stock Valuation Report
     runs-on: ubuntu-latest
     timeout-minutes: 20
 
     steps:
-      # ── 1. Checkout ────────────────────────────────────────────────────────
+      # ── 1. Checkout this repo ──────────────────────────────────────────────
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      # ── 2. Python ──────────────────────────────────────────────────────────
+      # ── 2. Clone InvestSkill to get the prompt files ───────────────────────
+      - name: Clone InvestSkill skill repo
+        run: |
+          git clone --depth 1 https://github.com/yennanliu/InvestSkill.git InvestSkill
+          echo "✅ InvestSkill cloned"
+          echo "Available prompts:"
+          ls InvestSkill/prompts/
+
+      # ── 3. Python ──────────────────────────────────────────────────────────
       - name: Set up Python 3.11
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
           cache: "pip"
 
-      # ── 3. Install InvestSkill + dependencies ──────────────────────────────
-      - name: Install dependencies
+      # ── 4. Install dependencies ────────────────────────────────────────────
+      - name: Install Python dependencies
         run: |
           pip install --upgrade pip
           pip install openai>=1.0.0 yfinance>=0.2.40
 
-      # ── 4. Resolve parameters ──────────────────────────────────────────────
+      # ── 5. Resolve parameters ──────────────────────────────────────────────
       - name: Resolve parameters
         id: params
         run: |
-          # For scheduled runs the inputs are empty — fall back to defaults.
+          # Scheduled runs have empty inputs — use defaults.
           DEFAULT_TICKER="AAPL"
           DEFAULT_MODEL="gpt-4o"
           DEFAULT_MAX_TOKENS="16000"
@@ -83,30 +96,38 @@ jobs:
           TICKER_LOWER=$(echo "$TICKER" | tr '[:upper:]' '[:lower:]')
           OUTPUT_DIR="output/stock_eval/${TICKER_LOWER}"
 
-          echo "ticker=${TICKER_UPPER}"       >> "$GITHUB_OUTPUT"
-          echo "model=${MODEL}"               >> "$GITHUB_OUTPUT"
-          echo "max_tokens=${MAX_TOKENS}"     >> "$GITHUB_OUTPUT"
-          echo "output_dir=${OUTPUT_DIR}"     >> "$GITHUB_OUTPUT"
+          echo "ticker=${TICKER_UPPER}"     >> "$GITHUB_OUTPUT"
+          echo "model=${MODEL}"             >> "$GITHUB_OUTPUT"
+          echo "max_tokens=${MAX_TOKENS}"   >> "$GITHUB_OUTPUT"
+          echo "output_dir=${OUTPUT_DIR}"   >> "$GITHUB_OUTPUT"
 
           echo "=== Parameters ==="
-          echo "  Ticker:     ${TICKER_UPPER}"
-          echo "  Model:      ${MODEL}"
-          echo "  Max tokens: ${MAX_TOKENS}"
-          echo "  Output dir: ${OUTPUT_DIR}"
+          echo "  Ticker:      ${TICKER_UPPER}"
+          echo "  Model:       ${MODEL}"
+          echo "  Max tokens:  ${MAX_TOKENS}"
+          echo "  Output dir:  ${OUTPUT_DIR}"
+          echo "  Prompt file: InvestSkill/prompts/stock-valuation.md"
 
-      # ── 5. Verify API key ──────────────────────────────────────────────────
+      # ── 6. Verify API key ──────────────────────────────────────────────────
       - name: Check OPENAI_API_KEY secret
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
           if [ -z "$OPENAI_API_KEY" ]; then
-            echo "::error::OPENAI_API_KEY secret is not set. Add it under Settings → Secrets → Actions."
+            echo "::error::OPENAI_API_KEY secret is not set."
+            echo "Add it under: Settings → Secrets and variables → Actions → New repository secret"
             exit 1
           fi
           echo "✅ OPENAI_API_KEY is set."
 
-      # ── 6. Generate report ─────────────────────────────────────────────────
-      - name: Generate stock evaluation report
+      # ── 7. Show prompt that will be used (for transparency/debugging) ──────
+      - name: Show InvestSkill prompt
+        run: |
+          echo "=== Prompt: InvestSkill/prompts/stock-valuation.md ==="
+          cat InvestSkill/prompts/stock-valuation.md
+
+      # ── 8. Generate report ─────────────────────────────────────────────────
+      - name: Generate stock valuation report
         timeout-minutes: 15
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
@@ -115,9 +136,10 @@ jobs:
             "${{ steps.params.outputs.ticker }}" \
             --model         "${{ steps.params.outputs.model }}" \
             --max-tokens    "${{ steps.params.outputs.max_tokens }}" \
-            --output-dir    "${{ steps.params.outputs.output_dir }}"
+            --output-dir    "${{ steps.params.outputs.output_dir }}" \
+            --prompt-file   "InvestSkill/prompts/stock-valuation.md"
 
-      # ── 7. Commit & push report ────────────────────────────────────────────
+      # ── 9. Commit & push report ────────────────────────────────────────────
       - name: Commit and push report
         run: |
           git config user.name  "github-actions[bot]"
@@ -133,7 +155,7 @@ jobs:
           else
             DATE=$(date -u +"%Y-%m-%d")
             TICKER="${{ steps.params.outputs.ticker }}"
-            git commit -m "chore: auto-generate ${TICKER} stock-eval ${DATE}"
+            git commit -m "chore: auto-generate ${TICKER} stock-valuation ${DATE} [InvestSkill]"
             echo "📤 Pushing report..."
             git push
             echo "✅ Report committed and pushed."
