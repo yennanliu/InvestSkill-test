@@ -1,0 +1,153 @@
+name: DCF Valuation (InvestSkill + OpenAI)
+
+# Full DCF model with 10-year projection, WACC, sensitivity table, and
+# three-scenario probability-weighted intrinsic value, using:
+#   - Prompt: yennanliu/InvestSkill prompts/dcf-valuation.md
+#   - Data:   live + historical yfinance data (FCF, revenue, balance sheet)
+#   - AI:     OpenAI API (key stored as OPENAI_API_KEY secret)
+#
+# Output: output/dcf_valuation/<ticker>/dcf_valuation_YYYY-MM-DD_<model>.md
+
+on:
+  workflow_dispatch:
+    inputs:
+      ticker:
+        description: "Stock ticker symbol (e.g. AAPL, TSLA, NVDA)"
+        required: true
+        default: "AAPL"
+      model:
+        description: "OpenAI model"
+        required: false
+        default: "gpt-4o"
+        type: choice
+        options:
+          - gpt-4o
+          - gpt-4o-mini
+          - gpt-4-turbo
+      max_tokens:
+        description: "Max output tokens"
+        required: false
+        default: "16000"
+
+  schedule:
+    # Runs every weekday at 08:00 UTC.
+    # Edit DEFAULT_TICKER below to change the scheduled ticker.
+    - cron: "0 8 * * 1-5"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: "dcf-valuation-${{ github.run_id }}"
+  cancel-in-progress: false
+
+jobs:
+  dcf-valuation:
+    name: Generate DCF Valuation Report
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      # ── 1. Checkout this repo ──────────────────────────────────────────────
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # ── 2. Clone InvestSkill to get the prompt files ───────────────────────
+      - name: Clone InvestSkill skill repo
+        run: |
+          git clone --depth 1 https://github.com/yennanliu/InvestSkill.git InvestSkill
+          echo "✅ InvestSkill cloned"
+          echo "Prompt to be used:"
+          cat InvestSkill/prompts/dcf-valuation.md
+
+      # ── 3. Python ──────────────────────────────────────────────────────────
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # ── 4. Install dependencies ────────────────────────────────────────────
+      - name: Install Python dependencies
+        run: |
+          pip install --upgrade pip
+          pip install openai>=1.0.0 yfinance>=0.2.40
+
+      # ── 5. Resolve parameters ──────────────────────────────────────────────
+      - name: Resolve parameters
+        id: params
+        run: |
+          DEFAULT_TICKER="AAPL"
+          DEFAULT_MODEL="gpt-4o"
+          DEFAULT_MAX_TOKENS="16000"
+
+          TICKER="${{ github.event.inputs.ticker }}"
+          MODEL="${{ github.event.inputs.model }}"
+          MAX_TOKENS="${{ github.event.inputs.max_tokens }}"
+
+          TICKER="${TICKER:-$DEFAULT_TICKER}"
+          MODEL="${MODEL:-$DEFAULT_MODEL}"
+          MAX_TOKENS="${MAX_TOKENS:-$DEFAULT_MAX_TOKENS}"
+
+          TICKER_UPPER=$(echo "$TICKER" | tr '[:lower:]' '[:upper:]')
+          TICKER_LOWER=$(echo "$TICKER" | tr '[:upper:]' '[:lower:]')
+          OUTPUT_DIR="output/dcf_valuation/${TICKER_LOWER}"
+
+          echo "ticker=${TICKER_UPPER}"     >> "$GITHUB_OUTPUT"
+          echo "model=${MODEL}"             >> "$GITHUB_OUTPUT"
+          echo "max_tokens=${MAX_TOKENS}"   >> "$GITHUB_OUTPUT"
+          echo "output_dir=${OUTPUT_DIR}"   >> "$GITHUB_OUTPUT"
+
+          echo "=== Parameters ==="
+          echo "  Ticker:      ${TICKER_UPPER}"
+          echo "  Model:       ${MODEL}"
+          echo "  Max tokens:  ${MAX_TOKENS}"
+          echo "  Output dir:  ${OUTPUT_DIR}"
+
+      # ── 6. Verify API key ──────────────────────────────────────────────────
+      - name: Check OPENAI_API_KEY secret
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          if [ -z "$OPENAI_API_KEY" ]; then
+            echo "::error::OPENAI_API_KEY secret is not set."
+            echo "Add it under: Settings → Secrets and variables → Actions → New repository secret"
+            exit 1
+          fi
+          echo "✅ OPENAI_API_KEY is set."
+
+      # ── 7. Generate report ─────────────────────────────────────────────────
+      - name: Generate DCF valuation report
+        timeout-minutes: 15
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          python scripts/dcf_valuation.py \
+            "${{ steps.params.outputs.ticker }}" \
+            --model         "${{ steps.params.outputs.model }}" \
+            --max-tokens    "${{ steps.params.outputs.max_tokens }}" \
+            --output-dir    "${{ steps.params.outputs.output_dir }}" \
+            --prompt-file   "InvestSkill/prompts/dcf-valuation.md"
+
+      # ── 8. Commit & push report ────────────────────────────────────────────
+      - name: Commit and push report
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          echo "📥 Pulling latest changes..."
+          git pull --rebase origin main
+
+          git add "${{ steps.params.outputs.output_dir }}/"
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            DATE=$(date -u +"%Y-%m-%d")
+            TICKER="${{ steps.params.outputs.ticker }}"
+            git commit -m "chore: auto-generate ${TICKER} dcf-valuation ${DATE} [InvestSkill]"
+            echo "📤 Pushing report..."
+            git push
+            echo "✅ Report committed and pushed."
+          fi
