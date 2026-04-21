@@ -1,0 +1,146 @@
+name: DCF Valuation — Gemini (InvestSkill)
+
+# Full DCF model using InvestSkill installed in Gemini runtime:
+#   Install:  git clone yennanliu/InvestSkill  (GEMINI.md auto-loaded as context)
+#   Prompt:   prompts/dcf-valuation.md
+#   Data:     live + historical yfinance (FCF, revenue, WACC inputs, balance sheet)
+#   AI:       Google Gemini API  (secret: GEMINI_API_KEY)
+#
+# Output: output/dcf_valuation/<ticker>/dcf_valuation_YYYY-MM-DD_<model>.md
+
+on:
+  workflow_dispatch:
+    inputs:
+      ticker:
+        description: "Stock ticker symbol (e.g. AAPL, TSLA, NVDA)"
+        required: true
+        default: "AAPL"
+      model:
+        description: "Gemini model"
+        required: false
+        default: "gemini-2.0-flash"
+        type: choice
+        options:
+          - gemini-2.0-flash
+          - gemini-1.5-pro
+          - gemini-1.5-flash
+      max_tokens:
+        description: "Max output tokens"
+        required: false
+        default: "8192"
+
+  schedule:
+    # Runs every weekday at 08:05 UTC.
+    - cron: "5 8 * * 1-5"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: "dcf-valuation-gemini-${{ github.run_id }}"
+  cancel-in-progress: false
+
+jobs:
+  dcf-valuation-gemini:
+    name: DCF Valuation — Gemini
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # Install InvestSkill — GEMINI.md becomes system context; prompts/ holds analysis frameworks
+      - name: Install InvestSkill skill repo
+        run: |
+          git clone --depth 1 https://github.com/yennanliu/InvestSkill.git InvestSkill
+          echo "✅ InvestSkill installed"
+          echo ""
+          echo "=== GEMINI.md (system context) ==="
+          head -20 InvestSkill/GEMINI.md
+          echo ""
+          echo "=== Prompt: prompts/dcf-valuation.md ==="
+          cat InvestSkill/prompts/dcf-valuation.md
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Python dependencies
+        run: |
+          pip install --upgrade pip
+          pip install google-generativeai>=0.8.0 yfinance>=0.2.40
+
+      - name: Resolve parameters
+        id: params
+        run: |
+          DEFAULT_TICKER="AAPL"
+          DEFAULT_MODEL="gemini-2.0-flash"
+          DEFAULT_MAX_TOKENS="8192"
+
+          TICKER="${{ github.event.inputs.ticker }}"
+          MODEL="${{ github.event.inputs.model }}"
+          MAX_TOKENS="${{ github.event.inputs.max_tokens }}"
+
+          TICKER="${TICKER:-$DEFAULT_TICKER}"
+          MODEL="${MODEL:-$DEFAULT_MODEL}"
+          MAX_TOKENS="${MAX_TOKENS:-$DEFAULT_MAX_TOKENS}"
+
+          TICKER_UPPER=$(echo "$TICKER" | tr '[:lower:]' '[:upper:]')
+          TICKER_LOWER=$(echo "$TICKER" | tr '[:upper:]' '[:lower:]')
+          OUTPUT_DIR="output/dcf_valuation/${TICKER_LOWER}"
+
+          echo "ticker=${TICKER_UPPER}"     >> "$GITHUB_OUTPUT"
+          echo "model=${MODEL}"             >> "$GITHUB_OUTPUT"
+          echo "max_tokens=${MAX_TOKENS}"   >> "$GITHUB_OUTPUT"
+          echo "output_dir=${OUTPUT_DIR}"   >> "$GITHUB_OUTPUT"
+
+          echo "=== Parameters ==="
+          echo "  Ticker:     ${TICKER_UPPER}"
+          echo "  Model:      ${MODEL}"
+          echo "  Max tokens: ${MAX_TOKENS}"
+          echo "  Output dir: ${OUTPUT_DIR}"
+
+      - name: Check GEMINI_API_KEY secret
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          if [ -z "$GEMINI_API_KEY" ]; then
+            echo "::error::GEMINI_API_KEY secret is not set."
+            exit 1
+          fi
+          echo "✅ GEMINI_API_KEY is set."
+
+      - name: Generate DCF valuation report (Gemini)
+        timeout-minutes: 15
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          python scripts/dcf_valuation_gemini.py \
+            "${{ steps.params.outputs.ticker }}" \
+            --model            "${{ steps.params.outputs.model }}" \
+            --max-tokens       "${{ steps.params.outputs.max_tokens }}" \
+            --output-dir       "${{ steps.params.outputs.output_dir }}" \
+            --invest-skill-dir "InvestSkill"
+
+      - name: Commit and push report
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git pull --rebase origin main
+          git add "${{ steps.params.outputs.output_dir }}/"
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            DATE=$(date -u +"%Y-%m-%d")
+            TICKER="${{ steps.params.outputs.ticker }}"
+            MODEL="${{ steps.params.outputs.model }}"
+            git commit -m "chore: auto-generate ${TICKER} dcf-valuation ${DATE} [Gemini/${MODEL}]"
+            git push
+            echo "✅ Report committed and pushed."
+          fi
