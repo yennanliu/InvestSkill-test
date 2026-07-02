@@ -382,8 +382,8 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("ticker", help="Stock ticker symbol (e.g. AAPL)")
     p.add_argument("--model", default=DEFAULT_MODEL,
                    help=f"Gemini model ID (default: {DEFAULT_MODEL})")
-    p.add_argument("--max-tokens", type=int, default=8192,
-                   help="Max output tokens per module (default: 8192)")
+    p.add_argument("--max-tokens", type=int, default=20000,
+                   help="Max output tokens per module (default: 20000)")
     p.add_argument("--output-dir", default=None)
     p.add_argument("--invest-skill-dir", default=str(DEFAULT_INVEST_SKILL_DIR),
                    help=f"Path to cloned InvestSkill repo (default: {DEFAULT_INVEST_SKILL_DIR})")

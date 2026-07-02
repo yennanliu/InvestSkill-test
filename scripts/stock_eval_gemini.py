@@ -12,7 +12,7 @@ Replicates the InvestSkill Gemini CLI flow in a CI/CD-friendly script:
 Usage
 -----
   python scripts/stock_eval_gemini.py AAPL
-  python scripts/stock_eval_gemini.py TSLA --model gemini-2.0-flash --max-tokens 8192
+  python scripts/stock_eval_gemini.py TSLA --model gemini-2.5-flash --max-tokens 20000
   python scripts/stock_eval_gemini.py AAPL --invest-skill-dir /path/to/InvestSkill
 
 Environment
@@ -229,7 +229,7 @@ def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(description="Stock valuation via InvestSkill + Gemini API")
     p.add_argument("ticker", help="Stock ticker symbol (e.g. AAPL)")
     p.add_argument("--model", default="gemini-2.5-flash", help="Gemini model ID (default: gemini-2.5-flash)")
-    p.add_argument("--max-tokens", type=int, default=8192, help="Max output tokens (default: 8192)")
+    p.add_argument("--max-tokens", type=int, default=20000, help="Max output tokens (default: 20000)")
     p.add_argument("--output-dir", default=None)
     p.add_argument("--invest-skill-dir", default=str(DEFAULT_INVEST_SKILL_DIR),
                    help=f"Path to cloned InvestSkill repo (default: {DEFAULT_INVEST_SKILL_DIR})")

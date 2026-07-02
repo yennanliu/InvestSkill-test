@@ -27,7 +27,7 @@ on:
       max_tokens:
         description: "Max output tokens"
         required: false
-        default: "8192"
+        default: "20000"
 
   schedule:
     # Runs every weekday at 07:05 UTC (offset from OpenAI jobs).
@@ -85,7 +85,7 @@ jobs:
         run: |
           DEFAULT_TICKER="AAPL"
           DEFAULT_MODEL="gemini-2.5-flash"
-          DEFAULT_MAX_TOKENS="8192"
+          DEFAULT_MAX_TOKENS="20000"
 
           TICKER="${{ github.event.inputs.ticker }}"
           MODEL="${{ github.event.inputs.model }}"
