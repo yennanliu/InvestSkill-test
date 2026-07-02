@@ -109,6 +109,24 @@ def _fmt(v: object, prefix: str = "") -> str:
     return str(v)
 
 
+def _hist_table(df: object, heading: str, rows: list[str]) -> list[str]:
+    """Render up to 4 fiscal years of the given rows as a Markdown table."""
+    if df is None or df.empty:
+        return []
+    cols = df.columns[:4]
+    out = [
+        heading,
+        "| Metric |" + "".join(f" {c.year} |" for c in cols),
+        "|---|" + "---|" * len(cols),
+    ]
+    for row in rows:
+        if row in df.index:
+            vals = "".join(f" {_fmt(df.loc[row, c], '$')} |" for c in cols)
+            out.append(f"| {row} |{vals}")
+    out.append("")
+    return out
+
+
 def fetch_stock_data(ticker: str) -> str:
     t = yf.Ticker(ticker)
     info = t.info or {}
@@ -225,36 +243,22 @@ def fetch_stock_data(ticker: str) -> str:
 
     # Historical income statement — growth assumptions
     try:
-        fin = t.financials
-        if fin is not None and not fin.empty:
-            lines.append("### Historical Income Statement (last 4 fiscal years)")
-            rows = ["Total Revenue", "Gross Profit", "Operating Income", "Net Income", "EBITDA"]
-            header = "| Metric |" + "".join(f" {c.year} |" for c in fin.columns[:4])
-            sep = "|---|" + "---|" * min(4, len(fin.columns))
-            lines += [header, sep]
-            for row in rows:
-                if row in fin.index:
-                    vals = "".join(f" {_fmt(fin.loc[row, c], '$')} |" for c in fin.columns[:4])
-                    lines.append(f"| {row} |{vals}")
-            lines.append("")
+        lines += _hist_table(
+            t.financials,
+            "### Historical Income Statement (last 4 fiscal years)",
+            ["Total Revenue", "Gross Profit", "Operating Income", "Net Income", "EBITDA"],
+        )
     except Exception:
         pass
 
     # Historical cash flow — FCF trend for DCF & capital returns
     try:
-        cf = t.cashflow
-        if cf is not None and not cf.empty:
-            lines.append("### Historical Cash Flow (last 4 fiscal years)")
-            rows = ["Operating Cash Flow", "Capital Expenditure", "Free Cash Flow",
-                    "Issuance Of Stock", "Repurchase Of Stock", "Cash Dividends Paid"]
-            header = "| Metric |" + "".join(f" {c.year} |" for c in cf.columns[:4])
-            sep = "|---|" + "---|" * min(4, len(cf.columns))
-            lines += [header, sep]
-            for row in rows:
-                if row in cf.index:
-                    vals = "".join(f" {_fmt(cf.loc[row, c], '$')} |" for c in cf.columns[:4])
-                    lines.append(f"| {row} |{vals}")
-            lines.append("")
+        lines += _hist_table(
+            t.cashflow,
+            "### Historical Cash Flow (last 4 fiscal years)",
+            ["Operating Cash Flow", "Capital Expenditure", "Free Cash Flow",
+             "Issuance Of Stock", "Repurchase Of Stock", "Cash Dividends Paid"],
+        )
     except Exception:
         pass
 
@@ -269,15 +273,12 @@ def _system_instruction(system_context: str) -> str:
     return (
         system_context
         + "\n\n---\n\n"
-        + "Write all analysis reports in Traditional Chinese (繁體中文). "
-        + "End every module with an InvestSkill 'investment signal box' containing: "
-        + "評分 (1–10), 訊號方向 (看多/中性/看空), 信心水準, and 建議動作 (買進/持有/避開)."
+        + "Write all analysis reports in Traditional Chinese (繁體中文)."
     )
 
 
 def run_module(
     model: "genai.GenerativeModel",
-    title: str,
     analysis_prompt: str,
     ticker: str,
     stock_data: str,
@@ -287,7 +288,9 @@ def run_module(
         + "\n\n---\n\n"
         + f"Apply the framework above to **{ticker.upper()}** and write this module's "
         + "section of a full research report in Traditional Chinese (繁體中文). "
-        + "Use the shared data below; do not repeat the raw data table — analyse it.\n\n"
+        + "Use the shared data below; do not repeat the raw data table — analyse it. "
+        + "End with an InvestSkill 'investment signal box' containing: "
+        + "評分 (1–10), 訊號方向 (看多/中性/看空), 信心水準, and 建議動作 (買進/持有/避開).\n\n"
         + stock_data
     )
     response = model.generate_content(user_message)
@@ -298,9 +301,10 @@ def run_synthesis(
     model: "genai.GenerativeModel",
     ticker: str,
     module_signals: str,
+    module_count: int,
 ) -> str:
     prompt = (
-        f"You have completed a full 15-module InvestSkill analysis of **{ticker.upper()}**. "
+        f"You have completed a full {module_count}-module InvestSkill analysis of **{ticker.upper()}**. "
         "Below are each module's signal boxes. Synthesise them into a consolidated conclusion "
         "in Traditional Chinese (繁體中文):\n"
         "1. 綜合評分 (weighted 1–10) 與整體訊號 (看多/中性/看空)\n"
@@ -428,7 +432,7 @@ def main() -> None:
             continue
         print(f"  [{i}/{len(skills)}] {title} ({slug})...")
         try:
-            content = run_module(model, title, prompt, ticker, stock_data)
+            content = run_module(model, prompt, ticker, stock_data)
             sections.append((title, content))
         except Exception as exc:  # keep the run alive if one module fails
             print(f"      ⚠️  {slug} failed: {exc}", file=sys.stderr)
@@ -444,7 +448,7 @@ def main() -> None:
     print("\nSynthesising consolidated verdict...")
     module_signals = "\n\n".join(f"## {title}\n{content}" for title, content in sections)
     try:
-        synthesis = run_synthesis(model, ticker, module_signals)
+        synthesis = run_synthesis(model, ticker, module_signals, len(sections))
     except Exception as exc:
         print(f"⚠️  synthesis failed: {exc}", file=sys.stderr)
         synthesis = f"_綜合結論生成失敗：{exc}_"
