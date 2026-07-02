@@ -1,12 +1,14 @@
-name: Fundamental Analysis — Gemini (InvestSkill)
+name: Full Report — Gemini (InvestSkill)
 
-# Deep fundamental analysis using InvestSkill installed in Gemini runtime:
-#   Install:  git clone yennanliu/InvestSkill  (GEMINI.md auto-loaded as context)
-#   Prompt:   prompts/fundamental-analysis.md
-#   Data:     live + historical yfinance (income statement, cash flow, balance sheet)
+# Runs the ENTIRE InvestSkill analysis suite (all 15 full-demo modules) for one
+# ticker in a single job, then synthesises a consolidated verdict — mirrors:
+#   Install:  git clone yennanliu/InvestSkill   (GEMINI.md auto-loaded as context)
+#   Prompts:  prompts/*.md                       (@prompts/<skill>.md, one per module)
+#   Demo:     https://yennj12.js.org/InvestSkill/full-demo-rklb.html
+#   Data:     live + historical yfinance (shared snapshot across every module)
 #   AI:       Google Gemini API  (secret: GEMINI_API_KEY)
 #
-# Output: output/fundamental_analysis/<ticker>/fundamental_analysis_YYYY-MM-DD_<model>.md
+# Output: output/full_report/<ticker>/full_report_YYYY-MM-DD_<model>.md
 
 on:
   workflow_dispatch:
@@ -25,26 +27,26 @@ on:
           - gemini-2.5-pro
           - gemini-2.0-flash
       max_tokens:
-        description: "Max output tokens"
+        description: "Max output tokens per module"
         required: false
         default: "8192"
 
   schedule:
-    # Runs every weekday at 07:35 UTC.
-    - cron: "35 7 * * 1-5"
+    # Runs every weekday at 08:35 UTC (offset from the per-skill Gemini jobs).
+    - cron: "35 8 * * 1-5"
 
 permissions:
   contents: write
 
 concurrency:
-  group: "fundamental-analysis-gemini-${{ github.run_id }}"
+  group: "full-report-gemini-${{ github.run_id }}"
   cancel-in-progress: false
 
 jobs:
-  fundamental-analysis-gemini:
-    name: Fundamental Analysis — Gemini
+  full-report-gemini:
+    name: Full Report — Gemini
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 40
 
     steps:
       - name: Checkout repository
@@ -52,17 +54,18 @@ jobs:
         with:
           fetch-depth: 0
 
-      # Install InvestSkill — GEMINI.md becomes system context; prompts/ holds analysis frameworks
+      # Install InvestSkill — clone so GEMINI.md + all prompts/*.md are available.
+      # Mirrors: cd /path/to/InvestSkill && gemini  (auto-loads GEMINI.md)
       - name: Install InvestSkill skill repo
         run: |
           git clone --depth 1 https://github.com/yennanliu/InvestSkill.git InvestSkill
           echo "✅ InvestSkill installed"
           echo ""
-          echo "=== GEMINI.md (system context) ==="
+          echo "=== GEMINI.md (system context, auto-loaded by gemini CLI) ==="
           head -20 InvestSkill/GEMINI.md
           echo ""
-          echo "=== Prompt: prompts/fundamental-analysis.md ==="
-          cat InvestSkill/prompts/fundamental-analysis.md
+          echo "=== Available prompts/ modules ==="
+          ls -1 InvestSkill/prompts/
 
       - name: Set up Python 3.11
         uses: actions/setup-python@v5
@@ -91,7 +94,7 @@ jobs:
 
           TICKER_UPPER=$(echo "$TICKER" | tr '[:lower:]' '[:upper:]')
           TICKER_LOWER=$(echo "$TICKER" | tr '[:upper:]' '[:lower:]')
-          OUTPUT_DIR="output/fundamental_analysis/${TICKER_LOWER}"
+          OUTPUT_DIR="output/full_report/${TICKER_LOWER}"
 
           echo "ticker=${TICKER_UPPER}"     >> "$GITHUB_OUTPUT"
           echo "model=${MODEL}"             >> "$GITHUB_OUTPUT"
@@ -110,16 +113,17 @@ jobs:
         run: |
           if [ -z "$GEMINI_API_KEY" ]; then
             echo "::error::GEMINI_API_KEY secret is not set."
+            echo "Add it under: Settings → Secrets and variables → Actions → New repository secret"
             exit 1
           fi
           echo "✅ GEMINI_API_KEY is set."
 
-      - name: Generate fundamental analysis report (Gemini)
-        timeout-minutes: 15
+      - name: Generate full report — all InvestSkill modules (Gemini)
+        timeout-minutes: 35
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
-          python scripts/fundamental_analysis_gemini.py \
+          python scripts/full_report_gemini.py \
             "${{ steps.params.outputs.ticker }}" \
             --model            "${{ steps.params.outputs.model }}" \
             --max-tokens       "${{ steps.params.outputs.max_tokens }}" \
@@ -131,7 +135,9 @@ jobs:
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
+          echo "📥 Pulling latest changes..."
           git pull --rebase origin main
+
           git add "${{ steps.params.outputs.output_dir }}/"
 
           if git diff --cached --quiet; then
@@ -140,7 +146,8 @@ jobs:
             DATE=$(date -u +"%Y-%m-%d")
             TICKER="${{ steps.params.outputs.ticker }}"
             MODEL="${{ steps.params.outputs.model }}"
-            git commit -m "chore: auto-generate ${TICKER} fundamental-analysis ${DATE} [Gemini/${MODEL}]"
+            git commit -m "chore: auto-generate ${TICKER} full-report ${DATE} [Gemini/${MODEL}]"
+            echo "📤 Pushing report..."
             git push
             echo "✅ Report committed and pushed."
           fi

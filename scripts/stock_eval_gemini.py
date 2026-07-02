@@ -228,7 +228,7 @@ def save_report(ticker: str, content: str, output_dir: Path, model_name: str) ->
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(description="Stock valuation via InvestSkill + Gemini API")
     p.add_argument("ticker", help="Stock ticker symbol (e.g. AAPL)")
-    p.add_argument("--model", default="gemini-2.0-flash", help="Gemini model ID (default: gemini-2.0-flash)")
+    p.add_argument("--model", default="gemini-2.5-flash", help="Gemini model ID (default: gemini-2.5-flash)")
     p.add_argument("--max-tokens", type=int, default=8192, help="Max output tokens (default: 8192)")
     p.add_argument("--output-dir", default=None)
     p.add_argument("--invest-skill-dir", default=str(DEFAULT_INVEST_SKILL_DIR),
