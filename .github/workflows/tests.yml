@@ -1,0 +1,46 @@
+name: Tests (analysis package)
+
+# Unit + integration tests for scripts/analysis. All LLM SDKs and yfinance are
+# faked in the test suite, so no API keys or network access are required.
+
+on:
+  push:
+    paths:
+      - "scripts/**"
+      - "pytest.ini"
+      - ".github/workflows/tests.yml"
+  pull_request:
+    paths:
+      - "scripts/**"
+      - "pytest.ini"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  pytest:
+    name: pytest (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.13"]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install test dependencies
+        run: |
+          pip install --upgrade pip
+          # pandas backs the data-layer / formatting tests; SDKs are mocked.
+          pip install pytest pandas
+
+      - name: Run tests
+        run: pytest -q
