@@ -32,13 +32,20 @@ claude plugin install equity-research@claude-for-financial-services
 
 ## 本次示範產出（繁體中文）
 
-以 **Palantir Technologies (PLTR)** 為標的，示範三個自帶完整交付物的指令：
+### Palantir Technologies (PLTR)
 
 | 檔案 | 對應指令 | 說明 |
 |---|---|---|
 | [`earnings-preview_PLTR_2026-07-05.md`](./earnings-preview_PLTR_2026-07-05.md) | `/earnings-preview PLTR` | 2026 Q2 財報前瞻 + 多空情境 |
 | [`thesis_PLTR_2026-07-05.md`](./thesis_PLTR_2026-07-05.md) | `/thesis PLTR` | 投資論點與追蹤紀錄 |
 | [`sector-overview_AI-analytics-software_2026-07-05.md`](./sector-overview_AI-analytics-software_2026-07-05.md) | `/sector AI 數據分析軟體` | 產業地景研究 |
+
+### Microsoft Corporation (MSFT)
+
+| 檔案 | 對應指令 | 說明 |
+|---|---|---|
+| [`earnings-preview_MSFT_2026-07-05.md`](./earnings-preview_MSFT_2026-07-05.md) | `/earnings-preview MSFT` | 2026 Q4（FY 尾季，7/28 公布）財報前瞻 + 多空情境 |
+| [`thesis_MSFT_2026-07-05.md`](./thesis_MSFT_2026-07-05.md) | `/thesis MSFT` | 投資論點與追蹤紀錄 |
 
 **資料日期：2026-07-05**。市場數據取自公開來源（SEC 8-K、分析師共識、財經媒體），詳見各文件末的來源清單。
 
