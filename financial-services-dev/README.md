@@ -34,6 +34,22 @@ claude plugin install equity-research@claude-for-financial-services
 
 輸出依標的分資料夾組織：`financial-services-dev/<TICKER>/`；跨標的的產業研究放在 `sectors/`。
 
+### `AMD/` — Advanced Micro Devices（**全部 9 個指令示範**）
+
+以 AMD 為核心，示範 equity-research plugin 的全部 9 個指令：
+
+| 檔案 | 對應指令 | 說明 |
+|---|---|---|
+| [`AMD/earnings-preview_AMD_2026-07-05.md`](./AMD/earnings-preview_AMD_2026-07-05.md) | `/earnings-preview AMD` | Q2 FY2026（8/4 公布）財報前瞻 |
+| [`AMD/earnings-analysis_AMD_Q1-2026.md`](./AMD/earnings-analysis_AMD_Q1-2026.md) | `/earnings AMD` | Q1 FY2026 財報後速報 |
+| [`AMD/initiate_AMD_2026-07-05.md`](./AMD/initiate_AMD_2026-07-05.md) | `/initiate AMD` | 首次覆蓋報告（5 階段濃縮示範） |
+| [`AMD/model-update_AMD_2026-07-05.md`](./AMD/model-update_AMD_2026-07-05.md) | `/model-update AMD` | 財務模型更新 changelog |
+| [`AMD/thesis_AMD_2026-07-05.md`](./AMD/thesis_AMD_2026-07-05.md) | `/thesis AMD` | 投資論點與追蹤紀錄 |
+| [`AMD/morning-note_2026-07-05.md`](./AMD/morning-note_2026-07-05.md) | `/morning-note` | 晨會筆記（半導體/AI） |
+| [`AMD/sector-overview_semiconductors-AI-accelerators_2026-07-05.md`](./AMD/sector-overview_semiconductors-AI-accelerators_2026-07-05.md) | `/sector` | AI 加速器產業研究 |
+| [`AMD/screen_AI-semiconductors_2026-07-05.md`](./AMD/screen_AI-semiconductors_2026-07-05.md) | `/screen` | AI 半導體選股篩選 |
+| [`AMD/catalysts_2026-07-05.md`](./AMD/catalysts_2026-07-05.md) | `/catalysts` | 催化事件行事曆（未來 6 週） |
+
 ### `AMZN/` — Amazon.com（深度版）
 
 | 檔案 | 對應指令 | 說明 |
