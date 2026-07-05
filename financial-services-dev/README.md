@@ -41,6 +41,9 @@ claude plugin install equity-research@claude-for-financial-services
 | [`UBER/earnings-preview_UBER_2026-07-05.md`](./UBER/earnings-preview_UBER_2026-07-05.md) | `/earnings-preview UBER` | Q2 FY2026（8/4 公布）財報前瞻：分部框架 + 多空情境 + 進場風險 |
 | [`UBER/earnings-analysis_UBER_Q1-2026.md`](./UBER/earnings-analysis_UBER_Q1-2026.md) | `/earnings UBER` | Q1 FY2026 財報後深度更新：分部拆解 + 營運指標 + FCF |
 | [`UBER/initiate_UBER_2026-07-05.md`](./UBER/initiate_UBER_2026-07-05.md) | `/initiate UBER` | 首次覆蓋報告：公司沿革、護城河、AV 戰略辯論、估值 |
+| [`UBER/sector-overview_platform-mobility-delivery-AV_2026-07-05.md`](./UBER/sector-overview_platform-mobility-delivery-AV_2026-07-05.md) | `/sector` | 產業研究（約 12,000 字）：出行/外送/自駕三大市場、競爭地景、AV 兆美元 TAM |
+| [`UBER/screen_platform-economy-AV_2026-07-05.md`](./UBER/screen_platform-economy-AV_2026-07-05.md) | `/screen` | 選股篩選（約 12,000 字）：6 個多方點子 + 2 主題籃子 + 空方警示 |
+| [`UBER/catalysts_UBER_2026-07-05.md`](./UBER/catalysts_UBER_2026-07-05.md) | `/catalysts` | 催化行事曆（約 12,000 字）：財報序列 + AV 里程碑 + 總經/同業訊號 |
 
 ### `AMD/` — Advanced Micro Devices（**全部 9 個指令示範**）
 
