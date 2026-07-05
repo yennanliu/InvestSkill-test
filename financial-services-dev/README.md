@@ -34,6 +34,14 @@ claude plugin install equity-research@claude-for-financial-services
 
 輸出依標的分資料夾組織：`financial-services-dev/<TICKER>/`；跨標的的產業研究放在 `sectors/`。
 
+### `UBER/` — Uber Technologies（**深度長版，每篇約 3,000 字**）
+
+| 檔案 | 對應指令 | 說明 |
+|---|---|---|
+| [`UBER/earnings-preview_UBER_2026-07-05.md`](./UBER/earnings-preview_UBER_2026-07-05.md) | `/earnings-preview UBER` | Q2 FY2026（8/4 公布）財報前瞻：分部框架 + 多空情境 + 進場風險 |
+| [`UBER/earnings-analysis_UBER_Q1-2026.md`](./UBER/earnings-analysis_UBER_Q1-2026.md) | `/earnings UBER` | Q1 FY2026 財報後深度更新：分部拆解 + 營運指標 + FCF |
+| [`UBER/initiate_UBER_2026-07-05.md`](./UBER/initiate_UBER_2026-07-05.md) | `/initiate UBER` | 首次覆蓋報告：公司沿革、護城河、AV 戰略辯論、估值 |
+
 ### `AMD/` — Advanced Micro Devices（**全部 9 個指令示範**）
 
 以 AMD 為核心，示範 equity-research plugin 的全部 9 個指令：
