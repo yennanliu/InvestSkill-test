@@ -1527,8 +1527,8 @@ UBER 的毛利率在過去幾年保持相對穩定，約在 38% 至 40% 之間�
 ```mermaid
 xychart-beta horizontal
     title "UBER 估值指標"
-    x-axis 0 --> 30
-    y-axis ["P/E (TTM)", "EV/EBITDA"]
+    x-axis ["P/E (TTM)", "EV/EBITDA"]
+    y-axis 0 --> 30
     bar [18.47, 22.64]
 ```
 

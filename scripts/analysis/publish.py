@@ -6,6 +6,7 @@ from pathlib import Path
 
 from .config import TODAY, analysis_meta
 from .utils.logging_utils import setup_logger
+from .utils.mermaid import sanitize_mermaid
 
 logger = setup_logger(__name__)
 
@@ -40,6 +41,7 @@ def save_report(analysis_type: str, ticker: str, content: str, output_dir: str |
     safe_model = model.replace("/", "-")
     base = f"{meta['prefix']}_{TODAY}_{safe_model}"
     path = _unique_path(Path(output_dir), base, meta["ext"])
+    content = sanitize_mermaid(content)
 
     frontmatter = _frontmatter({
         "title": f"{ticker} {meta['label']} {TODAY}",
@@ -97,6 +99,6 @@ def save_full_report(ticker: str, sections: list[tuple[str, str]], synthesis: st
     for i, (label, content) in enumerate(sections, 1):
         body += [f"### {i}. {label}", "", content, "", "---", ""]
 
-    path.write_text(frontmatter + "\n".join(body), encoding="utf-8")
+    path.write_text(frontmatter + sanitize_mermaid("\n".join(body)), encoding="utf-8")
     logger.info(f"Saved full report ({len(sections)} modules) → {path}")
     return path

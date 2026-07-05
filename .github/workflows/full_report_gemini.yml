@@ -130,6 +130,29 @@ jobs:
             --output-dir       "${{ steps.params.outputs.output_dir }}" \
             --invest-skill-dir "InvestSkill"
 
+      # Defense-in-depth: the gen script sanitises Mermaid before writing. This
+      # lint scans the written report for the known-invalid pattern (a
+      # categorical band on y-axis, which xychart-beta rejects) so any residual
+      # or novel issue surfaces in the CI log. Pure-Python — no browser needed.
+      - name: Validate Mermaid charts
+        continue-on-error: true
+        run: |
+          python - "${{ steps.params.outputs.output_dir }}" <<'PY'
+          import glob, pathlib, re, sys
+          bad = 0
+          for md in glob.glob(f"{sys.argv[1]}/*.md"):
+              blocks = re.findall(r"```mermaid\n(.*?)\n```", pathlib.Path(md).read_text(), re.DOTALL)
+              for i, b in enumerate(blocks):
+                  if "xychart-beta" not in b:
+                      continue
+                  y = re.search(r"^\s*y-axis(\s+\S.*)$", b, re.MULTILINE)
+                  if y and "[" in y.group(1):  # band on the value axis → invalid
+                      bad += 1
+                      print(f"::warning file={md}::Mermaid block {i}: y-axis holds a "
+                            f"categorical band (xychart-beta requires a numeric range)")
+          print(f"Mermaid validation: {bad} invalid block(s) found")
+          PY
+
       - name: Commit and push report
         run: |
           git config user.name  "github-actions[bot]"
