@@ -12,7 +12,7 @@ def test_default_provider_is_gemini():
 
 
 def test_gemini_defaults_match_repo_settings():
-    assert providers.provider_default("gemini", "default_model") == "gemini-2.5-flash"
+    assert providers.provider_default("gemini", "default_model") == "gemini-3.5-flash"
     assert providers.provider_default("gemini", "default_tokens") == 20000
 
 

@@ -39,7 +39,7 @@ def test_single_wrapper_scripts(script, prefix, monkeypatch, tmp_path,
         "--invest-skill-dir", str(fake_invest_skill),
     ], monkeypatch)
 
-    report = out_dir / f"{prefix}_{TODAY}_gemini-2.5-flash.md"
+    report = out_dir / f"{prefix}_{TODAY}_gemini-3.5-flash.md"
     assert report.exists(), f"{script} did not produce {report.name}"
     assert "訊號框" in report.read_text(encoding="utf-8")
 
@@ -53,7 +53,7 @@ def test_full_report_wrapper_script(monkeypatch, tmp_path, fake_invest_skill,
         "--output-dir", str(out_dir), "--invest-skill-dir", str(fake_invest_skill),
     ], monkeypatch)
 
-    report = out_dir / f"full_report_{TODAY}_gemini-2.5-flash.md"
+    report = out_dir / f"full_report_{TODAY}_gemini-3.5-flash.md"
     assert report.exists()
     text = report.read_text(encoding="utf-8")
     assert "modules: 2" in text

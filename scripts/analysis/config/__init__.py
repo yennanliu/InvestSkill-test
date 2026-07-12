@@ -39,6 +39,7 @@ ANALYSIS_TYPES = {
     "options-analysis":         {"prefix": "options_analysis",         "label": "選擇權分析",       "ext": ".md"},
     "dividend-analysis":        {"prefix": "dividend_analysis",        "label": "股利與資本回報",   "ext": ".md"},
     "competitor-analysis":      {"prefix": "competitor_analysis",      "label": "競爭護城河分析",   "ext": ".md"},
+    "financial-report-analyst": {"prefix": "financial_report_analyst", "label": "財報深度分析",     "ext": ".md"},
     "full-report":              {"prefix": "full_report",              "label": "全模組投資分析",   "ext": ".md"},
 }
 
@@ -54,24 +55,25 @@ def analysis_meta(analysis_type: str) -> dict:
     }
 
 
-# The 15 modules the public full-demo runs, in analytical order.
+# The 15 "comprehensive" modules from InvestSkill's prompts/full-report.md,
+# in the plugin's own analytical order (quick 1-5, standard 6-10, comprehensive 11-15).
 # https://yennj12.js.org/InvestSkill/full-demo-rklb.html
 FULL_DEMO_SKILLS = [
-    "technical-analysis",
-    "fundamental-analysis",
     "stock-eval",
-    "economics-analysis",
-    "sector-analysis",
-    "insider-trading",
-    "institutional-ownership",
-    "short-interest",
-    "earnings-call-analysis",
-    "chart-master",
+    "technical-analysis",
     "dcf-valuation",
-    "stock-valuation",
-    "options-analysis",
-    "dividend-analysis",
+    "insider-trading",
+    "earnings-call-analysis",
+    "institutional-ownership",
     "competitor-analysis",
+    "sector-analysis",
+    "options-analysis",
+    "short-interest",
+    "fundamental-analysis",
+    "stock-valuation",
+    "economics-analysis",
+    "financial-report-analyst",
+    "dividend-analysis",
 ]
 
 __all__ = [

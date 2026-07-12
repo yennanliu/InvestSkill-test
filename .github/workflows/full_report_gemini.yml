@@ -16,13 +16,14 @@ on:
       ticker:
         description: "Stock ticker symbol (e.g. AAPL, TSLA, NVDA)"
         required: true
-        default: "AAPL"
+        default: "MSFT"
       model:
         description: "Gemini model"
         required: false
-        default: "gemini-2.5-flash"
+        default: "gemini-3.5-flash"
         type: choice
         options:
+          - gemini-3.5-flash
           - gemini-2.5-flash
           - gemini-2.5-pro
           - gemini-2.0-flash
@@ -33,6 +34,7 @@ on:
 
   schedule:
     # Runs every weekday at 08:35 UTC (offset from the per-skill Gemini jobs).
+    # Edit DEFAULT_TICKER below to change the scheduled ticker.
     - cron: "35 8 * * 1-5"
 
 permissions:
@@ -80,8 +82,8 @@ jobs:
       - name: Resolve parameters
         id: params
         run: |
-          DEFAULT_TICKER="AAPL"
-          DEFAULT_MODEL="gemini-2.5-flash"
+          DEFAULT_TICKER="MSFT"
+          DEFAULT_MODEL="gemini-3.5-flash"
           DEFAULT_MAX_TOKENS="20000"
 
           TICKER="${{ github.event.inputs.ticker }}"

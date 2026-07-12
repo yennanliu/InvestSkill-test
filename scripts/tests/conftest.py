@@ -27,7 +27,7 @@ _PROMPT_SLUGS = [
     "technical-analysis", "economics-analysis", "sector-analysis",
     "insider-trading", "institutional-ownership", "short-interest",
     "earnings-call-analysis", "chart-master", "options-analysis",
-    "dividend-analysis", "competitor-analysis",
+    "dividend-analysis", "competitor-analysis", "financial-report-analyst",
 ]
 
 

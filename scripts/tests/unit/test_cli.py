@@ -30,7 +30,7 @@ def test_run_single_wires_args(monkeypatch, tmp_path, fake_invest_skill):
     assert captured["analysis_type"] == "dcf-valuation"
     # provider default gemini → model/token defaults resolved
     assert captured["provider"] == "gemini"
-    assert captured["model"] == "gemini-2.5-flash"
+    assert captured["model"] == "gemini-3.5-flash"
     assert captured["max_tokens"] == 20000
     assert captured["saved"][2] == "REPORT"
 
