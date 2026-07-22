@@ -1,0 +1,54 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+# CodeRabbit configuration — https://docs.coderabbit.ai/guides/configure-coderabbit
+language: en-US
+early_access: false
+
+reviews:
+  # "chill" = fewer, higher-signal comments; use "assertive" for stricter reviews.
+  profile: chill
+  request_changes_workflow: false
+  high_level_summary: true
+  poem: false
+  review_status: true
+  collapse_walkthrough: false
+
+  auto_review:
+    enabled: true
+    drafts: false
+    # Only review PRs targeting these branches.
+    base_branches:
+      - main
+
+  # Skip generated / vendored / output artifacts so reviews stay focused on real code.
+  path_filters:
+    - "!**/output/**"
+    - "!**/InvestSkill_output/**"
+    - "!**/.pytest_cache/**"
+    - "!**/*.lock"
+    - "!**/*.min.js"
+
+  # Extra guidance for specific paths.
+  path_instructions:
+    - path: "scripts/**/*.py"
+      instructions: >-
+        This is a Python stock-analysis codebase. Focus on correctness of
+        financial calculations, error handling around external API / LLM calls,
+        input validation, and avoiding silent failures. Flag hardcoded secrets
+        or API keys. Follow PEP 8 and prefer type hints.
+    - path: "scripts/tests/**/*.py"
+      instructions: >-
+        Test code. Check that tests actually assert meaningful behavior and are
+        not tautological. Integration tests are marked with @pytest.mark.integration.
+    - path: ".github/workflows/*.yml"
+      instructions: >-
+        GitHub Actions. Check for unpinned action versions, secret leakage in
+        logs, and overly broad permissions.
+
+  tools:
+    ruff:
+      enabled: true
+    github-checks:
+      enabled: true
+
+chat:
+  auto_reply: true
