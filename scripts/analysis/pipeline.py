@@ -7,7 +7,7 @@ Assembles the four layers into a report:
 
 Two entrypoints:
   * ``generate_analysis``     — one InvestSkill module → Markdown report
-  * ``generate_full_report``  — every full-demo module + a synthesised verdict
+  * ``generate_full_report``  — a depth tier's modules + a synthesised verdict
 """
 
 from __future__ import annotations
@@ -15,7 +15,7 @@ from __future__ import annotations
 import time
 from pathlib import Path
 
-from .config import FULL_DEMO_SKILLS, analysis_meta
+from .config import DEFAULT_DEPTH, analysis_meta, depth_skills
 from .data import fetch_stock_data
 from .llm import call_llm
 from .prompts import PromptRepo
@@ -104,9 +104,13 @@ def synthesize(ticker: str, module_signals: str, module_count: int, *,
 
 def generate_full_report(ticker: str, *, provider: str, model: str | None,
                          max_tokens: int | None, invest_skill_dir: str | Path,
-                         skills: list[str] | None = None, language: str = "zh-TW",
-                         sleep: float = 1.0) -> dict:
-    """Run every full-demo module + a synthesis pass.
+                         skills: list[str] | None = None, depth: str = DEFAULT_DEPTH,
+                         language: str = "zh-TW", sleep: float = 1.0) -> dict:
+    """Run a full-report depth tier's modules + a synthesis pass.
+
+    ``depth`` selects the module set (``quick`` / ``standard`` /
+    ``comprehensive``), mirroring the plugin's own ``full-report --depth`` flag.
+    An explicit ``skills`` list overrides the tier.
 
     Returns ``{"sections": [(label, content), …], "synthesis": str,
     "skills": [slug, …]}``. One yfinance fetch and one PromptRepo are shared
@@ -114,7 +118,7 @@ def generate_full_report(ticker: str, *, provider: str, model: str | None,
     single failure never aborts the run.
     """
     ticker = ticker.upper()
-    skills = skills or list(FULL_DEMO_SKILLS)
+    skills = skills or depth_skills(depth)
     repo = PromptRepo(invest_skill_dir)
     system_message = _system_message(repo, provider, language)
     stock_data = fetch_stock_data(ticker)

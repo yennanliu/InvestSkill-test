@@ -13,9 +13,11 @@ import sys
 from pathlib import Path
 
 from .config import (
+    DEFAULT_DEPTH,
     DEFAULT_INVEST_SKILL_DIR,
     DEFAULT_LANGUAGE,
     DEFAULT_PROVIDER,
+    SUPPORTED_DEPTHS,
     SUPPORTED_PROVIDERS,
     analysis_meta,
     provider_default,
@@ -75,9 +77,12 @@ def run_single(analysis_type: str) -> None:
 
 def run_full() -> None:
     """Entrypoint for the full-report wrapper script."""
-    parser = _base_parser("Run the full InvestSkill analysis suite (all full-demo modules)")
+    parser = _base_parser("Run the full InvestSkill analysis suite (full-report depth tiers)")
+    parser.add_argument("--depth", default=DEFAULT_DEPTH, choices=SUPPORTED_DEPTHS,
+                        help=f"Module set to run: quick (5) / standard (10) / "
+                             f"comprehensive (15) (default: {DEFAULT_DEPTH})")
     parser.add_argument("--skills", default=None,
-                        help="Comma-separated skill slugs to run (default: all full-demo modules)")
+                        help="Comma-separated skill slugs to run (overrides --depth)")
     parser.add_argument("--sleep", type=float, default=1.0,
                         help="Seconds between module calls to ease rate limits (default: 1.0)")
     args = parser.parse_args()
@@ -91,7 +96,7 @@ def run_full() -> None:
         result = generate_full_report(
             ticker,
             provider=args.provider, model=model, max_tokens=max_tokens,
-            invest_skill_dir=args.invest_skill_dir, skills=skills,
+            invest_skill_dir=args.invest_skill_dir, skills=skills, depth=args.depth,
             language=args.language, sleep=args.sleep,
         )
         if not result["sections"]:

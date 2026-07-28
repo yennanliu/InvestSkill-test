@@ -64,8 +64,9 @@ def test_run_single_default_output_dir(monkeypatch, fake_invest_skill):
 def test_run_full_parses_skills(monkeypatch, tmp_path, fake_invest_skill):
     captured = {}
 
-    def fake_full(ticker, *, provider, model, max_tokens, invest_skill_dir, skills, language, sleep):
-        captured.update(ticker=ticker, skills=skills, sleep=sleep)
+    def fake_full(ticker, *, provider, model, max_tokens, invest_skill_dir, skills,
+                  depth, language, sleep):
+        captured.update(ticker=ticker, skills=skills, depth=depth, sleep=sleep)
         return {"sections": [("t", "b")], "synthesis": "v", "skills": ["technical-analysis"]}
 
     monkeypatch.setattr(cli, "generate_full_report", fake_full)
@@ -77,7 +78,35 @@ def test_run_full_parses_skills(monkeypatch, tmp_path, fake_invest_skill):
     cli.run_full()
     assert captured["ticker"] == "AAPL"
     assert captured["skills"] == ["technical-analysis", "dcf-valuation"]
+    assert captured["depth"] == "comprehensive"  # default when --depth is omitted
     assert captured["sleep"] == 0.0
+
+
+def test_run_full_parses_depth(monkeypatch, tmp_path, fake_invest_skill):
+    captured = {}
+
+    def fake_full(ticker, *, depth, skills, **kwargs):
+        captured.update(depth=depth, skills=skills)
+        return {"sections": [("t", "b")], "synthesis": "v", "skills": []}
+
+    monkeypatch.setattr(cli, "generate_full_report", fake_full)
+    monkeypatch.setattr(cli, "save_full_report", lambda *a, **k: tmp_path / "full.md")
+    monkeypatch.setattr("sys.argv", [
+        "full_report_gemini.py", "aapl", "--depth", "quick", "--sleep", "0",
+        "--output-dir", str(tmp_path), "--invest-skill-dir", str(fake_invest_skill),
+    ])
+    cli.run_full()
+    assert captured["depth"] == "quick"
+    assert captured["skills"] is None  # --depth alone leaves module selection to the tier
+
+
+def test_run_full_rejects_unknown_depth(monkeypatch, tmp_path, fake_invest_skill):
+    monkeypatch.setattr("sys.argv", [
+        "full_report_gemini.py", "aapl", "--depth", "exhaustive",
+        "--invest-skill-dir", str(fake_invest_skill),
+    ])
+    with pytest.raises(SystemExit):  # argparse choices=
+        cli.run_full()
 
 
 def test_run_full_empty_sections_exits(monkeypatch, tmp_path, fake_invest_skill):

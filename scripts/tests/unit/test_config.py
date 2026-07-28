@@ -49,6 +49,53 @@ def test_every_full_demo_skill_has_metadata():
         assert slug in config.ANALYSIS_TYPES, slug
 
 
+def test_depth_tiers_match_plugin_module_counts():
+    # InvestSkill prompts/full-report.md: quick 5 / standard 10 / comprehensive 15
+    assert len(config.DEPTH_TIERS["quick"]) == 5
+    assert len(config.DEPTH_TIERS["standard"]) == 10
+    assert len(config.DEPTH_TIERS["comprehensive"]) == 15
+    assert config.DEFAULT_DEPTH == "comprehensive"
+    assert config.FULL_DEMO_SKILLS == config.DEPTH_TIERS["comprehensive"]
+
+
+def test_depth_tiers_are_nested_and_deduped():
+    quick, standard, comprehensive = (config.DEPTH_TIERS[d] for d in
+                                      ("quick", "standard", "comprehensive"))
+    assert comprehensive[:len(standard)] == standard
+    assert standard[:len(quick)] == quick
+    for tier in (quick, standard, comprehensive):
+        assert len(set(tier)) == len(tier)
+
+
+def test_depth_skills_returns_a_copy():
+    skills = config.depth_skills("quick")
+    skills.append("mutated")
+    assert "mutated" not in config.DEPTH_TIERS["quick"]
+
+
+def test_depth_skills_unknown_raises():
+    with pytest.raises(KeyError):
+        config.depth_skills("exhaustive")
+
+
+def test_every_depth_skill_has_metadata():
+    for depth, slugs in config.DEPTH_TIERS.items():
+        for slug in slugs:
+            assert slug in config.ANALYSIS_TYPES, f"{depth}: {slug}"
+
+
+def test_analysis_types_cover_current_plugin_skills():
+    """Registry tracks InvestSkill's prompts/ set (27 frameworks as of v1.11.0)."""
+    for slug in ("10k-digest", "bear-case", "catalyst-calendar", "industry-map",
+                 "position-ladder", "stock-screener", "portfolio-review",
+                 "report-generator", "result-validator", "research-bundle"):
+        assert slug in config.ANALYSIS_TYPES, slug
+    # every entry carries a prefix, a label, and an extension
+    for slug, meta in config.ANALYSIS_TYPES.items():
+        assert meta["prefix"] and meta["label"] and meta["ext"] == ".md", slug
+        assert "-" not in meta["prefix"], slug
+
+
 def test_analysis_meta_known():
     meta = config.analysis_meta("dcf-valuation")
     assert meta["prefix"] == "dcf_valuation"

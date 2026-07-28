@@ -41,6 +41,18 @@ ANALYSIS_TYPES = {
     "competitor-analysis":      {"prefix": "competitor_analysis",      "label": "競爭護城河分析",   "ext": ".md"},
     "financial-report-analyst": {"prefix": "financial_report_analyst", "label": "財報深度分析",     "ext": ".md"},
     "full-report":              {"prefix": "full_report",              "label": "全模組投資分析",   "ext": ".md"},
+    # ── added upstream after v1.6.0 (labels follow InvestSkill's README-zh-TW) ──
+    "10k-digest":               {"prefix": "10k_digest",               "label": "10-K 年報摘要",    "ext": ".md"},
+    "bear-case":                {"prefix": "bear_case",                "label": "空頭觀點",         "ext": ".md"},
+    "catalyst-calendar":        {"prefix": "catalyst_calendar",        "label": "催化劑日曆",       "ext": ".md"},
+    "industry-map":             {"prefix": "industry_map",             "label": "產業地圖",         "ext": ".md"},
+    "position-ladder":          {"prefix": "position_ladder",          "label": "分批建倉與降成本", "ext": ".md"},
+    "stock-screener":           {"prefix": "stock_screener",           "label": "股票篩選器",       "ext": ".md"},
+    "portfolio-review":         {"prefix": "portfolio_review",         "label": "投資組合檢視",     "ext": ".md"},
+    "report-generator":         {"prefix": "report_generator",         "label": "報告產出工具",     "ext": ".md"},
+    "result-validator":         {"prefix": "result_validator",         "label": "結果驗證與信心評分", "ext": ".md"},
+    # Deprecated upstream in 1.8.0 — folded into full-report's --depth flag.
+    "research-bundle":          {"prefix": "research_bundle",          "label": "研究套組（已棄用）", "ext": ".md"},
 }
 
 
@@ -55,26 +67,55 @@ def analysis_meta(analysis_type: str) -> dict:
     }
 
 
-# The 15 "comprehensive" modules from InvestSkill's prompts/full-report.md,
-# in the plugin's own analytical order (quick 1-5, standard 6-10, comprehensive 11-15).
+# The module sets behind InvestSkill's ``full-report --depth`` flag (1.8.0+),
+# in the plugin's own analytical order — each tier extends the previous one.
+# Source: InvestSkill prompts/full-report.md § "Module Sets by Depth"
 # https://yennj12.js.org/InvestSkill/full-demo-rklb.html
-FULL_DEMO_SKILLS = [
+_QUICK_SKILLS = [
     "stock-eval",
     "technical-analysis",
     "dcf-valuation",
     "insider-trading",
     "earnings-call-analysis",
+]
+
+_STANDARD_EXTRA = [
     "institutional-ownership",
     "competitor-analysis",
     "sector-analysis",
     "options-analysis",
     "short-interest",
+]
+
+_COMPREHENSIVE_EXTRA = [
     "fundamental-analysis",
     "stock-valuation",
     "economics-analysis",
     "financial-report-analyst",
     "dividend-analysis",
 ]
+
+DEPTH_TIERS = {
+    "quick": list(_QUICK_SKILLS),
+    "standard": _QUICK_SKILLS + _STANDARD_EXTRA,
+    "comprehensive": _QUICK_SKILLS + _STANDARD_EXTRA + _COMPREHENSIVE_EXTRA,
+}
+
+SUPPORTED_DEPTHS = tuple(DEPTH_TIERS)
+DEFAULT_DEPTH = "comprehensive"  # matches the plugin's own default
+
+# Back-compat alias: the full 15-module set.
+FULL_DEMO_SKILLS = DEPTH_TIERS[DEFAULT_DEPTH]
+
+
+def depth_skills(depth: str) -> list[str]:
+    """Return the module slugs for a ``full-report`` depth tier."""
+    try:
+        return list(DEPTH_TIERS[depth])
+    except KeyError as exc:
+        raise KeyError(
+            f"Unknown depth {depth!r}. Supported depths: {', '.join(SUPPORTED_DEPTHS)}"
+        ) from exc
 
 __all__ = [
     "TODAY",
@@ -84,10 +125,14 @@ __all__ = [
     "DEFAULT_INVEST_SKILL_DIR",
     "ANALYSIS_TYPES",
     "FULL_DEMO_SKILLS",
+    "DEPTH_TIERS",
+    "SUPPORTED_DEPTHS",
+    "DEFAULT_DEPTH",
     "SUPPORTED_PROVIDERS",
     "PROVIDER_DEFAULTS",
     "PROVIDER_CONTEXT_FILE",
     "analysis_meta",
+    "depth_skills",
     "provider_default",
     "context_file",
 ]

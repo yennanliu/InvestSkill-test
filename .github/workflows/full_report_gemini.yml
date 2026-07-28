@@ -1,7 +1,8 @@
 name: Full Report — Gemini (InvestSkill)
 
-# Runs the ENTIRE InvestSkill analysis suite (all 15 full-demo modules) for one
-# ticker in a single job, then synthesises a consolidated verdict — mirrors:
+# Runs an InvestSkill full-report depth tier (quick 5 / standard 10 /
+# comprehensive 15 modules) for one ticker in a single job, then synthesises a
+# consolidated verdict — mirrors:
 #   Install:  git clone yennanliu/InvestSkill   (GEMINI.md auto-loaded as context)
 #   Prompts:  prompts/*.md                       (@prompts/<skill>.md, one per module)
 #   Demo:     https://yennj12.js.org/InvestSkill/full-demo-rklb.html
@@ -27,6 +28,15 @@ on:
           - gemini-2.5-flash
           - gemini-2.5-pro
           - gemini-2.0-flash
+      depth:
+        description: "Module set (InvestSkill full-report --depth)"
+        required: false
+        default: "comprehensive"
+        type: choice
+        options:
+          - comprehensive
+          - standard
+          - quick
       max_tokens:
         description: "Max output tokens per module"
         required: false
@@ -85,14 +95,17 @@ jobs:
           DEFAULT_TICKER="MSFT"
           DEFAULT_MODEL="gemini-3.5-flash"
           DEFAULT_MAX_TOKENS="20000"
+          DEFAULT_DEPTH="comprehensive"
 
           TICKER="${{ github.event.inputs.ticker }}"
           MODEL="${{ github.event.inputs.model }}"
           MAX_TOKENS="${{ github.event.inputs.max_tokens }}"
+          DEPTH="${{ github.event.inputs.depth }}"
 
           TICKER="${TICKER:-$DEFAULT_TICKER}"
           MODEL="${MODEL:-$DEFAULT_MODEL}"
           MAX_TOKENS="${MAX_TOKENS:-$DEFAULT_MAX_TOKENS}"
+          DEPTH="${DEPTH:-$DEFAULT_DEPTH}"
 
           TICKER_UPPER=$(echo "$TICKER" | tr '[:lower:]' '[:upper:]')
           TICKER_LOWER=$(echo "$TICKER" | tr '[:upper:]' '[:lower:]')
@@ -101,12 +114,14 @@ jobs:
           echo "ticker=${TICKER_UPPER}"     >> "$GITHUB_OUTPUT"
           echo "model=${MODEL}"             >> "$GITHUB_OUTPUT"
           echo "max_tokens=${MAX_TOKENS}"   >> "$GITHUB_OUTPUT"
+          echo "depth=${DEPTH}"             >> "$GITHUB_OUTPUT"
           echo "output_dir=${OUTPUT_DIR}"   >> "$GITHUB_OUTPUT"
 
           echo "=== Parameters ==="
           echo "  Ticker:     ${TICKER_UPPER}"
           echo "  Model:      ${MODEL}"
           echo "  Max tokens: ${MAX_TOKENS}"
+          echo "  Depth:      ${DEPTH}"
           echo "  Output dir: ${OUTPUT_DIR}"
 
       - name: Check GEMINI_API_KEY secret
@@ -129,6 +144,7 @@ jobs:
             "${{ steps.params.outputs.ticker }}" \
             --model            "${{ steps.params.outputs.model }}" \
             --max-tokens       "${{ steps.params.outputs.max_tokens }}" \
+            --depth            "${{ steps.params.outputs.depth }}" \
             --output-dir       "${{ steps.params.outputs.output_dir }}" \
             --invest-skill-dir "InvestSkill"
 
