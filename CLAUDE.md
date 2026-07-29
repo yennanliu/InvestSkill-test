@@ -86,26 +86,103 @@ against `GEMINI_TOKEN_CEILING`.
 `xychart-beta` forms (swapped axes, object-literal series) that break rendering. See
 `utils/mermaid.py` for what is repaired and what is left alone.
 
-## The showcase generator (`scripts/showcase/`)
+## The showcase (`scripts/showcase/` → `docs/showcase/`)
 
-`docs/showcase/*.html` is **generated**. Every figure is recomputed from
-`scripts/showcase/fixtures/snapshot.json` on each build — no network, no API key, no derived-values
-fixture on disk. CI enforces two properties: committed HTML equals a fresh render, and two renders are
-byte-identical.
+A zh-TW worked example that runs InvestSkill's whole framework catalogue over one four-stock basket.
+`docs/showcase/*.html` is **generated** — ~900 KB of HTML from ~5,500 lines of Python and one 450 KB
+snapshot fixture. Nothing is hand-written and nothing is fetched at build time.
 
-- Hand-editing `docs/showcase/*.html` is pointless — the next build reverts it. Edit the generator, run
-  `build.py`, commit the regenerated HTML.
-- Anything non-deterministic (`date.today()`, dict iteration over unsorted input, unstable float
-  formatting) breaks the byte-identical gate. `ASOF` in `context.py` is a hardcoded date for this reason.
-- Flat module layout: `build.py` puts its own directory on `sys.path`, so pages `import context`, not
-  `from .context import`. `page_*.py` modules use `from context import *` deliberately — this is
-  whitelisted in `ruff.toml` per-file-ignores and shouldn't spread elsewhere.
-- Three data defects (KRW filings on a USD ADR, 13 days of price history, a `bookValue` 27% below the
-  filed balance sheet) are left in the snapshot **on purpose** so `result-validator` has something real
-  to catch. Don't "fix" them.
-- `validate_html.py` is stdlib-only by design. Its `ARTIFACTS` list flags Python leakage (`None`,
-  `nan`, `{placeholder}`, tracebacks) in rendered output; `ARTIFACT_ALLOW` holds the legitimate
-  substrings that trip those regexes.
+### Editorial premise
+
+MU, SKHY, MRVL and SNDL all gapped down 7.8–9.6% on 2026-07-28 — three memory/AI semis plus one
+deliberately unrelated Canadian cannabis retailer, which makes the synchronicity a liquidity event
+rather than a fundamental one. That is the hook every page hangs off. Each ticker carries a distinct
+demonstration role, so changing the basket would break the narrative, not just the numbers:
+
+| Ticker | Role in the showcase |
+|---|---|
+| MU | Flagship 15-module report — $820 prices peak margins as permanent at 15× |
+| SKHY | Data-integrity audit — KRW filings on a USD ADR, 13 days of history; the framework *refuses* to give a target (47/100 confidence) |
+| MRVL | GAAP vs non-GAAP gap; three valuation methods disagree by an order of magnitude |
+| SNDL | Value-trap anatomy — 0.30× book, but book is melting 7.1%/yr |
+
+### Pages
+
+`build.py` renders exactly eight files; `TICKERS` in `build.py` drives the four per-ticker pages.
+
+| File | Module | Content |
+|---|---|---|
+| `index.html` | `page_hub.py` | Hub: the shared gap-down, benchmark context, 27-framework coverage map |
+| `screener.html` | `page_screener.py` | `stock-screener` head-to-head — 5 weighted dimensions, every sub-factor and its raw input shown |
+| `mu/skhy/mrvl/sndl.html` | `page_stock.py` | The 15-module `full-report`, one section per module (M1–M15), then synthesis, bear-case red team, scorecard, valuation summary, entry/exit ladder, catalyst calendar, monitoring, `result-validator` audit, signal box |
+| `workflows.html` | `page_workflows.py` | Cookbook workflows A–G run for real; C and D correctly stop at the screening gate |
+| `supply-chain.html` | `page_chain.py` | `industry-map` — HBM chain as 11 layers, 3 chokepoints, 4 second-order ideas |
+
+### Build pipeline
+
+```
+fixtures/snapshot.json ──► derive.py ──► context.py ──► page_*.py ──► shell.page() ──► HTML
+   (raw yfinance dump)     (DERIVED)    (facts + fmt)   (+ viz, prose)   (chrome)
+```
+
+| Module | Role |
+|---|---|
+| `fixtures/snapshot.json` | Raw yfinance dump: per ticker `info`, `hist_1y`/`hist_5y`, annual + quarterly `financials`/`balance_sheet`/`cashflow`, `inst_holders`, `insider_tx`, `recos`, `calendar`, option chains; plus `_bench` (`^GSPC`, `^SOX`, `SMH`, `^IXIC`) |
+| `derive.py` | Every computed metric: Piotroski F-Score, ROIC vs WACC, DCF (`DCF_ASSUMPTIONS`), relative performance, IV/max-pain, the 5-dimension screener score, and the 5-phase `composite`. Exposes `DERIVED[ticker]`. Runnable standalone as a digest. |
+| `context.py` | The star-imported namespace: `RAW`, `C` (=`DERIVED`), `T`, `ASOF`, `NAMES`, `ROLE`, plus page-level facts (`GAP`, `DD`, `EARN`, `CYC`, `INS`, `INST`, `BS`, `RECO`) and every formatter (`money`, `pc`, `pcf`, `num`, `cls`, `arrow`, `st`, `sig_block`, `prov`, `interp`) |
+| `viz.py` | Hand-rolled SVG chart primitives — `line_chart`, `hbar_chart`, `radar_chart`, `football_field`, `scatter_chart`, `insider_timeline`, `column_chart`, `gauge`, `heat_table`, `simple_table`, wrapped by `figure()`. No JS charting library; charts are inline SVG so pages are self-contained. |
+| `prose.py` | The editorial layer — `P[ticker]` with ~23 keyed narrative slots (`tagline`, `spine`, `thesis`, `bull`, `bear`, one per module, `valid`, `vflags`, `sig`). Prose *interprets* numbers; it must not restate figures the generator could compute. |
+| `shell.py` | `CSS` + `JS` + `page(title, desc, body, active)` — doctype, head metadata, OG tags, inline-SVG favicon, nav, skip link, footer, disclaimer. Also `nav()`, `toc()`, `NAV_ITEMS`. |
+
+### Determinism is the contract
+
+CI enforces two properties: committed HTML equals a fresh render, and two consecutive renders are
+byte-identical. Both jobs run on 3.11 and 3.13.
+
+- **Hand-editing `docs/showcase/*.html` is pointless** — the next build reverts it. Edit the generator,
+  run `build.py`, commit the regenerated HTML. `build.py --check` prints a unified diff naming the
+  stale page, and flags `MISSING` / `ORPHAN` files.
+- Anything non-deterministic breaks the gate: `date.today()`, `random`, dict iteration over unsorted
+  input, set ordering, unstable float formatting. `ASOF = "2026-07-29"` in `context.py` is a hardcoded
+  string for exactly this reason — never make it dynamic.
+- **No derived-values fixture on disk.** Every number is recomputed from the snapshot each build, so a
+  page can't quietly drift from the data it cites. Don't cache `DERIVED` to a file.
+- Flat module layout: `build.py` puts its own directory on `sys.path`, so pages do `import context`, not
+  `from .context import`. `page_*.py` use `from context import *` deliberately — whitelisted in
+  `ruff.toml` per-file-ignores, and it shouldn't spread beyond those files.
+
+### Conventions the validator enforces
+
+`validate_html.py` is stdlib-only and checks what has actually broken here before. When adding markup:
+
+- **Exactly one `<h1>` per page**, and heading levels never skip going down.
+- Every `<img>` needs `alt`; every `<svg>` needs `aria-hidden="true"` or `role="img"` (or an
+  `aria-hidden` wrapper within ~160 chars). The chart helpers in `viz.py` already do this.
+- Every data `<table>` needs `<th>` cells.
+- Internal links and `#anchors` must resolve — including cross-page fragments. Same-site navigation
+  must be **relative**; `site.yml` greps for absolute `https://…/InvestSkill-test/` hrefs and fails.
+- No Python leakage in rendered output: `None`, `nan`, `{placeholder}`, `lambda`, `[tk]`, tracebacks.
+  `ARTIFACT_ALLOW` holds the legitimate substrings that trip those regexes; extend it rather than
+  loosening a pattern.
+- **ASCII signal-box borders must be flush.** `sig_block()` pads by *East Asian display width*, not
+  `len()` — CJK glyphs occupy two monospace cells. Any new box-drawing output must use `_dw`/`_pad`
+  from `context.py`, or the check fails.
+
+Nothing checks *semantic* drift. Headline counts ("27 個框架", "22 個子因子") are hardcoded prose
+strings, not derived from the data, so they can and do fall out of step with the tables beneath them —
+`page_screener.py` currently hardcodes 22 in eight places while `derive.py` computes 21. Prefer
+deriving a count over restating it.
+
+### Deliberate defects — do not "fix"
+
+Three data problems are left in the snapshot on purpose so `result-validator` has something real to
+catch: SKHY's KRW-denominated filings against a USD ADR price (`KRW = 1380.0` is a stated assumption,
+not a silent patch), SKHY's 13 days of price history, and a `bookValue` field 27% below the filed
+balance sheet.
+
+Insufficient data is meant to **propagate as `None`, not as a fabricated number**. SKHY has no momentum
+sub-factors at all, so its 動能 dimension is `None` and drops out of the weighted total — that visible
+hole is the point of the page. Preserve that behaviour when touching `derive.py`.
 
 ## Generated output is committed
 
