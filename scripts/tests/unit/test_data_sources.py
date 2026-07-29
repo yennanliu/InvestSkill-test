@@ -1,7 +1,6 @@
 """Unit tests for the data layer (fetch_stock_data)."""
 
 import sys
-import types
 
 import pytest
 

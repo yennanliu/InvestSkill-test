@@ -1,0 +1,135 @@
+name: Site (build · validate · lint)
+
+# Gates for the generated site under docs/ and the Python that produces it.
+#
+# Three independent checks, so a failure names its own cause:
+#   build     — docs/showcase must match a fresh render of the committed snapshot
+#   validate  — every page in docs/ passes structure / metadata / link / a11y checks
+#   lint      — ruff (pyflakes rules only) over scripts/
+#
+# No API keys, no network: the showcase renders from a committed yfinance
+# snapshot fixture, so these jobs are deterministic and free to run on every push.
+
+on:
+  push:
+    paths:
+      - "docs/**"
+      - "scripts/**"
+      - "ruff.toml"
+      - ".github/workflows/site.yml"
+  pull_request:
+    paths:
+      - "docs/**"
+      - "scripts/**"
+      - "ruff.toml"
+      - ".github/workflows/site.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  # Supersede in-flight runs for the same ref; the checks are pure functions of the tree.
+  group: site-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: showcase build is reproducible (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # Matches the tests workflow. The generator is stdlib-only, so both must pass.
+        python-version: ["3.11", "3.13"]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Verify committed HTML matches a fresh render
+        # Every figure on every page is recomputed from fixtures/snapshot.json.
+        # A diff here means docs/showcase was hand-edited, or the generator
+        # changed without the pages being regenerated.
+        run: python scripts/showcase/build.py --check
+
+      - name: Verify the render is deterministic
+        run: |
+          python scripts/showcase/build.py --out /tmp/render-a
+          python scripts/showcase/build.py --out /tmp/render-b
+          diff -r /tmp/render-a /tmp/render-b
+          echo "Two renders of the same snapshot are byte-identical."
+
+  validate:
+    name: HTML validation (docs/)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Validate structure, metadata, links and accessibility
+        # Stdlib-only checker: tag balance, head metadata, dead internal links and
+        # anchors, unrendered template artifacts, heading order, img/svg labelling,
+        # and flush borders on the CJK signal blocks.
+        run: python scripts/validate_html.py docs
+
+      - name: Check the site has no absolute links to itself
+        # A hardcoded https://…/InvestSkill-test/ link breaks local preview and
+        # any fork served from a different origin.
+        run: |
+          if grep -rn 'href="https://yenn[a-z0-9.]*/InvestSkill-test/' docs --include='*.html'; then
+            echo "::error::Use a relative link for same-site navigation."
+            exit 1
+          fi
+          echo "No self-referential absolute links."
+
+  lint:
+    name: ruff (pyflakes)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install ruff
+        # Pinned so a new ruff release cannot fail an unrelated push.
+        run: pip install ruff==0.16.0
+
+      - name: Lint scripts/
+        run: ruff check --no-cache scripts/
+
+      - name: Check scripts parse under the oldest supported Python (3.11)
+        # ruff.toml targets py311; this catches PEP 701 f-string syntax and other
+        # newer grammar that would break the 3.11 leg of the matrix.
+        run: |
+          python - <<'PY'
+          import ast, pathlib, sys
+          bad = []
+          for path in sorted(pathlib.Path("scripts").rglob("*.py")):
+              try:
+                  ast.parse(path.read_text(encoding="utf-8"), feature_version=(3, 11))
+              except SyntaxError as exc:
+                  bad.append(f"{path}:{exc.lineno}: {exc.msg}")
+          if bad:
+              print("Not valid Python 3.11 syntax:")
+              for line in bad:
+                  print(f"  {line}")
+              sys.exit(1)
+          print("All scripts parse under the 3.11 grammar.")
+          PY

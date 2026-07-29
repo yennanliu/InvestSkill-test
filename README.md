@@ -59,11 +59,41 @@ repository secret for the workflows in `.github/workflows/`.
 ```
 scripts/analysis/     config · prompts · data · llm · pipeline · publish
 scripts/*_gemini.py   thin per-skill entrypoints
-scripts/tests/        pytest suite (run: python -m pytest scripts/tests)
-.github/workflows/    scheduled + manual report jobs
+scripts/showcase/     zh-TW showcase generator + committed yfinance snapshot
+scripts/validate_html.py  stdlib HTML/link/a11y checker for docs/
+scripts/tests/        pytest suite (run: python -m pytest)
+.github/workflows/    scheduled report jobs + CI
 docs/                 project website (GitHub Pages)
 output/               every generated report, committed
 ```
+
+## Rebuilding the showcase
+
+The showcase pages are generated, not hand-written. Every figure is recomputed from
+`scripts/showcase/fixtures/snapshot.json` on each build, so a given snapshot always
+produces byte-identical HTML — no network access and no API key needed.
+
+```bash
+python scripts/showcase/build.py            # regenerate docs/showcase/
+python scripts/showcase/build.py --check    # verify committed HTML is current
+python scripts/showcase/derive.py           # print the derived-metrics digest
+python scripts/validate_html.py docs        # structure · links · a11y · artifacts
+```
+
+If you edit a generator module, run `build.py` and commit the regenerated HTML —
+CI fails if the two disagree. Editing `docs/showcase/*.html` by hand will be
+reverted by the next build, so don't.
+
+## CI
+
+| Workflow | Checks |
+|---|---|
+| [`tests.yml`](.github/workflows/tests.yml) | pytest on Python 3.11 + 3.13. All LLM SDKs and `yfinance` are faked, so no keys or network are needed. |
+| [`site.yml`](.github/workflows/site.yml) | **build** — `docs/showcase` matches a fresh render, and two renders are byte-identical · **validate** — every page in `docs/` passes tag balance, head metadata, heading order, `img`/`svg` labelling, dead internal links and anchors, unrendered template artifacts, and flush borders on the CJK signal blocks · **lint** — `ruff` (pyflakes rules) plus a Python 3.11 grammar check |
+
+Lint scope is deliberately narrow (see [`ruff.toml`](ruff.toml)): pyflakes catches real
+defects — undefined names, unused imports, dead locals — while style rules stay off so CI
+fails on bugs rather than on formatting opinions.
 
 ## Disclaimer
 

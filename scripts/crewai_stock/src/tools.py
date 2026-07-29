@@ -140,7 +140,7 @@ def _fetch(ticker: str) -> str:
         f"- Dividend Rate: {get('dividendRate')}  Yield: {_pct(info.get('dividendYield'))}",
         f"- Payout Ratio: {_pct(info.get('payoutRatio'))}",
         f"- 5Y Avg Dividend Yield: {_pct(info.get('fiveYearAvgDividendYield'))}",
-        f"- Share Buyback (implied by shares change): see historical balance sheet",
+        "- Share Buyback (implied by shares change): see historical balance sheet",
         f"- Shares Outstanding: {_fmt(info.get('sharesOutstanding'))}",
         f"- Float: {_fmt(info.get('floatShares'))}",
         f"- Short Ratio: {get('shortRatio')}  Short % Float: {_pct(info.get('shortPercentOfFloat'))}",

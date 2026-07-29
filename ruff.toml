@@ -1,0 +1,24 @@
+# Lint configuration for the Python under scripts/.
+#
+# Scope is deliberately narrow: pyflakes (F) catches real defects — undefined
+# names, unused imports, dead locals — and E9 catches syntax/IO errors. Style
+# rules are left off so CI fails on bugs rather than on formatting opinions.
+
+line-length = 100
+target-version = "py311"
+
+[lint]
+select = ["F", "E9"]
+
+# The showcase page builders intentionally use `from context import *`: they are
+# template modules where every helper (money, pc, st, RAW, C, …) is referenced
+# dozens of times, and qualifying each one would bury the HTML they exist to
+# emit. F403/F405 flag exactly that pattern, so they are off for those files
+# only — the star import stays visible everywhere else.
+[lint.per-file-ignores]
+"scripts/showcase/page_*.py" = ["F403", "F405"]
+
+[format]
+# Formatting is not enforced in CI; this block only documents the intent if
+# someone runs `ruff format` locally.
+quote-style = "preserve"

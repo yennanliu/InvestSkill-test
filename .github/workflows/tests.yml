@@ -7,11 +7,13 @@ on:
   push:
     paths:
       - "scripts/**"
+      - "docs/**"          # the showcase integration test reads docs/showcase
       - "pytest.ini"
       - ".github/workflows/tests.yml"
   pull_request:
     paths:
       - "scripts/**"
+      - "docs/**"
       - "pytest.ini"
   workflow_dispatch:
 
