@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>四檔對決 — 22 個子因子的完整推導 | InvestSkill Autopilot 展示櫃</title>
+<meta name="description" content="MU、SKHY、MRVL、SNDL 四檔的 stock-screener 五維度評分完整推導，含每個子因子的原始輸入值、排除理由與結果稽核。">
+<meta name="theme-color" content="#00b14f">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="四檔對決 — 22 個子因子的完整推導 | InvestSkill Autopilot 展示櫃">
+<meta property="og:description" content="MU、SKHY、MRVL、SNDL 四檔的 stock-screener 五維度評分完整推導，含每個子因子的原始輸入值、排除理由與結果稽核。">
+<meta property="og:type" content="article">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%2300b14f'/><path d='M8 21l5-6 4 3 7-9' stroke='white' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green:#00b14f; --green-press:#009644; --green-wash:#e6f7ee; --green-band:#00692e;
+  --amber:#ff8c00; --amber-ink:#b35c00; --red:#e02020; --red-ink:#c0161c;
+  --white:#fff; --ink:#16181a; --ink-2:#4a4f55; --ink-3:#767c85;
+  --line:#e6e8eb; --surface:#f7f8f9;
+  --s-4:4px; --s-8:8px; --s-12:12px; --s-16:16px; --s-24:24px; --s-32:32px;
+  --s-48:48px; --s-64:64px; --s-80:80px;
+  --r-btn:8px; --r-card:16px; --r-pill:999px;
+  --shadow:0 2px 8px rgba(22,24,26,.08); --shadow-lift:0 8px 24px rgba(22,24,26,.12);
+  --sans:"Inter","Poppins",-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",
+         "PingFang TC","Microsoft JhengHei",Roboto,Helvetica,Arial,sans-serif;
+  --display:"Poppins","Inter",-apple-system,BlinkMacSystemFont,"Noto Sans TC",
+         "PingFang TC","Microsoft JhengHei",Segoe UI,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,"Cascadia Mono","Liberation Mono",monospace;
+  --wrap:1220px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;background:var(--white);color:var(--ink);font-family:var(--sans);
+  font-size:16px;line-height:1.75;-webkit-font-smoothing:antialiased}
+img,svg{max-width:100%;display:block}
+a{color:var(--green-band);text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3,h4{font-family:var(--display);line-height:1.25;letter-spacing:-.01em;margin:0}
+h1{font-size:clamp(1.9rem,4.4vw,2.9rem);font-weight:800;letter-spacing:-.02em}
+h2{font-size:clamp(1.45rem,2.7vw,2rem);font-weight:800;letter-spacing:-.02em}
+h3{font-size:1.16rem;font-weight:700}
+h4{font-size:1rem;font-weight:700}
+p{margin:0}
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:var(--s-24)}
+
+/* ---------- nav ---------- */
+.nav{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.94);
+  backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid var(--line)}
+.nav__in{display:flex;align-items:center;gap:var(--s-16);height:68px;min-width:0}
+.brand{display:flex;align-items:center;gap:var(--s-12);min-width:0;text-decoration:none;
+  font-family:var(--display);font-weight:800;letter-spacing:-.02em;white-space:nowrap;color:var(--ink)}
+.brand:hover{text-decoration:none}
+.brand__text{overflow:hidden;text-overflow:ellipsis}
+.brand__mark{width:32px;height:32px;border-radius:var(--r-btn);background:var(--green);
+  display:grid;place-items:center;flex:0 0 auto}
+.nav__links{display:none;gap:var(--s-24);margin-left:auto;font-size:.875rem;font-weight:600}
+.nav__links a{text-decoration:none;color:var(--ink-2);padding-block:var(--s-8)}
+.nav__links a:hover,.nav__links a[aria-current="page"]{color:var(--green)}
+.nav__cta{margin-left:auto;flex:0 0 auto}
+@media(min-width:1000px){.nav__links{display:flex}.nav__cta{margin-left:0}}
+@media(max-width:559px){.nav__cta-label{display:none}.brand{font-size:.875rem}}
+.btn{display:inline-flex;align-items:center;gap:var(--s-8);padding:14px 24px;border:0;
+  border-radius:var(--r-btn);background:var(--green);color:#fff;font-family:var(--display);
+  font-size:1rem;font-weight:700;text-decoration:none;cursor:pointer;
+  transition:background .16s ease,transform .1s ease}
+.btn:hover{background:var(--green-press);text-decoration:none}
+.btn:active{transform:scale(.98)}
+.btn:focus-visible{outline:3px solid var(--green-band);outline-offset:2px}
+.btn--sm{padding:10px 18px;font-size:.875rem}
+.btn--soft{background:var(--green-wash);color:var(--green-band)}
+.btn--soft:hover{background:#d3f0e0}
+.btn--onband{background:#fff;color:var(--green-band)}
+.btn--onband:hover{background:#eef8f2}
+.btn--ghost{background:transparent;color:#fff;box-shadow:inset 0 0 0 2px rgba(255,255,255,.55)}
+.btn--ghost:hover{background:rgba(255,255,255,.12)}
+
+/* ---------- hero ---------- */
+.rhero{position:relative;overflow:hidden;color:#fff;
+  background:radial-gradient(120% 140% at 88% 8%,rgba(0,177,79,.95) 0%,rgba(0,177,79,0) 58%),
+  linear-gradient(104deg,var(--green-band) 0%,#007d38 52%,#009243 100%)}
+.rhero::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(90deg,rgba(0,58,26,.55) 0%,rgba(0,58,26,.18) 42%,rgba(0,58,26,0) 72%)}
+.rhero__in{position:relative;z-index:1;padding-block:var(--s-48) var(--s-64)}
+.rhero .eyebrow{color:#9ce8bd}
+.rhero__sub{margin-top:var(--s-16);font-size:1.06rem;max-width:62ch;color:rgba(255,255,255,.93)}
+.eyebrow{font-family:var(--display);font-size:.8125rem;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--green);margin-bottom:var(--s-8)}
+.chips{display:flex;flex-wrap:wrap;gap:var(--s-8);margin-top:var(--s-24)}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:6px 13px;border-radius:var(--r-pill);
+  background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.30);
+  font-size:.8125rem;font-weight:600;color:#fff;white-space:nowrap}
+.chip--ink{background:var(--green-wash);border-color:#b9e7cf;color:var(--green-band)}
+
+/* ---------- layout ---------- */
+.shell{display:block;padding-block:var(--s-48) var(--s-80)}
+@media(min-width:1060px){
+  .shell{display:grid;grid-template-columns:246px minmax(0,1fr);gap:var(--s-48);align-items:start}
+}
+.toc{display:none}
+@media(min-width:1060px){
+  .toc{display:block;position:sticky;top:92px;max-height:calc(100vh - 116px);overflow-y:auto;
+    font-size:.8125rem;border-left:2px solid var(--line);padding-left:var(--s-16)}
+}
+.toc__h{font-family:var(--display);font-weight:800;font-size:.75rem;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink-3);margin-bottom:var(--s-12)}
+.toc a{display:block;padding:5px 0;color:var(--ink-2);text-decoration:none;line-height:1.4}
+.toc a:hover{color:var(--green);text-decoration:none}
+.toc a.on{color:var(--green-band);font-weight:700}
+.toc__grp{margin-top:var(--s-16);font-size:.6875rem;font-weight:700;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--ink-3)}
+.doc>section{padding-block:var(--s-32);border-top:1px solid var(--line)}
+.doc>section:first-child{border-top:0;padding-top:0}
+.doc h2{margin-bottom:var(--s-8)}
+.doc h3{margin:var(--s-32) 0 var(--s-12)}
+.doc h4{margin:var(--s-24) 0 var(--s-8)}
+.doc p{margin-block:var(--s-12)}
+.doc ul,.doc ol{margin:var(--s-12) 0;padding-left:1.35em}
+.doc li{margin-block:6px}
+.modnum{display:inline-grid;place-items:center;width:29px;height:29px;border-radius:8px;
+  background:var(--green-wash);color:var(--green-band);font-family:var(--display);
+  font-weight:800;font-size:.8125rem;margin-right:10px;vertical-align:3px}
+.skilltag{display:inline-block;font-family:var(--mono);font-size:.75rem;font-weight:600;
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r-pill);
+  padding:3px 11px;color:var(--ink-2);margin-left:6px;vertical-align:2px;white-space:nowrap}
+.lede{font-size:1.06rem;color:var(--ink-2)}
+
+/* ---------- cards / tiles ---------- */
+.grid{display:grid;gap:var(--s-16)}
+.g2{grid-template-columns:repeat(auto-fit,minmax(272px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(216px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(174px,1fr))}
+.card{background:var(--white);border:1px solid var(--line);border-radius:var(--r-card);
+  padding:var(--s-24);box-shadow:var(--shadow)}
+.card--wash{background:var(--green-wash);border-color:#b9e7cf}
+.card--surface{background:var(--surface)}
+.card__h{font-family:var(--display);font-weight:800;font-size:1rem;margin-bottom:var(--s-8)}
+.tile{background:var(--white);border:1px solid var(--line);border-radius:var(--r-card);padding:var(--s-16) var(--s-16)}
+.tile__k{font-size:.75rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-3)}
+.tile__v{font-family:var(--display);font-size:1.6rem;font-weight:800;line-height:1.2;margin-top:4px;
+  letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.tile__n{font-size:.75rem;color:var(--ink-3);margin-top:3px;line-height:1.45}
+.up{color:var(--green-band)} .dn{color:var(--red-ink)} .fl{color:var(--amber-ink)}
+
+/* status pills — always icon + text, never colour alone */
+.st{display:inline-flex;align-items:center;gap:5px;padding:3px 11px;border-radius:var(--r-pill);
+  font-size:.75rem;font-weight:700;white-space:nowrap;border:1px solid}
+.st--good{background:var(--green-wash);color:var(--green-band);border-color:#b9e7cf}
+.st--warn{background:#fff4e5;color:var(--amber-ink);border-color:#ffd9a8}
+.st--bad{background:#fdeaea;color:var(--red-ink);border-color:#f7c4c4}
+.st--neut{background:var(--surface);color:var(--ink-2);border-color:var(--line)}
+
+/* ---------- tables ---------- */
+.tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-block:var(--s-16)}
+table{border-collapse:collapse;width:100%;font-size:.875rem;font-variant-numeric:tabular-nums}
+.dt th,.dt td,.heat th,.heat td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.dt thead th,.heat thead th{background:var(--surface);font-family:var(--display);font-weight:700;
+  font-size:.8125rem;color:var(--ink-2);border-bottom:2px solid var(--line);white-space:nowrap;
+  position:sticky;top:0}
+.dt tbody th,.heat tbody th{font-weight:600;text-align:left}
+.dt tbody tr:hover{background:#fafbfb}
+.heat td{text-align:center;font-weight:700;font-size:.8125rem;border:2px solid #fff}
+.heat tbody th{background:var(--surface);white-space:nowrap;font-size:.8125rem}
+.dt--sm{font-size:.8125rem}
+.dt--sm th,.dt--sm td{padding:7px 10px}
+caption{caption-side:top;text-align:left;font-size:.8125rem;color:var(--ink-3);padding-bottom:var(--s-8)}
+
+/* ---------- figures ---------- */
+.fig{margin:var(--s-24) 0}
+.figbox{background:var(--white);border:1px solid var(--line);border-radius:var(--r-card);
+  padding:var(--s-16);overflow-x:auto;position:relative}
+.chart{width:100%;height:auto;min-width:min(100%,560px)}
+figcaption{font-size:.8125rem;color:var(--ink-2);margin-top:var(--s-8);font-weight:600}
+.fignote{font-size:.75rem;color:var(--ink-3);margin-top:4px;line-height:1.6}
+.lgd{display:flex;flex-wrap:wrap;gap:var(--s-16);margin-bottom:var(--s-12);font-size:.8125rem;font-weight:600;color:var(--ink-2)}
+.lgd__i{display:inline-flex;align-items:center;gap:6px}
+.lgd__sw{width:12px;height:12px;border-radius:3px;flex:0 0 auto}
+.tblview{margin-top:var(--s-8)}
+.tblview summary{cursor:pointer;font-size:.8125rem;font-weight:700;color:var(--green-band);
+  padding:5px 0;list-style:none;display:inline-flex;align-items:center;gap:5px}
+.tblview summary::before{content:"▸";transition:transform .15s}
+.tblview[open] summary::before{transform:rotate(90deg)}
+.tblview summary::-webkit-details-marker{display:none}
+.ch-tip{position:absolute;pointer-events:none;background:var(--ink);color:#fff;font-size:12px;
+  line-height:1.55;padding:8px 11px;border-radius:8px;box-shadow:var(--shadow-lift);
+  white-space:nowrap;opacity:0;transition:opacity .1s;z-index:5;font-variant-numeric:tabular-nums}
+.ch-tip b{font-weight:700}
+.ch-tip .r{display:flex;align-items:center;gap:6px;margin-top:3px}
+.ch-tip .sw{width:9px;height:9px;border-radius:2px;flex:0 0 auto}
+
+/* ---------- callouts ---------- */
+.call{border-left:4px solid var(--green);background:var(--green-wash);padding:var(--s-16) var(--s-24);
+  border-radius:0 var(--r-card) var(--r-card) 0;margin-block:var(--s-24)}
+.call--warn{border-color:var(--amber);background:#fff8ef}
+.call--bad{border-color:var(--red);background:#fdf0f0}
+.call--ink{border-color:var(--ink-3);background:var(--surface)}
+.call__h{font-family:var(--display);font-weight:800;font-size:.9375rem;margin-bottom:6px;
+  display:flex;align-items:center;gap:7px}
+.call p{margin-block:6px;font-size:.9375rem}
+.call ul{margin:6px 0;font-size:.9375rem}
+
+/* signal block — the InvestSkill house style, kept monospace */
+.sig{background:#0f1113;color:#e8edf1;border-radius:var(--r-card);padding:var(--s-24);
+  font-family:var(--mono);font-size:.8125rem;line-height:1.85;overflow-x:auto;margin-block:var(--s-24)}
+.sig b{color:#7ee2a8;font-weight:700}
+.sig .k{color:#8b98a5}
+.sig pre{margin:0;font:inherit}
+.mm{font-family:var(--mono);font-size:.8125rem;background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--r-btn);padding:var(--s-16);overflow-x:auto;line-height:1.7}
+.mm pre{margin:0;font:inherit}
+code{font-family:var(--mono);font-size:.9em;background:var(--surface);border:1px solid var(--line);
+  border-radius:5px;padding:1px 5px}
+.doc pre code{border:0;background:none;padding:0}
+
+/* ---------- flow / chain diagram ---------- */
+.flow{display:grid;gap:var(--s-12);margin-block:var(--s-24)}
+.flow__row{display:grid;gap:var(--s-12);grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+.node{border:1px solid var(--line);border-radius:12px;padding:var(--s-12) var(--s-16);background:#fff;
+  box-shadow:var(--shadow);position:relative}
+.node--choke{border-color:var(--red);border-width:2px;background:#fdf0f0}
+.node--target{border-color:var(--green);border-width:2px;background:var(--green-wash)}
+.node__pos{font-size:.6875rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3)}
+.node__n{font-family:var(--display);font-weight:800;font-size:.9375rem;margin-top:2px}
+.node__t{font-family:var(--mono);font-size:.75rem;color:var(--ink-2);margin-top:5px;line-height:1.6}
+.node__m{font-size:.6875rem;color:var(--ink-3);margin-top:5px}
+.arrowrow{text-align:center;color:var(--ink-3);font-size:1.1rem;line-height:1}
+
+/* ---------- misc ---------- */
+.band{background:var(--green-band);color:#fff;padding-block:var(--s-48)}
+.band a{color:#fff}
+.section--wash{background:var(--green-wash)}
+.section--surface{background:var(--surface)}
+.section{padding-block:var(--s-64)}
+.foot{border-top:1px solid var(--line);padding-block:var(--s-32);font-size:.8125rem;color:var(--ink-3)}
+.foot a{color:var(--ink-2)}
+.disc{font-size:.75rem;color:var(--ink-3);line-height:1.7;background:var(--surface);
+  border:1px solid var(--line);border-radius:var(--r-card);padding:var(--s-16);margin-top:var(--s-24)}
+.crumb{font-size:.8125rem;color:rgba(255,255,255,.8);margin-bottom:var(--s-12)}
+.crumb a{color:rgba(255,255,255,.92)}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:var(--s-16);top:var(--s-8);z-index:60;background:#fff;color:var(--ink);
+  padding:10px 16px;border-radius:var(--r-btn);box-shadow:var(--shadow-lift)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media print{
+  .nav,.toc,.tblview{display:none}
+  .shell{display:block}
+  .figbox,.card{break-inside:avoid;box-shadow:none}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-size:.7em;color:#666}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">跳至主要內容</a>
+<header class="nav"><div class="wrap nav__in">
+<a class="brand" href="../index.html"><span class="brand__mark"><svg width="18" height="18" viewBox="0 0 32 32" aria-hidden="true"><path d="M8 21l5-6 4 3 7-9" stroke="white" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+<span class="brand__text">InvestSkill Autopilot</span></a>
+<nav class="nav__links" aria-label="展示頁面"><a href="index.html">總覽</a><a href="screener.html" aria-current="page">四檔對決</a><a href="mu.html">MU</a><a href="skhy.html">SKHY</a><a href="mrvl.html">MRVL</a><a href="sndl.html">SNDL</a><a href="workflows.html">工作流 A–G</a><a href="supply-chain.html">產業鏈</a></nav>
+<a class="btn btn--sm nav__cta" href="https://github.com/yennanliu/InvestSkill-test">
+<span class="nav__cta-label">GitHub</span>
+<svg width="17" height="17" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-2.92-.88-2.92-2.90 0-.86.31-1.57.82-2.12-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.81a5.4 5.4 0 0 1 2 0c1.53-1.04 2.2-.81 2.2-.81.44 1.1.16 1.92.08 2.12.51.55.82 1.25.82 2.12 0 2.03-1.15 2.70-2.93 2.90.3.26.56.76.56 1.54 0 1.11-.01 2.01-.01 2.29 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg></a>
+</div></header>
+<main id="main">
+<section class="rhero"><div class="wrap rhero__in">
+<p class="crumb"><a href="../index.html">InvestSkill Autopilot</a> ／ <a href="index.html">展示櫃</a> ／ 四檔對決</p>
+<p class="eyebrow">framework · stock-screener</p>
+<h1>四檔對決：22 個子因子<br>的完整推導</h1>
+<p class="rhero__sub">同一份資料快照、同一套評分規則，套在四檔產業定位完全不同的標的上。
+本頁把 <code style="background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.3);color:#fff">stock-screener</code>
+的每一個子因子攤開，讓每個分數都能被反推、被質疑。</p>
+<div class="chips">
+<span class="chip">5 維度 · 22 子因子</span>
+<span class="chip">首選 MU · 8.5／10</span>
+<span class="chip">universe 均分 7.00</span>
+<span class="chip">2026-07-29</span>
+</div></div></section><div class="wrap shell"><aside class="toc" aria-label="本頁目錄"><div class="toc__h">本頁目錄</div><a href="#src">資料來源</a><a href="#board">排行榜</a><a href="#radar">五維度雷達</a><a href="#subs">22 個子因子拆解</a><div class="toc__grp">維度細節</div><a href="#d-val">價值</a><a href="#d-qual">品質</a><a href="#d-mom">動能</a><a href="#d-sent">情緒</a><a href="#d-grow">成長</a><div class="toc__grp">延伸</div><a href="#deep">前三名深潛</a><a href="#avoid">避開清單</a><a href="#sector">類股輪動</a><a href="#macro">總體環境</a><a href="#notes">篩選註記</a><a href="#valid">結果稽核</a><a href="#signal">訊號區塊</a></aside><div class="doc"><section id="src"><h2>資料來源</h2>
+<div class="call call--ink"><div class="call__h">📋 Data &amp; Sources — 資料來源與可信度</div>
+<table class="dt dt--sm" style="margin-top:8px"><tbody>
+<tr><th scope="row" style="width:112px">As of</th><td style="text-align:left">2026-07-29（收盤後快照）</td></tr>
+<tr><th scope="row">Source</th><td style="text-align:left">yfinance（Yahoo Finance）即時快照：報價、四年年報、五季季報、13F 前 15 大持股、Form 4、選擇權鏈、分析師預估；基準指數 ^GSPC／^SOX／SMH。類股中位數本益比採 32.0 倍（2026-07 半導體類股）。</td></tr>
+<tr><th scope="row">Retrieval</th><td style="text-align:left">程式化擷取（yfinance 1.5.2），單次快照，四檔共用</td></tr>
+<tr><th scope="row">Confidence</th><td style="text-align:left"><strong>MEDIUM</strong> — 三檔資料完整；SKHY 因上市歷史僅 13 個交易日且財報幣別與報價幣別不一致，個別維度不可用</td></tr>
+</tbody></table><p style="font-size:.8125rem;margin-top:10px;color:var(--ink-2)"><strong>單位校正</strong>：SKHY 財報以韓元揭露、ADR 以美元報價。本頁所有 SKHY 的絕對金額與比率均已按 1 USD = 1,380 KRW 換算後計算，並在數值旁標示「校正後」。未校正的原始欄位（P/S 0.007、企業價值 −31.5 兆）一律不採用，理由見 <a href="skhy.html#valid">SKHY 稽核報告</a>。</p></div>
+</section><section id="board"><h2><span class="modnum">1</span>排行榜<span class="skilltag">stock-screener</span></h2>
+<p>總分 ＝ 價值×0.20 ＋ 品質×0.25 ＋ 動能×0.20 ＋ 情緒×0.15 ＋ 成長×0.20。</p>
+<div class="tblwrap"><table class="dt">
+<caption>訊號門檻：≥7.5 強力買進　·　6.0–7.4 買進　·　4.5–5.9 持有　·　3.0–4.4 避開　·　&lt;3.0 強力避開</caption>
+<thead><tr><th style="text-align:center;width:40px">#</th><th style="text-align:left">標的</th>
+<th style="text-align:center">價值</th><th style="text-align:center">品質</th><th style="text-align:center">動能</th><th style="text-align:center">情緒</th><th style="text-align:center">成長</th>
+<th style="text-align:center">總分</th><th style="text-align:center">訊號</th></tr></thead>
+<tbody><tr><th scope="row" style="text-align:center">1</th><td style="text-align:left"><a href="mu.html"><strong>MU</strong></a> <span style="color:var(--ink-3)">美光科技</span></td><td style="text-align:center;font-weight:700">8.1</td><td style="text-align:center;font-weight:700">8.5</td><td style="text-align:center;font-weight:700">7.0</td><td style="text-align:center;font-weight:700">9.1</td><td style="text-align:center;font-weight:700">10.0</td><td style="text-align:center;font-size:1.05rem"><strong>8.5</strong></td><td style="text-align:center"><span class="st st--good">✅ STRONG BUY</span></td></tr><tr><th scope="row" style="text-align:center">2</th><td style="text-align:left"><a href="skhy.html"><strong>SKHY</strong></a> <span style="color:var(--ink-3)">SK 海力士</span></td><td style="text-align:center;font-weight:700">8.2</td><td style="text-align:center;font-weight:700">9.4</td><td style="text-align:center;color:var(--ink-3);font-size:.75rem;font-style:italic">未評分</td><td style="text-align:center;font-weight:700">8.8</td><td style="text-align:center;font-weight:700">10.0</td><td style="text-align:center;font-size:1.05rem"><strong>8.3</strong></td><td style="text-align:center"><span class="st st--good">✅ STRONG BUY</span></td></tr><tr><th scope="row" style="text-align:center">3</th><td style="text-align:left"><a href="mrvl.html"><strong>MRVL</strong></a> <span style="color:var(--ink-3)">邁威爾科技</span></td><td style="text-align:center;font-weight:700">2.6</td><td style="text-align:center;font-weight:700">7.3</td><td style="text-align:center;font-weight:700">6.0</td><td style="text-align:center;font-weight:700">9.1</td><td style="text-align:center;font-weight:700">6.4</td><td style="text-align:center;font-size:1.05rem"><strong>6.2</strong></td><td style="text-align:center"><span class="st st--good">✅ BUY</span></td></tr><tr><th scope="row" style="text-align:center">4</th><td style="text-align:left"><a href="sndl.html"><strong>SNDL</strong></a> <span style="color:var(--ink-3)">SNDL</span></td><td style="text-align:center;font-weight:700">5.6</td><td style="text-align:center;font-weight:700">7.3</td><td style="text-align:center;font-weight:700">0.2</td><td style="text-align:center;font-weight:700">6.8</td><td style="text-align:center;font-weight:700">0.0</td><td style="text-align:center;font-size:1.05rem"><strong>5.0</strong></td><td style="text-align:center"><span class="st st--warn">⚠ HOLD</span></td></tr></tbody></table></div>
+
+<h3>加權算式逐檔展開</h3>
+<div class="tblwrap"><table class="dt dt--sm"><thead><tr><th>標的</th>
+<th style="text-align:left">計算</th><th style="text-align:center">總分</th></tr></thead>
+<tbody><tr><th scope="row">MU</th><td style="text-align:left;font-family:var(--mono);font-size:.75rem;line-height:1.9">價值 8.1×20%=1.62 ＋ 品質 8.5×25%=2.12 ＋ 動能 7.0×20%=1.40 ＋ 情緒 9.1×15%=1.36 ＋ 成長 10.0×20%=2.00</td><td style="text-align:center"><strong>8.5</strong></td></tr><tr><th scope="row">SKHY</th><td style="text-align:left;font-family:var(--mono);font-size:.75rem;line-height:1.9">價值 8.2×20%=1.64 ＋ 品質 9.4×25%=2.35 ＋ 動能 未評分→中性 5.0×20%=1.00 ＋ 情緒 8.8×15%=1.32 ＋ 成長 10.0×20%=2.00</td><td style="text-align:center"><strong>8.3</strong></td></tr><tr><th scope="row">MRVL</th><td style="text-align:left;font-family:var(--mono);font-size:.75rem;line-height:1.9">價值 2.6×20%=0.52 ＋ 品質 7.3×25%=1.82 ＋ 動能 6.0×20%=1.20 ＋ 情緒 9.1×15%=1.36 ＋ 成長 6.4×20%=1.28</td><td style="text-align:center"><strong>6.2</strong></td></tr><tr><th scope="row">SNDL</th><td style="text-align:left;font-family:var(--mono);font-size:.75rem;line-height:1.9">價值 5.6×20%=1.12 ＋ 品質 7.3×25%=1.82 ＋ 動能 0.2×20%=0.04 ＋ 情緒 6.8×15%=1.02 ＋ 成長 0.0×20%=0.00</td><td style="text-align:center"><strong>5.0</strong></td></tr></tbody></table></div>
+<p class="fignote">SKHY 的動能維度依框架規定以中性 5.0 代入並標示「未評分」。若改以其餘四維度重新加權
+（權重歸一化至 100%），SKHY 總分會升至 <strong>9.1</strong>——
+換言之，這個「未評分」處理讓 SKHY 的分數被<strong>低估</strong>了約
+0.8 分。
+框架選擇保守處理而非樂觀外推，這個取捨必須明示。</p>
+
+<h3>權重設計</h3>
+<div class="tblwrap"><table class="dt"><thead><tr><th style="text-align:left">維度</th><th style="text-align:center">權重</th><th style="text-align:left">理由</th></tr></thead><tbody><tr><th scope="row" style="text-align:left">價值</th><td style="text-align:center">20%</td><td style="text-align:left">與動能、成長同權：便宜本身不是理由，但仍是報酬的重要來源</td></tr><tr><th scope="row" style="text-align:left">品質</th><td style="text-align:center">25%</td><td style="text-align:left">最高權重——五個因子中最持久，也最不容易被短期價格反轉推翻</td></tr><tr><th scope="row" style="text-align:left">動能</th><td style="text-align:center">20%</td><td style="text-align:left">與價值同權，作為進場時機的客觀輸入</td></tr><tr><th scope="row" style="text-align:left">情緒</th><td style="text-align:center">15%</td><td style="text-align:left">折價處理：內部人與法人訊號雜訊最大，且常有申報時滯</td></tr><tr><th scope="row" style="text-align:left">成長</th><td style="text-align:center">20%</td><td style="text-align:left">與價值同權；循環股需搭配品質維度共同解讀，避免把峰值成長當常態</td></tr></tbody></table></div>
+</section><section id="radar"><h2><span class="modnum">2</span>五維度雷達</h2>
+<div class="grid g2" style="margin-top:var(--s-24)"><div><div class="figbox"><svg class="chart" viewBox="0 0 330 330" role="img" preserveAspectRatio="xMidYMid meet"><polygon points="165.0,143.2 185.7,158.3 177.8,182.6 152.2,182.6 144.3,158.3" fill="none" stroke="#e6e8eb" stroke-width="1"/><polygon points="165.0,121.4 206.5,151.5 190.6,200.3 139.4,200.3 123.5,151.5" fill="none" stroke="#e6e8eb" stroke-width="1"/><polygon points="165.0,99.6 227.2,144.8 203.4,217.9 126.6,217.9 102.8,144.8" fill="none" stroke="#e6e8eb" stroke-width="1"/><polygon points="165.0,77.8 247.9,138.1 216.3,235.5 113.7,235.5 82.1,138.1" fill="none" stroke="#e6e8eb" stroke-width="1"/><polygon points="165.0,56.0 268.7,131.3 229.1,253.2 100.9,253.2 61.3,131.3" fill="none" stroke="#e6e8eb" stroke-width="1"/><line x1="165.0" y1="165.0" x2="165.0" y2="56.0" stroke="#e6e8eb" stroke-width="1"/><text x="165.0" y="38.2" text-anchor="middle" font-size="12" font-weight="600" fill="#4a4f55">價值</text><line x1="165.0" y1="165.0" x2="268.7" y2="131.3" stroke="#e6e8eb" stroke-width="1"/><text x="289.4" y="128.6" text-anchor="start" font-size="12" font-weight="600" fill="#4a4f55">品質</text><line x1="165.0" y1="165.0" x2="229.1" y2="253.2" stroke="#e6e8eb" stroke-width="1"/><text x="241.9" y="274.8" text-anchor="start" font-size="12" font-weight="600" fill="#4a4f55">動能</text><line x1="165.0" y1="165.0" x2="100.9" y2="253.2" stroke="#e6e8eb" stroke-width="1"/><text x="88.1" y="274.8" text-anchor="end" font-size="12" font-weight="600" fill="#4a4f55">情緒</text><line x1="165.0" y1="165.0" x2="61.3" y2="131.3" stroke="#e6e8eb" stroke-width="1"/><text x="40.6" y="128.6" text-anchor="end" font-size="12" font-weight="600" fill="#4a4f55">成長</text><polygon points="165.0,76.7 253.1,136.4 209.8,226.7 106.7,245.2 61.3,131.3" fill="#2a78d6" fill-opacity=".14" stroke="#2a78d6" stroke-width="2" stroke-linejoin="round"/><circle cx="165.0" cy="76.7" r="4.5" fill="#2a78d6" stroke="#ffffff" stroke-width="2"><title>MU · 價值: 8.1</title></circle><circle cx="253.1" cy="136.4" r="4.5" fill="#2a78d6" stroke="#ffffff" stroke-width="2"><title>MU · 品質: 8.5</title></circle><circle cx="209.8" cy="226.7" r="4.5" fill="#2a78d6" stroke="#ffffff" stroke-width="2"><title>MU · 動能: 7.0</title></circle><circle cx="106.7" cy="245.2" r="4.5" fill="#2a78d6" stroke="#ffffff" stroke-width="2"><title>MU · 情緒: 9.1</title></circle><circle cx="61.3" cy="131.3" r="4.5" fill="#2a78d6" stroke="#ffffff" stroke-width="2"><title>MU · 成長: 10.0</title></circle><text x="165.0" y="318.0" text-anchor="middle" font-size="11" fill="#767c85">0（外圈 10）</text></svg></div><figcaption style="text-align:center">MU · 美光科技 — 總分 8.5</figcaption></div><div><div class="figbox"><svg class="chart" viewBox="0 0 330 330" role="img" preserveAspectRatio="xMidYMid meet"><polygon points="165.0,143.2 185.7,158.3 177.8,182.6 152.2,182.6 144.3,158.3" fill="none" stroke="#e6e8eb" stroke-width="1"/><polygon points="165.0,121.4 206.5,151.5 190.6,200.3 139.4,200.3 123.5,151.5" fill="none" stroke="#e6e8eb" stroke-width="1"/><polygon points="165.0,99.6 227.2,144.8 203.4,217.9 126.6,217.9 102.8,144.8" fill="none" stroke="#e6e8eb" stroke-width="1"/><polygon points="165.0,77.8 247.9,138.1 216.3,235.5 113.7,235.5 82.1,138.1" fill="none" stroke="#e6e8eb" stroke-width="1"/><polygon points="165.0,56.0 268.7,131.3 229.1,253.2 100.9,253.2 61.3,131.3" fill="none" stroke="#e6e8eb" stroke-width="1"/><line x1="165.0" y1="165.0" x2="165.0" y2="56.0" stroke="#e6e8eb" stroke-width="1"/><text x="165.0" y="38.2" text-anchor="middle" font-size="12" font-weight="600" fill="#4a4f55">價值</text><line x1="165.0" y1="165.0" x2="268.7" y2="131.3" stroke="#e6e8eb" stroke-width="1"/><text x="289.4" y="128.6" text-anchor="start" font-size="12" font-weight="600" fill="#4a4f55">品質</text><line x1="165.0" y1="165.0" x2="229.1" y2="253.2" stroke="#e6e8eb" stroke-width="1"/><text x="241.9" y="274.8" text-anchor="start" font-size="12" font-weight="600" fill="#4a4f55">動能</text><line x1="165.0" y1="165.0" x2="100.9" y2="253.2" stroke="#e6e8eb" stroke-width="1"/><text x="88.1" y="274.8" text-anchor="end" font-size="12" font-weight="600" fill="#4a4f55">情緒</text><line x1="165.0" y1="165.0" x2="61.3" y2="131.3" stroke="#e6e8eb" stroke-width="1"/><text x="40.6" y="128.6" text-anchor="end" font-size="12" font-weight="600" fill="#4a4f55">成長</text><polygon points="165.0,75.6 262.4,133.3 165.0,165.0 108.6,242.6 61.3,131.3" fill="#1baf7a" fill-opacity=".14" stroke="#1baf7a" stroke-width="2" stroke-linejoin="round"/><circle cx="165.0" cy="75.6" r="4.5" fill="#1baf7a" stroke="#ffffff" stroke-width="2"><title>SKHY · 價值: 8.2</title></circle><circle cx="262.4" cy="133.3" r="4.5" fill="#1baf7a" stroke="#ffffff" stroke-width="2"><title>SKHY · 品質: 9.4</title></circle><circle cx="108.6" cy="242.6" r="4.5" fill="#1baf7a" stroke="#ffffff" stroke-width="2"><title>SKHY · 情緒: 8.8</title></circle><circle cx="61.3" cy="131.3" r="4.5" fill="#1baf7a" stroke="#ffffff" stroke-width="2"><title>SKHY · 成長: 10.0</title></circle><text x="165.0" y="318.0" text-anchor="middle" font-size="11" fill="#767c85">0（外圈 10）</text></svg></div><figcaption style="text-align:center">SKHY · SK 海力士 — 總分 8.3</figcaption><p class="fignote">未評分維度：動能（繪為 0，非真實得分）</p></div><div><div class="figbox"><svg class="chart" viewBox="0 0 330 330" role="img" preserveAspectRatio="xMidYMid meet"><polygon points="165.0,143.2 185.7,158.3 177.8,182.6 152.2,182.6 144.3,158.3" fill="none" stroke="#e6e8eb" stroke-width="1"/><polygon points="165.0,121.4 206.5,151.5 190.6,200.3 139.4,200.3 123.5,151.5" fill="none" stroke="#e6e8eb" stroke-width="1"/><polygon points="165.0,99.6 227.2,144.8 203.4,217.9 126.6,217.9 102.8,144.8" fill="none" stroke="#e6e8eb" stroke-width="1"/><polygon points="165.0,77.8 247.9,138.1 216.3,235.5 113.7,235.5 82.1,138.1" fill="none" stroke="#e6e8eb" stroke-width="1"/><polygon points="165.0,56.0 268.7,131.3 229.1,253.2 100.9,253.2 61.3,131.3" fill="none" stroke="#e6e8eb" stroke-width="1"/><line x1="165.0" y1="165.0" x2="165.0" y2="56.0" stroke="#e6e8eb" stroke-width="1"/><text x="165.0" y="38.2" text-anchor="middle" font-size="12" font-weight="600" fill="#4a4f55">價值</text><line x1="165.0" y1="165.0" x2="268.7" y2="131.3" stroke="#e6e8eb" stroke-width="1"/><text x="289.4" y="128.6" text-anchor="start" font-size="12" font-weight="600" fill="#4a4f55">品質</text><line x1="165.0" y1="165.0" x2="229.1" y2="253.2" stroke="#e6e8eb" stroke-width="1"/><text x="241.9" y="274.8" text-anchor="start" font-size="12" font-weight="600" fill="#4a4f55">動能</text><line x1="165.0" y1="165.0" x2="100.9" y2="253.2" stroke="#e6e8eb" stroke-width="1"/><text x="88.1" y="274.8" text-anchor="end" font-size="12" font-weight="600" fill="#4a4f55">情緒</text><line x1="165.0" y1="165.0" x2="61.3" y2="131.3" stroke="#e6e8eb" stroke-width="1"/><text x="40.6" y="128.6" text-anchor="end" font-size="12" font-weight="600" fill="#4a4f55">成長</text><polygon points="165.0,136.7 240.7,140.4 203.4,217.9 106.7,245.2 98.7,143.4" fill="#eb6834" fill-opacity=".14" stroke="#eb6834" stroke-width="2" stroke-linejoin="round"/><circle cx="165.0" cy="136.7" r="4.5" fill="#eb6834" stroke="#ffffff" stroke-width="2"><title>MRVL · 價值: 2.6</title></circle><circle cx="240.7" cy="140.4" r="4.5" fill="#eb6834" stroke="#ffffff" stroke-width="2"><title>MRVL · 品質: 7.3</title></circle><circle cx="203.4" cy="217.9" r="4.5" fill="#eb6834" stroke="#ffffff" stroke-width="2"><title>MRVL · 動能: 6.0</title></circle><circle cx="106.7" cy="245.2" r="4.5" fill="#eb6834" stroke="#ffffff" stroke-width="2"><title>MRVL · 情緒: 9.1</title></circle><circle cx="98.7" cy="143.4" r="4.5" fill="#eb6834" stroke="#ffffff" stroke-width="2"><title>MRVL · 成長: 6.4</title></circle><text x="165.0" y="318.0" text-anchor="middle" font-size="11" fill="#767c85">0（外圈 10）</text></svg></div><figcaption style="text-align:center">MRVL · 邁威爾科技 — 總分 6.2</figcaption></div><div><div class="figbox"><svg class="chart" viewBox="0 0 330 330" role="img" preserveAspectRatio="xMidYMid meet"><polygon points="165.0,143.2 185.7,158.3 177.8,182.6 152.2,182.6 144.3,158.3" fill="none" stroke="#e6e8eb" stroke-width="1"/><polygon points="165.0,121.4 206.5,151.5 190.6,200.3 139.4,200.3 123.5,151.5" fill="none" stroke="#e6e8eb" stroke-width="1"/><polygon points="165.0,99.6 227.2,144.8 203.4,217.9 126.6,217.9 102.8,144.8" fill="none" stroke="#e6e8eb" stroke-width="1"/><polygon points="165.0,77.8 247.9,138.1 216.3,235.5 113.7,235.5 82.1,138.1" fill="none" stroke="#e6e8eb" stroke-width="1"/><polygon points="165.0,56.0 268.7,131.3 229.1,253.2 100.9,253.2 61.3,131.3" fill="none" stroke="#e6e8eb" stroke-width="1"/><line x1="165.0" y1="165.0" x2="165.0" y2="56.0" stroke="#e6e8eb" stroke-width="1"/><text x="165.0" y="38.2" text-anchor="middle" font-size="12" font-weight="600" fill="#4a4f55">價值</text><line x1="165.0" y1="165.0" x2="268.7" y2="131.3" stroke="#e6e8eb" stroke-width="1"/><text x="289.4" y="128.6" text-anchor="start" font-size="12" font-weight="600" fill="#4a4f55">品質</text><line x1="165.0" y1="165.0" x2="229.1" y2="253.2" stroke="#e6e8eb" stroke-width="1"/><text x="241.9" y="274.8" text-anchor="start" font-size="12" font-weight="600" fill="#4a4f55">動能</text><line x1="165.0" y1="165.0" x2="100.9" y2="253.2" stroke="#e6e8eb" stroke-width="1"/><text x="88.1" y="274.8" text-anchor="end" font-size="12" font-weight="600" fill="#4a4f55">情緒</text><line x1="165.0" y1="165.0" x2="61.3" y2="131.3" stroke="#e6e8eb" stroke-width="1"/><text x="40.6" y="128.6" text-anchor="end" font-size="12" font-weight="600" fill="#4a4f55">成長</text><polygon points="165.0,104.0 240.7,140.4 166.3,166.8 121.4,225.0 165.0,165.0" fill="#4a3aa7" fill-opacity=".14" stroke="#4a3aa7" stroke-width="2" stroke-linejoin="round"/><circle cx="165.0" cy="104.0" r="4.5" fill="#4a3aa7" stroke="#ffffff" stroke-width="2"><title>SNDL · 價值: 5.6</title></circle><circle cx="240.7" cy="140.4" r="4.5" fill="#4a3aa7" stroke="#ffffff" stroke-width="2"><title>SNDL · 品質: 7.3</title></circle><circle cx="166.3" cy="166.8" r="4.5" fill="#4a3aa7" stroke="#ffffff" stroke-width="2"><title>SNDL · 動能: 0.2</title></circle><circle cx="121.4" cy="225.0" r="4.5" fill="#4a3aa7" stroke="#ffffff" stroke-width="2"><title>SNDL · 情緒: 6.8</title></circle><circle cx="165.0" cy="165.0" r="4.5" fill="#4a3aa7" stroke="#ffffff" stroke-width="2"><title>SNDL · 成長: 0.0</title></circle><text x="165.0" y="318.0" text-anchor="middle" font-size="11" fill="#767c85">0（外圈 10）</text></svg></div><figcaption style="text-align:center">SNDL · SNDL — 總分 5.0</figcaption></div></div>
+<h3>維度熱圖</h3>
+<p>單一色階（品牌綠，淺→深）代表數值大小；深色＝高分。</p>
+<div class="tblwrap"><table class="heat"><thead><tr><th>標的</th><th>價值</th><th>品質</th><th>動能</th><th>情緒</th><th>成長</th><th>總分</th></tr></thead><tbody><tr><th scope="row">MU 美光科技</th><td style="background:#00914f;color:#ffffff">8.1</td><td style="background:#00914f;color:#ffffff">8.5</td><td style="background:#2ea86c;color:#ffffff">7.0</td><td style="background:#00723d;color:#ffffff">9.1</td><td style="background:#00723d;color:#ffffff">10.0</td><td style="background:#00914f;color:#ffffff">8.5</td></tr><tr><th scope="row">SKHY SK 海力士</th><td style="background:#00914f;color:#ffffff">8.2</td><td style="background:#00723d;color:#ffffff">9.4</td><td style="background:#f7f8f9;color:#767c85">n/a</td><td style="background:#00723d;color:#ffffff">8.8</td><td style="background:#00723d;color:#ffffff">10.0</td><td style="background:#00914f;color:#ffffff">8.3</td></tr><tr><th scope="row">MRVL 邁威爾科技</th><td style="background:#b9e7cf;color:#16181a">2.6</td><td style="background:#2ea86c;color:#ffffff">7.3</td><td style="background:#5cc08d;color:#16181a">6.0</td><td style="background:#00723d;color:#ffffff">9.1</td><td style="background:#2ea86c;color:#ffffff">6.4</td><td style="background:#5cc08d;color:#16181a">6.2</td></tr><tr><th scope="row">SNDL SNDL</th><td style="background:#5cc08d;color:#16181a">5.6</td><td style="background:#2ea86c;color:#ffffff">7.3</td><td style="background:#f2fbf6;color:#16181a">0.2</td><td style="background:#2ea86c;color:#ffffff">6.8</td><td style="background:#f2fbf6;color:#16181a">0.0</td><td style="background:#5cc08d;color:#16181a">5.0</td></tr></tbody></table></div>
+<div class="call"><div class="call__h">💡 雷達圖讀出的一件事</div>
+<p>MU 與 SKHY 的形狀幾乎相同——高品質、高成長、估值不貴，但動能破損。
+MRVL 的形狀相反：情緒面最強（分析師與法人最捧場），但價值維度只有
+2.6 分，是四檔最低。
+SNDL 則是唯一一檔成長維度掛零、卻靠價值與品質撐住總分的標的——
+這正是<strong>價值陷阱</strong>在五維度模型裡的典型指紋。</p></div>
+</section><section id="subs"><h2><span class="modnum">3</span>22 個子因子拆解</h2>
+<p>每格上方為 0–10 分，下方小字為代入的原始值。任何「排除」都附理由，
+框架不以中性值悄悄填補缺口。</p>
+<h3 id="d-val">價值維度</h3>
+<div class="tblwrap"><table class="dt dt--sm">
+<thead><tr><th style="text-align:left;width:31%">子因子 · 評分規則</th>
+<th style="text-align:center;color:#2a78d6">MU</th><th style="text-align:center;color:#1baf7a">SKHY</th><th style="text-align:center;color:#eb6834">MRVL</th><th style="text-align:center;color:#4a3aa7">SNDL</th></tr></thead>
+<tbody><tr><th scope="row" style="text-align:left"><strong>P/E vs 類股中位數</strong><br><span style="font-weight:400;font-size:.6875rem;color:var(--ink-3);line-height:1.5">P/E ÷ 32.0（半導體類股中位數）。<50% → 10 分；>200% → 0 分，線性內插。</span></th><td style="text-align:center"><strong style="color:#00723d;font-size:.9375rem">9.1</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">20.4x ÷ 32.0 = 0.64</span></td><td style="text-align:center"><strong style="color:#00723d;font-size:.9375rem">9.2</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">19.8x ÷ 32.0 = 0.62</span></td><td style="text-align:center"><strong style="color:#c0161c;font-size:.9375rem">0.8</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">60.0x ÷ 32.0 = 1.87</span></td><td style="text-align:center;color:var(--ink-3)"><span style="font-size:.75rem;font-style:italic">排除</span><br><span style="font-size:.6875rem">虧損，排除</span></td></tr><tr><th scope="row" style="text-align:left"><strong>P/S</strong><br><span style="font-weight:400;font-size:.6875rem;color:var(--ink-3);line-height:1.5">市值 ÷ TTM 營收。<1 → 10 分；>20 → 0 分。</span></th><td style="text-align:center"><strong style="color:#b35c00;font-size:.9375rem">5.1</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">10.27x</span></td><td style="text-align:center"><strong style="color:#b35c00;font-size:.9375rem">5.4</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">9.65x（校正後）</span></td><td style="text-align:center"><strong style="color:#c0161c;font-size:.9375rem">1.1</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">17.96x</span></td><td style="text-align:center"><strong style="color:#00723d;font-size:.9375rem">10.0</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">0.34x</span></td></tr><tr><th scope="row" style="text-align:left"><strong>EV/EBITDA</strong><br><span style="font-weight:400;font-size:.6875rem;color:var(--ink-3);line-height:1.5">（市值＋淨負債）÷ TTM EBITDA。<8x → 10 分；>40x → 0 分。</span></th><td style="text-align:center"><strong style="color:#00723d;font-size:.9375rem">8.3</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">13.3x</span></td><td style="text-align:center"><strong style="color:#00723d;font-size:.9375rem">8.3</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">13.6x（校正後）</span></td><td style="text-align:center"><strong style="color:#c0161c;font-size:.9375rem">0.0</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">58.3x</span></td><td style="text-align:center"><strong style="color:#c0161c;font-size:.9375rem">1.2</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">36.2x</span></td></tr><tr><th scope="row" style="text-align:left"><strong>PEG</strong><br><span style="font-weight:400;font-size:.6875rem;color:var(--ink-3);line-height:1.5">TTM PEG。<0.75 → 10 分；>3.0 → 0 分；獲利為負時排除。</span></th><td style="text-align:center"><strong style="color:#00723d;font-size:.9375rem">10.0</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">0.132</span></td><td style="text-align:center"><strong style="color:#00723d;font-size:.9375rem">10.0</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">0.494</span></td><td style="text-align:center"><strong style="color:#00723d;font-size:.9375rem">8.6</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">1.069</span></td><td style="text-align:center;color:var(--ink-3)"><span style="font-size:.75rem;font-style:italic">排除</span><br><span style="font-size:.6875rem">獲利基數不適用，排除</span></td></tr>
+<tr><th scope="row" style="text-align:left;background:var(--green-wash)">維度分數（子因子平均）</th><td style="text-align:center;background:var(--green-wash);font-weight:800">8.1</td><td style="text-align:center;background:var(--green-wash);font-weight:800">8.2</td><td style="text-align:center;background:var(--green-wash);font-weight:800">2.6</td><td style="text-align:center;background:var(--green-wash);font-weight:800">5.6</td></tr>
+</tbody></table></div><h3 id="d-qual">品質維度</h3>
+<div class="tblwrap"><table class="dt dt--sm">
+<thead><tr><th style="text-align:left;width:31%">子因子 · 評分規則</th>
+<th style="text-align:center;color:#2a78d6">MU</th><th style="text-align:center;color:#1baf7a">SKHY</th><th style="text-align:center;color:#eb6834">MRVL</th><th style="text-align:center;color:#4a3aa7">SNDL</th></tr></thead>
+<tbody><tr><th scope="row" style="text-align:left"><strong>Piotroski F-Score</strong><br><span style="font-weight:400;font-size:.6875rem;color:var(--ink-3);line-height:1.5">九項會計檢定得分 × (10/9)，上限 10。</span></th><td style="text-align:center"><strong style="color:#00723d;font-size:.9375rem">10.0</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">9／9</span></td><td style="text-align:center"><strong style="color:#00723d;font-size:.9375rem">7.8</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">7／9</span></td><td style="text-align:center"><strong style="color:#00723d;font-size:.9375rem">8.9</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">8／9</span></td><td style="text-align:center"><strong style="color:#00723d;font-size:.9375rem">7.8</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">7／9</span></td></tr><tr><th scope="row" style="text-align:left"><strong>ROIC − WACC 價差</strong><br><span style="font-weight:400;font-size:.6875rem;color:var(--ink-3);line-height:1.5">ROIC ＝ EBIT×(1−稅率) ÷ 投入資本；WACC 由 CAPM 推導。價差 ≥+10pp → 10 分；持平 → 5 分；≤−10pp → 0 分。</span></th><td style="text-align:center"><strong style="color:#b35c00;font-size:.9375rem">4.1</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">ROIC 13.0% − WACC 14.7% = -1.8pp</span></td><td style="text-align:center"><strong style="color:#00723d;font-size:.9375rem">10.0</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">ROIC 30.8% − WACC 14.2% = +16.6pp</span></td><td style="text-align:center"><strong style="color:#c0161c;font-size:.9375rem">0.8</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">ROIC 6.4% − WACC 14.9% = -8.4pp</span></td><td style="text-align:center"><strong style="color:#c0161c;font-size:.9375rem">1.3</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">ROIC -0.3% − WACC 7.1% = -7.5pp</span></td></tr><tr><th scope="row" style="text-align:left"><strong>毛利率三年趨勢</strong><br><span style="font-weight:400;font-size:.6875rem;color:var(--ink-3);line-height:1.5">近三個會計年度毛利率的年均變動。≥+3pp/年 → 10 分；持平 → 5 分；≤−3pp/年 → 0 分。</span></th><td style="text-align:center"><strong style="color:#00723d;font-size:.9375rem">10.0</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">+24.5pp／年</span></td><td style="text-align:center"><strong style="color:#00723d;font-size:.9375rem">10.0</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">+31.0pp／年</span></td><td style="text-align:center"><strong style="color:#00723d;font-size:.9375rem">10.0</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">+4.7pp／年</span></td><td style="text-align:center"><strong style="color:#00723d;font-size:.9375rem">10.0</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">+3.2pp／年</span></td></tr><tr><th scope="row" style="text-align:left"><strong>負債權益比</strong><br><span style="font-weight:400;font-size:.6875rem;color:var(--ink-3);line-height:1.5">D/E。<0.2 → 10 分；>3.0 → 0 分。</span></th><td style="text-align:center"><strong style="color:#00723d;font-size:.9375rem">10.0</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">0.06</span></td><td style="text-align:center"><strong style="color:#00723d;font-size:.9375rem">10.0</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">0.13</span></td><td style="text-align:center"><strong style="color:#00723d;font-size:.9375rem">9.7</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">0.29</span></td><td style="text-align:center"><strong style="color:#00723d;font-size:.9375rem">10.0</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">0.15</span></td></tr>
+<tr><th scope="row" style="text-align:left;background:var(--green-wash)">維度分數（子因子平均）</th><td style="text-align:center;background:var(--green-wash);font-weight:800">8.5</td><td style="text-align:center;background:var(--green-wash);font-weight:800">9.4</td><td style="text-align:center;background:var(--green-wash);font-weight:800">7.3</td><td style="text-align:center;background:var(--green-wash);font-weight:800">7.3</td></tr>
+</tbody></table></div><h3 id="d-mom">動能維度</h3>
+<div class="tblwrap"><table class="dt dt--sm">
+<thead><tr><th style="text-align:left;width:31%">子因子 · 評分規則</th>
+<th style="text-align:center;color:#2a78d6">MU</th><th style="text-align:center;color:#1baf7a">SKHY</th><th style="text-align:center;color:#eb6834">MRVL</th><th style="text-align:center;color:#4a3aa7">SNDL</th></tr></thead>
+<tbody><tr><th scope="row" style="text-align:left"><strong>股價 vs MA50</strong><br><span style="font-weight:400;font-size:.6875rem;color:var(--ink-3);line-height:1.5">高於 MA50 達 10% → 10 分；等於 MA50 → 5 分；低於 10% → 0 分。</span></th><td style="text-align:center"><strong style="color:#c0161c;font-size:.9375rem">0.0</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">-14.4%</span></td><td style="text-align:center;color:var(--ink-3)"><span style="font-size:.75rem;font-style:italic">排除</span><br><span style="font-size:.6875rem">歷史不足</span></td><td style="text-align:center"><strong style="color:#c0161c;font-size:.9375rem">0.0</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">-27.1%</span></td><td style="text-align:center"><strong style="color:#c0161c;font-size:.9375rem">0.0</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">-11.4%</span></td></tr><tr><th scope="row" style="text-align:left"><strong>股價 vs MA200</strong><br><span style="font-weight:400;font-size:.6875rem;color:var(--ink-3);line-height:1.5">高於 MA200 達 20% → 10 分；等於 → 5 分；低於 20% → 0 分。</span></th><td style="text-align:center"><strong style="color:#00723d;font-size:.9375rem">10.0</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">+61.3%</span></td><td style="text-align:center;color:var(--ink-3)"><span style="font-size:.75rem;font-style:italic">排除</span><br><span style="font-size:.6875rem">歷史不足</span></td><td style="text-align:center"><strong style="color:#00723d;font-size:.9375rem">10.0</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">+30.5%</span></td><td style="text-align:center"><strong style="color:#c0161c;font-size:.9375rem">0.0</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">-23.6%</span></td></tr><tr><th scope="row" style="text-align:left"><strong>RSI(14)</strong><br><span style="font-weight:400;font-size:.6875rem;color:var(--ink-3);line-height:1.5">55–70 → 10 分（強勢但未超買）；50 → 5 分；<30 或 >80 → 0 分。</span></th><td style="text-align:center"><strong style="color:#c0161c;font-size:.9375rem">1.9</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">39.5</span></td><td style="text-align:center;color:var(--ink-3)"><span style="font-size:.75rem;font-style:italic">排除</span><br><span style="font-size:.6875rem">歷史不足</span></td><td style="text-align:center"><strong style="color:#c0161c;font-size:.9375rem">0.0</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">28.9</span></td><td style="text-align:center"><strong style="color:#c0161c;font-size:.9375rem">1.2</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">35.9</span></td></tr><tr><th scope="row" style="text-align:left"><strong>3M 相對 S&P500</strong><br><span style="font-weight:400;font-size:.6875rem;color:var(--ink-3);line-height:1.5">相對大盤（同期間縮放）超額 ≥+10pp → 10 分；≤−10pp → 0 分。</span></th><td style="text-align:center"><strong style="color:#00723d;font-size:.9375rem">10.0</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">+58.7% vs 基準 +4.2%</span></td><td style="text-align:center;color:var(--ink-3)"><span style="font-size:.75rem;font-style:italic">排除</span><br><span style="font-size:.6875rem">歷史不足</span></td><td style="text-align:center"><strong style="color:#b35c00;font-size:.9375rem">5.8</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">+5.7% vs 基準 +4.2%</span></td><td style="text-align:center"><strong style="color:#c0161c;font-size:.9375rem">0.0</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">-10.3% vs 基準 +4.2%</span></td></tr><tr><th scope="row" style="text-align:left"><strong>6M 相對 S&P500</strong><br><span style="font-weight:400;font-size:.6875rem;color:var(--ink-3);line-height:1.5">同 3M 尺規。</span></th><td style="text-align:center"><strong style="color:#00723d;font-size:.9375rem">10.0</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">+97.9% vs 基準 +8.3%</span></td><td style="text-align:center;color:var(--ink-3)"><span style="font-size:.75rem;font-style:italic">排除</span><br><span style="font-size:.6875rem">歷史不足</span></td><td style="text-align:center"><strong style="color:#00723d;font-size:.9375rem">10.0</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">+121.2% vs 基準 +8.3%</span></td><td style="text-align:center"><strong style="color:#c0161c;font-size:.9375rem">0.0</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">-20.8% vs 基準 +8.3%</span></td></tr><tr><th scope="row" style="text-align:left"><strong>12M 相對 S&P500</strong><br><span style="font-weight:400;font-size:.6875rem;color:var(--ink-3);line-height:1.5">同 3M 尺規。</span></th><td style="text-align:center"><strong style="color:#00723d;font-size:.9375rem">10.0</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">+653.0% vs 基準 +16.6%</span></td><td style="text-align:center;color:var(--ink-3)"><span style="font-size:.75rem;font-style:italic">排除</span><br><span style="font-size:.6875rem">歷史不足</span></td><td style="text-align:center"><strong style="color:#00723d;font-size:.9375rem">10.0</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">+117.5% vs 基準 +16.6%</span></td><td style="text-align:center"><strong style="color:#c0161c;font-size:.9375rem">0.0</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">-29.1% vs 基準 +16.6%</span></td></tr>
+<tr><th scope="row" style="text-align:left;background:var(--green-wash)">維度分數（子因子平均）</th><td style="text-align:center;background:var(--green-wash);font-weight:800">7.0</td><td style="text-align:center;background:var(--surface);font-style:italic;font-size:.75rem;color:var(--ink-3)">未評分</td><td style="text-align:center;background:var(--green-wash);font-weight:800">6.0</td><td style="text-align:center;background:var(--green-wash);font-weight:800">0.2</td></tr>
+</tbody></table></div><h3 id="d-sent">情緒維度</h3>
+<div class="tblwrap"><table class="dt dt--sm">
+<thead><tr><th style="text-align:left;width:31%">子因子 · 評分規則</th>
+<th style="text-align:center;color:#2a78d6">MU</th><th style="text-align:center;color:#1baf7a">SKHY</th><th style="text-align:center;color:#eb6834">MRVL</th><th style="text-align:center;color:#4a3aa7">SNDL</th></tr></thead>
+<tbody><tr><th scope="row" style="text-align:left"><strong>空單月變化</strong><br><span style="font-weight:400;font-size:.6875rem;color:var(--ink-3);line-height:1.5">空單張數月變動。下降 ≥20%（回補）→ 10 分；上升 ≥20% → 0 分。</span></th><td style="text-align:center"><strong style="color:#00723d;font-size:.9375rem">8.2</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">-12.9%（36.2M ← 41.6M）</span></td><td style="text-align:center;color:var(--ink-3)"><span style="font-size:.75rem;font-style:italic">排除</span><br><span style="font-size:.6875rem">未揭露</span></td><td style="text-align:center"><strong style="color:#00723d;font-size:.9375rem">9.3</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">-17.4%（32.5M ← 39.3M）</span></td><td style="text-align:center"><strong style="color:#00723d;font-size:.9375rem">10.0</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">-25.7%（2.0M ← 2.6M）</span></td></tr><tr><th scope="row" style="text-align:left"><strong>法人持股水準</strong><br><span style="font-weight:400;font-size:.6875rem;color:var(--ink-3);line-height:1.5">機構持股比重。20% → 0 分；90% → 10 分（作為機構認可度的替代指標）。</span></th><td style="text-align:center"><strong style="color:#00723d;font-size:.9375rem">9.0</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">83.2%</span></td><td style="text-align:center;color:var(--ink-3)"><span style="font-size:.75rem;font-style:italic">排除</span><br><span style="font-size:.6875rem">未揭露</span></td><td style="text-align:center"><strong style="color:#00723d;font-size:.9375rem">9.7</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">87.7%</span></td><td style="text-align:center"><strong style="color:#c0161c;font-size:.9375rem">0.3</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">22.1%</span></td></tr><tr><th scope="row" style="text-align:left"><strong>分析師共識</strong><br><span style="font-weight:400;font-size:.6875rem;color:var(--ink-3);line-height:1.5">recommendationKey 映射：strong_buy 9.0／buy 7.5／hold 5.0／sell 1.0；none 排除。</span></th><td style="text-align:center"><strong style="color:#00723d;font-size:.9375rem">9.0</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">strong_buy（42 位）</span></td><td style="text-align:center"><strong style="color:#00723d;font-size:.9375rem">7.5</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">buy（3 位）</span></td><td style="text-align:center"><strong style="color:#00723d;font-size:.9375rem">9.0</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">strong_buy（40 位）</span></td><td style="text-align:center;color:var(--ink-3)"><span style="font-size:.75rem;font-style:italic">排除</span><br><span style="font-size:.6875rem">none（2 位）</span></td></tr><tr><th scope="row" style="text-align:left"><strong>目標價隱含上檔</strong><br><span style="font-weight:400;font-size:.6875rem;color:var(--ink-3);line-height:1.5">分析師平均目標價相對現價的隱含漲幅。−20% → 0 分；+60% → 10 分。</span></th><td style="text-align:center"><strong style="color:#00723d;font-size:.9375rem">10.0</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">+83.7%（$1,507）</span></td><td style="text-align:center"><strong style="color:#00723d;font-size:.9375rem">10.0</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">+116.4%（$282）</span></td><td style="text-align:center"><strong style="color:#00723d;font-size:.9375rem">8.4</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">+47.3%（$257）</span></td><td style="text-align:center"><strong style="color:#00723d;font-size:.9375rem">10.0</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">+237.0%（$4）</span></td></tr>
+<tr><th scope="row" style="text-align:left;background:var(--green-wash)">維度分數（子因子平均）</th><td style="text-align:center;background:var(--green-wash);font-weight:800">9.1</td><td style="text-align:center;background:var(--green-wash);font-weight:800">8.8</td><td style="text-align:center;background:var(--green-wash);font-weight:800">9.1</td><td style="text-align:center;background:var(--green-wash);font-weight:800">6.8</td></tr>
+</tbody></table></div><h3 id="d-grow">成長維度</h3>
+<div class="tblwrap"><table class="dt dt--sm">
+<thead><tr><th style="text-align:left;width:31%">子因子 · 評分規則</th>
+<th style="text-align:center;color:#2a78d6">MU</th><th style="text-align:center;color:#1baf7a">SKHY</th><th style="text-align:center;color:#eb6834">MRVL</th><th style="text-align:center;color:#4a3aa7">SNDL</th></tr></thead>
+<tbody><tr><th scope="row" style="text-align:left"><strong>營收 YoY</strong><br><span style="font-weight:400;font-size:.6875rem;color:var(--ink-3);line-height:1.5">≥30% → 10 分；10% → 5 分；≤0% → 0 分。</span></th><td style="text-align:center"><strong style="color:#00723d;font-size:.9375rem">10.0</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">+345.7%</span></td><td style="text-align:center"><strong style="color:#00723d;font-size:.9375rem">10.0</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">+198.1%</span></td><td style="text-align:center"><strong style="color:#00723d;font-size:.9375rem">9.2</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">+27.6%</span></td><td style="text-align:center"><strong style="color:#c0161c;font-size:.9375rem">0.0</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">-4.4%</span></td></tr><tr><th scope="row" style="text-align:left"><strong>EPS YoY</strong><br><span style="font-weight:400;font-size:.6875rem;color:var(--ink-3);line-height:1.5">≥40% → 10 分；15% → 5 分；≤0% → 0 分；基數為負時排除。</span></th><td style="text-align:center"><strong style="color:#00723d;font-size:.9375rem">10.0</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">+1368.5%</span></td><td style="text-align:center"><strong style="color:#00723d;font-size:.9375rem">10.0</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">+396.6%</span></td><td style="text-align:center"><strong style="color:#c0161c;font-size:.9375rem">0.0</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">-80.4%</span></td><td style="text-align:center;color:var(--ink-3)"><span style="font-size:.75rem;font-style:italic">排除</span><br><span style="font-size:.6875rem">未揭露</span></td></tr><tr><th scope="row" style="text-align:left"><strong>前瞻 EPS vs TTM</strong><br><span style="font-weight:400;font-size:.6875rem;color:var(--ink-3);line-height:1.5">前瞻 EPS ÷ TTM EPS − 1。≥40% → 10 分。</span></th><td style="text-align:center"><strong style="color:#00723d;font-size:.9375rem">10.0</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">$153.74 ÷ $40.29 − 1 = +282%</span></td><td style="text-align:center"><strong style="color:#00723d;font-size:.9375rem">10.0</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">$40.47 ÷ $6.57 − 1 = +516%</span></td><td style="text-align:center"><strong style="color:#00723d;font-size:.9375rem">10.0</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">$6.24 ÷ $2.91 − 1 = +114%</span></td><td style="text-align:center;color:var(--ink-3)"><span style="font-size:.75rem;font-style:italic">排除</span><br><span style="font-size:.6875rem">TTM EPS ≤0，排除</span></td></tr>
+<tr><th scope="row" style="text-align:left;background:var(--green-wash)">維度分數（子因子平均）</th><td style="text-align:center;background:var(--green-wash);font-weight:800">10.0</td><td style="text-align:center;background:var(--green-wash);font-weight:800">10.0</td><td style="text-align:center;background:var(--green-wash);font-weight:800">6.4</td><td style="text-align:center;background:var(--green-wash);font-weight:800">0.0</td></tr>
+</tbody></table></div>
+</section><section id="deep"><h2><span class="modnum">4</span>前三名深潛</h2><h3>第 1 名 · MU — Micron Technology, Inc.　<span class="st st--good">✅ STRONG BUY</span></h3>
+<h4>為什麼分數高</h4>
+<ul>
+<li><strong>成長 10.0／10（滿分）</strong>——營收年增 +345.7%，季度序列 $9.30B → $11.32B → $13.64B → $23.86B → $41.46B，
+單季 EPS 由 $1.68 攀至 $24.67。三個成長子因子全數頂格。</li>
+<li><strong>品質 8.5／10</strong>——Piotroski <strong>9／9 滿分</strong>（四檔唯一），毛利率三年 +8.7pp／年，
+D/E 僅 0.06，淨現金 $19.65B。</li>
+<li><strong>價值 8.1／10</strong>——PEG 0.13、EV/EBITDA 13.3x、本益比 20.4x 僅為類股中位數的 0.64 倍。
+這是「高成長 × 低倍數」在數字上真實存在的罕見組合。</li>
+<li><strong>情緒 9.1／10</strong>——40 位分析師、9 強力買進 ／ 31 買進 ／ 5 持有 ／ 0 賣出；空單月減 12.9%。</li>
+<li><strong>動能 7.0／10 是唯一破口</strong>——MA200 之上 +61%（10 分）但 MA50 之下 −14.3%（0 分）、
+RSI 39.5（0 分）。趨勢結構正在裂開。</li></ul>
+<div class="call call--bad"><div class="call__h">🚩 最重要的單一風險</div>
+<p>峰值利益率不可持續。TTM 淨利是四年平均的 16.6 倍；若營業利益率回到除谷底三年均值 21.0%，15 倍本益比僅對應 $214.03／股，較現價低 74%。整份多方論述都押在「這次不一樣」。</p></div>
+<div class="grid g2">
+<div class="card card--surface"><div class="card__h">進場考量</div>
+<p style="font-size:.9375rem;color:var(--ink-2)">等 MA50（$958.11）站回，或等 9 月 24 日財報確認毛利率未見頂。現價已反映峰值假設，不提供安全邊際。</p></div>
+<div class="card card--surface"><div class="card__h">適合投資期間</div>
+<p style="font-size:.9375rem;color:var(--ink-2)">中期（3 個月–1 年）</p></div></div><h3>第 2 名 · SKHY — SK hynix Inc. (ADR)　<span class="st st--good">✅ STRONG BUY</span></h3>
+<h4>為什麼分數高</h4>
+<ul>
+<li><strong>成長 10.0／10</strong>——營收年增 +198.1%，最新一季 52.6 兆韓元（約 $38.1B），為去年同期的 2.98 倍。</li>
+<li><strong>品質 9.4／10（四檔最高）</strong>——ROIC 30.8% 對 WACC 14.2%，價差 <strong>+16.6pp</strong>，
+四檔中唯一明顯創造價值者；毛利率三年 +6.2pp／年，D/E 0.13。</li>
+<li><strong>價值 8.2／10</strong>——校正後 EV/EBITDA 13.6x、本益比 17.0x，與 MU 幾乎同價，
+卻擁有更高的 ROIC 與更明確的 HBM 市佔領先。</li>
+<li><strong>但只有 3 位分析師覆蓋</strong>，且 recommendationKey 為 buy——情緒維度的樣本數過小。</li>
+<li><strong>動能完全無法評分</strong>——ADR 於 2026-07-10 掛牌，僅 13 個交易日。</li></ul>
+<div class="call call--bad"><div class="call__h">🚩 最重要的單一風險</div>
+<p>資料本身不可靠。原始欄位給出 P/S 0.007 與負 31.5 兆的企業價值；本頁所有數值都經過人工幣別校正，而校正匯率是<strong>假設</strong>而非揭露值。加上 13 天的交易歷史，任何技術面或風險度量都無從建立。</p></div>
+<div class="grid g2">
+<div class="card card--surface"><div class="card__h">進場考量</div>
+<p style="font-size:.9375rem;color:var(--ink-2)">在取得至少一季的美股交易歷史、且能以韓國交易所原始財報交叉驗證幣別前，不宜作為主要部位。</p></div>
+<div class="card card--surface"><div class="card__h">適合投資期間</div>
+<p style="font-size:.9375rem;color:var(--ink-2)">長期（1 年以上），但目前應視為觀察名單而非可執行標的</p></div></div><h3>第 3 名 · MRVL — Marvell Technology, Inc.　<span class="st st--good">✅ BUY</span></h3>
+<h4>為什麼分數高</h4>
+<ul>
+<li><strong>情緒 9.1／10（與 MU 並列最高）</strong>——40 位分析師、8 強力買進 ／ 30 買進 ／ 0 賣出，
+平均目標價 $256.91（隱含 +47%）；空單月減 17.4%；法人持股 87.7%。</li>
+<li><strong>品質 7.3／10</strong>——Piotroski 8／9、毛利率三年 +4.9pp／年、D/E 0.29。表面穩健。</li>
+<li><strong>成長 6.4／10</strong>——營收年增 +27.6%、連五季創高，但 EPS 年增 <strong>−80.4%</strong>（0 分）。</li>
+<li><strong>價值 2.6／10（四檔最低）</strong>——EV/EBITDA <strong>58.3x</strong> 拿 0 分、P/S 18.0x 拿 1.1 分。</li>
+<li><strong>動能 6.0／10</strong>——RSI 28.9 已進入超賣區，距 52 週高點 −47.1%，是四檔中回撤最深者。</li></ul>
+<div class="call call--bad"><div class="call__h">🚩 最重要的單一風險</div>
+<p>ROIC 6.4% 低於 WACC 14.9%，價差 <strong>−8.4pp</strong>——以會計數字論，MRVL 目前的成長是<strong>在毀滅價值</strong>。且商譽 $11.06B 占股東權益 $14.31B 的 77%，減損風險集中。</p></div>
+<div class="grid g2">
+<div class="card card--surface"><div class="card__h">進場考量</div>
+<p style="font-size:.9375rem;color:var(--ink-2)">價值維度 2.6 分意味著沒有估值保護。若要參與，應等 8 月 28 日財報確認 GAAP 營業利益率轉折，而非依賴 non-GAAP 前瞻 EPS。</p></div>
+<div class="card card--surface"><div class="card__h">適合投資期間</div>
+<p style="font-size:.9375rem;color:var(--ink-2)">中期（3 個月–1 年）</p></div></div></section><section id="avoid"><h2><span class="modnum">5</span>避開清單（後段班）</h2>
+<p class="fignote">本次 universe 僅四檔，故「後三名」與「前三名」重疊。此處只列真正落入避開／持有下緣者。</p>
+<h3>第 4 名 · SNDL — SNDL Inc.　<span class="st st--warn">⚠ HOLD</span></h3>
+<h4>為什麼分數低</h4>
+<ul>
+<li><strong>成長 0.0／10</strong>——營收年增 -4.4%，
+TTM EPS 為負使另兩個成長子因子全數排除。三個子因子中兩個無法評分，一個掛零。</li>
+<li><strong>動能 0.2／10</strong>——股價 $1.22 就在 52 週最低點
+$1.21 上方一美分；同時低於 MA50 與 MA200，
+三個相對強度子因子全部掛零。</li>
+<li><strong>ROIC -0.3% 低於 WACC 7.1%</strong>——價差 −7.5pp。
+營運本身不創造超過資金成本的報酬。</li>
+</ul>
+<h4>但價值維度 5.6 分不是零——這才是陷阱所在</h4>
+<p>P/S 0.34x 拿到滿分 10.0，股價淨值比
+<strong>0.30</strong>（市值 $317.6M
+對申報股東權益 $1.06B，每股淨值 $4.09），
+帳上淨現金 $45.5M，
+且公司正在<strong>每日買回自家股票</strong>。純以資產面看，這檔股票很便宜。</p>
+<div class="call call--warn"><div class="call__h">⚠ 需持續追蹤的轉機訊號</div>
+<ul>
+<li><strong>7 月 28 日財報（已公布，股價當日 -9.6%）</strong>——需確認營收是否已止穩、
+以及最近兩季轉虧是否為一次性。</li>
+<li><strong>股東權益走勢</strong>——年度 $1.306B → $1.212B → $1.133B → $1.101B（年均 −5.3%），
+最近兩季再降至 $1.064B（年化 −7.1%，加速中）。
+若侵蝕停止，0.30 倍淨值就從陷阱變成機會；若持續，折價只會隨淨值一起縮小。</li>
+<li><strong>買回速度 vs 淨值侵蝕速度</strong>——這是 SNDL 唯一真正重要的賽跑，詳見
+<a href="sndl.html#m15">SNDL 資本配置分析</a>。</li>
+</ul></div></section><section id="sector"><h2><span class="modnum">6</span>類股輪動背景<span class="skilltag">sector-analysis</span></h2>
+<div class="tblwrap"><table class="dt"><thead><tr><th style="text-align:left">類股／指數</th><th style="text-align:right">1 年報酬</th><th style="text-align:right">相對 S&P 500</th><th style="text-align:left">本籃子代表</th><th style="text-align:left">評註</th></tr></thead><tbody><tr><th scope="row" style="text-align:left"><strong>半導體 ^SOX</strong></th><td style="text-align:right"><span class="up">+92.3%</span></td><td style="text-align:right"><span class="up">+76% pp</span></td><td style="text-align:left">MU · SKHY · MRVL</td><td style="text-align:left">領漲類股。極端超額報酬本身即是均值回歸風險</td></tr><tr><th scope="row" style="text-align:left"><strong>半導體 ETF SMH</strong></th><td style="text-align:right"><span class="up">+81.4%</span></td><td style="text-align:right"><span class="up">+65% pp</span></td><td style="text-align:left">—</td><td style="text-align:left">與 ^SOX 差 11pp，反映權重集中於少數大型股</td></tr><tr><th scope="row" style="text-align:left"><strong>Nasdaq ^IXIC</strong></th><td style="text-align:right">+17.9%</td><td style="text-align:right">+1.3% pp</td><td style="text-align:left">—</td><td style="text-align:left">科技整體僅小幅領先大盤——本輪漲勢高度集中在半導體</td></tr><tr><th scope="row" style="text-align:left"><strong>S&amp;P 500 ^GSPC</strong></th><td style="text-align:right">+16.6%</td><td style="text-align:right">基準</td><td style="text-align:left">—</td><td style="text-align:left">基準</td></tr><tr><th scope="row" style="text-align:left"><strong>必需消費（SNDL 所屬）</strong></th><td style="text-align:right"><span style="color:var(--ink-3)">未取樣</span></td><td style="text-align:right">—</td><td style="text-align:left">SNDL</td><td style="text-align:left">SNDL 個股 1 年 −16.4%，與類股連動性低，屬個別事件驅動</td></tr></tbody></table></div>
+<div class="call call--warn"><div class="call__h">⚠ 相關性警告（框架強制項）</div>
+<p>本次 universe 前三名 <strong>全部集中在半導體類股</strong>，且其中 MU 與 SKHY 是同一產品循環
+（HBM／DRAM）的直接同業。三者的 Beta 分別為
+2.14／2.03／2.20，
+全部高於 2.0。</p>
+<p>2026-07-28 的同步下跌（−7.8% 至 −9.0%）正是這種集中度的實證：<strong>分散化在此籃子內不存在</strong>。
+若依排行榜前三名等權建構組合，實質上等於對單一產業循環的三倍槓桿押注。
+唯一的分散來源是排名最後的 SNDL（Beta 0.92）——
+而它的低分正是因為它與這個循環無關。</p></div>
+</section><section id="macro"><h2><span class="modnum">7</span>總體環境<span class="skilltag">economics-analysis</span></h2>
+<h3>對本籃子最重要的三個總體變數</h3>
+<div class="tblwrap"><table class="dt"><thead><tr><th style="text-align:left">變數</th><th style="text-align:left">本頁採用值</th><th style="text-align:left">傳導路徑</th><th style="text-align:left">對本籃子的方向</th></tr></thead><tbody><tr><th scope="row" style="text-align:left">10 年期美債殖利率</th><td style="text-align:left">4.2%（WACC 無風險利率輸入）</td><td style="text-align:left">高 Beta 成長股的折現率 → 三檔半導體的 Ke 皆超過 14%</td><td style="text-align:left"><span class="dn">逆風</span>：Beta 2.0–2.2 使利率變動被放大兩倍以上</td></tr><tr><th scope="row" style="text-align:left">股權風險溢酬</th><td style="text-align:left">5.0%</td><td style="text-align:left">CAPM：Ke ＝ 4.2% ＋ β×5.0%。MU 的 Ke 達 14.9%、MRVL 15.2%</td><td style="text-align:left"><span class="dn">逆風</span>：高折現率使 DCF 終值占比被壓縮，估值高度依賴近期現金流</td></tr><tr><th scope="row" style="text-align:left">AI 資本支出循環</th><td style="text-align:left">由雲端業者資本支出指引隱含（未直接取樣）</td><td style="text-align:left">HBM 需求 → DRAM 定價 → MU／SKHY 毛利率 → MRVL 客製化 ASIC 出貨</td><td style="text-align:left"><span class="up">順風</span>，但已高度反映於價格：MU 現價隱含峰值利益率永續</td></tr></tbody></table></div>
+<div class="call call--ink"><div class="call__h">📐 折現率如何影響結論（敏感度）</div>
+<p>本頁 WACC 由 CAPM 推導而非採用市場慣用值，因此必須揭露其敏感度。以 MU 為例
+（Beta 2.14、DCF WACC 11.4%）：</p>
+<ul>
+<li>若股權風險溢酬由 5.0% 降至 4.0%，MU 的 Ke 降約 2.1pp，基準情境 DCF 每股價值上升約 25–30%。</li>
+<li>反之若升至 6.0%，基準情境每股價值下降約 20%。</li>
+</ul>
+<p>換言之，<strong>本頁所有 DCF 結論對一個無法觀測的假設高度敏感</strong>。
+這是為什麼四份報告都同時提供相對估值（倍數法）與循環常態化估值作為交叉驗證，
+而非單押 DCF——詳見各報告的估值章節。</p></div>
+</section><section id="notes"><h2><span class="modnum">8</span>篩選註記</h2>
+<h3>被排除的子因子與原因</h3>
+<div class="tblwrap"><table class="dt"><thead><tr><th style="text-align:left">標的</th><th style="text-align:left">被排除的子因子</th><th style="text-align:left">原因</th></tr></thead><tbody><tr><th scope="row" style="text-align:left">SKHY</th><td style="text-align:left">動能全 6 項（MA50／MA200／RSI／3M／6M／12M 相對強度）</td><td style="text-align:left">ADR 於 2026-07-10 掛牌，僅 13 個交易日，指標視窗不足</td></tr><tr><th scope="row" style="text-align:left">SKHY</th><td style="text-align:left">空單月變化、法人持股水準</td><td style="text-align:left">yfinance 未提供該 ADR 的 shortPercentOfFloat 與機構持股比重</td></tr><tr><th scope="row" style="text-align:left">SNDL</th><td style="text-align:left">P/E vs 類股中位數、PEG</td><td style="text-align:left">TTM EPS 為 −$0.03，本益比與 PEG 無經濟意義</td></tr><tr><th scope="row" style="text-align:left">SNDL</th><td style="text-align:left">EPS YoY、前瞻 EPS vs TTM</td><td style="text-align:left">獲利基數為負，成長率不可解讀</td></tr><tr><th scope="row" style="text-align:left">SNDL</th><td style="text-align:left">分析師共識</td><td style="text-align:left">recommendationKey 為 none，僅 2 位分析師覆蓋</td></tr><tr><th scope="row" style="text-align:left">MRVL</th><td style="text-align:left">無排除項</td><td style="text-align:left">22 個子因子全數可計算</td></tr><tr><th scope="row" style="text-align:left">MU</th><td style="text-align:left">無排除項</td><td style="text-align:left">22 個子因子全數可計算</td></tr></tbody></table></div>
+<h3>未套用的篩選旗標</h3>
+<p>本次刻意<strong>不</strong>套用 <code>--exclude-penny</code>（否則 SNDL 會在評分前就被剔除，
+而它正是對照組的意義所在）與 <code>--min-market-cap</code>。
+若套用 <code>--exclude-penny</code>，universe 剩三檔、均分將由 7.00 升至
+7.67，
+市場偏向由中性轉為<strong>偏多</strong>——一個旗標就足以反轉結論，這正是為什麼旗標必須被明示。</p>
+</section><section id="valid"><h2><span class="modnum">9</span>結果稽核<span class="skilltag">result-validator</span></h2>
+<div class="tblwrap"><table class="dt"><thead><tr><th style="text-align:left">稽核維度</th><th style="text-align:center">得分</th><th style="text-align:left">說明</th></tr></thead><tbody><tr><th scope="row" style="text-align:left"><strong>資料品質</strong></th><td style="text-align:center"><strong>12 / 20</strong></td><td style="text-align:left">價格與財報均為當日程式化擷取（+5 新鮮度）。但 SKHY 幣別混用需人工校正、13 天歷史造成 6 個子因子空缺，完整性與一致性各扣分。</td></tr><tr><th scope="row" style="text-align:left"><strong>方法論健全度</strong></th><td style="text-align:center"><strong>16 / 20</strong></td><td style="text-align:left">五維度規則為框架預先定義，非事後配適（+5）。假設全部明示（無風險利率、ERP、類股中位數 P/E、匯率）（+5）。循環股同時採倍數法與常態化盈餘法交叉驗證（+4）。類股中位數 P/E 採單一估計值而非實際計算分佈，扣 2 分。</td></tr><tr><th scope="row" style="text-align:left"><strong>訊號一致性</strong></th><td style="text-align:center"><strong>8 / 20</strong></td><td style="text-align:left">基本面與技術面<strong>方向相反</strong>：三檔半導體品質／成長全數高分，動能維度卻同步破損（0 分）。這是本次篩選最大的內部矛盾，僅得 3／7。情緒訊號亦分歧：分析師一致看多、內部人只賣不買。</td></tr><tr><th scope="row" style="text-align:left"><strong>風險覆蓋</strong></th><td style="text-align:center"><strong>17 / 20</strong></td><td style="text-align:left">已具名三項以上風險並量化（循環常態化情境、商譽減損、淨值侵蝕）。空頭情境已建模而非僅列舉。財報日等催化劑已標註。</td></tr><tr><th scope="row" style="text-align:left"><strong>推理透明度</strong></th><td style="text-align:center"><strong>18 / 20</strong></td><td style="text-align:left">每個分數附原始輸入值與評分規則；排除項全部具名並附理由；已明示旗標選擇會反轉結論、DCF 對 ERP 高度敏感。</td></tr><tr><th scope="row" style="text-align:left"><strong>總信賴分數</strong></th><td style="text-align:center"><strong>71 / 100</strong></td><td style="text-align:left">信賴等級 <strong>HIGH</strong></td></tr></tbody></table></div>
+<div class="grid g2" style="margin-top:var(--s-24)">
+<div class="card" style="background:#fff8ef;border-color:#ffd9a8"><div class="card__h">⚠ 警示</div><ul style="font-size:.9375rem;margin:0">
+<li>前三名全部落在同一類股、同一產品循環——分散度為零。</li>
+<li>基本面與技術面訊號方向相反，篩選結果本質上是「好公司、壞時機」。</li>
+<li>類股中位數 P/E 為單點估計，非實際計算的分佈中位數。</li>
+</ul></div>
+<div class="card" style="background:#fdf0f0;border-color:#f7c4c4"><div class="card__h">🚩 紅旗</div><ul style="font-size:.9375rem;margin:0">
+<li><strong>SKHY 的總分（8.3）不應與其他三檔並列比較</strong>——
+它缺 8 個子因子，且其餘數值依賴一個假設匯率。</li>
+<li>MU 與 SKHY 的成長維度皆為滿分 10.0，但兩者的成長來自<strong>同一個循環</strong>，
+評分模型無法辨識這種共同因子暴露。</li>
+</ul></div>
+<div class="card card--wash"><div class="card__h">✅ 優點</div><ul style="font-size:.9375rem;margin:0">
+<li>所有 22 個子因子的原始輸入值均可在頁面上反查。</li>
+<li>缺失資料一律標示「排除／未評分」，未以中性值粉飾。</li>
+<li>已量化「未評分」處理對 SKHY 分數造成的低估幅度。</li>
+</ul></div></div>
+<h3>建議後續步驟</h3>
+<ol>
+<li><strong>先補強訊號一致性（最弱維度，8／20）</strong>——對三檔半導體執行
+<code>catalyst-calendar</code>，判定動能破損是循環轉折的領先訊號，還是單純的部位調整。</li>
+<li><strong>驗證 SKHY 的幣別</strong>——以韓國交易所原始財報與 20-F 交叉核對，
+在此之前不應將其納入可執行清單。</li>
+<li><strong>對 MU 執行 <code>bear-case</code></strong>（已於 <a href="mu.html#bear">MU 報告</a>完成）——
+在成長維度滿分的情況下，紅隊檢驗是唯一能平衡評分模型樂觀偏誤的工具。</li>
+</ol>
+</section><section id="signal"><h2>訊號區塊</h2>
+<div class="sig"><pre>╔═════════════════════════════════════════════════════╗
+║        INVESTMENT SIGNAL — SCREENING SUMMARY        ║
+╠═════════════════════════════════════════════════════╣
+║ Top Pick:    MU — Score 8.5 / 10                    ║
+║ Avg Score:   7.00 / 10（screened universe）         ║
+║ Screened:    4 tickers                              ║
+╠═════════════════════════════════════════════════════╣
+║ Market Bias: BULLISH (avg 7.00 >= 6.0)              ║
+║ Best Sector: Semiconductors (avg 7.7)               ║
+╠═════════════════════════════════════════════════════╣
+║ Confidence:  HIGH — 71/100                          ║
+║ Caveat:      top-3 share one cycle; SKHY incomplete ║
+╚═════════════════════════════════════════════════════╝</pre></div>
+<p class="fignote">Market Bias 依 universe 平均分推導：≥6.0 偏多、4.0–5.9 中性、&lt;4.0 偏空。
+本次均分 7.00 落在<strong>偏多</strong>區間。但這個「偏多」必須加上兩層限定：
+其一，四檔的動能維度平均僅 4.4 分，
+偏多結論完全來自品質與成長維度；其二，前三名共享同一產業循環，
+均分的「分散化」外觀是統計假象。<code>result-validator</code> 因此把訊號一致性壓到 8／20。</p>
+<div class="chips" style="margin-top:var(--s-32)">
+<a class="btn" href="mu.html">MU 旗艦報告（15 模組）→</a>
+<a class="btn btn--soft" href="workflows.html">工作流 A–G →</a>
+<a class="btn btn--soft" href="index.html">← 回展示櫃總覽</a>
+</div></section></div></div>
+</main>
+<footer class="foot"><div class="wrap">
+<p><strong>InvestSkill Autopilot — 展示櫃</strong>　·　由 <a href="https://github.com/yennanliu/InvestSkill">InvestSkill</a> v1.11.0（27 個分析框架）驅動，
+報告內容由 LLM 依據 yfinance 公開資料生成。</p>
+<p style="margin-top:8px">資料快照：2026-07-29　·　<a href="https://github.com/yennanliu/InvestSkill-test">原始碼與完整報告存檔</a>　·　<a href="../index.html">回專案首頁</a></p>
+<div class="disc"><strong>免責聲明</strong>　本頁為技術與框架能力展示，並非投資建議。所有內容由大型語言模型依據免費公開資料自動生成，
+可能存在錯誤、過時或內部不一致之處；文中已刻意保留並標示資料本身的缺陷（例如貨幣單位混用、上市歷史不足），
+以示範 <code>result-validator</code> 框架的稽核能力。任何投資決策前請自行查證第一手文件（SEC EDGAR、公司投資人關係網站）。</div>
+</div></footer>
+<script>
+// TOC scroll-spy
+(function(){
+  var links=[].slice.call(document.querySelectorAll('.toc a[href^="#"]'));
+  if(!links.length)return;
+  var targets=links.map(function(a){return document.getElementById(a.getAttribute('href').slice(1));});
+  function upd(){
+    var y=window.scrollY+120,cur=-1;
+    targets.forEach(function(t,i){if(t&&t.offsetTop<=y)cur=i;});
+    links.forEach(function(a,i){a.classList.toggle('on',i===cur);});
+  }
+  var raf=null;
+  addEventListener('scroll',function(){if(raf)return;raf=requestAnimationFrame(function(){raf=null;upd();});},{passive:true});
+  upd();
+})();
+
+// Line-chart crosshair + tooltip
+(function(){
+  document.querySelectorAll('svg[data-chart="line"]').forEach(function(svg){
+    var holder=svg.parentNode, script=holder.querySelector('.ch-data');
+    if(!script)return;
+    var cfg=JSON.parse(script.textContent);
+    var cross=svg.querySelector('.ch-cross'), cap=svg.querySelector('.ch-cap');
+    var tip=document.createElement('div'); tip.className='ch-tip'; holder.appendChild(tip);
+    var dots=[];
+    var ns='http://www.w3.org/2000/svg';
+    cfg.series.forEach(function(s){
+      var c=document.createElementNS(ns,'circle');
+      c.setAttribute('r','5.5');c.setAttribute('fill',s.colour);
+      c.setAttribute('stroke','#fff');c.setAttribute('stroke-width','2');
+      c.style.display='none';svg.appendChild(c);dots.push(c);
+    });
+    function fmt(v){
+      var f=cfg.fmt||'{:.0f}';
+      var m=f.match(/\{:,?\.(\d)f\}/);
+      var d=m?+m[1]:0;
+      var s=v.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
+      if(f.indexOf('$')===0)s='$'+s;
+      if(f.indexOf('%')>-1)s=s+'%';
+      return s;
+    }
+    function move(e){
+      var r=svg.getBoundingClientRect();
+      var vb=svg.viewBox.baseVal;
+      var sx=(e.clientX-r.left)/r.width*vb.width;
+      var rows='',label='',any=false;
+      cfg.series.forEach(function(s,si){
+        if(!s.pts.length){dots[si].style.display='none';return;}
+        var best=s.pts[0],bd=1e9;
+        s.pts.forEach(function(p){var d=Math.abs(p[0]-sx);if(d<bd){bd=d;best=p;}});
+        dots[si].setAttribute('cx',best[0]);dots[si].setAttribute('cy',best[1]);
+        dots[si].style.display='';
+        label=best[2];any=true;
+        rows+='<div class="r"><span class="sw" style="background:'+s.colour+'"></span>'+
+              s.name+' <b>'+fmt(best[3])+'</b></div>';
+        if(si===0)cross.setAttribute('x1',best[0]),cross.setAttribute('x2',best[0]);
+      });
+      if(!any)return;
+      cross.style.display='';
+      tip.innerHTML='<b>'+label+'</b>'+rows;
+      tip.style.opacity='1';
+      var px=(e.clientX-r.left), tw=tip.offsetWidth;
+      tip.style.left=Math.max(4,Math.min(r.width-tw-4,px-tw/2))+'px';
+      tip.style.top=Math.max(4,(e.clientY-r.top)-tip.offsetHeight-14)+'px';
+    }
+    function out(){
+      cross.style.display='none';tip.style.opacity='0';
+      dots.forEach(function(d){d.style.display='none';});
+    }
+    cap.addEventListener('mousemove',move);
+    cap.addEventListener('mouseleave',out);
+    cap.addEventListener('touchmove',function(e){if(e.touches[0])move(e.touches[0]);},{passive:true});
+    cap.addEventListener('touchend',out);
+  });
+})();
+</script>
+</body>
+</html>

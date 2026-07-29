@@ -1,0 +1,612 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>工作流 A–G — 把框架串成決策流程 | InvestSkill Autopilot 展示櫃</title>
+<meta name="description" content="Cookbook 七條工作流（財報前定位、價值陷阱檢定、股息組合、波段做多、完整備忘錄、類股輪動、加碼階梯）全部以 MU／SKHY／MRVL／SNDL 實跑，其中兩條在篩選閘門被擋下。">
+<meta name="theme-color" content="#00b14f">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="工作流 A–G — 把框架串成決策流程 | InvestSkill Autopilot 展示櫃">
+<meta property="og:description" content="Cookbook 七條工作流（財報前定位、價值陷阱檢定、股息組合、波段做多、完整備忘錄、類股輪動、加碼階梯）全部以 MU／SKHY／MRVL／SNDL 實跑，其中兩條在篩選閘門被擋下。">
+<meta property="og:type" content="article">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%2300b14f'/><path d='M8 21l5-6 4 3 7-9' stroke='white' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green:#00b14f; --green-press:#009644; --green-wash:#e6f7ee; --green-band:#00692e;
+  --amber:#ff8c00; --amber-ink:#b35c00; --red:#e02020; --red-ink:#c0161c;
+  --white:#fff; --ink:#16181a; --ink-2:#4a4f55; --ink-3:#767c85;
+  --line:#e6e8eb; --surface:#f7f8f9;
+  --s-4:4px; --s-8:8px; --s-12:12px; --s-16:16px; --s-24:24px; --s-32:32px;
+  --s-48:48px; --s-64:64px; --s-80:80px;
+  --r-btn:8px; --r-card:16px; --r-pill:999px;
+  --shadow:0 2px 8px rgba(22,24,26,.08); --shadow-lift:0 8px 24px rgba(22,24,26,.12);
+  --sans:"Inter","Poppins",-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",
+         "PingFang TC","Microsoft JhengHei",Roboto,Helvetica,Arial,sans-serif;
+  --display:"Poppins","Inter",-apple-system,BlinkMacSystemFont,"Noto Sans TC",
+         "PingFang TC","Microsoft JhengHei",Segoe UI,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,"Cascadia Mono","Liberation Mono",monospace;
+  --wrap:1220px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;background:var(--white);color:var(--ink);font-family:var(--sans);
+  font-size:16px;line-height:1.75;-webkit-font-smoothing:antialiased}
+img,svg{max-width:100%;display:block}
+a{color:var(--green-band);text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3,h4{font-family:var(--display);line-height:1.25;letter-spacing:-.01em;margin:0}
+h1{font-size:clamp(1.9rem,4.4vw,2.9rem);font-weight:800;letter-spacing:-.02em}
+h2{font-size:clamp(1.45rem,2.7vw,2rem);font-weight:800;letter-spacing:-.02em}
+h3{font-size:1.16rem;font-weight:700}
+h4{font-size:1rem;font-weight:700}
+p{margin:0}
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:var(--s-24)}
+
+/* ---------- nav ---------- */
+.nav{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.94);
+  backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid var(--line)}
+.nav__in{display:flex;align-items:center;gap:var(--s-16);height:68px;min-width:0}
+.brand{display:flex;align-items:center;gap:var(--s-12);min-width:0;text-decoration:none;
+  font-family:var(--display);font-weight:800;letter-spacing:-.02em;white-space:nowrap;color:var(--ink)}
+.brand:hover{text-decoration:none}
+.brand__text{overflow:hidden;text-overflow:ellipsis}
+.brand__mark{width:32px;height:32px;border-radius:var(--r-btn);background:var(--green);
+  display:grid;place-items:center;flex:0 0 auto}
+.nav__links{display:none;gap:var(--s-24);margin-left:auto;font-size:.875rem;font-weight:600}
+.nav__links a{text-decoration:none;color:var(--ink-2);padding-block:var(--s-8)}
+.nav__links a:hover,.nav__links a[aria-current="page"]{color:var(--green)}
+.nav__cta{margin-left:auto;flex:0 0 auto}
+@media(min-width:1000px){.nav__links{display:flex}.nav__cta{margin-left:0}}
+@media(max-width:559px){.nav__cta-label{display:none}.brand{font-size:.875rem}}
+.btn{display:inline-flex;align-items:center;gap:var(--s-8);padding:14px 24px;border:0;
+  border-radius:var(--r-btn);background:var(--green);color:#fff;font-family:var(--display);
+  font-size:1rem;font-weight:700;text-decoration:none;cursor:pointer;
+  transition:background .16s ease,transform .1s ease}
+.btn:hover{background:var(--green-press);text-decoration:none}
+.btn:active{transform:scale(.98)}
+.btn:focus-visible{outline:3px solid var(--green-band);outline-offset:2px}
+.btn--sm{padding:10px 18px;font-size:.875rem}
+.btn--soft{background:var(--green-wash);color:var(--green-band)}
+.btn--soft:hover{background:#d3f0e0}
+.btn--onband{background:#fff;color:var(--green-band)}
+.btn--onband:hover{background:#eef8f2}
+.btn--ghost{background:transparent;color:#fff;box-shadow:inset 0 0 0 2px rgba(255,255,255,.55)}
+.btn--ghost:hover{background:rgba(255,255,255,.12)}
+
+/* ---------- hero ---------- */
+.rhero{position:relative;overflow:hidden;color:#fff;
+  background:radial-gradient(120% 140% at 88% 8%,rgba(0,177,79,.95) 0%,rgba(0,177,79,0) 58%),
+  linear-gradient(104deg,var(--green-band) 0%,#007d38 52%,#009243 100%)}
+.rhero::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(90deg,rgba(0,58,26,.55) 0%,rgba(0,58,26,.18) 42%,rgba(0,58,26,0) 72%)}
+.rhero__in{position:relative;z-index:1;padding-block:var(--s-48) var(--s-64)}
+.rhero .eyebrow{color:#9ce8bd}
+.rhero__sub{margin-top:var(--s-16);font-size:1.06rem;max-width:62ch;color:rgba(255,255,255,.93)}
+.eyebrow{font-family:var(--display);font-size:.8125rem;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--green);margin-bottom:var(--s-8)}
+.chips{display:flex;flex-wrap:wrap;gap:var(--s-8);margin-top:var(--s-24)}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:6px 13px;border-radius:var(--r-pill);
+  background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.30);
+  font-size:.8125rem;font-weight:600;color:#fff;white-space:nowrap}
+.chip--ink{background:var(--green-wash);border-color:#b9e7cf;color:var(--green-band)}
+
+/* ---------- layout ---------- */
+.shell{display:block;padding-block:var(--s-48) var(--s-80)}
+@media(min-width:1060px){
+  .shell{display:grid;grid-template-columns:246px minmax(0,1fr);gap:var(--s-48);align-items:start}
+}
+.toc{display:none}
+@media(min-width:1060px){
+  .toc{display:block;position:sticky;top:92px;max-height:calc(100vh - 116px);overflow-y:auto;
+    font-size:.8125rem;border-left:2px solid var(--line);padding-left:var(--s-16)}
+}
+.toc__h{font-family:var(--display);font-weight:800;font-size:.75rem;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink-3);margin-bottom:var(--s-12)}
+.toc a{display:block;padding:5px 0;color:var(--ink-2);text-decoration:none;line-height:1.4}
+.toc a:hover{color:var(--green);text-decoration:none}
+.toc a.on{color:var(--green-band);font-weight:700}
+.toc__grp{margin-top:var(--s-16);font-size:.6875rem;font-weight:700;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--ink-3)}
+.doc>section{padding-block:var(--s-32);border-top:1px solid var(--line)}
+.doc>section:first-child{border-top:0;padding-top:0}
+.doc h2{margin-bottom:var(--s-8)}
+.doc h3{margin:var(--s-32) 0 var(--s-12)}
+.doc h4{margin:var(--s-24) 0 var(--s-8)}
+.doc p{margin-block:var(--s-12)}
+.doc ul,.doc ol{margin:var(--s-12) 0;padding-left:1.35em}
+.doc li{margin-block:6px}
+.modnum{display:inline-grid;place-items:center;width:29px;height:29px;border-radius:8px;
+  background:var(--green-wash);color:var(--green-band);font-family:var(--display);
+  font-weight:800;font-size:.8125rem;margin-right:10px;vertical-align:3px}
+.skilltag{display:inline-block;font-family:var(--mono);font-size:.75rem;font-weight:600;
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r-pill);
+  padding:3px 11px;color:var(--ink-2);margin-left:6px;vertical-align:2px;white-space:nowrap}
+.lede{font-size:1.06rem;color:var(--ink-2)}
+
+/* ---------- cards / tiles ---------- */
+.grid{display:grid;gap:var(--s-16)}
+.g2{grid-template-columns:repeat(auto-fit,minmax(272px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(216px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(174px,1fr))}
+.card{background:var(--white);border:1px solid var(--line);border-radius:var(--r-card);
+  padding:var(--s-24);box-shadow:var(--shadow)}
+.card--wash{background:var(--green-wash);border-color:#b9e7cf}
+.card--surface{background:var(--surface)}
+.card__h{font-family:var(--display);font-weight:800;font-size:1rem;margin-bottom:var(--s-8)}
+.tile{background:var(--white);border:1px solid var(--line);border-radius:var(--r-card);padding:var(--s-16) var(--s-16)}
+.tile__k{font-size:.75rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-3)}
+.tile__v{font-family:var(--display);font-size:1.6rem;font-weight:800;line-height:1.2;margin-top:4px;
+  letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.tile__n{font-size:.75rem;color:var(--ink-3);margin-top:3px;line-height:1.45}
+.up{color:var(--green-band)} .dn{color:var(--red-ink)} .fl{color:var(--amber-ink)}
+
+/* status pills — always icon + text, never colour alone */
+.st{display:inline-flex;align-items:center;gap:5px;padding:3px 11px;border-radius:var(--r-pill);
+  font-size:.75rem;font-weight:700;white-space:nowrap;border:1px solid}
+.st--good{background:var(--green-wash);color:var(--green-band);border-color:#b9e7cf}
+.st--warn{background:#fff4e5;color:var(--amber-ink);border-color:#ffd9a8}
+.st--bad{background:#fdeaea;color:var(--red-ink);border-color:#f7c4c4}
+.st--neut{background:var(--surface);color:var(--ink-2);border-color:var(--line)}
+
+/* ---------- tables ---------- */
+.tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-block:var(--s-16)}
+table{border-collapse:collapse;width:100%;font-size:.875rem;font-variant-numeric:tabular-nums}
+.dt th,.dt td,.heat th,.heat td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.dt thead th,.heat thead th{background:var(--surface);font-family:var(--display);font-weight:700;
+  font-size:.8125rem;color:var(--ink-2);border-bottom:2px solid var(--line);white-space:nowrap;
+  position:sticky;top:0}
+.dt tbody th,.heat tbody th{font-weight:600;text-align:left}
+.dt tbody tr:hover{background:#fafbfb}
+.heat td{text-align:center;font-weight:700;font-size:.8125rem;border:2px solid #fff}
+.heat tbody th{background:var(--surface);white-space:nowrap;font-size:.8125rem}
+.dt--sm{font-size:.8125rem}
+.dt--sm th,.dt--sm td{padding:7px 10px}
+caption{caption-side:top;text-align:left;font-size:.8125rem;color:var(--ink-3);padding-bottom:var(--s-8)}
+
+/* ---------- figures ---------- */
+.fig{margin:var(--s-24) 0}
+.figbox{background:var(--white);border:1px solid var(--line);border-radius:var(--r-card);
+  padding:var(--s-16);overflow-x:auto;position:relative}
+.chart{width:100%;height:auto;min-width:min(100%,560px)}
+figcaption{font-size:.8125rem;color:var(--ink-2);margin-top:var(--s-8);font-weight:600}
+.fignote{font-size:.75rem;color:var(--ink-3);margin-top:4px;line-height:1.6}
+.lgd{display:flex;flex-wrap:wrap;gap:var(--s-16);margin-bottom:var(--s-12);font-size:.8125rem;font-weight:600;color:var(--ink-2)}
+.lgd__i{display:inline-flex;align-items:center;gap:6px}
+.lgd__sw{width:12px;height:12px;border-radius:3px;flex:0 0 auto}
+.tblview{margin-top:var(--s-8)}
+.tblview summary{cursor:pointer;font-size:.8125rem;font-weight:700;color:var(--green-band);
+  padding:5px 0;list-style:none;display:inline-flex;align-items:center;gap:5px}
+.tblview summary::before{content:"▸";transition:transform .15s}
+.tblview[open] summary::before{transform:rotate(90deg)}
+.tblview summary::-webkit-details-marker{display:none}
+.ch-tip{position:absolute;pointer-events:none;background:var(--ink);color:#fff;font-size:12px;
+  line-height:1.55;padding:8px 11px;border-radius:8px;box-shadow:var(--shadow-lift);
+  white-space:nowrap;opacity:0;transition:opacity .1s;z-index:5;font-variant-numeric:tabular-nums}
+.ch-tip b{font-weight:700}
+.ch-tip .r{display:flex;align-items:center;gap:6px;margin-top:3px}
+.ch-tip .sw{width:9px;height:9px;border-radius:2px;flex:0 0 auto}
+
+/* ---------- callouts ---------- */
+.call{border-left:4px solid var(--green);background:var(--green-wash);padding:var(--s-16) var(--s-24);
+  border-radius:0 var(--r-card) var(--r-card) 0;margin-block:var(--s-24)}
+.call--warn{border-color:var(--amber);background:#fff8ef}
+.call--bad{border-color:var(--red);background:#fdf0f0}
+.call--ink{border-color:var(--ink-3);background:var(--surface)}
+.call__h{font-family:var(--display);font-weight:800;font-size:.9375rem;margin-bottom:6px;
+  display:flex;align-items:center;gap:7px}
+.call p{margin-block:6px;font-size:.9375rem}
+.call ul{margin:6px 0;font-size:.9375rem}
+
+/* signal block — the InvestSkill house style, kept monospace */
+.sig{background:#0f1113;color:#e8edf1;border-radius:var(--r-card);padding:var(--s-24);
+  font-family:var(--mono);font-size:.8125rem;line-height:1.85;overflow-x:auto;margin-block:var(--s-24)}
+.sig b{color:#7ee2a8;font-weight:700}
+.sig .k{color:#8b98a5}
+.sig pre{margin:0;font:inherit}
+.mm{font-family:var(--mono);font-size:.8125rem;background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--r-btn);padding:var(--s-16);overflow-x:auto;line-height:1.7}
+.mm pre{margin:0;font:inherit}
+code{font-family:var(--mono);font-size:.9em;background:var(--surface);border:1px solid var(--line);
+  border-radius:5px;padding:1px 5px}
+.doc pre code{border:0;background:none;padding:0}
+
+/* ---------- flow / chain diagram ---------- */
+.flow{display:grid;gap:var(--s-12);margin-block:var(--s-24)}
+.flow__row{display:grid;gap:var(--s-12);grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+.node{border:1px solid var(--line);border-radius:12px;padding:var(--s-12) var(--s-16);background:#fff;
+  box-shadow:var(--shadow);position:relative}
+.node--choke{border-color:var(--red);border-width:2px;background:#fdf0f0}
+.node--target{border-color:var(--green);border-width:2px;background:var(--green-wash)}
+.node__pos{font-size:.6875rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3)}
+.node__n{font-family:var(--display);font-weight:800;font-size:.9375rem;margin-top:2px}
+.node__t{font-family:var(--mono);font-size:.75rem;color:var(--ink-2);margin-top:5px;line-height:1.6}
+.node__m{font-size:.6875rem;color:var(--ink-3);margin-top:5px}
+.arrowrow{text-align:center;color:var(--ink-3);font-size:1.1rem;line-height:1}
+
+/* ---------- misc ---------- */
+.band{background:var(--green-band);color:#fff;padding-block:var(--s-48)}
+.band a{color:#fff}
+.section--wash{background:var(--green-wash)}
+.section--surface{background:var(--surface)}
+.section{padding-block:var(--s-64)}
+.foot{border-top:1px solid var(--line);padding-block:var(--s-32);font-size:.8125rem;color:var(--ink-3)}
+.foot a{color:var(--ink-2)}
+.disc{font-size:.75rem;color:var(--ink-3);line-height:1.7;background:var(--surface);
+  border:1px solid var(--line);border-radius:var(--r-card);padding:var(--s-16);margin-top:var(--s-24)}
+.crumb{font-size:.8125rem;color:rgba(255,255,255,.8);margin-bottom:var(--s-12)}
+.crumb a{color:rgba(255,255,255,.92)}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:var(--s-16);top:var(--s-8);z-index:60;background:#fff;color:var(--ink);
+  padding:10px 16px;border-radius:var(--r-btn);box-shadow:var(--shadow-lift)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media print{
+  .nav,.toc,.tblview{display:none}
+  .shell{display:block}
+  .figbox,.card{break-inside:avoid;box-shadow:none}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-size:.7em;color:#666}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">跳至主要內容</a>
+<header class="nav"><div class="wrap nav__in">
+<a class="brand" href="../index.html"><span class="brand__mark"><svg width="18" height="18" viewBox="0 0 32 32" aria-hidden="true"><path d="M8 21l5-6 4 3 7-9" stroke="white" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+<span class="brand__text">InvestSkill Autopilot</span></a>
+<nav class="nav__links" aria-label="展示頁面"><a href="index.html">總覽</a><a href="screener.html">四檔對決</a><a href="mu.html">MU</a><a href="skhy.html">SKHY</a><a href="mrvl.html">MRVL</a><a href="sndl.html">SNDL</a><a href="workflows.html" aria-current="page">工作流 A–G</a><a href="supply-chain.html">產業鏈</a></nav>
+<a class="btn btn--sm nav__cta" href="https://github.com/yennanliu/InvestSkill-test">
+<span class="nav__cta-label">GitHub</span>
+<svg width="17" height="17" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-2.92-.88-2.92-2.90 0-.86.31-1.57.82-2.12-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.81a5.4 5.4 0 0 1 2 0c1.53-1.04 2.2-.81 2.2-.81.44 1.1.16 1.92.08 2.12.51.55.82 1.25.82 2.12 0 2.03-1.15 2.70-2.93 2.90.3.26.56.76.56 1.54 0 1.11-.01 2.01-.01 2.29 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg></a>
+</div></header>
+<main id="main">
+<section class="rhero"><div class="wrap rhero__in">
+<p class="crumb"><a href="../index.html">InvestSkill Autopilot</a> ／ <a href="index.html">展示櫃</a> ／ 工作流 A–G</p>
+<p class="eyebrow">cookbook · 7 workflows</p>
+<h1>工作流 A–G：<br>把框架串成決策流程</h1>
+<p class="rhero__sub">單一框架回答單一問題；<strong>工作流回答一個決策</strong>。
+本頁把 <a href="https://yennj12.js.org/InvestSkill/cookbook-zh-tw.html" style="color:#fff;text-decoration:underline">Cookbook</a>
+的七條工作流，全部用本籃子的真實標的跑一遍。
+其中<strong>兩條在篩選閘門就停住、拒絕產出結果</strong>——那是本頁最有價值的部分。</p>
+<div class="chips">
+<span class="chip">7 條工作流</span>
+<span class="chip">5 條產出結論</span>
+<span class="chip">2 條在閘門被擋下</span>
+<span class="chip">2026-07-29</span>
+</div></div></section><div class="wrap shell"><aside class="toc" aria-label="本頁目錄"><div class="toc__h">本頁目錄</div><a href="#intro">為什麼要串成工作流</a><div class="toc__grp">七條工作流</div><a href="#wfa">A · 財報前定位</a><a href="#wfb">B · 價值股篩選</a><a href="#wfc">C · 股息組合建構</a><a href="#wfd">D · 波段做多設定</a><a href="#wfe">E · 完整投資備忘錄</a><a href="#wff">F · 總體驅動的類股輪動</a><a href="#wfg">G · 管理既有部位</a><div class="toc__grp">結語</div><a href="#meta">工作流層級的觀察</a></aside><div class="doc"><section id="intro"><h2>為什麼要串成工作流</h2>
+<p>27 個框架各自回答一個問題：這家公司值多少？技術面在哪個位置？內部人在做什麼？
+但真實的投資決策從來不是單一問題，而是<strong>一連串有相依性的判斷</strong>——
+而且前一步的答案會改變後一步該問什麼。</p>
+<p>Cookbook 的七條工作流把這個相依性寫成明確的順序。本頁的重點不只是「跑得出結果」，
+更是示範<strong>當前置條件不成立時，工作流會停下來</strong>：
+工作流 C 與 D 都在第一步的篩選閘門被擋下，而這正是它們有用的證據。
+一個永遠會給你答案的流程，不是分析流程，而是產生器。</p>
+<div class="tblwrap"><table class="dt"><thead><tr><th style="text-align:left">工作流</th><th style="text-align:left">回答的決策</th><th style="text-align:left">套用標的</th><th style="text-align:center">串接框架數</th><th style="text-align:left">結果</th></tr></thead><tbody><tr><th scope="row" style="text-align:left"><strong><a href="#wfa">A</a></strong> 財報前定位</th><td style="text-align:left">距財報三天，該不該抱過去？</td><td style="text-align:left">MRVL</td><td style="text-align:center">4</td><td style="text-align:left"><span class="st st--warn">⚠ 產出決策矩陣</span></td></tr><tr><th scope="row" style="text-align:left"><strong><a href="#wfb">B</a></strong> 價值股篩選</th><td style="text-align:left">本益比看起來很低——是機會還是價值陷阱？</td><td style="text-align:left">SNDL</td><td style="text-align:center">5</td><td style="text-align:left"><span class="st st--bad">🚩 判定為價值陷阱</span></td></tr><tr><th scope="row" style="text-align:left"><strong><a href="#wfc">C</a></strong> 股息組合建構</th><td style="text-align:left">用這個籃子能不能組出一個收益型組合？</td><td style="text-align:left">MU · MRVL · SNDL</td><td style="text-align:center">2</td><td style="text-align:left"><span class="st st--bad">🚩 閘門擋下：無可用標的</span></td></tr><tr><th scope="row" style="text-align:left"><strong><a href="#wfd">D</a></strong> 波段做多設定</th><td style="text-align:left">在空單擁擠的標的裡找有明確風報比的短線機會</td><td style="text-align:left">四檔全部</td><td style="text-align:center">4</td><td style="text-align:left"><span class="st st--bad">🚩 閘門擋下：無標的符合</span></td></tr><tr><th scope="row" style="text-align:left"><strong><a href="#wfe">E</a></strong> 完整投資備忘錄</th><td style="text-align:left">投入大額資金前的完整實地查核（單一指令）</td><td style="text-align:left">MU</td><td style="text-align:center">2</td><td style="text-align:left"><span class="st st--good">✅ 產出完整備忘錄</span></td></tr><tr><th scope="row" style="text-align:left"><strong><a href="#wff">F</a></strong> 總體驅動的類股輪動</th><td style="text-align:left">在當前利率與通膨環境下，哪些類股會贏？</td><td style="text-align:left">四檔全部</td><td style="text-align:center">4</td><td style="text-align:left"><span class="st st--warn">⚠ 產出輪動評分卡</span></td></tr><tr><th scope="row" style="text-align:left"><strong><a href="#wfg">G</a></strong> 管理既有部位</th><td style="text-align:left">已經持有但套住了，如何分批加碼而不情緒化攤平？</td><td style="text-align:left">MU</td><td style="text-align:center">4</td><td style="text-align:left"><span class="st st--warn">⚠ 產出 5 階階梯</span></td></tr></tbody></table></div>
+</section><section id="wfa"><h2>工作流 A · 財報前定位<span class="skilltag">MRVL</span></h2>
+<p><strong>決策</strong>：MRVL 將於 2026-08-28（30 天後）公布財報。該抱過去，還是先減碼？</p>
+<div class="grid g2">
+<div><div class="flow"><div class="node" style="border-left:3px solid #eb6834"><div class="node__pos">步驟 1</div><div class="node__t" style="font-size:.8125rem;font-weight:700;color:var(--ink)">/earnings-call-analysis</div><div class="node__m" style="font-size:.75rem">檢視前一季指引準確度與管理層語氣</div></div><div class="arrowrow">↓</div><div class="node" style="border-left:3px solid #eb6834"><div class="node__pos">步驟 2</div><div class="node__t" style="font-size:.8125rem;font-weight:700;color:var(--ink)">/options-analysis</div><div class="node__m" style="font-size:.75rem">隱含波動率排名與隱含變動幅度</div></div><div class="arrowrow">↓</div><div class="node" style="border-left:3px solid #eb6834"><div class="node__pos">步驟 3</div><div class="node__t" style="font-size:.8125rem;font-weight:700;color:var(--ink)">/insider-trading</div><div class="node__m" style="font-size:.75rem">過去 60 天高管交易</div></div><div class="arrowrow">↓</div><div class="node" style="border-left:3px solid #eb6834"><div class="node__pos">步驟 4</div><div class="node__t" style="font-size:.8125rem;font-weight:700;color:var(--ink)">/technical-analysis</div><div class="node__m" style="font-size:.75rem">支撐／壓力位置</div></div></div></div>
+<div><h3 style="margin-top:0">四訊號決策矩陣</h3>
+<p style="font-size:.9375rem">四個獨立訊號中，<strong>三個偏空、一個中性偏空且帶超賣的雙面性</strong>。
+沒有任何一個訊號支持抱過財報。</p>
+<div class="card card--surface" style="margin-top:var(--s-16)">
+<div class="card__h">結論：財報前減碼</div>
+<p style="font-size:.9375rem;color:var(--ink-2)">四訊號一致偏空，且其中兩個（內部人、選擇權偏斜）
+是<strong>知情程度較高</strong>的參與者行為。RSI 28.9 的超賣狀態提供的是短線反彈可能，
+而非抱過財報的理由——財報是一個<strong>離散的雙向風險事件</strong>，
+超賣不會降低財報不如預期的機率。</p></div></div></div>
+<div class="tblwrap" style="margin-top:var(--s-24)"><table class="dt"><thead><tr><th style="text-align:left">訊號來源</th><th style="text-align:left">讀數</th><th style="text-align:center">方向</th><th style="text-align:left">權重理由</th></tr></thead><tbody><tr><th scope="row" style="text-align:left"><code>earnings-call-analysis</code></th><td style="text-align:left">共識 non-GAAP EPS $0.927（區間 $0.88–$0.94，離散度僅 1.07 倍）、營收 $2.70B（+11.8% QoQ）</td><td style="text-align:center"><span class="st st--warn">⚠ 中性偏空</span></td><td style="text-align:left">預估區間極窄代表分析師對 non-GAAP 高度有信心，但<strong>GAAP 季度 EPS 僅 $0.04</strong>，兩者無法對帳。共識的「可預測性」建立在一個本報告無法驗證的基準上。</td></tr><tr><th scope="row" style="text-align:left"><code>options-analysis</code></th><td style="text-align:left">IV 98.0% vs HV 77.3%（IV／HV ＝ 1.27）、隱含變動 16.5%、賣權／買權未平倉比 1.55</td><td style="text-align:center"><span class="st st--bad">🚩 偏空</span></td><td style="text-align:left">賣權未平倉為買權的 1.55 倍——選擇權市場的避險需求明顯偏空。IV 高於 HV 使買方策略成本偏高。</td></tr><tr><th scope="row" style="text-align:left"><code>insider-trading</code>（過去 60 天）</th><td style="text-align:left">6 筆賣出、合計 $9.7M、<strong>0 筆買進</strong>。執行長、總裁、財務長全數在列，成交價 $199–$299</td><td style="text-align:center"><span class="st st--bad">🚩 偏空</span></td><td style="text-align:left">現價 $174.47 <strong>低於全部六筆成交價</strong>，最高者高出 71%。三個最高層職位在財報前 6 週內全部賣出。</td></tr><tr><th scope="row" style="text-align:left"><code>technical-analysis</code></th><td style="text-align:left">RSI(14) 28.9（超賣）、股價低於 MA20 -20.9%／MA50 -27.1%、MACD -16.88 在訊號線 -12.72 之下</td><td style="text-align:center"><span class="st st--warn">⚠ 空頭趨勢，但已超賣</span></td><td style="text-align:left">距 52 週高點 -47.1%。RSI < 30 意味著短線反彈機率上升，但趨勢結構（MA、MACD）仍明確偏空。這是四個訊號中唯一有雙面性的。</td></tr></tbody></table></div>
+<div class="call call--warn"><div class="call__h">⚠ 這條工作流沒有回答的問題</div>
+<p>工作流 A 的設計目的是<strong>短期定位</strong>，它不評估估值。
+本頁的結論（財報前減碼）與 <a href="mrvl.html">MRVL 完整報告</a>的結論（不進場，等 GAAP 利益率轉折）
+方向一致，但推導路徑完全不同——前者看四個短期訊號，後者看三個互相矛盾的估值答案。
+<strong>兩條路徑得到同樣結論，才使這個判斷比較可靠。</strong></p></div>
+</section><section id="wfb"><h2>工作流 B · 價值股篩選<span class="skilltag">SNDL</span></h2>
+<p><strong>決策</strong>：SNDL 股價淨值比 0.30、現金覆蓋 58% 市值、股價就在 52 週最低點。
+這是機會，還是價值陷阱？</p>
+<div class="grid g2">
+<div><div class="flow"><div class="node" style="border-left:3px solid #4a3aa7"><div class="node__pos">步驟 1</div><div class="node__t" style="font-size:.8125rem;font-weight:700;color:var(--ink)">/stock-eval</div><div class="node__m" style="font-size:.75rem">品質檢查：Piotroski F-Score、ROIC vs WACC</div></div><div class="arrowrow">↓</div><div class="node" style="border-left:3px solid #4a3aa7"><div class="node__pos">步驟 2</div><div class="node__t" style="font-size:.8125rem;font-weight:700;color:var(--ink)">/competitor-analysis</div><div class="node__m" style="font-size:.75rem">護城河是否惡化、市佔趨勢</div></div><div class="arrowrow">↓</div><div class="node" style="border-left:3px solid #4a3aa7"><div class="node__pos">步驟 3</div><div class="node__t" style="font-size:.8125rem;font-weight:700;color:var(--ink)">/financial-report-analyst</div><div class="node__m" style="font-size:.75rem">10-K 紅旗與會計品質</div></div><div class="arrowrow">↓</div><div class="node" style="border-left:3px solid #4a3aa7"><div class="node__pos">步驟 4</div><div class="node__t" style="font-size:.8125rem;font-weight:700;color:var(--ink)">/dcf-valuation --scenarios</div><div class="node__m" style="font-size:.75rem">保守假設下的內在價值</div></div><div class="arrowrow">↓</div><div class="node" style="border-left:3px solid #4a3aa7"><div class="node__pos">步驟 5</div><div class="node__t" style="font-size:.8125rem;font-weight:700;color:var(--ink)">/result-validator</div><div class="node__m" style="font-size:.75rem">驗證假設完整性</div></div></div></div>
+<div><h3 style="margin-top:0">判定：<span class="dn">價值陷阱</span></h3>
+<p style="font-size:.9375rem">八個檢查項中，<strong>五項判定為陷阱特徵、兩項為真實價值、一項待驗證</strong>。</p>
+<div class="card" style="background:#fdf0f0;border-color:#f7c4c4;margin-top:var(--s-16)">
+<div class="card__h">關鍵在第三項</div>
+<p style="font-size:.9375rem;color:var(--ink-2)">深度價值需要兩個條件：
+<strong>折價足夠大</strong>（✅ 0.30 倍）與<strong>資產價值穩定</strong>（❌ 年化 −7.1%）。
+第二個條件失敗時，折價會靠<strong>分母縮小</strong>自行消失，而不需要股價上漲。
+若以年化 −7.1% 外推五年，股東權益降至約 $0.74B，<strong>即使股價完全不動</strong>，
+股價淨值比也會由 0.30 升至 <strong>0.43</strong>。</p></div></div></div>
+<h3>陷阱訊號檢查表</h3>
+<div class="tblwrap"><table class="dt"><thead><tr><th style="text-align:left">價值陷阱檢查項</th><th style="text-align:left">SNDL 讀數</th><th style="text-align:left">判定</th></tr></thead><tbody><tr><th scope="row" style="text-align:left">本益比是否因獲利崩塌而失真</th><td style="text-align:left">TTM EPS −$0.03，本益比<strong>無法計算</strong>。前瞻本益比 40.7 倍（因獲利基數趨近零而失真）</td><td style="text-align:left"><span class="st st--bad">🚩 是——不可用盈餘倍數</span></td></tr><tr><th scope="row" style="text-align:left">資產折價是否真實</th><td style="text-align:left">股價淨值比 <strong>0.30</strong>（依申報資產負債表；yfinance 欄位為 0.41，低估 27%）、市值 $317.6M 對股東權益 $1.06B、帳上現金 $183.2M（占市值 58%）、商譽僅占權益 11%</td><td style="text-align:left"><span class="st st--good">✅ 是——折價真實且有實體資產支撐</span></td></tr><tr><th scope="row" style="text-align:left">淨值是否穩定</th><td style="text-align:left">年度 $1.306B → $1.212B → $1.133B → $1.101B（年均 −5.3%），最近兩季再降至 <strong>$1.064B</strong>（年化 −7.1%，<strong>加速中</strong>）</td><td style="text-align:left"><span class="st st--bad">🚩 否——這是決定性的一項</span></td></tr><tr><th scope="row" style="text-align:left">ROIC 是否高於 WACC</th><td style="text-align:left">ROIC -0.3% vs WACC 7.1%，價差 <strong>-7.5%</strong></td><td style="text-align:left"><span class="st st--bad">🚩 否——營運不創造超額報酬</span></td></tr><tr><th scope="row" style="text-align:left">護城河是否惡化</th><td style="text-align:left">Porter 五力中四項為高／極高壓力。加拿大大麻市場長期供過於求，毛利率僅 27.3%</td><td style="text-align:left"><span class="st st--bad">🚩 無護城河可惡化</span></td></tr><tr><th scope="row" style="text-align:left">會計是否有紅旗</th><td style="text-align:left">TTM 營運現金流 +$66.6M 對淨利 −$11.0M（虧損來自非現金費用）。存貨四年持平、買回為真實註銷。<strong>會計品質良好</strong></td><td style="text-align:left"><span class="st st--good">✅ 否——財報乾淨</span></td></tr><tr><th scope="row" style="text-align:left">營收是否仍在成長</th><td style="text-align:left">TTM 營收年增 <strong>-4.4%</strong>。季度 $245M → $244M → $252M → $196M → $236M</td><td style="text-align:left"><span class="st st--bad">🚩 否——已轉衰退</span></td></tr><tr><th scope="row" style="text-align:left">是否有可驗證的轉機條件</th><td style="text-align:left">有：「連續兩季營業利益為正」。過去五季正負交替（+$2.9M → −$9.4M → +$10.3M → −$11.2M → −$5.4M），<strong>無任何兩季同向</strong>。下一季財報即可檢驗</td><td style="text-align:left"><span class="st st--warn">⚠ 有，但尚未出現</span></td></tr></tbody></table></div>
+<h3>保守假設下的 DCF（<code>--scenarios</code>）</h3>
+<div class="tblwrap"><table class="dt"><thead><tr><th style="text-align:left">情境</th><th style="text-align:right">年 1–5 營收成長</th><th style="text-align:right">每股價值</th><th style="text-align:right">相對現價 $1.22</th></tr></thead><tbody><tr><th scope="row" style="text-align:left">保守（空方）</th><td style="text-align:right">-8%</td><td style="text-align:right">$1.51</td><td style="text-align:right"><span class="up">+24%</span></td></tr><tr><th scope="row" style="text-align:left">基準</th><td style="text-align:right">+3%</td><td style="text-align:right">$2.52</td><td style="text-align:right"><span class="up">+106%</span></td></tr><tr><th scope="row" style="text-align:left">樂觀（多方）</th><td style="text-align:right">+10%</td><td style="text-align:right">$3.62</td><td style="text-align:right"><span class="up">+197%</span></td></tr><tr><th scope="row" style="text-align:left"><strong>每股帳面淨值（申報 BS）</strong></th><td style="text-align:right">—</td><td style="text-align:right"><strong>$4.09</strong></td><td style="text-align:right"><span class="up">+235%</span></td></tr></tbody></table></div>
+<div class="call call--warn"><div class="call__h">⚠ 這裡出現一個罕見的矛盾，必須說明</div>
+<p><strong>連空方情境的 DCF（$1.51）都高於現價 $1.22。</strong>
+每股帳面淨值 $4.09 更是現價的 3.35 倍。
+純以靜態估值論，SNDL <strong>沒有一個方法算出它應該更低</strong>。</p>
+<p>那為什麼判定為陷阱？因為 DCF 與淨值都是<strong>靜態</strong>的，
+而本工作流的第三項檢查捕捉到的是<strong>動態</strong>的：這些數字每年都在變小。
+DCF 假設 −8% 的營收衰退，但它沒有假設股東權益持續侵蝕；
+淨值 $4.09／股是<em>今天</em>的淨值，不是三年後的。</p>
+<p><strong>這是工作流 B 存在的理由</strong>：單獨執行 <code>/dcf-valuation</code> 會得出
+「SNDL 嚴重低估」的結論；加上 <code>/stock-eval</code> 的 ROIC 檢查與
+<code>/financial-report-analyst</code> 的淨值趨勢，結論反轉。
+<strong>順序有意義，缺一步就會得到相反的答案。</strong></p></div>
+<div class="call"><div class="call__h">✅ <code>result-validator</code> 對本工作流的稽核</div>
+<p>信賴分數 <strong>80／100（HIGH）</strong>。扣分項：
+(1) 清算價值未逐項評估資產可變現性（存貨與不動產的實際折價率未知）；
+(2) 加拿大法規風險無量化資料；
+(3) 僅 2 位分析師覆蓋，外部驗證來源不足。
+加分項：結論與資料一致、矛盾（DCF 看多 vs 趨勢看空）被明確呈現而非隱藏、
+轉機條件可在下一季驗證。完整版見 <a href="sndl.html#valid">SNDL 報告稽核</a>。</p></div>
+</section><section id="wfc"><h2>工作流 C · 股息組合建構<span class="skilltag">閘門擋下</span></h2>
+<p><strong>決策</strong>：用這四檔能不能組出一個收益型組合？</p>
+<div class="grid g2">
+<div><div class="flow"><div class="node" style="border-left:3px solid #00b14f"><div class="node__pos">步驟 1</div><div class="node__t" style="font-size:.8125rem;font-weight:700;color:var(--ink)">/dividend-analysis</div><div class="node__m" style="font-size:.75rem">逐檔評估股息安全性</div></div><div class="arrowrow">↓</div><div class="node" style="border-left:3px solid #00b14f"><div class="node__pos">步驟 2</div><div class="node__t" style="font-size:.8125rem;font-weight:700;color:var(--ink)">/portfolio-review</div><div class="node__m" style="font-size:.75rem">合併殖利率、類股集中度、覆蓋率</div></div></div></div>
+<div><h3 style="margin-top:0">結果：<span class="dn">工作流在第一步終止</span></h3>
+<p style="font-size:.9375rem">Cookbook 的工作流 C 原始範例使用 JNJ、ABBV、PG——
+殖利率 3%–4% 的成熟配息股。本籃子<strong>沒有一檔符合收益型標的的基本定義</strong>：
+最高殖利率是 MU 的 6.00%。</p>
+<div class="card" style="background:#fdf0f0;border-color:#f7c4c4;margin-top:var(--s-16)">
+<div class="card__h">為什麼這是正確的結果</div>
+<p style="font-size:.9375rem;color:var(--ink-2)">框架<strong>沒有</strong>為了產出結果而降低門檻。
+若強行執行 <code>/portfolio-review</code>，它會算出一個合併殖利率約 0.05% 的「收益組合」——
+一個技術上正確但實務上荒謬的答案。<strong>拒絕產出，比產出一個無意義的數字更有價值。</strong></p></div></div></div>
+<h3>逐檔股息安全性評估（<code>/dividend-analysis</code>）</h3>
+<div class="tblwrap"><table class="dt"><thead><tr><th style="text-align:left">標的</th><th style="text-align:right">年化股息</th><th style="text-align:right">股息殖利率</th><th style="text-align:right">配息率</th><th style="text-align:right">FY 股息支出</th><th style="text-align:right">自由現金流覆蓋</th><th style="text-align:left">判定</th></tr></thead><tbody><tr><th scope="row" style="text-align:left"><strong>MU</strong></th><td style="text-align:right">$0.53</td><td style="text-align:right">6.00%</td><td style="text-align:right">1.12%</td><td style="text-align:right">$520.0M</td><td style="text-align:right">3.2 倍（FY2025 FCF $1.67B）</td><td style="text-align:left"><span class="st st--bad">🚩 殖利率過低，不符收益需求</span></td></tr><tr><th scope="row" style="text-align:left"><strong>MRVL</strong></th><td style="text-align:right">$0.24</td><td style="text-align:right">13.00%</td><td style="text-align:right">8.25%</td><td style="text-align:right">$210.0M</td><td style="text-align:right">6.6 倍（FY2026 FCF $1.39B）</td><td style="text-align:left"><span class="st st--bad">🚩 殖利率過低，不符收益需求</span></td></tr><tr><th scope="row" style="text-align:left"><strong>SKHY</strong></th><td style="text-align:right">欄位為空（但現金流量表顯示有支付）</td><td style="text-align:right">約 0.13%（由現金流量表推算）</td><td style="text-align:right">約 3.9%（推算）</td><td style="text-align:right">$1.22B</td><td style="text-align:right">14.8 倍（FY2025 FCF $18.0B）</td><td style="text-align:left"><span class="st st--bad">🚩 資料矛盾且殖利率過低</span></td></tr><tr><th scope="row" style="text-align:left"><strong>SNDL</strong></th><td style="text-align:right">無</td><td style="text-align:right">—</td><td style="text-align:right">0%</td><td style="text-align:right">$0</td><td style="text-align:right">—</td><td style="text-align:left"><span class="st st--bad">🚩 不發放股息</span></td></tr></tbody></table></div>
+<div class="call call--ink"><div class="call__h">📐 但這一步仍然產出了有用的資訊</div>
+<p>工作流 C 雖然無法完成原定目標，卻揭露了一個關於整個籃子的共同事實：
+<strong>四檔的股息都由自由現金流充分覆蓋（1.7 至 14.8 倍），但金額都是象徵性的。</strong>
+這不是財務脆弱，而是<strong>刻意的資本配置選擇</strong>——
+三檔半導體把現金投入資本支出（MU 的資本支出占營運現金流 90%），SNDL 投入買回。</p>
+<p>換句話說：這個籃子的報酬<strong>必須</strong>全部來自股價，沒有任何現金流緩衝。
+對於 Beta 2.0–2.2 的三檔半導體而言，這是一個放大波動的結構性特徵，
+而它只有在執行工作流 C 之後才浮現。</p></div>
+</section><section id="wfd"><h2>工作流 D · 波段做多設定<span class="skilltag">閘門擋下</span></h2>
+<p><strong>決策</strong>：在空單擁擠的標的中，找出有明確風報比的短線做多機會。</p>
+<div class="grid g2">
+<div><div class="flow"><div class="node" style="border-left:3px solid #00b14f"><div class="node__pos">步驟 1</div><div class="node__t" style="font-size:.8125rem;font-weight:700;color:var(--ink)">/short-interest</div><div class="node__m" style="font-size:.75rem">篩選門檻：流通股空單 >20%、回補天數 >5 天</div></div><div class="arrowrow">↓</div><div class="node" style="border-left:3px solid #00b14f"><div class="node__pos">步驟 2</div><div class="node__t" style="font-size:.8125rem;font-weight:700;color:var(--ink)">/technical-analysis</div><div class="node__m" style="font-size:.75rem">股價站上 20 日均線、RSI 回升、量能確認</div></div><div class="arrowrow">↓</div><div class="node" style="border-left:3px solid #00b14f"><div class="node__pos">步驟 3</div><div class="node__t" style="font-size:.8125rem;font-weight:700;color:var(--ink)">/options-analysis</div><div class="node__m" style="font-size:.75rem">偏斜與定義風險進場的成本結構</div></div><div class="arrowrow">↓</div><div class="node" style="border-left:3px solid #00b14f"><div class="node__pos">步驟 4</div><div class="node__t" style="font-size:.8125rem;font-weight:700;color:var(--ink)">/chart-master --type price-volume</div><div class="node__m" style="font-size:.75rem">突破型態視覺化</div></div></div></div>
+<div><h3 style="margin-top:0">結果：<span class="dn">四檔全部未通過第一步篩選</span></h3>
+<p style="font-size:.9375rem">工作流 D 的前提是<strong>空單擁擠</strong>——
+流通股空單比 >20% 且回補天數 >5 天。這兩個條件同時成立時，
+軋空才有燃料，短線做多的不對稱性才存在。</p>
+<div class="card" style="background:#fdf0f0;border-color:#f7c4c4;margin-top:var(--s-16)">
+<div class="card__h">實際數字差了一個數量級</div>
+<p style="font-size:.9375rem;color:var(--ink-2)">最高的流通股空單比是 MRVL 的
+<strong>4.3%</strong>（門檻 20%），
+最高的回補天數是 SNDL 的 <strong>0.88 天</strong>（門檻 5 天）。
+四檔的回補天數<strong>全部低於 1 天</strong>——
+以日均量計，全部空單不到一個交易日就能回補完畢。</p></div></div></div>
+<h3>閘門檢查</h3>
+<div class="tblwrap"><table class="dt"><thead><tr><th style="text-align:left">標的</th><th style="text-align:right">流通股空單比</th><th style="text-align:center">門檻 >20%</th><th style="text-align:right">回補天數</th><th style="text-align:center">門檻 >5 天</th><th style="text-align:right">空單月變化</th><th style="text-align:center">通過閘門？</th></tr></thead><tbody><tr><th scope="row" style="text-align:left"><strong>MU</strong></th><td style="text-align:right">3.2%</td><td style="text-align:center"><span class="st st--bad">🚩 未通過</span></td><td style="text-align:right">0.69 天</td><td style="text-align:center"><span class="st st--bad">🚩 未通過</span></td><td style="text-align:right">-12.9%</td><td style="text-align:center"><span class="st st--bad">🚩 否</span></td></tr><tr><th scope="row" style="text-align:left"><strong>SKHY</strong></th><td style="text-align:right">未揭露</td><td style="text-align:center"><span class="st st--bad">🚩 未通過</span></td><td style="text-align:right">0.19 天</td><td style="text-align:center"><span class="st st--bad">🚩 未通過</span></td><td style="text-align:right">未揭露</td><td style="text-align:center"><span class="st st--bad">🚩 否</span></td></tr><tr><th scope="row" style="text-align:left"><strong>MRVL</strong></th><td style="text-align:right">4.3%</td><td style="text-align:center"><span class="st st--bad">🚩 未通過</span></td><td style="text-align:right">0.71 天</td><td style="text-align:center"><span class="st st--bad">🚩 未通過</span></td><td style="text-align:right">-17.4%</td><td style="text-align:center"><span class="st st--bad">🚩 否</span></td></tr><tr><th scope="row" style="text-align:left"><strong>SNDL</strong></th><td style="text-align:right">0.8%</td><td style="text-align:center"><span class="st st--bad">🚩 未通過</span></td><td style="text-align:right">0.88 天</td><td style="text-align:center"><span class="st st--bad">🚩 未通過</span></td><td style="text-align:right">-25.7%</td><td style="text-align:center"><span class="st st--bad">🚩 否</span></td></tr></tbody></table></div>
+<figure class="fig"><div class="figbox"><svg class="chart" viewBox="0 0 760 192" role="img" preserveAspectRatio="xMidYMid meet"><line x1="118.0" y1="10" x2="118.0" y2="168" stroke="#e6e8eb" stroke-width="1"/><text x="118.0" y="184" text-anchor="middle" font-size="11" fill="#767c85">0.00</text><line x1="251.5" y1="10" x2="251.5" y2="168" stroke="#e6e8eb" stroke-width="1"/><text x="251.5" y="184" text-anchor="middle" font-size="11" fill="#767c85">1.38</text><line x1="385.0" y1="10" x2="385.0" y2="168" stroke="#e6e8eb" stroke-width="1"/><text x="385.0" y="184" text-anchor="middle" font-size="11" fill="#767c85">2.75</text><line x1="518.5" y1="10" x2="518.5" y2="168" stroke="#e6e8eb" stroke-width="1"/><text x="518.5" y="184" text-anchor="middle" font-size="11" fill="#767c85">4.12</text><line x1="652.0" y1="10" x2="652.0" y2="168" stroke="#e6e8eb" stroke-width="1"/><text x="652.0" y="184" text-anchor="middle" font-size="11" fill="#767c85">5.50</text><text x="108" y="31.0" text-anchor="end" font-size="12.5" font-weight="600" fill="#16181a">MU</text><rect x="118.0" y="14" width="67.0" height="26" rx="4" ry="4" fill="#2a78d6"><title>MU: 0.69 ·  天</title></rect><text x="193.0" y="31.0" font-size="12.5" font-weight="700" fill="#4a4f55">0.69  天</text><text x="108" y="69.0" text-anchor="end" font-size="12.5" font-weight="600" fill="#16181a">SKHY</text><rect x="118.0" y="52" width="18.4" height="26" rx="4" ry="4" fill="#1baf7a"><title>SKHY: 0.19 ·  天</title></rect><text x="144.4" y="69.0" font-size="12.5" font-weight="700" fill="#4a4f55">0.19  天</text><text x="108" y="107.0" text-anchor="end" font-size="12.5" font-weight="600" fill="#16181a">MRVL</text><rect x="118.0" y="90" width="68.9" height="26" rx="4" ry="4" fill="#eb6834"><title>MRVL: 0.71 ·  天</title></rect><text x="194.9" y="107.0" font-size="12.5" font-weight="700" fill="#4a4f55">0.71  天</text><text x="108" y="145.0" text-anchor="end" font-size="12.5" font-weight="600" fill="#16181a">SNDL</text><rect x="118.0" y="128" width="85.4" height="26" rx="4" ry="4" fill="#4a3aa7"><title>SNDL: 0.88 ·  天</title></rect><text x="211.4" y="145.0" font-size="12.5" font-weight="700" fill="#4a4f55">0.88  天</text></svg></div><figcaption>圖 ── 回補天數（days-to-cover）vs 工作流 D 的 5 天門檻</figcaption><p class="fignote">最高者 0.88 天，距 5 天門檻仍有 5.7 倍差距。SKHY 的 0.19 天為四檔最低，但其借券市場僅成立 13 個交易日，代表性有限。</p><details class="tblview"><summary>檢視數據表</summary><div class="tblwrap" id="t5"><table class="dt"><thead><tr><th style="text-align:left">標的</th><th style="text-align:right">空單股數</th><th style="text-align:right">前月</th><th style="text-align:right">月變化</th><th style="text-align:right">流通股</th><th style="text-align:right">回補天數</th></tr></thead><tbody><tr><th scope="row" style="text-align:left"><strong>MU</strong></th><td style="text-align:right">36.21M</td><td style="text-align:right">41.59M</td><td style="text-align:right">-12.9%</td><td style="text-align:right">1,125M</td><td style="text-align:right">0.69 天</td></tr><tr><th scope="row" style="text-align:left"><strong>SKHY</strong></th><td style="text-align:right">14.86M</td><td style="text-align:right">未揭露</td><td style="text-align:right">—</td><td style="text-align:right">5,594M</td><td style="text-align:right">0.19 天</td></tr><tr><th scope="row" style="text-align:left"><strong>MRVL</strong></th><td style="text-align:right">32.48M</td><td style="text-align:right">39.31M</td><td style="text-align:right">-17.4%</td><td style="text-align:right">872M</td><td style="text-align:right">0.71 天</td></tr><tr><th scope="row" style="text-align:left"><strong>SNDL</strong></th><td style="text-align:right">1.96M</td><td style="text-align:right">2.63M</td><td style="text-align:right">-25.7%</td><td style="text-align:right">226M</td><td style="text-align:right">0.88 天</td></tr></tbody></table></div></details></figure>
+<div class="call"><div class="call__h">💡 這個「失敗」推翻了一個常見的直覺</div>
+<p>四檔全部處於明顯回撤中（−33% 至 −58%），直覺上會認為「空方在打壓」。
+但資料顯示相反：<strong>四檔的空單月變化全部為負</strong>——
+MU −12.9%、MRVL −17.4%、SNDL −25.7%。<strong>空方在回補，不是在加碼。</strong></p>
+<p>這改變了對整個籃子回撤性質的理解：這不是空頭攻擊，
+而是<strong>多方自己在賣</strong>。這個結論與四份報告中「內部人只賣不買、主動型法人減碼」
+的證據方向一致，而它是工作流 D 在<strong>失敗過程中</strong>產出的副產品。</p>
+</div></section><section id="wfe"><h2>工作流 E · 完整投資備忘錄<span class="skilltag">MU</span></h2>
+<p><strong>決策</strong>：投入大額資金前的完整實地查核。單一指令、15 個模組。</p>
+<div class="grid g2">
+<div><div class="flow"><div class="node" style="border-left:3px solid #2a78d6"><div class="node__pos">步驟 1</div><div class="node__t" style="font-size:.8125rem;font-weight:700;color:var(--ink)">/full-report --depth comprehensive</div><div class="node__m" style="font-size:.75rem">協調 15 個分析模組並產出 HTML</div></div><div class="arrowrow">↓</div><div class="node" style="border-left:3px solid #2a78d6"><div class="node__pos">步驟 2</div><div class="node__t" style="font-size:.8125rem;font-weight:700;color:var(--ink)">/result-validator</div><div class="node__m" style="font-size:.75rem">對綜合訊號區塊做品質稽核</div></div></div></div>
+<div><h3 style="margin-top:0">產出：<a href="mu.html">MU 完整報告</a></h3>
+<p style="font-size:.9375rem">這是七條工作流中最短的一條（兩步），
+因為 <code>full-report</code> 本身就是一個協調器——它在內部依五個階段推進 15 個模組，
+前階段的產出成為後階段的輸入。</p>
+<div class="tblwrap" style="margin-top:var(--s-16)"><table class="dt"><thead><tr><th style="text-align:left">階段</th><th style="text-align:center">模組數</th><th style="text-align:right">子分數</th></tr></thead><tbody><tr><th scope="row" style="text-align:left">階段一 · 商業品質</th><td style="text-align:center">3</td><td style="text-align:right">8.6</td></tr><tr><th scope="row" style="text-align:left">階段二 · 估值</th><td style="text-align:center">2</td><td style="text-align:right">7.8</td></tr><tr><th scope="row" style="text-align:left">階段三 · 市場訊號</th><td style="text-align:center">3</td><td style="text-align:right">6.4</td></tr><tr><th scope="row" style="text-align:left">階段四 · 技術時機</th><td style="text-align:center">2</td><td style="text-align:right">3.2</td></tr><tr><th scope="row" style="text-align:left">階段五 · 風險</th><td style="text-align:center">4</td><td style="text-align:right">4.2</td></tr><tr><th scope="row" style="text-align:left"><strong>綜合</strong></th><td style="text-align:center"><strong>15</strong></td><td style="text-align:right"><strong>6.49</strong></td></tr></tbody></table></div></div></div>
+<div class="call call--warn"><div class="call__h">⚠ 工作流 E 最重要的一步是第二步</div>
+<p><code>full-report</code> 產出的是一個綜合評分 <strong>6.49／10</strong>，
+落在「持有／觀察」區間。但這個分數是<strong>兩股方向相反的力量加權平均</strong>的結果：
+商業品質 8.6（接近滿分）與技術時機 3.2（接近墊底）。</p>
+<p>如果只看 6.49 這個數字，會誤以為「訊號中性、沒什麼特別」。
+<code>result-validator</code> 的作用就是把這件事揭露出來：
+它給 MU 報告的訊號一致性只有 <strong>6／20</strong>，
+並在稽核結論中明確標示「基本面與技術面明確對立」——
+因此正確的解讀不是「中性」，而是<strong>「訊號衝突，僅觀察」</strong>。</p>
+<p><strong>一個綜合分數若沒有搭配信賴稽核，就是把矛盾平均掉。</strong>這是工作流 E 只有兩步、
+但第二步不可省略的原因。</p></div>
+<p style="margin-top:var(--s-24)"><a class="btn" href="mu.html">閱讀完整的 15 模組備忘錄 →</a></p>
+</section><section id="wff"><h2>工作流 F · 總體驅動的類股輪動<span class="skilltag">四檔全部</span></h2>
+<p><strong>決策</strong>：在當前利率與通膨環境下，哪些類股會贏？加入這些部位對組合的利率敏感度有什麼影響？</p>
+<div class="grid g2"><div><div class="flow"><div class="node" style="border-left:3px solid #00b14f"><div class="node__pos">步驟 1</div><div class="node__t" style="font-size:.8125rem;font-weight:700;color:var(--ink)">/economics-analysis</div><div class="node__m" style="font-size:.75rem">Fed 立場、殖利率曲線、實質利率</div></div><div class="arrowrow">↓</div><div class="node" style="border-left:3px solid #00b14f"><div class="node__pos">步驟 2</div><div class="node__t" style="font-size:.8125rem;font-weight:700;color:var(--ink)">/sector-analysis</div><div class="node__m" style="font-size:.75rem">不同利率環境下的歷史相對強度</div></div><div class="arrowrow">↓</div><div class="node" style="border-left:3px solid #00b14f"><div class="node__pos">步驟 3</div><div class="node__t" style="font-size:.8125rem;font-weight:700;color:var(--ink)">/stock-eval</div><div class="node__m" style="font-size:.75rem">在受益類股中篩選標的</div></div><div class="arrowrow">↓</div><div class="node" style="border-left:3px solid #00b14f"><div class="node__pos">步驟 4</div><div class="node__t" style="font-size:.8125rem;font-weight:700;color:var(--ink)">/portfolio-review</div><div class="node__m" style="font-size:.75rem">新部位對組合利率敏感度的影響</div></div></div></div>
+<div><h3 style="margin-top:0">產出：輪動評分卡</h3>
+<p style="font-size:.9375rem">工作流 F 的核心發現是一個<strong>背離</strong>：
+以 4.2% 的無風險利率與 5.0% 的股權風險溢酬計，Beta 2.0–2.2 的高成長類股
+理論上應該是最受壓的資產（權益成本 14.3%–15.2%）。
+但過去一年 ^SOX 上漲 92%，是 S&amp;P 500 的
+5.6 倍。</p>
+<p style="font-size:.9375rem"><strong>AI 資本支出循環完全壓倒了利率因素。</strong>
+這意味著這個籃子的風險不在利率，而在資本支出循環本身。</p></div></div>
+<h3>類股評分卡（<code>/economics-analysis</code> ＋ <code>/sector-analysis</code>）</h3>
+<div class="tblwrap"><table class="dt"><thead><tr><th style="text-align:left">類股／指數</th><th style="text-align:right">1 年報酬</th><th style="text-align:right">相對 S&P 500</th><th style="text-align:left">在當前利率環境的理論定位</th><th style="text-align:left">本籃子代表</th></tr></thead><tbody><tr><th scope="row" style="text-align:left"><strong>半導體 ^SOX</strong></th><td style="text-align:right"><span class="up">+92.3%</span></td><td style="text-align:right"><span class="up">+76 pp</span></td><td style="text-align:left">高 Beta 成長類股在<strong>高利率環境理論上應受壓</strong>，但 AI 資本支出循環壓倒了利率因素。這個背離本身是風險訊號</td><td style="text-align:left">MU · SKHY · MRVL</td></tr><tr><th scope="row" style="text-align:left"><strong>半導體 ETF SMH</strong></th><td style="text-align:right"><span class="up">+81.4%</span></td><td style="text-align:right"><span class="up">+65 pp</span></td><td style="text-align:left">與 ^SOX 相差 11pp，反映權重集中於少數大型股</td><td style="text-align:left">—</td></tr><tr><th scope="row" style="text-align:left"><strong>Nasdaq ^IXIC</strong></th><td style="text-align:right">+17.9%</td><td style="text-align:right">+1.3% pp</td><td style="text-align:left">科技整體僅小幅領先大盤——<strong>本輪漲勢並非「科技股上漲」，而是「半導體上漲」</strong></td><td style="text-align:left">—</td></tr><tr><th scope="row" style="text-align:left"><strong>S&amp;P 500 ^GSPC</strong></th><td style="text-align:right">+16.6%</td><td style="text-align:right">基準</td><td style="text-align:left">基準</td><td style="text-align:left">—</td></tr><tr><th scope="row" style="text-align:left"><strong>必需消費</strong></th><td style="text-align:right"><span style="color:var(--ink-3)">未取樣</span></td><td style="text-align:right">—</td><td style="text-align:left">防禦類股在高利率環境相對抗跌，但無 AI 曝險</td><td style="text-align:left">SNDL（個股 1 年 -16.4%）</td></tr></tbody></table></div>
+<h3>組合 Beta 與利率敏感度（<code>/portfolio-review</code>）</h3>
+<div class="tblwrap"><table class="dt"><thead><tr><th style="text-align:left">組合</th><th style="text-align:center">加權 Beta</th><th style="text-align:center">加權 Ke</th><th style="text-align:left">說明</th></tr></thead><tbody><tr><th scope="row" style="text-align:left">前三名等權（MU／SKHY／MRVL）</th><td style="text-align:center">2.12</td><td style="text-align:center">14.8%</td><td style="text-align:left">篩選器排行榜前三名。<strong>Beta 超過 2.0，且三檔同屬一個產業循環</strong></td></tr><tr><th scope="row" style="text-align:left">四檔等權</th><td style="text-align:center">1.82</td><td style="text-align:center">13.3%</td><td style="text-align:left">加入 SNDL（Beta 0.92）使組合 Beta 下降 0.30</td></tr><tr><th scope="row" style="text-align:left">S&amp;P 500</th><td style="text-align:center">1.00</td><td style="text-align:center">9.2%</td><td style="text-align:left">參考基準</td></tr></tbody></table></div>
+<div class="call call--bad"><div class="call__h">🚩 工作流 F 的結論與篩選器的排行榜衝突</div>
+<p><a href="screener.html">篩選器</a>給出的前三名是 MU（8.5）、SKHY（8.3）、MRVL（6.2）——
+三檔全部是半導體。若照此建構等權組合，組合 Beta 為
+<strong>2.12</strong>，
+且三檔共享同一個需求驅動因子。</p>
+<p><strong>2026-07-28 提供了這個集中度的實證</strong>：三檔同日下跌
+8.9%／9.0%／7.8%。
+分散化在這個組合內<strong>不存在</strong>。</p>
+<p>而唯一的分散化來源，是篩選器排名<strong>最後一名</strong>的 SNDL
+（Beta 0.92）——它的低分正是因為它與這個循環無關。
+<strong>工作流 F 因此得出一個單獨執行篩選器不會得到的結論：
+排行榜的分數順序，不等於建構組合的順序。</strong></p></div>
+</section><section id="wfg"><h2>工作流 G · 管理既有部位<span class="skilltag">MU</span></h2>
+<p><strong>決策</strong>：已持有 MU 但套住了（現價 $820.53，距 52 週高點 -34.6%）。
+如何分批加碼而不陷入情緒化攤平？</p>
+<div class="call call--warn"><div class="call__h">⚠ 三個必須先說清楚的前提（框架強制項）</div>
+<ul style="margin:6px 0">
+<li><strong>降低平均成本不等於賺錢。</strong>平均成本是會計與心理的定錨，不是報酬指標。
+賣掉高成本部位會機械式地讓這個數字變小，但不會創造一分錢的財富。</li>
+<li><strong>這是波動率收割。</strong>此策略在區間震盪的行情中優於買進持有，
+在單邊趨勢（無論漲跌）中都較差。只漲不跌會使階梯填不滿；只跌不漲會填滿後繼續跌。</li>
+<li><strong>真正的優勢是控倉。</strong>「到 500 股就停止加碼，無論如何」——
+這個硬性上限是把向下攤平從無上限的負債轉為有界限押注的唯一機制。</li>
+</ul></div>
+<div class="grid g2"><div><div class="flow"><div class="node" style="border-left:3px solid #2a78d6"><div class="node__pos">步驟 1</div><div class="node__t" style="font-size:.8125rem;font-weight:700;color:var(--ink)">/stock-eval + bear-case</div><div class="node__m" style="font-size:.75rem">論點是否仍然成立？</div></div><div class="arrowrow">↓</div><div class="node" style="border-left:3px solid #2a78d6"><div class="node__pos">步驟 2</div><div class="node__t" style="font-size:.8125rem;font-weight:700;color:var(--ink)">/technical-analysis</div><div class="node__m" style="font-size:.75rem">支撐位與 ATR（用於階距）</div></div><div class="arrowrow">↓</div><div class="node" style="border-left:3px solid #2a78d6"><div class="node__pos">步驟 3</div><div class="node__t" style="font-size:.8125rem;font-weight:700;color:var(--ink)">/portfolio-review</div><div class="node__m" style="font-size:.75rem">集中度政策允許的最大部位</div></div><div class="arrowrow">↓</div><div class="node" style="border-left:3px solid #2a78d6"><div class="node__pos">步驟 4</div><div class="node__t" style="font-size:.8125rem;font-weight:700;color:var(--ink)">/position-ladder</div><div class="node__m" style="font-size:.75rem">產生 5 階進場計畫、洗售警示、與買進持有的總報酬比較</div></div></div></div>
+<div><h3 style="margin-top:0">第一步的答案決定後面三步是否執行</h3>
+<p style="font-size:.9375rem"><code>/stock-eval</code> 給 MU 的商業品質分數
+<strong>8.6／10</strong>（Piotroski 9／9、
+淨現金 $19.65B）——論點的<strong>商業面</strong>成立。</p>
+<p style="font-size:.9375rem">但 <code>/bear-case</code> 給出空方強度 <strong>7.0／10</strong>，
+核心論點是「現價 $820.53 ≈ 峰值利益率 80.4% 永久維持 × 15 倍
+＝ $819.07」。</p>
+<div class="card card--surface" style="margin-top:var(--s-16)">
+<div class="card__h">判定：論點成立，但估值不提供安全邊際</div>
+<p style="font-size:.9375rem;color:var(--ink-2)">因此階梯<strong>可以</strong>建立
+（公司不會倒），但<strong>不設起始批次</strong>（不先買 30–40%），
+且上限必須從嚴。這是第一步影響第四步的具體方式。</p></div></div></div>
+<h3>階距與部位控制（<code>/technical-analysis</code> ＋ <code>/portfolio-review</code>）</h3>
+<div class="tblwrap"><table class="dt"><thead><tr><th style="text-align:left">參數</th><th style="text-align:left">設定</th><th style="text-align:left">依據</th></tr></thead><tbody><tr><th scope="row" style="text-align:left">階距</th><td style="text-align:left">1.0 × ATR(14) ＝ $77.44</td><td style="text-align:left">ATR 占股價 9.4%。緊於 0.5×ATR 會在單日雜訊中全部成交；寬於 2×ATR 則很少成交</td></tr><tr><th scope="row" style="text-align:left">階數</th><td style="text-align:left">5 階</td><td style="text-align:left">框架預設值</td></tr><tr><th scope="row" style="text-align:left">上限（硬性）</th><td style="text-align:left">500 股（約 $410,265.00)</td><td style="text-align:left">依 <code>/portfolio-review</code>：高 Beta 標的集中度上限 5%（MU Beta 2.14），故此上限對應約 $8.2M 的投組規模</td></tr><tr><th scope="row" style="text-align:left">下限（核心永不賣出）</th><td style="text-align:left">300 股</td><td style="text-align:left">上限的 60%，使修剪腿永遠不會把部位賣光</td></tr><tr><th scope="row" style="text-align:left">每階股數</th><td style="text-align:left">100 股（等股數）</td><td style="text-align:left">等股數配置：平均成本＝各階價格的簡單平均</td></tr><tr><th scope="row" style="text-align:left">帳戶類型</th><td style="text-align:left">應稅帳戶</td><td style="text-align:left">保守假設（完整稅務摩擦）</td></tr><tr><th scope="row" style="text-align:left">成本基礎法</th><td style="text-align:left">FIFO</td><td style="text-align:left">多數券商預設</td></tr><tr><th scope="row" style="text-align:left">時間預算</th><td style="text-align:left">2 個季度</td><td style="text-align:left">涵蓋 9/24 與其後一次財報</td></tr></tbody></table></div>
+<h3>5 階進場階梯（<code>/position-ladder</code>）</h3>
+<div class="tblwrap"><table class="dt"><thead><tr><th style="text-align:left">階</th><th style="text-align:right">價位</th><th style="text-align:right">本階股數</th><th style="text-align:right">累計股數</th><th style="text-align:right">累計投入</th><th style="text-align:right">混合平均成本</th><th style="text-align:right">距現價</th></tr></thead><tbody><tr><th scope="row" style="text-align:left">第 1 階</th><td style="text-align:right">$820.00</td><td style="text-align:right">100</td><td style="text-align:right">100</td><td style="text-align:right">$82,000.00</td><td style="text-align:right">$820.00</td><td style="text-align:right">-0.1%</td></tr><tr><th scope="row" style="text-align:left">第 2 階</th><td style="text-align:right">$745.00</td><td style="text-align:right">100</td><td style="text-align:right">200</td><td style="text-align:right">$156,500.00</td><td style="text-align:right">$782.50</td><td style="text-align:right">-9.2%</td></tr><tr><th scope="row" style="text-align:left">第 3 階</th><td style="text-align:right">$665.00</td><td style="text-align:right">100</td><td style="text-align:right">300</td><td style="text-align:right">$223,000.00</td><td style="text-align:right">$743.33</td><td style="text-align:right">-19.0%</td></tr><tr><th scope="row" style="text-align:left">第 4 階</th><td style="text-align:right">$590.00</td><td style="text-align:right">100</td><td style="text-align:right">400</td><td style="text-align:right">$282,000.00</td><td style="text-align:right">$705.00</td><td style="text-align:right">-28.1%</td></tr><tr><th scope="row" style="text-align:left">第 5 階</th><td style="text-align:right">$510.00</td><td style="text-align:right">100</td><td style="text-align:right">500</td><td style="text-align:right">$333,000.00</td><td style="text-align:right">$666.00</td><td style="text-align:right">-37.8%</td></tr></tbody></table></div>
+<div class="tblwrap"><table class="dt"><thead><tr><th style="text-align:left">完全成交時的必要數字</th><th style="text-align:right">數值</th></tr></thead><tbody><tr><th scope="row" style="text-align:left">總投入資本</th><td style="text-align:right"><strong>$333,000.00</strong></td></tr><tr><th scope="row" style="text-align:left">混合平均成本</th><td style="text-align:right"><strong>$666.00</strong></td></tr><tr><th scope="row" style="text-align:left">需承受的自現價跌幅</th><td style="text-align:right"><strong>-37.8%</strong>（至第 5 階 $510.00）</td></tr><tr><th scope="row" style="text-align:left">若價格停在最低階的未實現損益</th><td style="text-align:right">$-78,000.00（每股 $-156.00 × 500 股）</td></tr><tr><th scope="row" style="text-align:left">對照：現價一次買足 500 股的成本</th><td style="text-align:right">$410,265.00　（階梯節省 $77,265.00）</td></tr><tr><th scope="row" style="text-align:left">與買進持有的比較</th><td style="text-align:right">若 MU 直接回升至 $1,507.38，一次買足的報酬為 +84%，而階梯僅成交第 1 階（100 股）→ <strong>階梯在單邊上漲中明確劣於買進持有</strong></td></tr></tbody></table></div>
+<div class="call call--bad"><div class="call__h">🚩 論點破裂出場閘門——這才是工作流 G 的重點</div>
+<p>以下任一條件成立時，<strong>停止階梯並出場</strong>，而非繼續向下加碼：</p>
+<ul>
+<li><strong>連續兩季毛利率下滑</strong>——循環轉折確認。目前 84.6%。</li>
+<li><strong>資本支出指引再上調而營收指引下修</strong>——現金流結構惡化。
+FY2025 資本支出已占營運現金流 90%。</li>
+<li><strong>三家寡占中任一家宣布大幅擴產或降價</strong>——HBM 定價權假設破裂。</li>
+<li><strong>出現內部人買進之外的治理事件</strong>（財務長異動、重編財報）——盈餘品質假設破裂。</li>
+</ul>
+<p>在上限 500 股處，加碼停止。進一步下跌不是加碼的理由，而是重新執行論點檢驗的理由。
+<strong>在下跌過程中提高上限，是這個計畫最常見、也最昂貴的失敗方式。</strong></p></div>
+<div class="call call--ink"><div class="call__h">📐 階梯填不滿的問題，以及本頁的選擇</div>
+<p>若 MU 自 $820.53 直接上行而不回落，這個階梯只會成交第 1 階（100 股，占目標 20%）。
+框架提供兩種緩解方式，且要求<strong>事先</strong>選定：</p>
+<ul>
+<li><strong>起始批次</strong>：立刻以市價建立 30–40% 部位。保證有意義的曝險，代價是放棄較好的均價。</li>
+<li><strong>時間backstop</strong>：若時間預算（2 季）結束時階梯成交不足 X%、且股價高於第 1 階，
+則將階梯上移錨定至當時價格，或接受較小的部位。</li>
+</ul>
+<p><strong>本頁選擇「不設起始批次」＋「接受較小部位」</strong>，理由是
+<a href="mu.html#valsum">MU 報告的估值總結</a>已判定現價安全邊際為零。
+先建立 30–40% 部位會與該結論直接矛盾。
+<strong>這個取捨必須在情緒介入之前決定，這正是工作流存在的理由。</strong></p></div>
+</section><section id="meta"><h2>工作流層級的觀察</h2>
+<div class="grid g2">
+<div class="card card--wash"><div class="card__h">✅ 三個只有在工作流層級才會浮現的結論</div>
+<ol style="font-size:.9375rem;margin:0">
+<li><strong>單獨執行 <code>/dcf-valuation</code> 會把 SNDL 判為嚴重低估</strong>
+（連空方情境 $1.51 都高於現價 $1.22）。
+加上 ROIC 檢查與淨值趨勢後，結論反轉為價值陷阱。<strong>順序有意義。</strong></li>
+<li><strong>四檔的空單月變化全部為負</strong>——工作流 D 在失敗過程中證明了：
+這一輪 −33% 至 −58% 的回撤不是空頭攻擊，而是多方自己在賣。</li>
+<li><strong>篩選器的排行榜順序不等於建構組合的順序</strong>——
+前三名 Beta 平均 2.12
+且共享同一循環；唯一的分散化來源是排名最後的 SNDL。</li>
+</ol></div>
+<div class="card" style="background:#fff8ef;border-color:#ffd9a8"><div class="card__h">⚠ 兩條被閘門擋下的工作流</div>
+<p style="font-size:.9375rem;color:var(--ink-2)"><strong>工作流 C</strong>（股息組合）與
+<strong>工作流 D</strong>（波段做多）都在第一步終止，因為本籃子沒有標的符合前提。</p>
+<p style="font-size:.9375rem;color:var(--ink-2)">這是本頁刻意展示的部分。
+一個永遠會產出答案的分析流程，無法區分「有機會」與「沒機會」——
+它只會把門檻降到剛好能通過的水準，然後給你一個數字。</p>
+<p style="font-size:.9375rem;color:var(--ink-2)"><strong>工作流 C 若強行執行</strong>，
+會產出一個合併殖利率約 0.05% 的「收益型組合」；
+<strong>工作流 D 若強行執行</strong>，會在回補天數 0.88 天的標的上規劃軋空交易。
+兩者技術上都能算，實務上都是錯的。</p></div>
+</div>
+<h3>七條工作流的框架使用統計</h3>
+<div class="tblwrap"><table class="dt"><thead><tr><th style="text-align:left">框架</th><th style="text-align:center">被幾條工作流使用</th><th style="text-align:left">使用於</th></tr></thead><tbody><tr><th scope="row" style="text-align:left"><code>technical-analysis</code></th><td style="text-align:center">4</td><td style="text-align:left">A · D · F(隱含) · G</td></tr><tr><th scope="row" style="text-align:left"><code>stock-eval</code></th><td style="text-align:center">3</td><td style="text-align:left">B · F · G</td></tr><tr><th scope="row" style="text-align:left"><code>options-analysis</code></th><td style="text-align:center">2</td><td style="text-align:left">A · D</td></tr><tr><th scope="row" style="text-align:left"><code>portfolio-review</code></th><td style="text-align:center">3</td><td style="text-align:left">C · F · G</td></tr><tr><th scope="row" style="text-align:left"><code>result-validator</code></th><td style="text-align:center">2</td><td style="text-align:left">B · E</td></tr><tr><th scope="row" style="text-align:left"><code>dcf-valuation</code></th><td style="text-align:center">1</td><td style="text-align:left">B</td></tr><tr><th scope="row" style="text-align:left"><code>insider-trading</code></th><td style="text-align:center">1</td><td style="text-align:left">A</td></tr><tr><th scope="row" style="text-align:left"><code>earnings-call-analysis</code></th><td style="text-align:center">1</td><td style="text-align:left">A</td></tr><tr><th scope="row" style="text-align:left"><code>competitor-analysis</code></th><td style="text-align:center">1</td><td style="text-align:left">B</td></tr><tr><th scope="row" style="text-align:left"><code>financial-report-analyst</code></th><td style="text-align:center">1</td><td style="text-align:left">B</td></tr><tr><th scope="row" style="text-align:left"><code>dividend-analysis</code></th><td style="text-align:center">1</td><td style="text-align:left">C</td></tr><tr><th scope="row" style="text-align:left"><code>short-interest</code></th><td style="text-align:center">1</td><td style="text-align:left">D</td></tr><tr><th scope="row" style="text-align:left"><code>chart-master</code></th><td style="text-align:center">1</td><td style="text-align:left">D</td></tr><tr><th scope="row" style="text-align:left"><code>full-report</code></th><td style="text-align:center">1</td><td style="text-align:left">E（內含 15 個模組）</td></tr><tr><th scope="row" style="text-align:left"><code>economics-analysis</code></th><td style="text-align:center">1</td><td style="text-align:left">F</td></tr><tr><th scope="row" style="text-align:left"><code>sector-analysis</code></th><td style="text-align:center">1</td><td style="text-align:left">F</td></tr><tr><th scope="row" style="text-align:left"><code>bear-case</code></th><td style="text-align:center">1</td><td style="text-align:left">G</td></tr><tr><th scope="row" style="text-align:left"><code>position-ladder</code></th><td style="text-align:center">1</td><td style="text-align:left">G</td></tr></tbody></table></div>
+<p class="fignote">18 個不同框架被七條工作流使用，其中 <code>technical-analysis</code>
+出現在四條中——它是最常被當作「時機層」串接的框架。
+<code>full-report</code>（工作流 E）本身又內含 15 個模組，因此七條工作流的實際框架覆蓋率達 100%。</p>
+<div class="chips" style="margin-top:var(--s-32)">
+<a class="btn" href="mu.html">MU 完整備忘錄 →</a>
+<a class="btn btn--soft" href="supply-chain.html">產業鏈地圖 →</a>
+<a class="btn btn--soft" href="index.html">← 回展示櫃</a>
+</div></section></div></div>
+</main>
+<footer class="foot"><div class="wrap">
+<p><strong>InvestSkill Autopilot — 展示櫃</strong>　·　由 <a href="https://github.com/yennanliu/InvestSkill">InvestSkill</a> v1.11.0（27 個分析框架）驅動，
+報告內容由 LLM 依據 yfinance 公開資料生成。</p>
+<p style="margin-top:8px">資料快照：2026-07-29　·　<a href="https://github.com/yennanliu/InvestSkill-test">原始碼與完整報告存檔</a>　·　<a href="../index.html">回專案首頁</a></p>
+<div class="disc"><strong>免責聲明</strong>　本頁為技術與框架能力展示，並非投資建議。所有內容由大型語言模型依據免費公開資料自動生成，
+可能存在錯誤、過時或內部不一致之處；文中已刻意保留並標示資料本身的缺陷（例如貨幣單位混用、上市歷史不足），
+以示範 <code>result-validator</code> 框架的稽核能力。任何投資決策前請自行查證第一手文件（SEC EDGAR、公司投資人關係網站）。</div>
+</div></footer>
+<script>
+// TOC scroll-spy
+(function(){
+  var links=[].slice.call(document.querySelectorAll('.toc a[href^="#"]'));
+  if(!links.length)return;
+  var targets=links.map(function(a){return document.getElementById(a.getAttribute('href').slice(1));});
+  function upd(){
+    var y=window.scrollY+120,cur=-1;
+    targets.forEach(function(t,i){if(t&&t.offsetTop<=y)cur=i;});
+    links.forEach(function(a,i){a.classList.toggle('on',i===cur);});
+  }
+  var raf=null;
+  addEventListener('scroll',function(){if(raf)return;raf=requestAnimationFrame(function(){raf=null;upd();});},{passive:true});
+  upd();
+})();
+
+// Line-chart crosshair + tooltip
+(function(){
+  document.querySelectorAll('svg[data-chart="line"]').forEach(function(svg){
+    var holder=svg.parentNode, script=holder.querySelector('.ch-data');
+    if(!script)return;
+    var cfg=JSON.parse(script.textContent);
+    var cross=svg.querySelector('.ch-cross'), cap=svg.querySelector('.ch-cap');
+    var tip=document.createElement('div'); tip.className='ch-tip'; holder.appendChild(tip);
+    var dots=[];
+    var ns='http://www.w3.org/2000/svg';
+    cfg.series.forEach(function(s){
+      var c=document.createElementNS(ns,'circle');
+      c.setAttribute('r','5.5');c.setAttribute('fill',s.colour);
+      c.setAttribute('stroke','#fff');c.setAttribute('stroke-width','2');
+      c.style.display='none';svg.appendChild(c);dots.push(c);
+    });
+    function fmt(v){
+      var f=cfg.fmt||'{:.0f}';
+      var m=f.match(/\{:,?\.(\d)f\}/);
+      var d=m?+m[1]:0;
+      var s=v.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
+      if(f.indexOf('$')===0)s='$'+s;
+      if(f.indexOf('%')>-1)s=s+'%';
+      return s;
+    }
+    function move(e){
+      var r=svg.getBoundingClientRect();
+      var vb=svg.viewBox.baseVal;
+      var sx=(e.clientX-r.left)/r.width*vb.width;
+      var rows='',label='',any=false;
+      cfg.series.forEach(function(s,si){
+        if(!s.pts.length){dots[si].style.display='none';return;}
+        var best=s.pts[0],bd=1e9;
+        s.pts.forEach(function(p){var d=Math.abs(p[0]-sx);if(d<bd){bd=d;best=p;}});
+        dots[si].setAttribute('cx',best[0]);dots[si].setAttribute('cy',best[1]);
+        dots[si].style.display='';
+        label=best[2];any=true;
+        rows+='<div class="r"><span class="sw" style="background:'+s.colour+'"></span>'+
+              s.name+' <b>'+fmt(best[3])+'</b></div>';
+        if(si===0)cross.setAttribute('x1',best[0]),cross.setAttribute('x2',best[0]);
+      });
+      if(!any)return;
+      cross.style.display='';
+      tip.innerHTML='<b>'+label+'</b>'+rows;
+      tip.style.opacity='1';
+      var px=(e.clientX-r.left), tw=tip.offsetWidth;
+      tip.style.left=Math.max(4,Math.min(r.width-tw-4,px-tw/2))+'px';
+      tip.style.top=Math.max(4,(e.clientY-r.top)-tip.offsetHeight-14)+'px';
+    }
+    function out(){
+      cross.style.display='none';tip.style.opacity='0';
+      dots.forEach(function(d){d.style.display='none';});
+    }
+    cap.addEventListener('mousemove',move);
+    cap.addEventListener('mouseleave',out);
+    cap.addEventListener('touchmove',function(e){if(e.touches[0])move(e.touches[0]);},{passive:true});
+    cap.addEventListener('touchend',out);
+  });
+})();
+</script>
+</body>
+</html>

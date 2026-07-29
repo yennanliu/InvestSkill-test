@@ -5,6 +5,27 @@ framework library (v1.11.0, 27 analysis frameworks).
 
 **Project site:** https://yennanliu.github.io/InvestSkill-test/
 
+## Showcase — all 27 frameworks on one basket (繁體中文)
+
+A worked example in Traditional Chinese covering the whole framework catalogue and all seven
+[cookbook](https://yennj12.js.org/InvestSkill/cookbook-zh-tw.html) workflows, on a four-stock
+basket that all gapped down 7.8–9.6% on the same day (2026-07-28):
+
+| Page | Ticker | Angle |
+|---|---|---|
+| [展示櫃總覽](https://yennj12.js.org/InvestSkill-test/showcase/) | — | The hub: why they fell together, plus a 27-framework coverage map |
+| [四檔對決](https://yennj12.js.org/InvestSkill-test/showcase/screener.html) | all four | `stock-screener` with all 22 sub-factors and their raw inputs shown |
+| [MU](https://yennj12.js.org/InvestSkill-test/showcase/mu.html) | MRVL·**MU** | Flagship 15-module report: $820 prices peak margins sustained for ever at 15× |
+| [SKHY](https://yennj12.js.org/InvestSkill-test/showcase/skhy.html) | **SKHY** | Data-integrity audit — the framework refuses to give a target (47/100 confidence) |
+| [MRVL](https://yennj12.js.org/InvestSkill-test/showcase/mrvl.html) | **MRVL** | GAAP vs non-GAAP gap; three valuation methods disagree by an order of magnitude |
+| [SNDL](https://yennj12.js.org/InvestSkill-test/showcase/sndl.html) | **SNDL** | Value-trap anatomy: 0.30× book, but book is melting 7.1%/yr |
+| [工作流 A–G](https://yennj12.js.org/InvestSkill-test/showcase/workflows.html) | all four | Seven chained workflows — two correctly stop at the screening gate |
+| [產業鏈地圖](https://yennj12.js.org/InvestSkill-test/showcase/supply-chain.html) | — | `industry-map`: HBM chain as 11 layers, 3 chokepoints, 4 second-order ideas |
+
+Three data defects are left in deliberately (KRW filings against a USD ADR, 13 days of price
+history, a `bookValue` field 27% below the filed balance sheet) so `result-validator` has
+something real to catch. Every figure is derived from one shared snapshot and is recomputable.
+
 ## What this repo does
 
 GitHub Actions clones the InvestSkill plugin, takes one `yfinance` snapshot per run, sends each
