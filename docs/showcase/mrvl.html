@@ -1,0 +1,774 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MRVL 邁威爾科技 — GAAP 與 non-GAAP 的鴻溝 | InvestSkill Autopilot 展示櫃</title>
+<meta name="description" content="MRVL（Marvell Technology, Inc.）的 15 模組完整分析報告：GAAP 與 non-GAAP 的鴻溝。綜合評分 5.07／10，含 DCF、循環常態化估值、內部人交易、空方紅隊與結果稽核。繁體中文。">
+<meta name="theme-color" content="#00b14f">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="MRVL 邁威爾科技 — GAAP 與 non-GAAP 的鴻溝 | InvestSkill Autopilot 展示櫃">
+<meta property="og:description" content="MRVL（Marvell Technology, Inc.）的 15 模組完整分析報告：GAAP 與 non-GAAP 的鴻溝。綜合評分 5.07／10，含 DCF、循環常態化估值、內部人交易、空方紅隊與結果稽核。繁體中文。">
+<meta property="og:type" content="article">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%2300b14f'/><path d='M8 21l5-6 4 3 7-9' stroke='white' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green:#00b14f; --green-press:#009644; --green-wash:#e6f7ee; --green-band:#00692e;
+  --amber:#ff8c00; --amber-ink:#b35c00; --red:#e02020; --red-ink:#c0161c;
+  --white:#fff; --ink:#16181a; --ink-2:#4a4f55; --ink-3:#767c85;
+  --line:#e6e8eb; --surface:#f7f8f9;
+  --s-4:4px; --s-8:8px; --s-12:12px; --s-16:16px; --s-24:24px; --s-32:32px;
+  --s-48:48px; --s-64:64px; --s-80:80px;
+  --r-btn:8px; --r-card:16px; --r-pill:999px;
+  --shadow:0 2px 8px rgba(22,24,26,.08); --shadow-lift:0 8px 24px rgba(22,24,26,.12);
+  --sans:"Inter","Poppins",-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",
+         "PingFang TC","Microsoft JhengHei",Roboto,Helvetica,Arial,sans-serif;
+  --display:"Poppins","Inter",-apple-system,BlinkMacSystemFont,"Noto Sans TC",
+         "PingFang TC","Microsoft JhengHei",Segoe UI,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,"Cascadia Mono","Liberation Mono",monospace;
+  --wrap:1220px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;background:var(--white);color:var(--ink);font-family:var(--sans);
+  font-size:16px;line-height:1.75;-webkit-font-smoothing:antialiased}
+img,svg{max-width:100%;display:block}
+a{color:var(--green-band);text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3,h4{font-family:var(--display);line-height:1.25;letter-spacing:-.01em;margin:0}
+h1{font-size:clamp(1.9rem,4.4vw,2.9rem);font-weight:800;letter-spacing:-.02em}
+h2{font-size:clamp(1.45rem,2.7vw,2rem);font-weight:800;letter-spacing:-.02em}
+h3{font-size:1.16rem;font-weight:700}
+h4{font-size:1rem;font-weight:700}
+p{margin:0}
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:var(--s-24)}
+
+/* ---------- nav ---------- */
+.nav{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.94);
+  backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid var(--line)}
+.nav__in{display:flex;align-items:center;gap:var(--s-16);height:68px;min-width:0}
+.brand{display:flex;align-items:center;gap:var(--s-12);min-width:0;text-decoration:none;
+  font-family:var(--display);font-weight:800;letter-spacing:-.02em;white-space:nowrap;color:var(--ink)}
+.brand:hover{text-decoration:none}
+.brand__text{overflow:hidden;text-overflow:ellipsis}
+.brand__mark{width:32px;height:32px;border-radius:var(--r-btn);background:var(--green);
+  display:grid;place-items:center;flex:0 0 auto}
+.nav__links{display:none;gap:var(--s-24);margin-left:auto;font-size:.875rem;font-weight:600}
+.nav__links a{text-decoration:none;color:var(--ink-2);padding-block:var(--s-8)}
+.nav__links a:hover,.nav__links a[aria-current="page"]{color:var(--green)}
+.nav__cta{margin-left:auto;flex:0 0 auto}
+@media(min-width:1000px){.nav__links{display:flex}.nav__cta{margin-left:0}}
+@media(max-width:559px){.nav__cta-label{display:none}.brand{font-size:.875rem}}
+.btn{display:inline-flex;align-items:center;gap:var(--s-8);padding:14px 24px;border:0;
+  border-radius:var(--r-btn);background:var(--green);color:#fff;font-family:var(--display);
+  font-size:1rem;font-weight:700;text-decoration:none;cursor:pointer;
+  transition:background .16s ease,transform .1s ease}
+.btn:hover{background:var(--green-press);text-decoration:none}
+.btn:active{transform:scale(.98)}
+.btn:focus-visible{outline:3px solid var(--green-band);outline-offset:2px}
+.btn--sm{padding:10px 18px;font-size:.875rem}
+.btn--soft{background:var(--green-wash);color:var(--green-band)}
+.btn--soft:hover{background:#d3f0e0}
+.btn--onband{background:#fff;color:var(--green-band)}
+.btn--onband:hover{background:#eef8f2}
+.btn--ghost{background:transparent;color:#fff;box-shadow:inset 0 0 0 2px rgba(255,255,255,.55)}
+.btn--ghost:hover{background:rgba(255,255,255,.12)}
+
+/* ---------- hero ---------- */
+.rhero{position:relative;overflow:hidden;color:#fff;
+  background:radial-gradient(120% 140% at 88% 8%,rgba(0,177,79,.95) 0%,rgba(0,177,79,0) 58%),
+  linear-gradient(104deg,var(--green-band) 0%,#007d38 52%,#009243 100%)}
+.rhero::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(90deg,rgba(0,58,26,.55) 0%,rgba(0,58,26,.18) 42%,rgba(0,58,26,0) 72%)}
+.rhero__in{position:relative;z-index:1;padding-block:var(--s-48) var(--s-64)}
+.rhero .eyebrow{color:#9ce8bd}
+.rhero__sub{margin-top:var(--s-16);font-size:1.06rem;max-width:62ch;color:rgba(255,255,255,.93)}
+.eyebrow{font-family:var(--display);font-size:.8125rem;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--green);margin-bottom:var(--s-8)}
+.chips{display:flex;flex-wrap:wrap;gap:var(--s-8);margin-top:var(--s-24)}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:6px 13px;border-radius:var(--r-pill);
+  background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.30);
+  font-size:.8125rem;font-weight:600;color:#fff;white-space:nowrap}
+.chip--ink{background:var(--green-wash);border-color:#b9e7cf;color:var(--green-band)}
+
+/* ---------- layout ---------- */
+.shell{display:block;padding-block:var(--s-48) var(--s-80)}
+@media(min-width:1060px){
+  .shell{display:grid;grid-template-columns:246px minmax(0,1fr);gap:var(--s-48);align-items:start}
+}
+.toc{display:none}
+@media(min-width:1060px){
+  .toc{display:block;position:sticky;top:92px;max-height:calc(100vh - 116px);overflow-y:auto;
+    font-size:.8125rem;border-left:2px solid var(--line);padding-left:var(--s-16)}
+}
+.toc__h{font-family:var(--display);font-weight:800;font-size:.75rem;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink-3);margin-bottom:var(--s-12)}
+.toc a{display:block;padding:5px 0;color:var(--ink-2);text-decoration:none;line-height:1.4}
+.toc a:hover{color:var(--green);text-decoration:none}
+.toc a.on{color:var(--green-band);font-weight:700}
+.toc__grp{margin-top:var(--s-16);font-size:.6875rem;font-weight:700;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--ink-3)}
+.doc>section{padding-block:var(--s-32);border-top:1px solid var(--line)}
+.doc>section:first-child{border-top:0;padding-top:0}
+.doc h2{margin-bottom:var(--s-8)}
+.doc h3{margin:var(--s-32) 0 var(--s-12)}
+.doc h4{margin:var(--s-24) 0 var(--s-8)}
+.doc p{margin-block:var(--s-12)}
+.doc ul,.doc ol{margin:var(--s-12) 0;padding-left:1.35em}
+.doc li{margin-block:6px}
+.modnum{display:inline-grid;place-items:center;width:29px;height:29px;border-radius:8px;
+  background:var(--green-wash);color:var(--green-band);font-family:var(--display);
+  font-weight:800;font-size:.8125rem;margin-right:10px;vertical-align:3px}
+.skilltag{display:inline-block;font-family:var(--mono);font-size:.75rem;font-weight:600;
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r-pill);
+  padding:3px 11px;color:var(--ink-2);margin-left:6px;vertical-align:2px;white-space:nowrap}
+.lede{font-size:1.06rem;color:var(--ink-2)}
+
+/* ---------- cards / tiles ---------- */
+.grid{display:grid;gap:var(--s-16)}
+.g2{grid-template-columns:repeat(auto-fit,minmax(272px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(216px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(174px,1fr))}
+.card{background:var(--white);border:1px solid var(--line);border-radius:var(--r-card);
+  padding:var(--s-24);box-shadow:var(--shadow)}
+.card--wash{background:var(--green-wash);border-color:#b9e7cf}
+.card--surface{background:var(--surface)}
+.card__h{font-family:var(--display);font-weight:800;font-size:1rem;margin-bottom:var(--s-8)}
+.tile{background:var(--white);border:1px solid var(--line);border-radius:var(--r-card);padding:var(--s-16) var(--s-16)}
+.tile__k{font-size:.75rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-3)}
+.tile__v{font-family:var(--display);font-size:1.6rem;font-weight:800;line-height:1.2;margin-top:4px;
+  letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.tile__n{font-size:.75rem;color:var(--ink-3);margin-top:3px;line-height:1.45}
+.up{color:var(--green-band)} .dn{color:var(--red-ink)} .fl{color:var(--amber-ink)}
+
+/* status pills — always icon + text, never colour alone */
+.st{display:inline-flex;align-items:center;gap:5px;padding:3px 11px;border-radius:var(--r-pill);
+  font-size:.75rem;font-weight:700;white-space:nowrap;border:1px solid}
+.st--good{background:var(--green-wash);color:var(--green-band);border-color:#b9e7cf}
+.st--warn{background:#fff4e5;color:var(--amber-ink);border-color:#ffd9a8}
+.st--bad{background:#fdeaea;color:var(--red-ink);border-color:#f7c4c4}
+.st--neut{background:var(--surface);color:var(--ink-2);border-color:var(--line)}
+
+/* ---------- tables ---------- */
+.tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-block:var(--s-16)}
+table{border-collapse:collapse;width:100%;font-size:.875rem;font-variant-numeric:tabular-nums}
+.dt th,.dt td,.heat th,.heat td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.dt thead th,.heat thead th{background:var(--surface);font-family:var(--display);font-weight:700;
+  font-size:.8125rem;color:var(--ink-2);border-bottom:2px solid var(--line);white-space:nowrap;
+  position:sticky;top:0}
+.dt tbody th,.heat tbody th{font-weight:600;text-align:left}
+.dt tbody tr:hover{background:#fafbfb}
+.heat td{text-align:center;font-weight:700;font-size:.8125rem;border:2px solid #fff}
+.heat tbody th{background:var(--surface);white-space:nowrap;font-size:.8125rem}
+.dt--sm{font-size:.8125rem}
+.dt--sm th,.dt--sm td{padding:7px 10px}
+caption{caption-side:top;text-align:left;font-size:.8125rem;color:var(--ink-3);padding-bottom:var(--s-8)}
+
+/* ---------- figures ---------- */
+.fig{margin:var(--s-24) 0}
+.figbox{background:var(--white);border:1px solid var(--line);border-radius:var(--r-card);
+  padding:var(--s-16);overflow-x:auto;position:relative}
+.chart{width:100%;height:auto;min-width:min(100%,560px)}
+figcaption{font-size:.8125rem;color:var(--ink-2);margin-top:var(--s-8);font-weight:600}
+.fignote{font-size:.75rem;color:var(--ink-3);margin-top:4px;line-height:1.6}
+.lgd{display:flex;flex-wrap:wrap;gap:var(--s-16);margin-bottom:var(--s-12);font-size:.8125rem;font-weight:600;color:var(--ink-2)}
+.lgd__i{display:inline-flex;align-items:center;gap:6px}
+.lgd__sw{width:12px;height:12px;border-radius:3px;flex:0 0 auto}
+.tblview{margin-top:var(--s-8)}
+.tblview summary{cursor:pointer;font-size:.8125rem;font-weight:700;color:var(--green-band);
+  padding:5px 0;list-style:none;display:inline-flex;align-items:center;gap:5px}
+.tblview summary::before{content:"▸";transition:transform .15s}
+.tblview[open] summary::before{transform:rotate(90deg)}
+.tblview summary::-webkit-details-marker{display:none}
+.ch-tip{position:absolute;pointer-events:none;background:var(--ink);color:#fff;font-size:12px;
+  line-height:1.55;padding:8px 11px;border-radius:8px;box-shadow:var(--shadow-lift);
+  white-space:nowrap;opacity:0;transition:opacity .1s;z-index:5;font-variant-numeric:tabular-nums}
+.ch-tip b{font-weight:700}
+.ch-tip .r{display:flex;align-items:center;gap:6px;margin-top:3px}
+.ch-tip .sw{width:9px;height:9px;border-radius:2px;flex:0 0 auto}
+
+/* ---------- callouts ---------- */
+.call{border-left:4px solid var(--green);background:var(--green-wash);padding:var(--s-16) var(--s-24);
+  border-radius:0 var(--r-card) var(--r-card) 0;margin-block:var(--s-24)}
+.call--warn{border-color:var(--amber);background:#fff8ef}
+.call--bad{border-color:var(--red);background:#fdf0f0}
+.call--ink{border-color:var(--ink-3);background:var(--surface)}
+.call__h{font-family:var(--display);font-weight:800;font-size:.9375rem;margin-bottom:6px;
+  display:flex;align-items:center;gap:7px}
+.call p{margin-block:6px;font-size:.9375rem}
+.call ul{margin:6px 0;font-size:.9375rem}
+
+/* signal block — the InvestSkill house style, kept monospace */
+.sig{background:#0f1113;color:#e8edf1;border-radius:var(--r-card);padding:var(--s-24);
+  font-family:var(--mono);font-size:.8125rem;line-height:1.85;overflow-x:auto;margin-block:var(--s-24)}
+.sig b{color:#7ee2a8;font-weight:700}
+.sig .k{color:#8b98a5}
+.sig pre{margin:0;font:inherit}
+.mm{font-family:var(--mono);font-size:.8125rem;background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--r-btn);padding:var(--s-16);overflow-x:auto;line-height:1.7}
+.mm pre{margin:0;font:inherit}
+code{font-family:var(--mono);font-size:.9em;background:var(--surface);border:1px solid var(--line);
+  border-radius:5px;padding:1px 5px}
+.doc pre code{border:0;background:none;padding:0}
+
+/* ---------- flow / chain diagram ---------- */
+.flow{display:grid;gap:var(--s-12);margin-block:var(--s-24)}
+.flow__row{display:grid;gap:var(--s-12);grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+.node{border:1px solid var(--line);border-radius:12px;padding:var(--s-12) var(--s-16);background:#fff;
+  box-shadow:var(--shadow);position:relative}
+.node--choke{border-color:var(--red);border-width:2px;background:#fdf0f0}
+.node--target{border-color:var(--green);border-width:2px;background:var(--green-wash)}
+.node__pos{font-size:.6875rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3)}
+.node__n{font-family:var(--display);font-weight:800;font-size:.9375rem;margin-top:2px}
+.node__t{font-family:var(--mono);font-size:.75rem;color:var(--ink-2);margin-top:5px;line-height:1.6}
+.node__m{font-size:.6875rem;color:var(--ink-3);margin-top:5px}
+.arrowrow{text-align:center;color:var(--ink-3);font-size:1.1rem;line-height:1}
+
+/* ---------- misc ---------- */
+.band{background:var(--green-band);color:#fff;padding-block:var(--s-48)}
+.band a{color:#fff}
+.section--wash{background:var(--green-wash)}
+.section--surface{background:var(--surface)}
+.section{padding-block:var(--s-64)}
+.foot{border-top:1px solid var(--line);padding-block:var(--s-32);font-size:.8125rem;color:var(--ink-3)}
+.foot a{color:var(--ink-2)}
+.disc{font-size:.75rem;color:var(--ink-3);line-height:1.7;background:var(--surface);
+  border:1px solid var(--line);border-radius:var(--r-card);padding:var(--s-16);margin-top:var(--s-24)}
+.crumb{font-size:.8125rem;color:rgba(255,255,255,.8);margin-bottom:var(--s-12)}
+.crumb a{color:rgba(255,255,255,.92)}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:var(--s-16);top:var(--s-8);z-index:60;background:#fff;color:var(--ink);
+  padding:10px 16px;border-radius:var(--r-btn);box-shadow:var(--shadow-lift)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media print{
+  .nav,.toc,.tblview{display:none}
+  .shell{display:block}
+  .figbox,.card{break-inside:avoid;box-shadow:none}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-size:.7em;color:#666}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">跳至主要內容</a>
+<header class="nav"><div class="wrap nav__in">
+<a class="brand" href="../index.html"><span class="brand__mark"><svg width="18" height="18" viewBox="0 0 32 32" aria-hidden="true"><path d="M8 21l5-6 4 3 7-9" stroke="white" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+<span class="brand__text">InvestSkill Autopilot</span></a>
+<nav class="nav__links" aria-label="展示頁面"><a href="index.html">總覽</a><a href="screener.html">四檔對決</a><a href="mu.html">MU</a><a href="skhy.html">SKHY</a><a href="mrvl.html" aria-current="page">MRVL</a><a href="sndl.html">SNDL</a><a href="workflows.html">工作流 A–G</a><a href="supply-chain.html">產業鏈</a></nav>
+<a class="btn btn--sm nav__cta" href="https://github.com/yennanliu/InvestSkill-test">
+<span class="nav__cta-label">GitHub</span>
+<svg width="17" height="17" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-2.92-.88-2.92-2.90 0-.86.31-1.57.82-2.12-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.81a5.4 5.4 0 0 1 2 0c1.53-1.04 2.2-.81 2.2-.81.44 1.1.16 1.92.08 2.12.51.55.82 1.25.82 2.12 0 2.03-1.15 2.70-2.93 2.90.3.26.56.76.56 1.54 0 1.11-.01 2.01-.01 2.29 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg></a>
+</div></header>
+<main id="main">
+<section class="rhero"><div class="wrap rhero__in">
+<p class="crumb"><a href="../index.html">InvestSkill Autopilot</a> ／ <a href="index.html">展示櫃</a> ／ MRVL</p>
+<p class="eyebrow">full-report · depth comprehensive · 15 modules · zh-TW</p>
+<h1>MRVL — 邁威爾科技<br><span style="font-size:.5em;font-weight:700;opacity:.9">GAAP 與 non-GAAP 的鴻溝</span></h1>
+<p class="rhero__sub">MRVL 的營收連續五季創新高，最新一季 $2.418B。
+同一季的 GAAP 淨利是 <strong>$34.5M</strong>——淨利率 1.4%。
+而市場用 $6.24 的前瞻 EPS 給它 28 倍本益比。這三個數字不可能同時是同一套會計基準。</p>
+<div class="grid g4" style="margin-top:var(--s-32)">
+<div class="tile" style="background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.28)">
+<div class="tile__k" style="color:#9ce8bd">現價</div>
+<div class="tile__v" style="color:#fff">$174.47</div>
+<div class="tile__n" style="color:rgba(255,255,255,.82)">昨日 ▼ -7.77%</div></div>
+<div class="tile" style="background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.28)">
+<div class="tile__k" style="color:#9ce8bd">綜合評分</div>
+<div class="tile__v" style="color:#fff">5.07</div>
+<div class="tile__n" style="color:rgba(255,255,255,.82)">／10 · 持有／觀察 Hold / Watch</div></div>
+<div class="tile" style="background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.28)">
+<div class="tile__k" style="color:#9ce8bd">距 52 週高點</div>
+<div class="tile__v" style="color:#fff">-47.1%</div>
+<div class="tile__n" style="color:rgba(255,255,255,.82)">高 $329.88 · 低 $61.44</div></div>
+<div class="tile" style="background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.28)">
+<div class="tile__k" style="color:#9ce8bd">市值</div>
+<div class="tile__v" style="color:#fff">$156.59B</div>
+<div class="tile__n" style="color:rgba(255,255,255,.82)">Technology</div></div>
+</div></div></section><div class="wrap shell"><aside class="toc" aria-label="本頁目錄"><div class="toc__h">本頁目錄</div><a href="#src">資料來源</a><a href="#summary">結論摘要</a><div class="toc__grp">階段一 · 商業品質</div><a href="#m1">1 · 個股評估</a><a href="#m2">2 · 競爭護城河</a><a href="#m3">3 · 基本面</a><div class="toc__grp">階段二 · 估值</div><a href="#m4">4 · DCF 評價</a><a href="#m5">5 · 多重估值法</a><div class="toc__grp">階段三 · 市場訊號</div><a href="#m6">6 · 內部人交易</a><a href="#m7">7 · 法人持股</a><a href="#m8">8 · 財報預期</a><div class="toc__grp">階段四 · 技術時機</div><a href="#m9">9 · 技術分析</a><a href="#m10">10 · 類股相對強度</a><div class="toc__grp">階段五 · 風險</div><a href="#m11">11 · 空單分析</a><a href="#m12">12 · 選擇權</a><a href="#m13">13 · 總體環境</a><a href="#m14">14 · 財報稽核</a><div class="toc__grp">資本配置</div><a href="#m15">15 · 股息與資本配置</a><div class="toc__grp">綜合</div><a href="#thesis">投資論點</a><a href="#bear">空方紅隊</a><a href="#card">評分卡</a><a href="#valsum">估值總結</a><a href="#entry">進出場策略</a><a href="#cat">催化劑日曆</a><a href="#monitor">監控計畫</a><a href="#valid">結果稽核</a><a href="#signal">訊號區塊</a></aside><div class="doc"><section id="src"><h2>資料來源</h2>
+<div class="call call--ink"><div class="call__h">📋 Data &amp; Sources — 資料來源與可信度</div>
+<table class="dt dt--sm" style="margin-top:8px"><tbody>
+<tr><th scope="row" style="width:112px">As of</th><td style="text-align:left">2026-07-29（收盤後快照）</td></tr>
+<tr><th scope="row">Source</th><td style="text-align:left">yfinance（Yahoo Finance）：即時報價與 6 個月價格歷史、四個會計年度損益表／資產負債表／現金流量表、五個季度季報、13F 前 15 大法人持股、Form 4 內部人交易、選擇權鏈、分析師預估與財報日曆。基準指數 ^GSPC／^SOX。無風險利率 4.2%、股權風險溢酬 5.0%（CAPM 輸入，假設值）。</td></tr>
+<tr><th scope="row">Retrieval</th><td style="text-align:left">程式化擷取（yfinance 1.5.2）· 單次快照 · 四檔共用同一時點</td></tr>
+<tr><th scope="row">Confidence</th><td style="text-align:left">LOW — 詳見 <a href='#valid'>模組稽核</a></td></tr>
+</tbody></table></div>
+<p class="fignote">依 <code>full-report</code> 規定：本報告執行 <strong>comprehensive</strong> 深度的全部
+15 個模組，無模組因深度設定而略過。若個別模組因資料缺失而無法執行，
+一律標記「未評估」並在綜合評分中揭露，<strong>不以中性值 5.0 填補</strong>。</p>
+</section><section id="summary"><h2>結論摘要</h2>
+<div class="grid g2">
+<div><figure class="fig"><div class="figbox"><svg class="chart" viewBox="0 0 300 180" role="img" preserveAspectRatio="xMidYMid meet"><path d="M26.0,154.0 A124.0,124.0 0 0 1 274.0,154.0" fill="none" stroke="#e6e8eb" stroke-width="12" stroke-linecap="round"/><path d="M26.0,154.0 A124.0,124.0 0 0 1 152.7,30.0" fill="none" stroke="#b35c00" stroke-width="12" stroke-linecap="round"/><text x="150.0" y="146" text-anchor="middle" font-size="40" font-weight="800" fill="#16181a">5.07</text><text x="150.0" y="166" text-anchor="middle" font-size="12" fill="#767c85">／ 10</text><text x="150.0" y="176" text-anchor="middle" font-size="12" font-weight="700" fill="#b35c00">持有／觀察 Hold / Watch</text></svg></div><figcaption>綜合評分 5.07／10</figcaption></figure></div>
+<div><figure class="fig"><div class="figbox"><svg class="chart" viewBox="0 0 470 228" role="img" preserveAspectRatio="xMidYMid meet"><line x1="86.0" y1="8" x2="86.0" y2="204" stroke="#e6e8eb" stroke-width="1"/><text x="86.0" y="220" text-anchor="middle" font-size="11" fill="#767c85">0.0</text><line x1="147.5" y1="8" x2="147.5" y2="204" stroke="#e6e8eb" stroke-width="1"/><text x="147.5" y="220" text-anchor="middle" font-size="11" fill="#767c85">2.5</text><line x1="209.0" y1="8" x2="209.0" y2="204" stroke="#e6e8eb" stroke-width="1"/><text x="209.0" y="220" text-anchor="middle" font-size="11" fill="#767c85">5.0</text><line x1="270.5" y1="8" x2="270.5" y2="204" stroke="#e6e8eb" stroke-width="1"/><text x="270.5" y="220" text-anchor="middle" font-size="11" fill="#767c85">7.5</text><line x1="332.0" y1="8" x2="332.0" y2="204" stroke="#e6e8eb" stroke-width="1"/><text x="332.0" y="220" text-anchor="middle" font-size="11" fill="#767c85">10.0</text><text x="76" y="29.0" text-anchor="end" font-size="12.5" font-weight="600" fill="#16181a">商業品質</text><rect x="86.0" y="12" width="157.4" height="26" rx="4" ry="4" fill="#eb6834"><title>商業品質: 6.4 · ×25% = 1.60</title></rect><text x="251.4" y="29.0" font-size="12.5" font-weight="700" fill="#4a4f55">6.4 ×25% = 1.60</text><text x="76" y="67.0" text-anchor="end" font-size="12.5" font-weight="600" fill="#16181a">估值</text><rect x="86.0" y="50" width="113.2" height="26" rx="4" ry="4" fill="#eb6834"><title>估值: 4.6 · ×25% = 1.15</title></rect><text x="207.2" y="67.0" font-size="12.5" font-weight="700" fill="#4a4f55">4.6 ×25% = 1.15</text><text x="76" y="105.0" text-anchor="end" font-size="12.5" font-weight="600" fill="#16181a">市場訊號</text><rect x="86.0" y="88" width="167.3" height="26" rx="4" ry="4" fill="#eb6834"><title>市場訊號: 6.8 · ×20% = 1.36</title></rect><text x="261.3" y="105.0" font-size="12.5" font-weight="700" fill="#4a4f55">6.8 ×20% = 1.36</text><text x="76" y="143.0" text-anchor="end" font-size="12.5" font-weight="600" fill="#16181a">技術時機</text><rect x="86.0" y="126" width="59.0" height="26" rx="4" ry="4" fill="#eb6834"><title>技術時機: 2.4 · ×15% = 0.36</title></rect><text x="153.0" y="143.0" font-size="12.5" font-weight="700" fill="#4a4f55">2.4 ×15% = 0.36</text><text x="76" y="181.0" text-anchor="end" font-size="12.5" font-weight="600" fill="#16181a">風險剖面</text><rect x="86.0" y="164" width="98.4" height="26" rx="4" ry="4" fill="#eb6834"><title>風險剖面: 4.0 · ×15% = 0.60</title></rect><text x="192.4" y="181.0" font-size="12.5" font-weight="700" fill="#4a4f55">4.0 ×15% = 0.60</text></svg></div><figcaption>五階段子分數（0–10）</figcaption></figure></div>
+</div>
+<div class="sig"><pre>╔════════════════════════════════════════╗
+║           INVESTMENT SIGNAL            ║
+╠════════════════════════════════════════╣
+║ Signal:      BEARISH (unvaluable)      ║
+║ Confidence:  LOW                       ║
+║ Horizon:     MEDIUM-TERM (3-12 months) ║
+║ Score:       5.07 / 10                 ║
+╠════════════════════════════════════════╣
+║ Action:      HOLD                      ║
+║ Conviction:  WEAK                      ║
+╚════════════════════════════════════════╝</pre></div>
+<p class="fignote">綜合評分 5.07／10。訊號一致性僅 5／20——基本面內部矛盾、情緒面嚴重分裂。依 result-validator 規定，低信賴度使偏空訊號<strong>減弱為 HOLD</strong>：本報告有足夠證據說「不該現在買」，但沒有足夠證據說「該賣」。</p>
+</section><section id="m1"><h2><span class="modnum">1</span>個股評估<span class="skilltag">stock-eval</span></h2>
+<p>MRVL 在 AI 價值鏈中的位置，比 MU 或 SKHY 更難用一句話說清楚，而這正是它的機會與風險所在。</p>
+<p>它做兩件事：<strong>客製化 ASIC</strong>（為特定客戶設計專屬的 AI 加速器，
+替代通用 GPU）與<strong>光電互連</strong>（資料中心內外的高速傳輸）。
+兩者都不是終端產品，而是被嵌進別人的系統裡——因此 MRVL 的營收高度依賴少數超大型客戶的設計選擇。</p>
+<p>這帶來一個關鍵的不對稱：<strong>贏得一個設計案（design win）的營收能見度可達三到五年，
+但輸掉一個設計案的損失同樣是三到五年</strong>，而且客戶通常不會提前告知。
+相較於 MU 賣的是規格化商品（可以轉賣給別的客戶），MRVL 的產品一旦失去設計案就幾乎沒有殘值。</p>
+<p>五季營收連續創高說明目前的設計案組合正在放量。但這也是為什麼
+<strong>本報告把 MRVL 的護城河評為低於 MU</strong>——
+它的優勢繫於個別客戶關係，而非產業結構。</p>
+<h3>核心數據</h3>
+<div class="tblwrap"><table class="dt"><thead><tr><th style="text-align:left">項目</th><th style="text-align:right">數值</th><th style="text-align:right">備註</th></tr></thead><tbody><tr><th scope="row" style="text-align:left">公司</th><td style="text-align:right">Marvell Technology, Inc.</td><td style="text-align:right">邁威爾科技</td></tr><tr><th scope="row" style="text-align:left">類股／產業</th><td style="text-align:right">Technology / Semiconductors</td><td style="text-align:right">United States</td></tr><tr><th scope="row" style="text-align:left">員工數</th><td style="text-align:right">7,480</td><td style="text-align:right"></td></tr><tr><th scope="row" style="text-align:left">市值</th><td style="text-align:right">$156.59B</td><td style="text-align:right"></td></tr><tr><th scope="row" style="text-align:left">企業價值（校正後）</th><td style="text-align:right">$158.03B</td><td style="text-align:right">＝市值＋淨負債</td></tr><tr><th scope="row" style="text-align:left">TTM 營收</th><td style="text-align:right">$8.72B</td><td style="text-align:right"></td></tr><tr><th scope="row" style="text-align:left">TTM 淨利</th><td style="text-align:right">$2.53B</td><td style="text-align:right"></td></tr><tr><th scope="row" style="text-align:left">毛利率 / 營業利益率 / 淨利率</th><td style="text-align:right">51.5% / 14.5% / 29.0%</td><td style="text-align:right"></td></tr><tr><th scope="row" style="text-align:left">ROE / ROA</th><td style="text-align:right">16.0% / 3.8%</td><td style="text-align:right"></td></tr><tr><th scope="row" style="text-align:left">ROIC / WACC</th><td style="text-align:right">6.4% / 14.9%</td><td style="text-align:right">價差 <strong class="dn">-8.4%</strong></td></tr><tr><th scope="row" style="text-align:left">Beta（5Y 月）</th><td style="text-align:right">2.20</td><td style="text-align:right">權益成本 Ke = 4.2% + β×5.0% = 15.2%</td></tr><tr><th scope="row" style="text-align:left">Piotroski F-Score</th><td style="text-align:right"><strong>8 / 9</strong></td><td style="text-align:right">九項檢定見下表</td></tr></tbody></table></div>
+<h3>Piotroski F-Score 九項檢定</h3>
+<div class="tblwrap"><table class="dt"><thead><tr><th style="text-align:right">#</th><th style="text-align:left">檢定項目</th><th style="text-align:center">結果</th><th style="text-align:left">代入值</th></tr></thead><tbody><tr><th scope="row" style="text-align:right">1</th><td style="text-align:left">ROA > 0</td><td style="text-align:center">✅ 通過</td><td style="text-align:left">ROA 12.0%</td></tr><tr><th scope="row" style="text-align:right">2</th><td style="text-align:left">營運現金流 > 0</td><td style="text-align:center">✅ 通過</td><td style="text-align:left">OCF 1.75B</td></tr><tr><th scope="row" style="text-align:right">3</th><td style="text-align:left">ROA 較去年上升</td><td style="text-align:center">✅ 通過</td><td style="text-align:left">-4.4% → 12.0%</td></tr><tr><th scope="row" style="text-align:right">4</th><td style="text-align:left">OCF/資產 > ROA（盈餘品質）</td><td style="text-align:center">❌ 未通過</td><td style="text-align:left">OCF/TA 7.9% vs ROA 12.0%</td></tr><tr><th scope="row" style="text-align:right">5</th><td style="text-align:left">長期負債比率下降</td><td style="text-align:center">✅ 通過</td><td style="text-align:left">21.5% → 21.5%</td></tr><tr><th scope="row" style="text-align:right">6</th><td style="text-align:left">流動比率 > 1.5</td><td style="text-align:center">✅ 通過</td><td style="text-align:left">流動比 3.278</td></tr><tr><th scope="row" style="text-align:right">7</th><td style="text-align:left">未增資稀釋</td><td style="text-align:center">✅ 通過</td><td style="text-align:left">無普通股增資</td></tr><tr><th scope="row" style="text-align:right">8</th><td style="text-align:left">毛利率上升</td><td style="text-align:center">✅ 通過</td><td style="text-align:left">41.3% → 51.0%</td></tr><tr><th scope="row" style="text-align:right">9</th><td style="text-align:left">資產周轉率上升</td><td style="text-align:center">✅ 通過</td><td style="text-align:left">0.29 → 0.37</td></tr></tbody></table></div>
+</section><section id="m2"><h2><span class="modnum">2</span>競爭護城河<span class="skilltag">competitor-analysis</span></h2>
+<p><strong>Porter 五力</strong></p>
+<ul>
+<li><strong>現有競爭者（高壓力）</strong>——Broadcom（AVGO）是客製化 ASIC 的主導者，
+規模與客戶關係都更深；此外還面對 NVIDIA 通用 GPU 的替代威脅
+（若通用方案夠好，客戶就不需要客製化）。MRVL 是明確的挑戰者，不是領先者。</li>
+<li><strong>新進者（中等壓力）</strong>——ASIC 設計門檻高，但雲端業者<strong>自研</strong>的趨勢
+本身就是最危險的「新進者」：客戶可能變成競爭者。</li>
+<li><strong>供應商議價力（高壓力）</strong>——依賴台積電先進製程與封裝配額。無自有產能。</li>
+<li><strong>客戶議價力（極高壓力）</strong>——這是 MRVL 最弱的一環。
+買方是少數超大型雲端業者，具備資源自研、也具備在多家 ASIC 供應商間比價的能力。
+客戶集中度未在本資料中揭露，但產業結構決定它必然很高。</li>
+<li><strong>替代品（高壓力）</strong>——通用 GPU 與客戶自研方案都是直接替代。</li>
+</ul>
+<p><strong>護城河評等：中等偏弱（★★☆☆☆）</strong>，四檔中最低。
+五力中有四項為高或極高壓力。ROIC 6.4% 低於 WACC 14.9% 的事實與這個評等一致——
+<strong>沒有護城河的公司無法長期賺取超額報酬，而 MRVL 的財務數字正是這樣呈現的</strong>。</p>
+<h3>同業對照</h3>
+<div class="tblwrap"><table class="dt"><thead><tr><th style="text-align:left">指標</th><th style="text-align:right">MU</th><th style="text-align:right">SKHY</th><th style="text-align:right">MRVL</th></tr></thead><tbody><tr><th scope="row" style="text-align:left">營業利益率（TTM）</th><td style="text-align:right">80.4%</td><td style="text-align:right">71.5%</td><td style="text-align:right">14.5%</td></tr><tr><th scope="row" style="text-align:left">毛利率</th><td style="text-align:right">72.6%</td><td style="text-align:right">68.3%</td><td style="text-align:right">51.5%</td></tr><tr><th scope="row" style="text-align:left">ROIC</th><td style="text-align:right">13.0%</td><td style="text-align:right">30.8%</td><td style="text-align:right">6.4%</td></tr><tr><th scope="row" style="text-align:left">WACC</th><td style="text-align:right">14.7%</td><td style="text-align:right">14.2%</td><td style="text-align:right">14.9%</td></tr><tr><th scope="row" style="text-align:left">ROIC − WACC</th><td style="text-align:right"><strong class="dn">-1.8%</strong></td><td style="text-align:right"><strong class="up">+16.6%</strong></td><td style="text-align:right"><strong class="dn">-8.4%</strong></td></tr><tr><th scope="row" style="text-align:left">EV/EBITDA（校正後）</th><td style="text-align:right">13.3x</td><td style="text-align:right">13.6x</td><td style="text-align:right">58.3x</td></tr><tr><th scope="row" style="text-align:left">營收 YoY</th><td style="text-align:right">+345.7%</td><td style="text-align:right">+198.1%</td><td style="text-align:right">+27.6%</td></tr><tr><th scope="row" style="text-align:left">Piotroski</th><td style="text-align:right">9／9</td><td style="text-align:right">7／9</td><td style="text-align:right">8／9</td></tr><tr><th scope="row" style="text-align:left">Beta</th><td style="text-align:right">2.14</td><td style="text-align:right">2.03</td><td style="text-align:right">2.20</td></tr></tbody></table></div>
+<p class="fignote">SKHY 數值均為幣別校正後。EV/EBITDA 一律以「市值＋淨負債」重算，
+不採用 yfinance 的 enterpriseValue 欄位。</p>
+</section><section id="m3"><h2><span class="modnum">3</span>基本面分析<span class="skilltag">fundamental-analysis</span></h2>
+<p>MRVL 的財報必須分兩層讀：<strong>營收層很好，獲利層很亂。</strong></p>
+<p><strong>營收層。</strong>四個會計年度：$5.92B → $5.51B → $5.77B → $8.19B。
+FY2026 跳增 42%，五季序列持續創高。毛利率 FY2023 50.5% → FY2026 51.0%，穩定。
+研發支出 $1.78B → $2.08B，佔營收 25.4%。這一層沒有問題。</p>
+<p><strong>獲利層。</strong>GAAP 淨利四年：−$0.16B → −$0.93B → −$0.89B → +$2.67B。
+<strong>四年中三年虧損</strong>。而 FY2026 的 $2.67B 淨利大於當年營業利益 $1.34B——
+淨利高於營業利益意味著存在大額非營業收益（處分利益或稅務項目），而非本業改善。</p>
+<p><strong>盈餘品質：需注意。</strong>TTM 營運現金流 $2.056B 對淨利 $2.527B，比率 0.81——
+低於 1.0，代表帳上獲利未完全轉為現金。這與 FY2026 淨利含一次性項目的判斷一致。
+自由現金流 FY2026 $1.39B，與 FY2025 的 $1.39B 持平，
+<strong>在營收成長 42% 的年度自由現金流零成長</strong>。</p>
+<div class="call call--bad"><div class="call__h">🚩 資產結構的集中風險</div>
+<p>總資產 $22.29B，其中商譽 $11.06B（49.6%）。股東權益 $14.31B，商譽占 <strong>77.3%</strong>。
+扣除商譽後有形股東權益約 $3.25B。四年間商譽由 $11.59B 微降至 $11.06B（僅小幅攤銷），
+未曾發生大額減損——這既可解讀為併購標的表現符合預期，
+也可解讀為<strong>減損風險尚未被認列</strong>。存貨由 $1.03B 升至 $1.39B（+35%），
+略快於營收成長（+42% 則屬同步），需持續觀察。</p></div>
+<h3>四年損益軌跡</h3>
+<figure class="fig"><div class="figbox"><svg class="chart" viewBox="0 0 760 300" role="img" preserveAspectRatio="xMidYMid meet"><line x1="70" y1="242.0" x2="740" y2="242.0" stroke="#e6e8eb" stroke-width="1"/><text x="62" y="246.0" text-anchor="end" font-size="11" fill="#767c85">$0B</text><line x1="70" y1="187.0" x2="740" y2="187.0" stroke="#e6e8eb" stroke-width="1"/><text x="62" y="191.0" text-anchor="end" font-size="11" fill="#767c85">$2B</text><line x1="70" y1="132.0" x2="740" y2="132.0" stroke="#e6e8eb" stroke-width="1"/><text x="62" y="136.0" text-anchor="end" font-size="11" fill="#767c85">$5B</text><line x1="70" y1="77.0" x2="740" y2="77.0" stroke="#e6e8eb" stroke-width="1"/><text x="62" y="81.0" text-anchor="end" font-size="11" fill="#767c85">$7B</text><line x1="70" y1="22.0" x2="740" y2="22.0" stroke="#e6e8eb" stroke-width="1"/><text x="62" y="26.0" text-anchor="end" font-size="11" fill="#767c85">$9B</text><text x="62" y="16" text-anchor="end" font-size="11" fill="#767c85" font-weight="600">十億美元</text><rect x="102.8" y="100.1" width="101.8" height="141.9" rx="4" ry="4" fill="#eb6834"><title>2023-01 · 營收: $6B</title></rect><text x="153.8" y="261" text-anchor="middle" font-size="11" fill="#767c85">2023-01</text><rect x="270.3" y="110.0" width="101.8" height="132.0" rx="4" ry="4" fill="#eb6834"><title>2024-01 · 營收: $6B</title></rect><text x="321.2" y="261" text-anchor="middle" font-size="11" fill="#767c85">2024-01</text><rect x="437.8" y="103.8" width="101.8" height="138.2" rx="4" ry="4" fill="#eb6834"><title>2025-01 · 營收: $6B</title></rect><text x="488.8" y="261" text-anchor="middle" font-size="11" fill="#767c85">2025-01</text><rect x="605.3" y="45.6" width="101.8" height="196.4" rx="4" ry="4" fill="#eb6834"><title>2026-01 · 營收: $8B</title></rect><text x="656.2" y="261" text-anchor="middle" font-size="11" fill="#767c85">2026-01</text></svg></div><figcaption>圖 ── MRVL 年度營收（美元）</figcaption></figure>
+<figure class="fig"><div class="figbox"><svg class="chart" viewBox="0 0 760 300" role="img" preserveAspectRatio="xMidYMid meet"><line x1="70" y1="242.0" x2="740" y2="242.0" stroke="#e6e8eb" stroke-width="1"/><text x="62" y="246.0" text-anchor="end" font-size="11" fill="#767c85">-8%</text><line x1="70" y1="187.0" x2="740" y2="187.0" stroke="#e6e8eb" stroke-width="1"/><text x="62" y="191.0" text-anchor="end" font-size="11" fill="#767c85">-1%</text><line x1="70" y1="132.0" x2="740" y2="132.0" stroke="#e6e8eb" stroke-width="1"/><text x="62" y="136.0" text-anchor="end" font-size="11" fill="#767c85">6%</text><line x1="70" y1="77.0" x2="740" y2="77.0" stroke="#e6e8eb" stroke-width="1"/><text x="62" y="81.0" text-anchor="end" font-size="11" fill="#767c85">12%</text><line x1="70" y1="22.0" x2="740" y2="22.0" stroke="#e6e8eb" stroke-width="1"/><text x="62" y="26.0" text-anchor="end" font-size="11" fill="#767c85">19%</text><text x="62" y="16" text-anchor="end" font-size="11" fill="#767c85" font-weight="600">營業利益率</text><line x1="70" y1="177.8" x2="740" y2="177.8" stroke="#767c85" stroke-width="1.5" stroke-dasharray="5 4"/><text x="736" y="171.8" text-anchor="end" font-size="11" fill="#767c85" font-weight="700">損益兩平</text><line x1="70" y1="177.8" x2="740" y2="177.8" stroke="#767c85" stroke-width="1.5"/><rect x="102.8" y="128.6" width="101.8" height="49.2" rx="4" ry="4" fill="#4a4f55"><title>2023-01 · 營業利益率: 6%</title></rect><text x="153.8" y="261" text-anchor="middle" font-size="11" fill="#767c85">2023-01</text><rect x="270.3" y="177.8" width="101.8" height="64.2" rx="4" ry="4" fill="#4a4f55"><title>2024-01 · 營業利益率: -8%</title></rect><text x="321.2" y="261" text-anchor="middle" font-size="11" fill="#767c85">2024-01</text><rect x="437.8" y="177.8" width="101.8" height="51.4" rx="4" ry="4" fill="#4a4f55"><title>2025-01 · 營業利益率: -6%</title></rect><text x="488.8" y="261" text-anchor="middle" font-size="11" fill="#767c85">2025-01</text><rect x="605.3" y="45.6" width="101.8" height="132.2" rx="4" ry="4" fill="#4a4f55"><title>2026-01 · 營業利益率: 16%</title></rect><text x="656.2" y="261" text-anchor="middle" font-size="11" fill="#767c85">2026-01</text></svg></div><figcaption>圖 ── MRVL 年度營業利益率（%）</figcaption><p class="fignote">這張圖是本報告最重要的單一視覺：它顯示了該公司在四年內經歷的完整利益率擺盪幅度。</p></figure>
+<div class="tblwrap"><table class="dt"><thead><tr><th style="text-align:left">會計年度</th><th style="text-align:right">營收</th><th style="text-align:right">營業利益</th><th style="text-align:right">營業利益率</th><th style="text-align:right">淨利</th><th style="text-align:right">淨利率</th></tr></thead><tbody><tr><th scope="row" style="text-align:left">2026-01-31</th><td style="text-align:right">$8.19B</td><td style="text-align:right">$1.34B</td><td style="text-align:right"><span class="up">16.3%</span></td><td style="text-align:right">$2.67B</td><td style="text-align:right"><span class="up">32.6%</span></td></tr><tr><th scope="row" style="text-align:left">2025-01-31</th><td style="text-align:right">$5.77B</td><td style="text-align:right">$-366.4M</td><td style="text-align:right"><span class="dn">-6.4%</span></td><td style="text-align:right">$-885.0M</td><td style="text-align:right"><span class="dn">-15.3%</span></td></tr><tr><th scope="row" style="text-align:left">2024-01-31</th><td style="text-align:right">$5.51B</td><td style="text-align:right">$-436.6M</td><td style="text-align:right"><span class="dn">-7.9%</span></td><td style="text-align:right">$-933.4M</td><td style="text-align:right"><span class="dn">-16.9%</span></td></tr><tr><th scope="row" style="text-align:left">2023-01-31</th><td style="text-align:right">$5.92B</td><td style="text-align:right">$359.6M</td><td style="text-align:right"><span class="up">6.1%</span></td><td style="text-align:right">$-163.5M</td><td style="text-align:right"><span class="dn">-2.8%</span></td></tr><tr><th scope="row" style="text-align:left"><strong>TTM</strong></th><td style="text-align:right"><strong>$8.72B</strong></td><td style="text-align:right">—</td><td style="text-align:right"><strong>14.5%</strong></td><td style="text-align:right"><strong>$2.53B</strong></td><td style="text-align:right"><strong>29.0%</strong></td></tr></tbody></table></div>
+<h3>五季序列</h3>
+<figure class="fig"><div class="figbox"><svg class="chart" viewBox="0 0 760 290" role="img" preserveAspectRatio="xMidYMid meet"><line x1="70" y1="232.0" x2="740" y2="232.0" stroke="#e6e8eb" stroke-width="1"/><text x="62" y="236.0" text-anchor="end" font-size="11" fill="#767c85">$0.0B</text><line x1="70" y1="179.5" x2="740" y2="179.5" stroke="#e6e8eb" stroke-width="1"/><text x="62" y="183.5" text-anchor="end" font-size="11" fill="#767c85">$0.7B</text><line x1="70" y1="127.0" x2="740" y2="127.0" stroke="#e6e8eb" stroke-width="1"/><text x="62" y="131.0" text-anchor="end" font-size="11" fill="#767c85">$1.4B</text><line x1="70" y1="74.5" x2="740" y2="74.5" stroke="#e6e8eb" stroke-width="1"/><text x="62" y="78.5" text-anchor="end" font-size="11" fill="#767c85">$2.0B</text><line x1="70" y1="22.0" x2="740" y2="22.0" stroke="#e6e8eb" stroke-width="1"/><text x="62" y="26.0" text-anchor="end" font-size="11" fill="#767c85">$2.7B</text><text x="62" y="16" text-anchor="end" font-size="11" fill="#767c85" font-weight="600">十億美元</text><rect x="96.5" y="85.0" width="81.1" height="147.0" rx="4" ry="4" fill="#eb6834"><title>2025-04 · 季營收: $1.9B</title></rect><text x="137.0" y="251" text-anchor="middle" font-size="11" fill="#767c85">2025-04</text><rect x="230.5" y="76.4" width="81.1" height="155.6" rx="4" ry="4" fill="#eb6834"><title>2025-07 · 季營收: $2.0B</title></rect><text x="271.0" y="251" text-anchor="middle" font-size="11" fill="#767c85">2025-07</text><rect x="364.5" y="71.1" width="81.1" height="160.9" rx="4" ry="4" fill="#eb6834"><title>2025-10 · 季營收: $2.1B</title></rect><text x="405.0" y="251" text-anchor="middle" font-size="11" fill="#767c85">2025-10</text><rect x="498.5" y="59.9" width="81.1" height="172.1" rx="4" ry="4" fill="#eb6834"><title>2026-01 · 季營收: $2.2B</title></rect><text x="539.0" y="251" text-anchor="middle" font-size="11" fill="#767c85">2026-01</text><rect x="632.5" y="44.5" width="81.1" height="187.5" rx="4" ry="4" fill="#eb6834"><title>2026-04 · 季營收: $2.4B</title></rect><text x="673.0" y="251" text-anchor="middle" font-size="11" fill="#767c85">2026-04</text></svg></div><figcaption>圖 ── MRVL 季度營收</figcaption></figure>
+<div class="tblwrap"><table class="dt"><thead><tr><th style="text-align:left">季別</th><th style="text-align:right">營收</th><th style="text-align:right">營業利益</th><th style="text-align:right">淨利</th><th style="text-align:right">稀釋 EPS</th></tr></thead><tbody><tr><th scope="row" style="text-align:left">2026-04-30</th><td style="text-align:right">$2.42B</td><td style="text-align:right">$350.1M</td><td style="text-align:right">$34.5M</td><td style="text-align:right">$0.04</td></tr><tr><th scope="row" style="text-align:left">2026-01-31</th><td style="text-align:right">$2.22B</td><td style="text-align:right">$413.9M</td><td style="text-align:right">$396.1M</td><td style="text-align:right">$0.46</td></tr><tr><th scope="row" style="text-align:left">2025-10-31</th><td style="text-align:right">$2.07B</td><td style="text-align:right">$367.4M</td><td style="text-align:right">$1.90B</td><td style="text-align:right">$2.20</td></tr><tr><th scope="row" style="text-align:left">2025-07-31</th><td style="text-align:right">$2.01B</td><td style="text-align:right">$298.8M</td><td style="text-align:right">$194.8M</td><td style="text-align:right">$0.22</td></tr><tr><th scope="row" style="text-align:left">2025-04-30</th><td style="text-align:right">$1.90B</td><td style="text-align:right">$258.3M</td><td style="text-align:right">$177.9M</td><td style="text-align:right">$0.20</td></tr></tbody></table></div>
+<h3>現金流量與資本配置</h3>
+<div class="tblwrap"><table class="dt"><thead><tr><th style="text-align:left">會計年度</th><th style="text-align:right">營運現金流</th><th style="text-align:right">資本支出</th><th style="text-align:right">自由現金流</th><th style="text-align:right">FCF／營收</th><th style="text-align:right">股票買回</th><th style="text-align:right">股息支付</th></tr></thead><tbody><tr><th scope="row" style="text-align:left">2026-01-31</th><td style="text-align:right">$1.75B</td><td style="text-align:right">$-358.6M</td><td style="text-align:right">$1.39B</td><td style="text-align:right">17.0%</td><td style="text-align:right">$-2.04B</td><td style="text-align:right">$-205.1M</td></tr><tr><th scope="row" style="text-align:left">2025-01-31</th><td style="text-align:right">$1.68B</td><td style="text-align:right">$-291.6M</td><td style="text-align:right">$1.39B</td><td style="text-align:right">24.1%</td><td style="text-align:right">$-725.0M</td><td style="text-align:right">$-207.5M</td></tr><tr><th scope="row" style="text-align:left">2024-01-31</th><td style="text-align:right">$1.37B</td><td style="text-align:right">$-350.2M</td><td style="text-align:right">$1.02B</td><td style="text-align:right">18.5%</td><td style="text-align:right">$-150.0M</td><td style="text-align:right">$-206.8M</td></tr><tr><th scope="row" style="text-align:left">2023-01-31</th><td style="text-align:right">$1.29B</td><td style="text-align:right">$-217.3M</td><td style="text-align:right">$1.07B</td><td style="text-align:right">18.1%</td><td style="text-align:right">$-115.0M</td><td style="text-align:right">$-204.4M</td></tr><tr><th scope="row" style="text-align:left">2022-01-31</th><td style="text-align:right">$0.00</td><td style="text-align:right">$0.00</td><td style="text-align:right">$0.00</td><td style="text-align:right">—</td><td style="text-align:right">—</td><td style="text-align:right">—</td></tr></tbody></table></div>
+</section><section id="m4"><h2><span class="modnum">4</span>DCF 評價<span class="skilltag">dcf-valuation</span></h2>
+<p>十年兩階段自由現金流折現 ＋ Gordon 終值。起始自由現金流 <strong>$2.27B</strong>
+（採 TTM 自由現金流），
+流通股數 876M，淨負債 $1.43B
+。</p>
+<p>MRVL 是四檔中估值分歧最大的標的，因為 GAAP 與 non-GAAP 的差距達一個數量級。
+本節同時呈現兩套基準，並明確標示各自的適用性。</p>
+<div class="tblwrap"><table class="dt"><thead><tr><th style="text-align:left">情境</th><th style="text-align:right">年 1–5 成長</th><th style="text-align:right">年 6–10 成長</th><th style="text-align:right">終值成長</th><th style="text-align:right">WACC</th><th style="text-align:right">明確期現值</th><th style="text-align:right">終值現值</th><th style="text-align:right">終值占比</th><th style="text-align:right">每股價值</th><th style="text-align:right">相對現價</th></tr></thead><tbody><tr><th scope="row" style="text-align:left">空方 Bear</th><td style="text-align:right">+4%</td><td style="text-align:right">+2%</td><td style="text-align:right">2.0%</td><td style="text-align:right">11.5%</td><td style="text-align:right">$15.44B</td><td style="text-align:right">$11.02B</td><td style="text-align:right">41.7%</td><td style="text-align:right"><strong>$28.58</strong></td><td style="text-align:right"><span class="dn">-84%</span></td></tr><tr><th scope="row" style="text-align:left">基準 Base</th><td style="text-align:right">+13%</td><td style="text-align:right">+5%</td><td style="text-align:right">2.5%</td><td style="text-align:right">11.5%</td><td style="text-align:right">$21.99B</td><td style="text-align:right">$20.47B</td><td style="text-align:right">48.2%</td><td style="text-align:right"><strong>$46.84</strong></td><td style="text-align:right"><span class="dn">-73%</span></td></tr><tr><th scope="row" style="text-align:left">多方 Bull</th><td style="text-align:right">+22%</td><td style="text-align:right">+8%</td><td style="text-align:right">3.0%</td><td style="text-align:right">11.5%</td><td style="text-align:right">$31.18B</td><td style="text-align:right">$36.78B</td><td style="text-align:right">54.1%</td><td style="text-align:right"><strong>$75.96</strong></td><td style="text-align:right"><span class="dn">-56%</span></td></tr></tbody></table></div>
+<h3>基準情境的雙變數敏感度（每股價值）</h3>
+<div class="tblwrap"><table class="heat"><thead><tr><th>敏感度</th><th>WACC 9.5%</th><th>WACC 10.5%</th><th>WACC 11.5%</th><th>WACC 12.5%</th><th>WACC 13.5%</th></tr></thead><tbody><tr><th scope="row">終值成長 1.5%</th><td style="background:#00914f;color:#ffffff">$57</td><td style="background:#2ea86c;color:#ffffff">$50</td><td style="background:#2ea86c;color:#ffffff">$44</td><td style="background:#5cc08d;color:#16181a">$40</td><td style="background:#5cc08d;color:#16181a">$36</td></tr><tr><th scope="row">終值成長 2.0%</th><td style="background:#00914f;color:#ffffff">$59</td><td style="background:#00914f;color:#ffffff">$52</td><td style="background:#2ea86c;color:#ffffff">$46</td><td style="background:#5cc08d;color:#16181a">$41</td><td style="background:#5cc08d;color:#16181a">$36</td></tr><tr><th scope="row">終值成長 2.5%</th><td style="background:#00723d;color:#ffffff">$62</td><td style="background:#00914f;color:#ffffff">$53</td><td style="background:#2ea86c;color:#ffffff">$47</td><td style="background:#5cc08d;color:#16181a">$42</td><td style="background:#5cc08d;color:#16181a">$37</td></tr><tr><th scope="row">終值成長 3.0%</th><td style="background:#00723d;color:#ffffff">$65</td><td style="background:#00914f;color:#ffffff">$56</td><td style="background:#2ea86c;color:#ffffff">$48</td><td style="background:#5cc08d;color:#ffffff">$43</td><td style="background:#5cc08d;color:#16181a">$38</td></tr><tr><th scope="row">終值成長 3.5%</th><td style="background:#00723d;color:#ffffff">$68</td><td style="background:#00914f;color:#ffffff">$58</td><td style="background:#2ea86c;color:#ffffff">$50</td><td style="background:#2ea86c;color:#ffffff">$44</td><td style="background:#5cc08d;color:#16181a">$39</td></tr></tbody></table></div>
+<p class="fignote">空白格代表終值成長率 ≥ WACC，Gordon 公式失效。
+現價 $174.47 在此矩陣中的位置，即為市場隱含的 WACC 與永續成長組合。</p>
+<div class="call call--warn"><div class="call__h">⚠ 這個 DCF 的方法論限制（必讀）</div>
+<p>對<strong>資本密集的循環股</strong>而言，以自由現金流為基礎的 DCF 有系統性偏誤：
+在循環頂點，公司同時擁有最高的營運現金流<em>與</em>最高的資本支出，
+使自由現金流被壓縮到遠低於盈餘能力的水準。
+MRVL 的 TTM 自由現金流 $2.27B 僅為淨利 $2.53B 的 90%。</p>
+<p>因此本報告<strong>不以 DCF 為主要估值依據</strong>，而在下一個模組以常態化盈餘法與相對倍數法交叉驗證。
+三種方法的分歧程度本身，就是估值不確定性的度量。</p></div>
+</section><section id="m5"><h2><span class="modnum">5</span>多重估值法<span class="skilltag">stock-valuation</span></h2>
+<h3>循環常態化盈餘法（本報告的主要方法）</h3>
+<p>做法：取 TTM 營收 <strong>$8.72B</strong> 為基礎（假設營收水準維持），
+套用四種不同的營業利益率假設，稅後淨利 ＝ 營收 × 營業利益率 × 0.85，
+再乘以 10／12／15／18 倍本益比，除以 876M 股得每股價值。</p>
+<p><strong>MRVL 的關鍵歷史事實</strong>：TTM 淨利 $2.53B 是過去
+4 個會計年度平均值（$172.1M）的
+<strong>14.7 倍</strong>。這是評估目前獲利可持續性時最重要的單一數字。</p>
+<div class="tblwrap"><table class="dt dt--sm">
+<thead><tr><th style="text-align:left">利益率情境</th><th>營業利益率</th><th>隱含稅後淨利</th>
+<th>10 倍</th><th>12 倍</th><th>15 倍</th><th>18 倍</th></tr></thead>
+<tbody><tr><th scope="row" style="text-align:left"><strong>均值回歸（含谷底四年均值）</strong><br><span style="font-weight:400;font-size:.6875rem;color:var(--ink-3)">假設完全回到歷史平均，含 2023 年虧損年度</span></th><td>2.0%</td><td>$150.5M</td><td><strong>$1.72</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">-99%</span></td><td><strong>$2.06</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">-99%</span></td><td><strong>$2.58</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">-99%</span></td><td><strong>$3.09</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">-98%</span></td></tr><tr><th scope="row" style="text-align:left"><strong>除谷底均值</strong><br><span style="font-weight:400;font-size:.6875rem;color:var(--ink-3)">排除虧損年度後的平均——溫和的均值回歸</span></th><td>11.2%</td><td>$830.1M</td><td><strong>$9.48</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">-95%</span></td><td><strong>$11.37</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">-93%</span></td><td><strong>$14.22</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">-92%</span></td><td><strong>$17.06</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">-90%</span></td></tr><tr><th scope="row" style="text-align:left"><strong>結構性中循環</strong><br><span style="font-weight:400;font-size:.6875rem;color:var(--ink-3)">除谷底均值與目前峰值的中點——本報告的中心情境</span></th><td>12.8%</td><td>$951.5M</td><td><strong>$10.87</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">-94%</span></td><td><strong>$13.04</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">-93%</span></td><td><strong>$16.30</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">-91%</span></td><td><strong>$19.56</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">-89%</span></td></tr><tr><th scope="row" style="text-align:left"><strong>維持目前 TTM 利益率</strong><br><span style="font-weight:400;font-size:.6875rem;color:var(--ink-3)">假設目前利益率永久維持——市場目前的隱含假設</span></th><td>14.5%</td><td>$1.07B</td><td><strong>$12.25</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">-93%</span></td><td><strong>$14.70</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">-92%</span></td><td><strong>$18.38</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">-89%</span></td><td><strong>$22.05</strong><br><span style="font-size:.6875rem;color:var(--ink-3)">-87%</span></td></tr></tbody></table></div>
+
+<h3>估值方法對照（Football Field）</h3>
+<figure class="fig"><div class="figbox"><svg class="chart" viewBox="0 0 760 386" role="img" preserveAspectRatio="xMidYMid meet"><line x1="196.0" y1="22" x2="196.0" y2="354" stroke="#e6e8eb" stroke-width="1"/><text x="196.0" y="370" text-anchor="middle" font-size="11" fill="#767c85">$-22</text><line x1="329.5" y1="22" x2="329.5" y2="354" stroke="#e6e8eb" stroke-width="1"/><text x="329.5" y="370" text-anchor="middle" font-size="11" fill="#767c85">$93</text><line x1="463.0" y1="22" x2="463.0" y2="354" stroke="#e6e8eb" stroke-width="1"/><text x="463.0" y="370" text-anchor="middle" font-size="11" fill="#767c85">$209</text><line x1="596.5" y1="22" x2="596.5" y2="354" stroke="#e6e8eb" stroke-width="1"/><text x="596.5" y="370" text-anchor="middle" font-size="11" fill="#767c85">$324</text><line x1="730.0" y1="22" x2="730.0" y2="354" stroke="#e6e8eb" stroke-width="1"/><text x="730.0" y="370" text-anchor="middle" font-size="11" fill="#767c85">$440</text><text x="186" y="46.0" text-anchor="end" font-size="12.5" font-weight="600" fill="#16181a">均值回歸（含谷底四年均值）</text><text x="186" y="60.0" text-anchor="end" font-size="10.5" fill="#767c85">營業利益率 2.0%，10–18 倍</text><rect x="223.6" y="30" width="3.0" height="30" rx="4" ry="4" fill="#eb6834" fill-opacity=".26" stroke="#eb6834" stroke-width="1.5"><title>均值回歸（含谷底四年均值）: $1.72 – $3.09</title></rect><text x="217.6" y="49.0" text-anchor="end" font-size="11" fill="#4a4f55" font-weight="600">$2</text><text x="231.2" y="49.0" font-size="11" fill="#4a4f55" font-weight="600">$3</text><text x="186" y="92.0" text-anchor="end" font-size="12.5" font-weight="600" fill="#16181a">除谷底均值</text><text x="186" y="106.0" text-anchor="end" font-size="10.5" fill="#767c85">營業利益率 11.2%，10–18 倍</text><rect x="232.6" y="76" width="8.8" height="30" rx="4" ry="4" fill="#eb6834" fill-opacity=".26" stroke="#eb6834" stroke-width="1.5"><title>除谷底均值: $9.48 – $17.06</title></rect><text x="226.6" y="95.0" text-anchor="end" font-size="11" fill="#4a4f55" font-weight="600">$9</text><text x="247.4" y="95.0" font-size="11" fill="#4a4f55" font-weight="600">$17</text><text x="186" y="138.0" text-anchor="end" font-size="12.5" font-weight="600" fill="#16181a">結構性中循環</text><text x="186" y="152.0" text-anchor="end" font-size="10.5" fill="#767c85">營業利益率 12.8%，10–18 倍</text><rect x="234.2" y="122" width="10.0" height="30" rx="4" ry="4" fill="#eb6834" fill-opacity=".26" stroke="#eb6834" stroke-width="1.5"><title>結構性中循環: $10.87 – $19.56</title></rect><text x="228.2" y="141.0" text-anchor="end" font-size="11" fill="#4a4f55" font-weight="600">$11</text><text x="250.2" y="141.0" font-size="11" fill="#4a4f55" font-weight="600">$20</text><text x="186" y="184.0" text-anchor="end" font-size="12.5" font-weight="600" fill="#16181a">維持目前 TTM 利益率</text><text x="186" y="198.0" text-anchor="end" font-size="10.5" fill="#767c85">營業利益率 14.5%，10–18 倍</text><rect x="235.8" y="168" width="11.3" height="30" rx="4" ry="4" fill="#eb6834" fill-opacity=".26" stroke="#eb6834" stroke-width="1.5"><title>維持目前 TTM 利益率: $12.25 – $22.05</title></rect><text x="229.8" y="187.0" text-anchor="end" font-size="11" fill="#4a4f55" font-weight="600">$12</text><text x="253.1" y="187.0" font-size="11" fill="#4a4f55" font-weight="600">$22</text><text x="186" y="230.0" text-anchor="end" font-size="12.5" font-weight="600" fill="#16181a">DCF 三情境</text><text x="186" y="244.0" text-anchor="end" font-size="10.5" fill="#767c85">WACC 11.5%</text><rect x="254.7" y="214" width="54.8" height="30" rx="4" ry="4" fill="#4a4f55" fill-opacity=".26" stroke="#4a4f55" stroke-width="1.5"><title>DCF 三情境: $28.58 – $75.96</title></rect><text x="248.7" y="233.0" text-anchor="end" font-size="11" fill="#4a4f55" font-weight="600">$29</text><text x="315.4" y="233.0" font-size="11" fill="#4a4f55" font-weight="600">$76</text><text x="186" y="276.0" text-anchor="end" font-size="12.5" font-weight="600" fill="#16181a">分析師目標價區間</text><text x="186" y="290.0" text-anchor="end" font-size="10.5" fill="#767c85">40 位分析師，平均 $256.91</text><rect x="367.3" y="260" width="316.7" height="30" rx="4" ry="4" fill="#4a3aa7" fill-opacity=".26" stroke="#4a3aa7" stroke-width="1.5"><title>分析師目標價區間: $126.00 – $400.00</title></rect><text x="361.3" y="279.0" text-anchor="end" font-size="11" fill="#4a4f55" font-weight="600">$126</text><text x="690.0" y="279.0" font-size="11" fill="#4a4f55" font-weight="600">$400</text><text x="186" y="322.0" text-anchor="end" font-size="12.5" font-weight="600" fill="#16181a">52 週實際區間</text><text x="186" y="336.0" text-anchor="end" font-size="10.5" fill="#767c85">過去一年市場實際成交範圍</text><rect x="292.6" y="306" width="310.3" height="30" rx="4" ry="4" fill="#767c85" fill-opacity=".26" stroke="#767c85" stroke-width="1.5"><title>52 週實際區間: $61.44 – $329.88</title></rect><text x="286.6" y="325.0" text-anchor="end" font-size="11" fill="#4a4f55" font-weight="600">$61</text><text x="608.9" y="325.0" font-size="11" fill="#4a4f55" font-weight="600">$330</text><line x1="423.3" y1="16" x2="423.3" y2="352" stroke="#16181a" stroke-width="2"/><text x="423.3" y="11" text-anchor="middle" font-size="11.5" font-weight="800" fill="#16181a">現價 $174.47</text></svg></div><figcaption>圖 ── MRVL 各估值方法的價值區間 vs 現價</figcaption><p class="fignote">各方法的區間寬度差異本身即是資訊：區間越寬，該方法對假設越敏感。</p><details class="tblview"><summary>檢視數據表</summary><div class="tblwrap" id="t32"><table class="dt"><thead><tr><th style="text-align:left">方法</th><th style="text-align:right">下緣</th><th style="text-align:right">上緣</th><th style="text-align:right">說明</th></tr></thead><tbody><tr><th scope="row" style="text-align:left">均值回歸（含谷底四年均值）</th><td style="text-align:right">$1.72</td><td style="text-align:right">$3.09</td><td style="text-align:right">營業利益率 2.0%，10–18 倍</td></tr><tr><th scope="row" style="text-align:left">除谷底均值</th><td style="text-align:right">$9.48</td><td style="text-align:right">$17.06</td><td style="text-align:right">營業利益率 11.2%，10–18 倍</td></tr><tr><th scope="row" style="text-align:left">結構性中循環</th><td style="text-align:right">$10.87</td><td style="text-align:right">$19.56</td><td style="text-align:right">營業利益率 12.8%，10–18 倍</td></tr><tr><th scope="row" style="text-align:left">維持目前 TTM 利益率</th><td style="text-align:right">$12.25</td><td style="text-align:right">$22.05</td><td style="text-align:right">營業利益率 14.5%，10–18 倍</td></tr><tr><th scope="row" style="text-align:left">DCF 三情境</th><td style="text-align:right">$28.58</td><td style="text-align:right">$75.96</td><td style="text-align:right">WACC 11.5%</td></tr><tr><th scope="row" style="text-align:left">分析師目標價區間</th><td style="text-align:right">$126.00</td><td style="text-align:right">$400.00</td><td style="text-align:right">40 位分析師，平均 $256.91</td></tr><tr><th scope="row" style="text-align:left">52 週實際區間</th><td style="text-align:right">$61.44</td><td style="text-align:right">$329.88</td><td style="text-align:right">過去一年市場實際成交範圍</td></tr></tbody></table></div></details></figure>
+<h3>相對倍數（四檔橫向對照）</h3>
+<div class="tblwrap"><table class="dt"><thead><tr><th style="text-align:left">倍數</th><th style="text-align:right">MRVL</th><th style="text-align:right">MU</th><th style="text-align:right">SKHY</th><th style="text-align:right">MRVL</th><th style="text-align:right">SNDL</th><th style="text-align:left">評註</th></tr></thead><tbody><tr><th scope="row" style="text-align:left">本益比（TTM）</th><td style="text-align:right">60.0x</td><td style="text-align:right">20.4x</td><td style="text-align:right">19.8x</td><td style="text-align:right">60.0x</td><td style="text-align:right">n/a</td><td style="text-align:left">SNDL 獲利為負，不適用</td></tr><tr><th scope="row" style="text-align:left">前瞻本益比</th><td style="text-align:right">28.0x</td><td style="text-align:right">5.3x</td><td style="text-align:right">3.2x</td><td style="text-align:right">28.0x</td><td style="text-align:right">40.7x</td><td style="text-align:left">SKHY 3.2x 與 SNDL 40.7x 均不可信，見各報告稽核</td></tr><tr><th scope="row" style="text-align:left">P/S（校正後）</th><td style="text-align:right">17.96x</td><td style="text-align:right">10.27x</td><td style="text-align:right">9.65x</td><td style="text-align:right">17.96x</td><td style="text-align:right">0.34x</td><td style="text-align:left"></td></tr><tr><th scope="row" style="text-align:left">EV/EBITDA（校正後）</th><td style="text-align:right">58.3x</td><td style="text-align:right">13.3x</td><td style="text-align:right">13.6x</td><td style="text-align:right">58.3x</td><td style="text-align:right">36.2x</td><td style="text-align:left"></td></tr><tr><th scope="row" style="text-align:left">股價淨值比（申報 BS 重算）</th><td style="text-align:right">8.60x</td><td style="text-align:right">9.20x</td><td style="text-align:right">7.76x</td><td style="text-align:right">8.60x</td><td style="text-align:right">0.30x</td><td style="text-align:left">SNDL 0.30x（依申報資產負債表重算）是唯一低於 1 者</td></tr><tr><th scope="row" style="text-align:left">PEG</th><td style="text-align:right">1.07</td><td style="text-align:right">0.13</td><td style="text-align:right">0.49</td><td style="text-align:right">1.07</td><td style="text-align:right">n/a</td><td style="text-align:left"></td></tr></tbody></table></div>
+</section><section id="m6"><h2><span class="modnum">6</span>內部人交易<span class="skilltag">insider-trading</span></h2>
+<p>訊號方向與 MU 相同，但金額小得多——且成交價的分布更不利。</p>
+<p>6 筆賣出、合計 $9.7M，0 筆買進。金額遠小於 MU 的 $169.2M，
+但關鍵在於<strong>成交價相對現價的位置</strong>：</p>
+<p>六筆的成交價分別為 $199.24、$209.52、$281.92、$281.01、$299.13、$298.76。
+現價 $174.47 <strong>低於全部六筆</strong>，其中最高者（$299.13）高出現價 71%。
+賣出者包含執行長（兩筆）、總裁、財務長——三個最高層職位全部在列。</p>
+<p>同時期另有多筆無金額申報（Shares 欄有值、Value 為空），
+包含 CEO Murphy 21,497 股、總裁 Koopmans 21,519 股、Bharathi 22,441 股，
+日期集中在 2026-07-15。這種模式通常是<strong>股權獎勵歸屬（vesting）
+或代扣稅款賣出</strong>，資訊含量低於主動賣出，本報告不計入賣出總額。</p><figure class="fig"><div class="figbox"><svg class="chart" viewBox="0 0 760 330" role="img" preserveAspectRatio="xMidYMid meet"><line x1="62" y1="284.0" x2="664" y2="284.0" stroke="#e6e8eb" stroke-width="1"/><text x="54" y="288.0" text-anchor="end" font-size="11" fill="#767c85">$160</text><line x1="62" y1="232.4" x2="664" y2="232.4" stroke="#e6e8eb" stroke-width="1"/><text x="54" y="236.4" text-anchor="end" font-size="11" fill="#767c85">$190</text><line x1="62" y1="180.8" x2="664" y2="180.8" stroke="#e6e8eb" stroke-width="1"/><text x="54" y="184.8" text-anchor="end" font-size="11" fill="#767c85">$221</text><line x1="62" y1="129.2" x2="664" y2="129.2" stroke="#e6e8eb" stroke-width="1"/><text x="54" y="133.2" text-anchor="end" font-size="11" fill="#767c85">$252</text><line x1="62" y1="77.6" x2="664" y2="77.6" stroke="#e6e8eb" stroke-width="1"/><text x="54" y="81.6" text-anchor="end" font-size="11" fill="#767c85">$283</text><line x1="62" y1="26.0" x2="664" y2="26.0" stroke="#e6e8eb" stroke-width="1"/><text x="54" y="30.0" text-anchor="end" font-size="11" fill="#767c85">$314</text><line x1="62" y1="259.0" x2="664" y2="259.0" stroke="#16181a" stroke-width="2"/><text x="670" y="263.0" font-size="11.5" font-weight="800" fill="#16181a">現價 $174</text><text x="62.0" y="304" text-anchor="middle" font-size="11" fill="#767c85">06-15</text><text x="212.5" y="304" text-anchor="middle" font-size="11" fill="#767c85">06-22</text><text x="363.0" y="304" text-anchor="middle" font-size="11" fill="#767c85">06-30</text><text x="513.5" y="304" text-anchor="middle" font-size="11" fill="#767c85">07-08</text><text x="664.0" y="304" text-anchor="middle" font-size="11" fill="#767c85">07-16</text><line x1="62.0" y1="51.6" x2="62.0" y2="259.0" stroke="#c0161c" stroke-width="1" stroke-opacity=".35"/><circle cx="62.0" cy="51.6" r="16.6" fill="#c0161c" fill-opacity=".68" stroke="#ffffff" stroke-width="2"><title>MURPHY MATTHEW JOSEPH（Chief Executive Officer） · 2026-06-15 · $298.76／股 · $2.2M（賣出）</title></circle><line x1="81.4" y1="51.0" x2="81.4" y2="259.0" stroke="#c0161c" stroke-width="1" stroke-opacity=".35"/><circle cx="81.4" cy="51.0" r="11.3" fill="#c0161c" fill-opacity=".68" stroke="#ffffff" stroke-width="2"><title>BHARATHI SANDEEP（Officer） · 2026-06-16 · $299.13／股 · $667,359.0（賣出）</title></circle><line x1="217.4" y1="81.2" x2="217.4" y2="259.0" stroke="#c0161c" stroke-width="1" stroke-opacity=".35"/><circle cx="217.4" cy="81.2" r="11.2" fill="#c0161c" fill-opacity=".68" stroke="#ffffff" stroke-width="2"><title>DURN DANIEL JAMES（Chief Financial Officer） · 2026-06-23 · $281.01／股 · $632,272.0（賣出）</title></circle><line x1="372.7" y1="79.7" x2="372.7" y2="259.0" stroke="#c0161c" stroke-width="1" stroke-opacity=".35"/><circle cx="372.7" cy="79.7" r="18.0" fill="#c0161c" fill-opacity=".68" stroke="#ffffff" stroke-width="2"><title>KOOPMANS CHRISTOPHER R（President） · 2026-07-01 · $281.92／股 · $2.8M（賣出）</title></circle><line x1="644.6" y1="200.5" x2="644.6" y2="259.0" stroke="#c0161c" stroke-width="1" stroke-opacity=".35"/><circle cx="644.6" cy="200.5" r="14.7" fill="#c0161c" fill-opacity=".68" stroke="#ffffff" stroke-width="2"><title>MURPHY MATTHEW JOSEPH（Chief Executive Officer） · 2026-07-15 · $209.52／股 · $1.6M（賣出）</title></circle><line x1="664.0" y1="217.7" x2="664.0" y2="259.0" stroke="#c0161c" stroke-width="1" stroke-opacity=".35"/><circle cx="664.0" cy="217.7" r="15.4" fill="#c0161c" fill-opacity=".68" stroke="#ffffff" stroke-width="2"><title>BHARATHI SANDEEP（Officer） · 2026-07-16 · $199.24／股 · $1.8M（賣出）</title></circle><text x="62" y="322" font-size="11" fill="#767c85">圓面積 ∝ 交易金額；紅色＝賣出（皆附標籤，不以顏色單獨表意）</text></svg></div><figcaption>圖 ── MRVL 內部人賣出價位 vs 現價（圓面積 ∝ 交易金額）</figcaption><p class="fignote">僅計入明確標示「Sale at price」的申報。股權獎勵歸屬與代扣稅款賣出（無成交價欄位）不計入。</p><details class="tblview"><summary>檢視數據表</summary><div class="tblwrap" id="t33"><table class="dt"><thead><tr><th style="text-align:left">申報日</th><th style="text-align:right">內部人</th><th style="text-align:right">職位</th><th style="text-align:right">股數</th><th style="text-align:right">成交價</th><th style="text-align:right">金額</th><th style="text-align:right">相對現價</th></tr></thead><tbody><tr><th scope="row" style="text-align:left">2026-07-16</th><td style="text-align:right">BHARATHI SANDEEP</td><td style="text-align:right">Officer</td><td style="text-align:right">9,013</td><td style="text-align:right">$199.24</td><td style="text-align:right">$1.8M</td><td style="text-align:right"><span class="dn">-12%</span></td></tr><tr><th scope="row" style="text-align:left">2026-07-15</th><td style="text-align:right">MURPHY MATTHEW JOSEPH</td><td style="text-align:right">Chief Executive Officer</td><td style="text-align:right">7,500</td><td style="text-align:right">$209.52</td><td style="text-align:right">$1.6M</td><td style="text-align:right"><span class="dn">-17%</span></td></tr><tr><th scope="row" style="text-align:left">2026-07-01</th><td style="text-align:right">KOOPMANS CHRISTOPHER R</td><td style="text-align:right">President</td><td style="text-align:right">10,000</td><td style="text-align:right">$281.92</td><td style="text-align:right">$2.8M</td><td style="text-align:right"><span class="dn">-38%</span></td></tr><tr><th scope="row" style="text-align:left">2026-06-23</th><td style="text-align:right">DURN DANIEL JAMES</td><td style="text-align:right">Chief Financial Officer</td><td style="text-align:right">2,250</td><td style="text-align:right">$281.01</td><td style="text-align:right">$632,272.00</td><td style="text-align:right"><span class="dn">-38%</span></td></tr><tr><th scope="row" style="text-align:left">2026-06-16</th><td style="text-align:right">BHARATHI SANDEEP</td><td style="text-align:right">Officer</td><td style="text-align:right">2,231</td><td style="text-align:right">$299.13</td><td style="text-align:right">$667,359.00</td><td style="text-align:right"><span class="dn">-42%</span></td></tr><tr><th scope="row" style="text-align:left">2026-06-15</th><td style="text-align:right">MURPHY MATTHEW JOSEPH</td><td style="text-align:right">Chief Executive Officer</td><td style="text-align:right">7,500</td><td style="text-align:right">$298.76</td><td style="text-align:right">$2.2M</td><td style="text-align:right"><span class="dn">-42%</span></td></tr></tbody></table></div></details></figure>
+<div class="grid g3" style="margin-top:var(--s-16)">
+<div class="tile"><div class="tile__k">申報賣出總額</div><div class="tile__v dn">$9.7M</div>
+<div class="tile__n">6 筆 · 38,494 股</div></div>
+<div class="tile"><div class="tile__k">申報買進總額</div><div class="tile__v">$0</div>
+<div class="tile__n">0 筆</div></div>
+<div class="tile"><div class="tile__k">淨買賣</div><div class="tile__v dn">$-9.7M</div>
+<div class="tile__n">內部人持股比 0.69%</div></div>
+</div>
+</section><section id="m7"><h2><span class="modnum">7</span>法人持股<span class="skilltag">institutional-ownership</span></h2>
+<p>MRVL 的法人結構有一個 MU 沒有的特徵：<strong>單一主動經理人的極端集中。</strong></p>
+<div class="grid g4" style="margin-top:var(--s-16)">
+<div class="tile"><div class="tile__k">機構持股比</div><div class="tile__v">87.7%</div>
+<div class="tile__n">2,405 家機構</div></div>
+<div class="tile"><div class="tile__k">內部人持股比</div><div class="tile__v">0.69%</div>
+<div class="tile__n">流通股 872M</div></div>
+<div class="tile"><div class="tile__k">前 3 大合計</div><div class="tile__v">26.8%</div>
+<div class="tile__n">FMR,、Blackrock、Vanguard</div></div>
+<div class="tile"><div class="tile__k">最大單一減碼</div>
+<div class="tile__v dn">-1.6%</div>
+<div class="tile__n">Franklin Resources, In</div></div>
+</div>
+<figure class="fig"><div class="figbox"><svg class="chart" viewBox="0 0 760 420" role="img" preserveAspectRatio="xMidYMid meet"><line x1="176.0" y1="10" x2="176.0" y2="396" stroke="#e6e8eb" stroke-width="1"/><text x="176.0" y="412" text-anchor="middle" font-size="11" fill="#767c85">-2%</text><line x1="284.5" y1="10" x2="284.5" y2="396" stroke="#e6e8eb" stroke-width="1"/><text x="284.5" y="412" text-anchor="middle" font-size="11" fill="#767c85">+24%</text><line x1="393.0" y1="10" x2="393.0" y2="396" stroke="#e6e8eb" stroke-width="1"/><text x="393.0" y="412" text-anchor="middle" font-size="11" fill="#767c85">+49%</text><line x1="501.5" y1="10" x2="501.5" y2="396" stroke="#e6e8eb" stroke-width="1"/><text x="501.5" y="412" text-anchor="middle" font-size="11" fill="#767c85">+75%</text><line x1="610.0" y1="10" x2="610.0" y2="396" stroke="#e6e8eb" stroke-width="1"/><text x="610.0" y="412" text-anchor="middle" font-size="11" fill="#767c85">+100%</text><line x1="182.7" y1="10" x2="182.7" y2="396" stroke="#767c85" stroke-width="1.5"/><text x="166" y="31.0" text-anchor="end" font-size="12.5" font-weight="600" fill="#16181a">FMR, LLC</text><rect x="182.7" y="14" width="15.0" height="26" rx="4" ry="4" fill="#00692e"><title>FMR, LLC: +4% · （持股 15.00%）</title></rect><text x="205.7" y="31.0" font-size="12.5" font-weight="700" fill="#4a4f55">+4% （持股 15.00%）</text><text x="166" y="69.0" text-anchor="end" font-size="12.5" font-weight="600" fill="#16181a">Blackrock Inc.</text><rect x="182.7" y="52" width="28.8" height="26" rx="4" ry="4" fill="#00692e"><title>Blackrock Inc.: +7% · （持股 7.30%）</title></rect><text x="219.6" y="69.0" font-size="12.5" font-weight="700" fill="#4a4f55">+7% （持股 7.30%）</text><text x="166" y="107.0" text-anchor="end" font-size="12.5" font-weight="600" fill="#16181a">Vanguard Capital Managemen</text><rect x="182.7" y="90" width="427.3" height="26" rx="4" ry="4" fill="#00692e"><title>Vanguard Capital Managemen: +100% · （持股 4.47%）</title></rect><text x="618.0" y="107.0" font-size="12.5" font-weight="700" fill="#4a4f55">+100% （持股 4.47%）</text><text x="166" y="145.0" text-anchor="end" font-size="12.5" font-weight="600" fill="#16181a">Vanguard Portfolio Managem</text><rect x="182.7" y="128" width="427.3" height="26" rx="4" ry="4" fill="#00692e"><title>Vanguard Portfolio Managem: +100% · （持股 3.80%）</title></rect><text x="618.0" y="145.0" font-size="12.5" font-weight="700" fill="#4a4f55">+100% （持股 3.80%）</text><text x="166" y="183.0" text-anchor="end" font-size="12.5" font-weight="600" fill="#16181a">Invesco Ltd.</text><rect x="176.9" y="166" width="5.8" height="26" rx="4" ry="4" fill="#c0161c"><title>Invesco Ltd.: -1% · （持股 3.29%）</title></rect><text x="190.7" y="183.0" font-size="12.5" font-weight="700" fill="#4a4f55">-1% （持股 3.29%）</text><text x="166" y="221.0" text-anchor="end" font-size="12.5" font-weight="600" fill="#16181a">State Street Corporation</text><rect x="182.7" y="204" width="9.4" height="26" rx="4" ry="4" fill="#00692e"><title>State Street Corporation: +2% · （持股 2.67%）</title></rect><text x="200.2" y="221.0" font-size="12.5" font-weight="700" fill="#4a4f55">+2% （持股 2.67%）</text><text x="166" y="259.0" text-anchor="end" font-size="12.5" font-weight="600" fill="#16181a">Ameriprise Financial, Inc.</text><rect x="182.7" y="242" width="92.1" height="26" rx="4" ry="4" fill="#00692e"><title>Ameriprise Financial, Inc.: +22% · （持股 2.38%）</title></rect><text x="282.8" y="259.0" font-size="12.5" font-weight="700" fill="#4a4f55">+22% （持股 2.38%）</text><text x="166" y="297.0" text-anchor="end" font-size="12.5" font-weight="600" fill="#16181a">Geode Capital Management, </text><rect x="182.7" y="280" width="16.8" height="26" rx="4" ry="4" fill="#00692e"><title>Geode Capital Management, : +4% · （持股 1.44%）</title></rect><text x="207.5" y="297.0" font-size="12.5" font-weight="700" fill="#4a4f55">+4% （持股 1.44%）</text><text x="166" y="335.0" text-anchor="end" font-size="12.5" font-weight="600" fill="#16181a">Franklin Resources, Inc.</text><rect x="176.0" y="318" width="6.7" height="26" rx="4" ry="4" fill="#c0161c"><title>Franklin Resources, Inc.: -2% · （持股 1.30%）</title></rect><text x="190.7" y="335.0" font-size="12.5" font-weight="700" fill="#4a4f55">-2% （持股 1.30%）</text><text x="166" y="373.0" text-anchor="end" font-size="12.5" font-weight="600" fill="#16181a">Goldman Sachs Group Inc</text><rect x="182.7" y="356" width="32.0" height="26" rx="4" ry="4" fill="#00692e"><title>Goldman Sachs Group Inc: +7% · （持股 1.29%）</title></rect><text x="222.7" y="373.0" font-size="12.5" font-weight="700" fill="#4a4f55">+7% （持股 1.29%）</text></svg></div><figcaption>圖 ── MRVL 前 10 大法人的季度持股變動（%）</figcaption><p class="fignote">資料基準日 2026-03-31（13F 有約一季的申報時滯，不反映 4–7 月的實際部位變化）。pctChange 為 100% 者代表該申報期首次出現，可能是新建部位或申報實體重組。</p><details class="tblview"><summary>檢視數據表</summary><div class="tblwrap" id="t34"><table class="dt"><thead><tr><th style="text-align:left">法人</th><th style="text-align:right">持股比</th><th style="text-align:right">股數</th><th style="text-align:right">市值</th><th style="text-align:right">季度變動</th><th style="text-align:right">申報基準日</th></tr></thead><tbody><tr><th scope="row" style="text-align:left">FMR, LLC</th><td style="text-align:right">15.00%</td><td style="text-align:right">131,255,670</td><td style="text-align:right">$22.90B</td><td style="text-align:right"><span class="up">+3.5%</span></td><td style="text-align:right">2026-03-31</td></tr><tr><th scope="row" style="text-align:left">Blackrock Inc.</th><td style="text-align:right">7.30%</td><td style="text-align:right">63,842,984</td><td style="text-align:right">$11.14B</td><td style="text-align:right"><span class="up">+6.8%</span></td><td style="text-align:right">2026-03-31</td></tr><tr><th scope="row" style="text-align:left">Vanguard Capital Management LLC</th><td style="text-align:right">4.47%</td><td style="text-align:right">39,105,225</td><td style="text-align:right">$6.82B</td><td style="text-align:right"><span class="up">+100.0%</span></td><td style="text-align:right">2026-03-31</td></tr><tr><th scope="row" style="text-align:left">Vanguard Portfolio Management LLC</th><td style="text-align:right">3.80%</td><td style="text-align:right">33,218,111</td><td style="text-align:right">$5.80B</td><td style="text-align:right"><span class="up">+100.0%</span></td><td style="text-align:right">2026-03-31</td></tr><tr><th scope="row" style="text-align:left">Invesco Ltd.</th><td style="text-align:right">3.29%</td><td style="text-align:right">28,807,696</td><td style="text-align:right">$5.03B</td><td style="text-align:right"><span class="dn">-1.4%</span></td><td style="text-align:right">2026-03-31</td></tr><tr><th scope="row" style="text-align:left">State Street Corporation</th><td style="text-align:right">2.67%</td><td style="text-align:right">23,338,406</td><td style="text-align:right">$4.07B</td><td style="text-align:right"><span class="up">+2.2%</span></td><td style="text-align:right">2026-03-31</td></tr><tr><th scope="row" style="text-align:left">Ameriprise Financial, Inc.</th><td style="text-align:right">2.38%</td><td style="text-align:right">20,844,639</td><td style="text-align:right">$3.64B</td><td style="text-align:right"><span class="up">+21.6%</span></td><td style="text-align:right">2026-03-31</td></tr><tr><th scope="row" style="text-align:left">Geode Capital Management, LLC</th><td style="text-align:right">1.44%</td><td style="text-align:right">12,584,552</td><td style="text-align:right">$2.20B</td><td style="text-align:right"><span class="up">+3.9%</span></td><td style="text-align:right">2026-03-31</td></tr><tr><th scope="row" style="text-align:left">Franklin Resources, Inc.</th><td style="text-align:right">1.30%</td><td style="text-align:right">11,369,038</td><td style="text-align:right">$1.98B</td><td style="text-align:right"><span class="dn">-1.6%</span></td><td style="text-align:right">2026-03-31</td></tr><tr><th scope="row" style="text-align:left">Goldman Sachs Group Inc</th><td style="text-align:right">1.29%</td><td style="text-align:right">11,248,027</td><td style="text-align:right">$1.96B</td><td style="text-align:right"><span class="up">+7.5%</span></td><td style="text-align:right">2026-03-31</td></tr></tbody></table></div></details></figure>
+</section><section id="m8"><h2><span class="modnum">8</span>財報預期與分析師<span class="skilltag">earnings-call-analysis</span></h2>
+<p>本報告未取得 MRVL 法說會逐字稿，故不做管理層語氣分析。
+以下由共識預估與歷史實際值的對照推論市場預期。</p>
+<p><strong>8 月 28 日財報共識</strong>：EPS $0.927（區間 $0.88–$0.94）、
+營收 $2.703B（區間 $2.600B–$2.761B）。相對最近一季實際的營收 $2.418B，
+共識預期 <strong>+11.8% QoQ</strong>。</p>
+<div class="call call--warn"><div class="call__h">⚠ 共識 EPS $0.927 是哪一套基準？</div>
+<p>最近一季 GAAP EPS 為 <strong>$0.04</strong>。共識 $0.927 是它的 23 倍。
+而前瞻年度 EPS 共識為 $6.24——若以季度 $0.927 推算年度約 $3.71，與 $6.24 又不一致。</p>
+<p>合理推斷：$0.927 為 non-GAAP 季度預估，$6.24 為 non-GAAP 年度預估但涵蓋不同期間，
+或兩者的調整項目定義不同。<strong>本報告無法確認</strong>，
+因此不以任何前瞻 EPS 為主要估值依據，並在 result-validator 中記為資料一致性缺陷。</p>
+<p>EPS 預估區間極窄（$0.88–$0.94，離散度僅 1.07 倍），對照 MU 的 1.34 倍，
+說明分析師對 non-GAAP 數字的可預測性有高度信心——
+這本身也印證了市場主要以 non-GAAP 追蹤這家公司。</p></div>
+<h3>下次財報共識預估（2026-08-28）</h3><div class="tblwrap"><table class="dt"><thead><tr><th style="text-align:left">項目</th><th style="text-align:right">共識平均</th><th style="text-align:right">區間低</th><th style="text-align:right">區間高</th><th style="text-align:right">離散度</th><th style="text-align:right">相對最近一季</th></tr></thead><tbody><tr><th scope="row" style="text-align:left">單季 EPS</th><td style="text-align:right">0.93</td><td style="text-align:right">0.88</td><td style="text-align:right">0.94</td><td style="text-align:right">1.07x</td><td style="text-align:right">+2218.2%</td></tr><tr><th scope="row" style="text-align:left">單季營收</th><td style="text-align:right">$2.70B</td><td style="text-align:right">$2.60B</td><td style="text-align:right">$2.76B</td><td style="text-align:right">1.06x</td><td style="text-align:right">+11.8%</td></tr></tbody></table></div>
+<h3>分析師評等變化（近四個月）</h3><div class="tblwrap"><table class="dt"><thead><tr><th style="text-align:left">期間</th><th style="text-align:right">強力買進</th><th style="text-align:right">買進</th><th style="text-align:right">持有</th><th style="text-align:right">賣出</th><th style="text-align:right">強力賣出</th><th style="text-align:right">合計</th></tr></thead><tbody><tr><th scope="row" style="text-align:left">本月</th><td style="text-align:right">8</td><td style="text-align:right">30</td><td style="text-align:right">5</td><td style="text-align:right">0</td><td style="text-align:right">0</td><td style="text-align:right">43</td></tr><tr><th scope="row" style="text-align:left">1 個月前</th><td style="text-align:right">7</td><td style="text-align:right">31</td><td style="text-align:right">5</td><td style="text-align:right">0</td><td style="text-align:right">1</td><td style="text-align:right">44</td></tr><tr><th scope="row" style="text-align:left">2 個月前</th><td style="text-align:right">8</td><td style="text-align:right">31</td><td style="text-align:right">5</td><td style="text-align:right">0</td><td style="text-align:right">0</td><td style="text-align:right">44</td></tr><tr><th scope="row" style="text-align:left">3 個月前</th><td style="text-align:right">6</td><td style="text-align:right">30</td><td style="text-align:right">6</td><td style="text-align:right">0</td><td style="text-align:right">1</td><td style="text-align:right">43</td></tr></tbody></table></div>
+<div class="grid g3" style="margin-top:var(--s-16)">
+<div class="tile"><div class="tile__k">平均目標價</div><div class="tile__v">$256.91</div>
+<div class="tile__n up">隱含 +47.3%</div></div>
+<div class="tile"><div class="tile__k">目標價區間</div>
+<div class="tile__v" style="font-size:1.2rem">$126.00 – $400.00</div>
+<div class="tile__n">離散度 3.17 倍</div></div>
+<div class="tile"><div class="tile__k">覆蓋分析師</div><div class="tile__v">40</div>
+<div class="tile__n">共識 strong_buy</div></div></div>
+</section><section id="m9"><h2><span class="modnum">9</span>技術分析<span class="skilltag">technical-analysis</span></h2>
+<p>MRVL 的技術結構是四檔中最差的，且已進入超賣區。</p><figure class="fig"><div class="figbox"><svg class="chart" viewBox="0 0 760 340" role="img" preserveAspectRatio="xMidYMid meet" data-chart="line" id="ln35"><line x1="62" y1="306.0" x2="672" y2="306.0" stroke="#e6e8eb" stroke-width="1"/><text x="54" y="310.0" text-anchor="end" font-size="11" fill="#767c85">$39</text><line x1="62" y1="248.0" x2="672" y2="248.0" stroke="#e6e8eb" stroke-width="1"/><text x="54" y="252.0" text-anchor="end" font-size="11" fill="#767c85">$96</text><line x1="62" y1="190.0" x2="672" y2="190.0" stroke="#e6e8eb" stroke-width="1"/><text x="54" y="194.0" text-anchor="end" font-size="11" fill="#767c85">$152</text><line x1="62" y1="132.0" x2="672" y2="132.0" stroke="#e6e8eb" stroke-width="1"/><text x="54" y="136.0" text-anchor="end" font-size="11" fill="#767c85">$208</text><line x1="62" y1="74.0" x2="672" y2="74.0" stroke="#e6e8eb" stroke-width="1"/><text x="54" y="78.0" text-anchor="end" font-size="11" fill="#767c85">$265</text><line x1="62" y1="16.0" x2="672" y2="16.0" stroke="#e6e8eb" stroke-width="1"/><text x="54" y="20.0" text-anchor="end" font-size="11" fill="#767c85">$321</text><text x="54" y="10" text-anchor="end" font-size="11" fill="#767c85" font-weight="600">美元</text><line x1="62" y1="100.5" x2="672" y2="100.5" stroke="#4a4f55" stroke-width="1.5" stroke-dasharray="5 4"/><text x="668" y="94.5" text-anchor="end" font-size="11" fill="#4a4f55" font-weight="700">MA50 $239</text><line x1="62" y1="208.9" x2="672" y2="208.9" stroke="#767c85" stroke-width="1.5" stroke-dasharray="5 4"/><text x="668" y="202.9" text-anchor="end" font-size="11" fill="#767c85" font-weight="700">MA200 $134</text><text x="62.0" y="326" text-anchor="middle" font-size="11" fill="#767c85">07月</text><text x="163.7" y="326" text-anchor="middle" font-size="11" fill="#767c85">09月</text><text x="265.3" y="326" text-anchor="middle" font-size="11" fill="#767c85">11月</text><text x="367.0" y="326" text-anchor="middle" font-size="11" fill="#767c85">01月</text><text x="468.7" y="326" text-anchor="middle" font-size="11" fill="#767c85">03月</text><text x="570.3" y="326" text-anchor="middle" font-size="11" fill="#767c85">05月</text><text x="672.0" y="326" text-anchor="middle" font-size="11" fill="#767c85">07月</text><line x1="62" y1="306" x2="672" y2="306" stroke="#e6e8eb" stroke-width="1"/><path d="M62.0,263.9 L112.8,281.8 L163.7,260.1 L214.5,250.1 L265.3,254.6 L316.2,259.1 L367.0,265.3 L417.8,262.4 L468.7,244.6 L519.5,176.6 L570.3,135.6 L621.2,40.2 L672.0,167.0 L672.0,306 L62.0,306 Z" fill="#eb6834" fill-opacity=".10"/><path d="M62.0,263.9 L112.8,281.8 L163.7,260.1 L214.5,250.1 L265.3,254.6 L316.2,259.1 L367.0,265.3 L417.8,262.4 L468.7,244.6 L519.5,176.6 L570.3,135.6 L621.2,40.2 L672.0,167.0" fill="none" stroke="#eb6834" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="672.0" cy="167.0" r="4.5" fill="#eb6834" stroke="#ffffff" stroke-width="2"/><text x="681.0" y="171.0" font-size="12" font-weight="700" fill="#4a4f55">收盤</text><g class="ch-hover"><line class="ch-cross" y1="16" y2="306" stroke="#767c85" stroke-width="1" stroke-dasharray="3 3" style="display:none"/></g><rect class="ch-cap" x="62" y="16" width="610" height="290" fill="transparent"/></svg><script type="application/json" class="ch-data">{"series": [{"name": "收盤", "colour": "#eb6834", "pts": [[62.0, 263.9, "07月", 80.1991], [112.8, 281.8, "08月", 62.7363], [163.7, 260.1, "09月", 83.8913], [214.5, 250.1, "10月", 93.6026], [265.3, 254.6, "11月", 89.269], [316.2, 259.1, "12月", 84.8555], [367.0, 265.3, "01月", 78.8611], [417.8, 262.4, "02月", 81.629], [468.7, 244.6, "03月", 98.976], [519.5, 176.6, "04月", 165.1093], [570.3, 135.6, "05月", 204.9494], [621.2, 40.2, "06月", 297.8165], [672.0, 167.0, "07月", 174.47]]}], "pt": 16, "ih": 290, "fmt": "${:,.0f}"}</script></div><figcaption>圖 ── MRVL 一年月底收盤與移動平均</figcaption><p class="fignote">月底收盤序列；MA20／MA50／MA200 由日收盤計算。</p><details class="tblview"><summary>檢視數據表</summary><div class="tblwrap" id="t36"><table class="dt"><thead><tr><th style="text-align:left">指標</th><th style="text-align:right">數值</th><th style="text-align:right">判讀</th></tr></thead><tbody><tr><th scope="row" style="text-align:left">現價</th><td style="text-align:right">$174.47</td><td style="text-align:right">—</td></tr><tr><th scope="row" style="text-align:left">MA20</th><td style="text-align:right">$220.49</td><td style="text-align:right"><span class="dn">-20.9%</span></td></tr><tr><th scope="row" style="text-align:left">MA50</th><td style="text-align:right">$239.16</td><td style="text-align:right"><span class="dn">-27.1%</span></td></tr><tr><th scope="row" style="text-align:left">MA200</th><td style="text-align:right">$133.65</td><td style="text-align:right"><span class="up">+30.5%</span></td></tr><tr><th scope="row" style="text-align:left">RSI(14)</th><td style="text-align:right">28.9</td><td style="text-align:right">超賣（&lt;30）</td></tr><tr><th scope="row" style="text-align:left">MACD / 訊號線</th><td style="text-align:right">-16.88 / -12.72</td><td style="text-align:right"><span class="dn">空頭排列（MACD 在訊號線下）</span></td></tr><tr><th scope="row" style="text-align:left">ATR(14)</th><td style="text-align:right">$16.81</td><td style="text-align:right">佔股價 9.6%</td></tr><tr><th scope="row" style="text-align:left">年化波動率</th><td style="text-align:right">77.3%</td><td style="text-align:right">—</td></tr><tr><th scope="row" style="text-align:left">一年最大回撤</th><td style="text-align:right"><span class="dn">-44.8%</span></td><td style="text-align:right">—</td></tr><tr><th scope="row" style="text-align:left">20 日均量</th><td style="text-align:right">26.1M 股</td><td style="text-align:right">對照 3 個月均量 41.4M</td></tr></tbody></table></div></details></figure>
+</section><section id="m10"><h2><span class="modnum">10</span>類股相對強度<span class="skilltag">sector-analysis</span></h2>
+<p>MRVL 屬 <strong>Technology / Semiconductors</strong>。
+本輪半導體類股（^SOX 一年 +92%）大幅領先 S&amp;P 500（+16.6%），超額報酬達 76 個百分點。</p>
+<div class="tblwrap"><table class="dt"><thead><tr><th style="text-align:left">期間</th><th style="text-align:right">個股報酬</th><th style="text-align:right">S&P 500（同期縮放）</th><th style="text-align:right">超額報酬</th></tr></thead><tbody><tr><th scope="row" style="text-align:left">3M</th><td style="text-align:right">+5.7%</td><td style="text-align:right">+4.2%</td><td style="text-align:right"><span class="up">+1.5% pp</span></td></tr><tr><th scope="row" style="text-align:left">6M</th><td style="text-align:right">+121.2%</td><td style="text-align:right">+8.3%</td><td style="text-align:right"><span class="up">+112.9% pp</span></td></tr><tr><th scope="row" style="text-align:left">12M</th><td style="text-align:right">+117.5%</td><td style="text-align:right">+16.6%</td><td style="text-align:right"><span class="up">+100.9% pp</span></td></tr></tbody></table></div>
+<div class="call call--warn"><div class="call__h">⚠ 類股集中風險</div>
+<p>本籃子中 MU、SKHY、MRVL 三檔同屬半導體，且 MU 與 SKHY 是同一產品循環（HBM／DRAM）的直接同業。
+三者 Beta 分別為 2.14／2.03／2.20。
+2026-07-28 三檔同步下跌 8.9%／9.0%／7.8%，
+證實在此籃子內<strong>分散化不存在</strong>。</p></div>
+</section><section id="m11"><h2><span class="modnum">11</span>空單分析<span class="skilltag">short-interest</span></h2>
+<p>與 MU 結論相同：<strong>空方不是問題，也不是機會。</strong></p>
+<p>空單 32.48M 股，占流通股 4.34%（四檔中最高，但絕對水準仍低）。
+較上月 39.31M 股減少 <strong>17.4%</strong>——空方在 −47% 的回撤中<strong>回補</strong>而非加碼。</p>
+<p>回補天數 0.71 天，以日均量 41.37M 股計，全部空單一日內可清。
+<strong>沒有軋空燃料</strong>。空單月減 17.4% 讓篩選器的情緒維度得到 9.3 分，
+但這個高分應謹慎解讀：空方撤退可能代表看空理由消失，
+也可能只是獲利了結——在 −47% 回撤後，後者更可能。</p>
+<div class="tblwrap"><table class="dt"><thead><tr><th style="text-align:left">指標</th><th style="text-align:right">數值</th><th style="text-align:right">判讀</th></tr></thead><tbody><tr><th scope="row" style="text-align:left">空單股數</th><td style="text-align:right">32.48M</td><td style="text-align:right">前月 39.31M</td></tr><tr><th scope="row" style="text-align:left">月變動</th><td style="text-align:right"><span class="up">-17.4%</span></td><td style="text-align:right">空方回補</td></tr><tr><th scope="row" style="text-align:left">占流通股比</th><td style="text-align:right">4.3%</td><td style="text-align:right"></td></tr><tr><th scope="row" style="text-align:left">回補天數（days-to-cover）</th><td style="text-align:right">0.71 天</td><td style="text-align:right">&lt;1 天＝無軋空燃料</td></tr><tr><th scope="row" style="text-align:left">流通股</th><td style="text-align:right">872M</td><td style="text-align:right"></td></tr></tbody></table></div>
+</section><section id="m12"><h2><span class="modnum">12</span>選擇權分析<span class="skilltag">options-analysis</span></h2>
+<p>MRVL 的選擇權市場定價出現一個明顯的偏空傾斜。</p><div class="tblwrap"><table class="dt"><thead><tr><th style="text-align:left">指標</th><th style="text-align:right">數值</th><th style="text-align:right">判讀</th></tr></thead><tbody><tr><th scope="row" style="text-align:left">到期日（採用）</th><td style="text-align:right">2026-08-14</td><td style="text-align:right">可用到期日 6 個</td></tr><tr><th scope="row" style="text-align:left">價平隱含波動率 IV</th><td style="text-align:right">98.0%</td><td style="text-align:right">IV 區間 89%–113%（±25% 履約價內）</td></tr><tr><th scope="row" style="text-align:left">歷史波動率 HV（年化）</th><td style="text-align:right">77.3%</td><td style="text-align:right"><strong>IV／HV = 1.27</strong>　IV 高於 HV → 賣方策略較有利</td></tr><tr><th scope="row" style="text-align:left">價平跨式權利金</th><td style="text-align:right">$28.75</td><td style="text-align:right">隱含單日／到期波動 <strong>16.5%</strong></td></tr><tr><th scope="row" style="text-align:left">最大痛點（Max Pain）</th><td style="text-align:right">$225.00</td><td style="text-align:right"><span class="up">相對現價 +29.0%</span></td></tr><tr><th scope="row" style="text-align:left">買權未平倉合計</th><td style="text-align:right">7,423</td><td style="text-align:right"></td></tr><tr><th scope="row" style="text-align:left">賣權未平倉合計</th><td style="text-align:right">11,525</td><td style="text-align:right"></td></tr><tr><th scope="row" style="text-align:left">賣權／買權未平倉比</th><td style="text-align:right">1.55</td><td style="text-align:right">&gt;1 → 賣權未平倉較多，偏空或避險需求高</td></tr></tbody></table></div>
+<h3>策略評估</h3>
+<div class="card card--surface"><div class="card__h">建議：多頭買權價差（Bull Call Spread），若必須做多</div>
+<p style="font-size:.9375rem;color:var(--ink-2)">IV／HV ＝ 1.27，選擇權偏貴，單純買買權成本過高。價差策略可降低權利金支出。但本報告的結論是<strong>不進場</strong>——在三個估值方法相差一個數量級時，用選擇權表達方向是把估值不確定性換成時間不確定性，並未改善勝算。</p></div>
+<p class="fignote">最大痛點以到期日 2026-08-14 的全部履約價計算：
+在每個履約價下，加總所有買權與賣權的內在價值 × 未平倉量，取總額最小者。
+此指標假設造市商避險行為會使價格趨向該點，屬經驗法則而非預測。</p>
+</section><section id="m13"><h2><span class="modnum">13</span>總體環境<span class="skilltag">economics-analysis</span></h2>
+<p>MRVL 是四檔中對折現率<strong>最敏感</strong>的標的，原因是雙重的。</p>
+<ul>
+<li><strong>Beta 2.20 為四檔最高</strong>——權益成本 15.2%（4.2% ＋ 2.20×5.0%）。</li>
+<li><strong>價值高度集中在遠期</strong>——目前 GAAP 營業利益率僅 14.5%，
+多方論述依賴利益率未來大幅擴張。這使 DCF 的終值占比在基準情境達 48%、
+多方情境達 54%——遠期現金流占比越高，對折現率越敏感。</li>
+</ul>
+<p>量化這個敏感度：本報告 MRVL 的 DCF 採 WACC 11.5%。
+若股權風險溢酬由 5.0% 升至 6.0%（Ke 升至 17.4%、WACC 約升至 12.6%），
+基準情境每股價值由 $46.84 降至約 $38，跌幅約 19%。
+<strong>MRVL 的估值同時對「利益率能否擴張」與「用什麼折現率」兩個假設高度敏感</strong>，
+而兩者都無法從現有資料證實。</p>
+<p><strong>AI 資本支出循環（順風）</strong>——與 MU、SKHY 共享同一驅動力，
+但傳導路徑不同：MRVL 依賴客戶的<strong>設計選擇</strong>而非產品定價，
+因此在需求下行時，它可能因設計案已鎖定而較晚受衝擊，
+也可能因客戶取消專案而更早受衝擊。方向不確定。</p>
+<h3>折現率推導與敏感度</h3>
+<div class="tblwrap"><table class="dt"><thead><tr><th style="text-align:left">參數</th><th style="text-align:right">數值</th><th style="text-align:left">來源／說明</th></tr></thead><tbody><tr><th scope="row" style="text-align:left">無風險利率 rf</th><td style="text-align:right">4.2%</td><td style="text-align:left">10 年期美債殖利率（假設值，未由本資料取樣）</td></tr><tr><th scope="row" style="text-align:left">股權風險溢酬 ERP</th><td style="text-align:right">5.0%</td><td style="text-align:left">假設值</td></tr><tr><th scope="row" style="text-align:left">Beta（5Y 月）</th><td style="text-align:right">2.20</td><td style="text-align:left">yfinance</td></tr><tr><th scope="row" style="text-align:left">權益成本 Ke</th><td style="text-align:right">15.2%</td><td style="text-align:left">CAPM：rf + β × ERP</td></tr><tr><th scope="row" style="text-align:left">稅後負債成本 Kd</th><td style="text-align:right">4.3%</td><td style="text-align:left">假設稅前 5.5%、稅率 21%</td></tr><tr><th scope="row" style="text-align:left">WACC（估值用）</th><td style="text-align:right">14.9%</td><td style="text-align:left">以市值與淨負債加權</td></tr><tr><th scope="row" style="text-align:left">DCF 採用 WACC</th><td style="text-align:right">11.5%</td><td style="text-align:left">略低於 CAPM 推導值，反映循環股的長期資金成本</td></tr></tbody></table></div>
+</section><section id="m14"><h2><span class="modnum">14</span>財報稽核<span class="skilltag">financial-report-analyst</span></h2>
+<p>MRVL 是四檔中財報稽核發現最多問題的標的。以下逐項列出。</p>
+<div class="grid g3" style="margin-bottom:var(--s-16)">
+<div class="tile"><div class="tile__k">通過</div><div class="tile__v up">0</div><div class="tile__n">項</div></div>
+<div class="tile"><div class="tile__k">注意</div><div class="tile__v fl">4</div><div class="tile__n">項</div></div>
+<div class="tile"><div class="tile__k">紅旗</div><div class="tile__v dn">4</div><div class="tile__n">項</div></div>
+</div>
+<div class="tblwrap"><table class="dt"><thead><tr><th style="text-align:left">檢查項目</th><th style="text-align:center">結果</th><th style="text-align:left">說明</th></tr></thead><tbody><tr><th scope="row" style="text-align:left"><strong>GAAP vs non-GAAP 落差</strong></th><td style="text-align:center">🚩 紅旗</td><td style="text-align:left">TTM GAAP 營業利益 $1.263B 對 EBITDA $2.712B，差額 $1.449B（折舊攤銷）。前瞻 EPS $6.24 與最近一季 GAAP EPS $0.04 相差 156 倍。共識季度 EPS $0.927 與年度 $6.24 亦無法對帳。基準不明。</td></tr><tr><th scope="row" style="text-align:left"><strong>一次性項目未拆分</strong></th><td style="text-align:center">🚩 紅旗</td><td style="text-align:left">FY2026 淨利 $2.67B <strong>大於</strong>當年營業利益 $1.34B，代表存在大額非營業收益。季度淨利序列 $178M → $195M → $1,901M → $396M → $34.5M 無法用於趨勢外推。</td></tr><tr><th scope="row" style="text-align:left"><strong>商譽風險</strong></th><td style="text-align:center">🚩 紅旗</td><td style="text-align:left">商譽 $11.06B 占股東權益 $14.31B 的 <strong>77.3%</strong>、總資產的 49.6%。有形每股淨值約 $3.71（現價的 2.1%）。四年未認列大額減損。</td></tr><tr><th scope="row" style="text-align:left"><strong>現金 vs 應計</strong></th><td style="text-align:center">⚠ 注意</td><td style="text-align:left">TTM 營運現金流 $2.056B 對淨利 $2.527B，比率 <strong>0.81</strong>（低於 1.0）。與淨利含一次性項目的判斷一致。</td></tr><tr><th scope="row" style="text-align:left"><strong>自由現金流成長</strong></th><td style="text-align:center">🚩 紅旗</td><td style="text-align:left">FY2026 自由現金流 $1.39B 與 FY2025 的 $1.39B <strong>完全持平</strong>，而同期營收成長 42%。成長未轉化為現金。</td></tr><tr><th scope="row" style="text-align:left"><strong>買回掩飾稀釋</strong></th><td style="text-align:center">⚠ 注意</td><td style="text-align:left">FY2026 買回 $2.04B，較 FY2025 的 $0.72B 大增 183%。在 ROIC 6.4% 低於 WACC 14.9% 的情況下，大額買回的資本配置合理性需檢視。</td></tr><tr><th scope="row" style="text-align:left"><strong>存貨趨勢</strong></th><td style="text-align:center">⚠ 注意</td><td style="text-align:left">存貨 $1.03B → $1.39B（+35%），營收 +42%。存貨成長略慢於營收，尚屬同步，但需持續觀察。</td></tr><tr><th scope="row" style="text-align:left"><strong>治理指標</strong></th><td style="text-align:center">⚠ 注意</td><td style="text-align:left">稽核風險 3、董事會風險 4、綜合 4。董事會風險 4 中等。</td></tr></tbody></table></div>
+</section><section id="m15"><h2><span class="modnum">15</span>股息與資本配置<span class="skilltag">dividend-analysis</span></h2>
+<p>MRVL 支付象徵性股息，但<strong>資本配置的重點在買回，而買回的目的值得檢視</strong>。</p>
+<div class="tblwrap"><table class="dt"><thead><tr><th style="text-align:left">項目</th><th style="text-align:right">數值</th><th style="text-align:left">評註</th></tr></thead><tbody><tr><th scope="row" style="text-align:left">年化股息</th><td style="text-align:right">$0.24</td><td style="text-align:left">每股</td></tr><tr><th scope="row" style="text-align:left">股息殖利率</th><td style="text-align:right">13.00%</td><td style="text-align:left">象徵性水準</td></tr><tr><th scope="row" style="text-align:left">配息率</th><td style="text-align:right">8.25%</td><td style="text-align:left"></td></tr><tr><th scope="row" style="text-align:left">FY2026 股息支付</th><td style="text-align:right">$210.0M</td><td style="text-align:left">四年完全持平於 $0.20–0.21B</td></tr><tr><th scope="row" style="text-align:left">FY2026 股票買回</th><td style="text-align:right">$2.04B</td><td style="text-align:left">較 FY2025 的 $0.72B 大增 183%</td></tr><tr><th scope="row" style="text-align:left">FY2026 自由現金流</th><td style="text-align:right">$1.39B</td><td style="text-align:left"><strong>買回金額超過自由現金流 47%</strong></td></tr><tr><th scope="row" style="text-align:left">FY2026 資本支出</th><td style="text-align:right">$360.0M</td><td style="text-align:left">資本支出強度遠低於記憶體廠</td></tr></tbody></table></div>
+<div class="call call--bad"><div class="call__h">🚩 買回金額超過自由現金流</div>
+<p>FY2026：自由現金流 $1.39B，但買回 $2.04B ＋ 股息 $0.21B ＝ 股東回報 $2.25B。
+<strong>股東回報超過自由現金流 62%</strong>，差額須動用現金餘額或舉債
+（現金由 $0.95B 增至 $2.64B，故本年度是以其他來源支應，可能含處分所得）。</p>
+<p>更關鍵的問題：在 <strong>ROIC 6.4% 低於 WACC 14.9%</strong> 的情況下大額買回，
+資本配置的合理性需要檢視。買回在股價低於內在價值時創造價值；
+但本報告的三種估值方法中，兩種（GAAP 常態化 $22.05、DCF $46.84）
+都指出現價 $174.47 遠高於內在價值。
+若這兩種方法接近正確，FY2026 的 $2.04B 買回是在<strong>高價回購</strong>——
+而買回均價落在股價 $200–$330 的區間內。</p></div>
+</section><section id="thesis"><h2>投資論點</h2>
+<p>Marvell 設計客製化 ASIC（為雲端業者量身打造的 AI 加速器）與光電互連晶片，
+在 AI 基礎建設中扮演「賣鏟人」角色——不賣記憶體、不賣 GPU，賣的是把它們連起來的東西。
+營收確實在成長：五季序列 $1.895B → $2.006B → $2.075B → $2.219B → $2.418B，年增 27.6%，
+毛利率穩定在 51.5%。</p><p>但獲利端完全是另一回事。TTM GAAP 營業利益率僅 <strong>14.5%</strong>，
+ROIC <strong>6.4%</strong> 低於 WACC <strong>14.9%</strong>——價差 −8.4pp，
+意味著以會計數字論，<strong>MRVL 目前的成長正在毀滅價值</strong>。
+最近一季 GAAP EPS 僅 $0.04，而市場採用的前瞻 EPS 是 $6.24，相差 156 倍。
+這個鴻溝的成因是併購無形資產攤銷與股權薪酬——EBITDA $2.712B 對營業利益 $1.263B，
+差額 $1.449B 幾乎全是折舊攤銷。</p><p>本報告的核心判斷：<strong>這個鴻溝既是真實的會計事實，也是合理的商業現實，
+但它使 MRVL 成為四檔中最難估值的標的。</strong>用 GAAP 看它貴得離譜（EV/EBITDA 58.3 倍、
+常態化盈餘法給出 $22 以下的價值）；用 non-GAAP 看它只是偏貴（前瞻本益比 28 倍）。
+兩者相差一個數量級，而選哪一個決定了結論。同時，商譽 $11.06B 占股東權益 $14.31B 的
+<strong>77%</strong>，使這個判斷的下行風險高度集中在一次減損事件上。</p>
+<h3>多方論述</h3><ul style="line-height:1.8"><li><strong>營收連五季創高，AI 客製化 ASIC 是結構性成長市場</strong><br><span style="color:var(--ink-2)">$1.895B → $2.006B → $2.075B → $2.219B → $2.418B，年增 27.6%，且加速中（最近一季 QoQ +9.0%，前一季 +6.9%）。毛利率由 50.2% 微升至 52.1%，在營收快速成長時未見稀釋，說明產品組合並未惡化。</span></li><li><strong>EBITDA $2.712B 才是現金獲利能力的正確衡量</strong><br><span style="color:var(--ink-2)">GAAP 營業利益 $1.263B 與 EBITDA 之間的 $1.449B 差額，主要是併購（Inphi、Cavium 等）產生的無形資產攤銷——這是非現金項目，且不需要重複投入。以 EBITDA 計，MRVL 的現金獲利能力遠高於 GAAP 呈現的水準。</span></li><li><strong>分析師共識最一致的一檔：40 位覆蓋、0 位賣出</strong><br><span style="color:var(--ink-2)">8 強力買進／30 買進／5 持有／0 賣出／0 強力賣出。平均目標價 $256.91（隱含 +47.3%），最低目標價 $126。且評等在近三個月持續改善（強力買進由 6 位增至 8 位）。</span></li><li><strong>研發投入佔營收 24%——併購後仍持續自主投資</strong><br><span style="color:var(--ink-2)">FY2026 研發支出 $2.08B 對營收 $8.19B。四年研發累計 $7.71B，在營收僅成長 38% 的期間研發成長 17%，說明公司並非單靠併購買成長。</span></li><li><strong>空方正在撤退，且回補天數僅 0.71 天</strong><br><span style="color:var(--ink-2)">空單由 39.31M 股降至 32.48M 股（−17.4%），占流通股 4.34%。以日均量 41.37M 股計，全部空單不到一個交易日可回補——空方壓力不是股價下跌的原因。</span></li></ul>
+<h3>空方論述</h3><ul style="line-height:1.8"><li><strong>ROIC 6.4% 低於 WACC 14.9%——成長在毀滅價值</strong>　<span class="st st--bad">🚩 機率：已發生</span><span class="st st--neut" style="margin-left:6px">影響：估值基礎</span><br><span style="color:var(--ink-2)">EBIT $1.34B ×（1−21%）÷ 投入資本約 $16.6B ＝ ROIC 6.4%。WACC 14.9%（Beta 2.20）。價差 −8.4pp 是四檔中最差。這意味著即使營收持續成長，每一元新投入的資本都在銷毀價值——除非營業利益率大幅擴張。</span></li><li><strong>商譽 $11.06B 占股東權益 77%</strong>　<span class="st st--warn">⚠ 機率：中</span><span class="st st--neut" style="margin-left:6px">影響：−40% 至 −60%（若減損）</span><br><span style="color:var(--ink-2)">總資產 $22.29B 中商譽 $11.06B，股東權益 $14.31B。扣除商譽後的有形股東權益僅約 $3.25B，對應每股有形淨值約 $3.71（現價 $174.47 的 2%）。商譽來自 Inphi（2021）等高價併購。一旦客製化 ASIC 需求不如預期，減損測試將直接衝擊股東權益，且無現金流可緩衝。</span></li><li><strong>最近一季 GAAP 淨利塌至 $34.5M，EPS $0.04</strong>　<span class="st st--bad">🚩 機率：已發生</span><span class="st st--neut" style="margin-left:6px">影響：盈餘品質</span><br><span style="color:var(--ink-2)">營收創高 $2.418B、營業利益 $350M，但淨利僅 $34.5M——營業利益到淨利之間消失了 90%。對照前一年同季（2025-10-31）淨利 $1.901B、EPS $2.20（含一次性處分利益），GAAP 獲利序列為 $178M → $195M → $1,901M → $396M → $34.5M。<strong>這條線無法用於任何趨勢外推</strong>。</span></li><li><strong>EV/EBITDA 58.3 倍——四檔中最貴，且是 MU 的 4.4 倍</strong>　<span class="st st--bad">🚩 機率：已發生</span><span class="st st--neut" style="margin-left:6px">影響：估值</span><br><span style="color:var(--ink-2)">篩選器價值維度僅 2.6／10（四檔最低），其中 EV/EBITDA 子因子得 0.0 分（>40x 即歸零）、P/S 18.0 倍得 1.1 分。若營業利益率無法從 14.5% 大幅擴張，常態化盈餘法在 18 倍本益比下僅對應 $22.05／股。</span></li><li><strong>內部人只賣不買，且賣價全數高於現價</strong>　<span class="st st--bad">🚩 機率：已發生</span><span class="st st--neut" style="margin-left:6px">影響：訊號性質</span><br><span style="color:var(--ink-2)">6 筆賣出、合計 $9.7M，0 筆買進。執行長 Matthew Murphy 兩筆（$209.52、$298.76）、總裁 Christopher Koopmans（$281.92）、財務長 Daniel Durn（$281.01）。現價 $174.47 低於<strong>全部</strong>六筆成交價，其中最高者低 42%。</span></li><li><strong>距 52 週高點 −47.1%，四檔中回撤最深</strong>　<span class="st st--bad">🚩 機率：已發生</span><span class="st st--neut" style="margin-left:6px">影響：動能</span><br><span style="color:var(--ink-2)">由 $329.88 跌至 $174.47。RSI 28.9 已進入超賣區（<30），MACD −16.88 在訊號線 −12.72 之下，股價低於 MA20（$220.49）與 MA50（$239.17）分別達 −20.9% 與 −27.1%。技術結構是四檔中最差的。</span></li></ul>
+</section><section id="bear"><h2>空方紅隊<span class="skilltag">bear-case</span></h2>
+<div class="call call--bad"><div class="call__h">⚠ 這是刻意單方面的空方論述</div>
+<p>本節為<strong>紅隊／魔鬼代言人</strong>工具，設計上就偏向下行。它的價值來自單方面——
+強迫反面證據浮出水面，以壓力測試多方論點。<strong>它不是平衡的判斷，也不應被當作平衡判斷呈現。</strong>
+請與上方的<a href="#m1">個股評估</a>與<a href="#thesis">多方論述</a>並讀。</p></div>
+<h3>三句話空方論點</h3>
+<div class="card" style="background:#fdf0f0;border-color:#f7c4c4">
+<p style="font-size:1.0625rem;line-height:1.85">MRVL 的營收連五季創高，但 GAAP 淨利在最新一季塌到 $34.5M、ROIC 6.4% 低於 WACC 14.9%，意味著這個成長正在毀滅價值；股東權益的 77% 是併購留下的商譽，有形每股淨值只有 $3.71；而執行長、總裁、財務長在 $199–$299 之間全數賣出，現價 $174.47 低於他們每一筆成交價。</p></div>
+<h3>空方論點強度：8.0 / 10</h3>
+<figure class="fig"><div class="figbox"><svg class="chart" viewBox="0 0 280 170" role="img" preserveAspectRatio="xMidYMid meet"><path d="M26.0,144.0 A114.0,114.0 0 0 1 254.0,144.0" fill="none" stroke="#e6e8eb" stroke-width="12" stroke-linecap="round"/><path d="M26.0,144.0 A114.0,114.0 0 0 1 232.2,77.0" fill="none" stroke="#00692e" stroke-width="12" stroke-linecap="round"/><text x="140.0" y="136" text-anchor="middle" font-size="40" font-weight="800" fill="#16181a">8.00</text><text x="140.0" y="156" text-anchor="middle" font-size="12" fill="#767c85">／ 10</text><text x="140.0" y="166" text-anchor="middle" font-size="12" font-weight="700" fill="#00692e">空方論點強度</text></svg></div><figcaption>空方論點強度評分</figcaption></figure>
+<h3>下行量化與基本面底部</h3>
+<p><strong>基本面底部：</strong>這是 MRVL 最脆弱之處。股東權益 $14.31B 中商譽 $11.06B，<strong>有形每股淨值僅約 $3.71</strong>（現價 $174.47 的 2.1%）。淨負債 $1.43B。實質上，MRVL <strong>沒有資產面底部</strong>——若成長論述失效，帳面價值無法提供支撐。這使它的下行風險在四檔中最不受限。</p>
+<h3>論點殺手 — 什麼會證明空方是錯的（框架強制項）</h3>
+<ol style="line-height:1.8"><li><strong>GAAP 營業利益率突破 20%</strong>——這是最直接的論點殺手。若營收持續成長同時 GAAP 利益率明顯擴張，則「規模經濟終將顯現」成立，常態化盈餘法的 $22.05 將大幅上修，ROIC 也會向 WACC 收斂。</li><li><strong>公司清楚拆分一次性項目與經常性獲利</strong>——目前 GAAP 獲利序列不可用於趨勢分析的主因是一次性項目未拆分。若揭露改善，估值的三個矛盾答案可能收斂為一個。</li><li><strong>取得一個大型雲端業者的多世代 ASIC 設計案</strong>——客製化 ASIC 的營收能見度可達三到五年，一個重大設計案能實質改變成長軌跡的確定性。</li><li><strong>商譽通過減損測試且客製化 ASIC 營收達到預期</strong>——將消除 $11.06B（權益 77%）的最大單一下行風險。</li><li><strong>被併購</strong>——在 AI 互連領域具戰略價值，且商譽占比高使帳面價值對併購方的意義低於其技術與客戶關係。</li></ol>
+<div class="call"><div class="call__h">🤝 空方自己承認的最大風險</div>
+<p><strong>GAAP 常態化盈餘法可能系統性低估 MRVL。</strong>併購無形資產攤銷是非現金項目，且不需要重複投入——以 EBITDA $2.712B 衡量，MRVL 的現金獲利能力遠高於 GAAP 呈現的 $1.263B。若市場採用的 non-GAAP 基準才是正確的，則 28 倍前瞻本益比只是偏貴，而非本節主張的離譜。此外 RSI 28.9 已超賣、回補天數 0.71 天無軋空燃料、40 位分析師零賣出、且在 AI 互連領域具併購價值。</p></div>
+</section><section id="card"><h2>綜合評分卡</h2>
+<div class="grid g2">
+<div class="tblwrap"><table class="dt">
+<thead><tr><th style="text-align:left">階段</th><th>權重</th><th>子分數</th><th>加權分</th><th>評等</th></tr></thead>
+<tbody><tr><th scope="row" style="text-align:left">商業品質</th><td>25%</td><td><strong>6.4</strong></td><td>1.600</td><td><span class="st st--warn">⚠ 中</span></td></tr><tr><th scope="row" style="text-align:left">估值</th><td>25%</td><td><strong>4.6</strong></td><td>1.150</td><td><span class="st st--warn">⚠ 中</span></td></tr><tr><th scope="row" style="text-align:left">市場訊號</th><td>20%</td><td><strong>6.8</strong></td><td>1.360</td><td><span class="st st--good">✅ 強</span></td></tr><tr><th scope="row" style="text-align:left">技術時機</th><td>15%</td><td><strong>2.4</strong></td><td>0.360</td><td><span class="st st--bad">🚩 弱</span></td></tr><tr><th scope="row" style="text-align:left">風險剖面</th><td>15%</td><td><strong>4.0</strong></td><td>0.600</td><td><span class="st st--warn">⚠ 中</span></td></tr>
+<tr style="background:var(--green-wash)"><th scope="row" style="text-align:left"><strong>綜合評分</strong></th>
+<td><strong>100%</strong></td><td>—</td><td><strong>5.07</strong></td>
+<td><span class="st st--warn">⚠ 持有／觀察</span></td></tr></tbody></table></div>
+<div><div class="figbox"><svg class="chart" viewBox="0 0 380 380" role="img" preserveAspectRatio="xMidYMid meet"><polygon points="190.0,163.2 215.5,181.7 205.8,211.7 174.2,211.7 164.5,181.7" fill="none" stroke="#e6e8eb" stroke-width="1"/><polygon points="190.0,136.4 241.0,173.4 221.5,233.4 158.5,233.4 139.0,173.4" fill="none" stroke="#e6e8eb" stroke-width="1"/><polygon points="190.0,109.6 266.5,165.2 237.3,255.0 142.7,255.0 113.5,165.2" fill="none" stroke="#e6e8eb" stroke-width="1"/><polygon points="190.0,82.8 292.0,156.9 253.0,276.7 127.0,276.7 88.0,156.9" fill="none" stroke="#e6e8eb" stroke-width="1"/><polygon points="190.0,56.0 317.4,148.6 268.8,298.4 111.2,298.4 62.6,148.6" fill="none" stroke="#e6e8eb" stroke-width="1"/><line x1="190.0" y1="190.0" x2="190.0" y2="56.0" stroke="#e6e8eb" stroke-width="1"/><text x="190.0" y="33.2" text-anchor="middle" font-size="12" font-weight="600" fill="#4a4f55">商業品質</text><line x1="190.0" y1="190.0" x2="317.4" y2="148.6" stroke="#e6e8eb" stroke-width="1"/><text x="342.9" y="144.3" text-anchor="start" font-size="12" font-weight="600" fill="#4a4f55">估值</text><line x1="190.0" y1="190.0" x2="268.8" y2="298.4" stroke="#e6e8eb" stroke-width="1"/><text x="284.5" y="324.1" text-anchor="start" font-size="12" font-weight="600" fill="#4a4f55">市場訊號</text><line x1="190.0" y1="190.0" x2="111.2" y2="298.4" stroke="#e6e8eb" stroke-width="1"/><text x="95.5" y="324.1" text-anchor="end" font-size="12" font-weight="600" fill="#4a4f55">技術時機</text><line x1="190.0" y1="190.0" x2="62.6" y2="148.6" stroke="#e6e8eb" stroke-width="1"/><text x="37.1" y="144.3" text-anchor="end" font-size="12" font-weight="600" fill="#4a4f55">風險剖面</text><polygon points="190.0,104.2 248.6,171.0 243.6,263.7 171.1,216.0 139.0,173.4" fill="#eb6834" fill-opacity=".14" stroke="#eb6834" stroke-width="2" stroke-linejoin="round"/><circle cx="190.0" cy="104.2" r="4.5" fill="#eb6834" stroke="#ffffff" stroke-width="2"><title>MRVL · 商業品質: 6.4</title></circle><circle cx="248.6" cy="171.0" r="4.5" fill="#eb6834" stroke="#ffffff" stroke-width="2"><title>MRVL · 估值: 4.6</title></circle><circle cx="243.6" cy="263.7" r="4.5" fill="#eb6834" stroke="#ffffff" stroke-width="2"><title>MRVL · 市場訊號: 6.8</title></circle><circle cx="171.1" cy="216.0" r="4.5" fill="#eb6834" stroke="#ffffff" stroke-width="2"><title>MRVL · 技術時機: 2.4</title></circle><circle cx="139.0" cy="173.4" r="4.5" fill="#eb6834" stroke="#ffffff" stroke-width="2"><title>MRVL · 風險剖面: 4.0</title></circle><text x="190.0" y="368.0" text-anchor="middle" font-size="11" fill="#767c85">0（外圈 10）</text></svg></div><figcaption style="text-align:center">五階段評分（外圈 10）</figcaption></div>
+</div>
+<p class="fignote">評分區間：8.0–10.0 強力買進　·　6.5–7.9 買進　·　5.0–6.4 持有／觀察　·
+3.5–4.9 減碼　·　0.0–3.4 賣出／避開。</p>
+</section><section id="valsum"><h2>估值總結</h2>
+<p>現價 <strong>$174.47</strong>。下表彙整本報告全部估值方法的結論。</p>
+<div class="tblwrap"><table class="dt"><thead><tr><th style="text-align:left">方法／情境</th><th style="text-align:right">每股價值</th><th style="text-align:right">相對現價</th><th style="text-align:left">關鍵假設</th></tr></thead><tbody><tr><th scope="row" style="text-align:left">均值回歸（含谷底四年均值）</th><td style="text-align:right">$2.58</td><td style="text-align:right"><span class="dn">-99%</span></td><td style="text-align:left">2.0% 營業利益率 × 15 倍</td></tr><tr><th scope="row" style="text-align:left">除谷底均值</th><td style="text-align:right">$14.22</td><td style="text-align:right"><span class="dn">-92%</span></td><td style="text-align:left">11.2% 營業利益率 × 15 倍</td></tr><tr><th scope="row" style="text-align:left">結構性中循環</th><td style="text-align:right">$16.30</td><td style="text-align:right"><span class="dn">-91%</span></td><td style="text-align:left">12.8% 營業利益率 × 15 倍</td></tr><tr><th scope="row" style="text-align:left">維持目前 TTM 利益率</th><td style="text-align:right">$18.38</td><td style="text-align:right"><span class="dn">-89%</span></td><td style="text-align:left">14.5% 營業利益率 × 15 倍</td></tr><tr><th scope="row" style="text-align:left">DCF 空方情境</th><td style="text-align:right">$28.58</td><td style="text-align:right"><span class="dn">-84%</span></td><td style="text-align:left">WACC 11.5%，年 1–5 成長 +4%</td></tr><tr><th scope="row" style="text-align:left">DCF 基準情境</th><td style="text-align:right">$46.84</td><td style="text-align:right"><span class="dn">-73%</span></td><td style="text-align:left">WACC 11.5%，年 1–5 成長 +13%</td></tr><tr><th scope="row" style="text-align:left">DCF 多方情境</th><td style="text-align:right">$75.96</td><td style="text-align:right"><span class="dn">-56%</span></td><td style="text-align:left">WACC 11.5%，年 1–5 成長 +22%</td></tr><tr><th scope="row" style="text-align:left">分析師共識目標價</th><td style="text-align:right">$256.91</td><td style="text-align:right"><span class="up">+47%</span></td><td style="text-align:left">40 位分析師平均</td></tr></tbody></table></div>
+<div class="call call--bad"><div class="call__h">
+🚩 安全邊際評估</div>
+<p>三個方法給出 <strong>$22.05、$46.84、$256.91</strong>——相差超過一個數量級。這不是區間，而是三個彼此矛盾的答案，源於 GAAP 與 non-GAAP 基準的鴻溝。<strong>本報告拒絕在此給出單一目標價</strong>，因為那會是虛假的精確。可以確定的是：MRVL 沒有資產面底部（有形每股淨值 $3.71），因此若成長論述失效，下行不受限。</p></div>
+</section><section id="entry"><h2>進出場策略</h2>
+<h3>進場：不進場。等 8 月 28 日財報確認 GAAP 營業利益率轉折。</h3>
+<p>MRVL 的問題不是「太貴」——RSI 28.9 的超賣狀態與 −47% 的回撤已消除了大部分動能溢價。
+問題是<strong>沒有一個可靠的獲利基準可以用來估值</strong>。</p>
+<p>三個互斥的估值答案：</p>
+<ul>
+<li><strong>GAAP 常態化盈餘法</strong>：18 倍本益比對應 <strong>$22.05</strong>（−87%）</li>
+<li><strong>FCF-DCF 基準情境</strong>：<strong>$46.84</strong>（−73%）</li>
+<li><strong>non-GAAP 前瞻本益比</strong>：28 倍，分析師目標價 <strong>$256.91</strong>（+47%）</li>
+</ul>
+<p>這不是「區間」，而是三個彼此矛盾的答案。在這種情況下給出目標價是虛假的精確。</p>
+<p><strong>要進場需要的是資訊，不是價格：</strong></p>
+<ol>
+<li><strong>8 月 28 日財報</strong>——關鍵不是 non-GAAP EPS 是否達 $0.927，
+而是 <strong>GAAP 營業利益率是否從 14.5% 向上突破</strong>。
+若營收再創高而 GAAP 營業利益率不動，則「規模經濟終將顯現」的論述失效。</li>
+<li><strong>商譽減損測試結果</strong>——$11.06B 商譽、77% 的權益占比，
+任何減損跡象都應觸發全面重估。</li>
+<li><strong>ROIC 是否向 WACC 收斂</strong>——目前 −8.4pp。
+這是判斷成長是否開始創造價值的單一最佳指標。</li>
+</ol>
+<p>若必須參與 AI 互連主題，MU 與 SKHY 在相同的產業循環中提供了明確得多的獲利基準
+與更好的 ROIC。MRVL 的多方論述需要的假設最多。</p>
+
+<h3>出場參考位</h3>
+<div class="tblwrap"><table class="dt"><thead><tr><th style="text-align:left">情境</th><th style="text-align:right">價位</th><th style="text-align:left">依據</th></tr></thead><tbody><tr><th scope="row" style="text-align:left">GAAP 常態化</th><td style="text-align:right">$22.05</td><td style="text-align:left">目前 GAAP 利益率 × 18 倍</td></tr><tr><th scope="row" style="text-align:left">DCF 基準</th><td style="text-align:right">$46.84</td><td style="text-align:left">WACC 11.5%</td></tr><tr><th scope="row" style="text-align:left">分析師共識</th><td style="text-align:right">$256.91</td><td style="text-align:left">non-GAAP 基準，40 位分析師</td></tr><tr><th scope="row" style="text-align:left">有形淨值底部</th><td style="text-align:right">$3.71</td><td style="text-align:left"><strong>商譽剔除後的每股帳面價值</strong></td></tr></tbody></table></div>
+<h3>部位規模</h3>
+<p>依 <code>full-report</code> 的部位規模規範對照本檔的結論：</p>
+<div class="tblwrap"><table class="dt"><thead><tr><th style="text-align:left">風險偏好</th><th style="text-align:center">框架建議上限</th><th style="text-align:left">本報告對 MRVL 的建議</th></tr></thead><tbody><tr><th scope="row" style="text-align:left">積極型</th><td style="text-align:center">5–7% 投組</td><td style="text-align:left">0%（不建立部位）</td></tr><tr><th scope="row" style="text-align:left">穩健型</th><td style="text-align:center">2–4% 投組</td><td style="text-align:left">0%（不建立部位）</td></tr><tr><th scope="row" style="text-align:left">試單型</th><td style="text-align:center">1–2% 投組</td><td style="text-align:left">0%——三個估值答案相差一個數量級時，任何部位規模都是猜測</td></tr></tbody></table></div>
+<p class="fignote">框架另規定：高 Beta 或單一產品線標的的集中度上限應為 5%（而非大型股的 10%）。
+MRVL 的 Beta 2.20 超過 2.0，屬高 Beta 類別。</p>
+</section><section id="cat"><h2>催化劑日曆<span class="skilltag">catalyst-calendar</span></h2>
+<p>未來 90 天（2026-07-29 起）及其後的關鍵事件。
+下次財報 <strong>2026-08-28</strong>（30 天後）。</p>
+<div class="tblwrap"><table class="dt"><thead><tr><th style="text-align:left">時間</th><th style="text-align:left">事件</th><th style="text-align:center">預期影響</th><th style="text-align:left">說明</th></tr></thead><tbody><tr><th scope="row" style="text-align:left">2026-08-28</th><td style="text-align:left"><strong>FY2027 Q2 財報</strong></td><td style="text-align:center"><span class="st st--bad">🚩 極高</span></td><td style="text-align:left">共識 non-GAAP EPS $0.927（區間 $0.88–$0.94）、營收 $2.70B（+11.8% QoQ）。<strong>關鍵是 GAAP 營業利益率是否從 14.5% 向上突破</strong>，而非 non-GAAP EPS 是否達標。</td></tr><tr><th scope="row" style="text-align:left">2026-07-30</th><td style="text-align:left"><strong>股息發放日</strong></td><td style="text-align:center"><span class="st st--neut">▬ 極低</span></td><td style="text-align:left">已宣告，金額象徵性（年化 $0.24）。</td></tr><tr><th scope="row" style="text-align:left">每季（隨財報）</th><td style="text-align:left"><strong>商譽減損測試</strong></td><td style="text-align:center"><span class="st st--warn">⚠ 高</span></td><td style="text-align:left">商譽 $11.06B 占股東權益 77.3%。任何減損跡象都應觸發全面重估。</td></tr><tr><th scope="row" style="text-align:left">持續</th><td style="text-align:left"><strong>客製化 ASIC 設計案公告</strong></td><td style="text-align:center"><span class="st st--bad">🚩 極高</span></td><td style="text-align:left">取得或失去一個大型雲端業者的設計案，將改變三到五年的營收能見度。這是 MRVL 最大的單一價值驅動因子，且完全無法從財務數字預測。</td></tr><tr><th scope="row" style="text-align:left">持續</th><td style="text-align:left"><strong>Form 4 內部人申報</strong></td><td style="text-align:center"><span class="st st--warn">⚠ 中</span></td><td style="text-align:left">目前 6 賣 0 買，賣價 $199–$299 全數高於現價。</td></tr><tr><th scope="row" style="text-align:left">2026-11 中</th><td style="text-align:left"><strong>Q3 13F 申報</strong></td><td style="text-align:center"><span class="st st--warn">⚠ 中</span></td><td style="text-align:left">FMR 單一持股 15.0%（+3.5%）。若轉為減碼將造成顯著賣壓。</td></tr></tbody></table></div>
+</section><section id="monitor"><h2>監控計畫</h2>
+<div class="tblwrap"><table class="dt"><thead><tr><th style="text-align:left">監控指標</th><th style="text-align:right">目前值</th><th style="text-align:left">為什麼重要／觸發條件</th></tr></thead><tbody><tr><th scope="row" style="text-align:left"><strong>GAAP 營業利益率（每季）</strong></th><td style="text-align:right">14.5%</td><td style="text-align:left">最高優先。營收創高但利益率不動 → 規模經濟論述失效</td></tr><tr><th scope="row" style="text-align:left"><strong>商譽餘額</strong></th><td style="text-align:right">$11.06B（占權益 77.3%）</td><td style="text-align:left">任何減損認列將直接衝擊股東權益，且無現金流緩衝</td></tr><tr><th scope="row" style="text-align:left"><strong>ROIC vs WACC</strong></th><td style="text-align:right">6.4% vs 14.9%（−8.4pp）</td><td style="text-align:left">向 WACC 收斂＝成長開始創造價值；持續背離＝毀滅價值</td></tr><tr><th scope="row" style="text-align:left"><strong>營運現金流／淨利</strong></th><td style="text-align:right">0.81</td><td style="text-align:left">低於 1.0 代表獲利未完全轉現金；持續走低為盈餘品質警訊</td></tr><tr><th scope="row" style="text-align:left"><strong>存貨成長 vs 營收成長</strong></th><td style="text-align:right">存貨 +35% vs 營收 +42%</td><td style="text-align:left">存貨成長超越營收＝需求轉弱或通道存貨累積</td></tr><tr><th scope="row" style="text-align:left"><strong>FMR 持股</strong></th><td style="text-align:right">15.0%（+3.5%）</td><td style="text-align:left">單一主動經理人持股 15%；若轉為減碼將造成顯著賣壓</td></tr><tr><th scope="row" style="text-align:left"><strong>8/28 財報</strong></th><td style="text-align:right">共識 non-GAAP EPS $0.927 / 營收 $2.703B</td><td style="text-align:left">營收低於 $2.600B → 五季成長趨勢中斷</td></tr></tbody></table></div>
+</section><section id="valid"><h2>結果稽核<span class="skilltag">result-validator</span></h2>
+<div class="grid g2" style="margin-bottom:var(--s-16)">
+<div><figure class="fig"><div class="figbox"><svg class="chart" viewBox="0 0 290 178" role="img" preserveAspectRatio="xMidYMid meet"><path d="M26.0,152.0 A119.0,119.0 0 0 1 264.0,152.0" fill="none" stroke="#e6e8eb" stroke-width="12" stroke-linecap="round"/><path d="M26.0,152.0 A119.0,119.0 0 0 1 214.9,55.7" fill="none" stroke="#00692e" stroke-width="12" stroke-linecap="round"/><text x="145.0" y="144" text-anchor="middle" font-size="40" font-weight="800" fill="#16181a">7.00</text><text x="145.0" y="164" text-anchor="middle" font-size="12" fill="#767c85">／ 10</text><text x="145.0" y="174" text-anchor="middle" font-size="12" font-weight="700" fill="#00692e">HIGH · 70/100</text></svg></div><figcaption>綜合信賴分數</figcaption></figure></div>
+<div class="card card--surface"><div class="card__h">信賴等級對照</div>
+<p style="font-size:.875rem;color:var(--ink-2);line-height:2">
+85–100 <strong>VERY HIGH</strong> — 可據以行動<br>
+70–84 <strong>HIGH</strong> — 決策的良好基礎<br>
+55–69 <strong>MEDIUM</strong> — 可用但有明顯缺口<br>
+40–54 <strong>LOW</strong> — 結論僅具方向性參考<br>
+0–39 <strong>VERY LOW</strong> — 不應據以行動</p>
+<p style="font-size:.875rem;margin-top:10px"><strong>本報告：70／100（HIGH）</strong></p></div>
+</div>
+<div class="tblwrap"><table class="dt"><thead><tr><th style="text-align:left">稽核維度</th><th style="text-align:center">得分</th><th style="text-align:left">說明</th></tr></thead><tbody><tr><th scope="row" style="text-align:left"><strong>資料品質</strong></th><td style="text-align:center"><strong>13 / 20</strong></td><td style="text-align:left">價格與財報同日擷取（+4）。四年年報＋五季季報、13F、Form 4 齊備（+4）。但：前瞻 EPS 與季度共識 EPS 的會計基準不明且互不一致（−3）；TTM 資本支出欄位為空（−1）；缺法說會逐字稿與客戶集中度揭露（−2）；FY2026 淨利含未拆分的一次性項目，GAAP 獲利序列無法用於趨勢分析（−2）。</td></tr><tr><th scope="row" style="text-align:left"><strong>方法論健全度</strong></th><td style="text-align:center"><strong>15 / 20</strong></td><td style="text-align:left">同時採 GAAP 常態化盈餘法、FCF-DCF、non-GAAP 相對倍數三法，且明確拒絕在三者矛盾時給出單一目標價（+5）。所有假設明示（+5）。但常態化盈餘法以 GAAP 營業利益率為基礎，對本檔而言可能系統性低估（無形資產攤銷為非現金項目），此偏誤已揭露但未量化修正（−3）。終值占企業價值 48%，偏高（−2）。</td></tr><tr><th scope="row" style="text-align:left"><strong>訊號一致性</strong></th><td style="text-align:center"><strong>5 / 20</strong></td><td style="text-align:left">基本面內部即不一致：營收連五季創高、GAAP 獲利崩塌、ROIC 低於 WACC（2／7）。情緒面嚴重分裂：40 位分析師零賣出、目標價 +47%，而執行長、總裁、財務長全數賣出且賣價高於現價達 14%–71%（1／7）。技術面單向偏空（2／6）。<strong>這是四份報告中訊號一致性最低者。</strong></td></tr><tr><th scope="row" style="text-align:left"><strong>風險覆蓋</strong></th><td style="text-align:center"><strong>18 / 20</strong></td><td style="text-align:left">六項風險具名並量化（+7）。空頭情境以 GAAP 常態化利益率建模，並明示商譽減損的每股影響（有形淨值 $3.71）（+6）。催化劑（8/28 財報、GAAP 利益率門檻、減損測試）已標註（+5）。</td></tr><tr><th scope="row" style="text-align:left"><strong>推理透明度</strong></th><td style="text-align:center"><strong>19 / 20</strong></td><td style="text-align:left">明確呈現三個互斥的估值答案並拒絕虛假精確（+7）。多方論述（EBITDA 才是正確衡量）以同等力度呈現，並指出 GAAP 法對本檔的系統性偏誤（+7）。已承認無法確認共識 EPS 基準、客戶集中度無資料、ASIC 設計案風險無法量化（+5）。</td></tr><tr><th scope="row" style="text-align:left"><strong>總信賴分數</strong></th><td style="text-align:center"><strong>70 / 100</strong></td><td style="text-align:left">信賴等級 <strong>HIGH</strong></td></tr></tbody></table></div>
+<div class="grid g3" style="margin-top:var(--s-24)">
+<div class="card" style="background:#fff8ef;border-color:#ffd9a8"><div class="card__h">⚠ 警示（中度關切）</div>
+<ul style="font-size:.875rem;margin:0"><li>常態化盈餘法以 GAAP 營業利益率計算，對併購密集的公司可能系統性低估其現金獲利能力。</li><li>空單月減 17.4% 使情緒維度得 9.3 高分，但在 −47% 回撤後，空方撤退更可能是獲利了結而非看多。</li><li>FMR 單一持股 15.0%，集中度風險未反映在任何評分維度中。</li><li>客戶集中度為本檔最重要的結構風險，但本資料完全未揭露。</li></ul></div>
+<div class="card" style="background:#fdf0f0;border-color:#f7c4c4"><div class="card__h">🚩 紅旗（嚴重關切）</div>
+<ul style="font-size:.875rem;margin:0"><li>前瞻年度 EPS $6.24 與季度共識 EPS $0.927 無法互相對帳，且兩者皆與 GAAP 季度 EPS $0.04 相差一到兩個數量級。會計基準不明，本報告拒絕以任何前瞻 EPS 作為主要估值依據。</li><li>GAAP 淨利五季序列 $178M → $195M → $1,901M → $396M → $34.5M 含未拆分的一次性項目，無法用於趨勢外推。FY2026 年度淨利 $2.67B 大於當年營業利益 $1.34B。</li><li>商譽 $11.06B 占股東權益 77.3%，有形每股淨值僅約 $3.71（現價的 2.1%）。四年未認列大額減損。</li><li>ROIC 6.4% 持續低於 WACC 14.9%（−8.4pp），為四檔中最差；在營收成長 42% 的年度，自由現金流零成長（$1.39B → $1.39B）。</li></ul></div>
+<div class="card card--wash"><div class="card__h">✅ 優點</div>
+<ul style="font-size:.875rem;margin:0"><li>營收層資料乾淨且趨勢明確：五季連續創高、毛利率穩定、研發投入未縮減。</li><li>三個矛盾的估值答案被並列呈現，而非挑選最有利者。</li><li>內部人賣出的成交價與現價的相對位置已逐筆量化，未以「金額不大」淡化。</li><li>已區分主動賣出（$9.7M，計入）與股權歸屬代扣（不計入），避免高估訊號強度。</li></ul></div>
+</div>
+<h3>信賴度調整後的訊號</h3>
+<div class="sig"><pre>╔═══════════════════════════════════╗
+║    VALIDATED INVESTMENT SIGNAL    ║
+╠═══════════════════════════════════╣
+║ Original:    BEARISH (unvaluable) ║
+║ Orig Score:  5.07 / 10            ║
+╠═══════════════════════════════════╣
+║ Confidence:  HIGH                 ║
+║ Conf Score:  70 / 100             ║
+╠═══════════════════════════════════╣
+║ Adjusted:    HOLD                 ║
+║ Note:        signal STANDS        ║
+╚═══════════════════════════════════╝</pre></div>
+</section><section id="signal"><h2>訊號區塊</h2>
+<div class="sig"><pre>╔════════════════════════════════════════╗
+║           INVESTMENT SIGNAL            ║
+╠════════════════════════════════════════╣
+║ Signal:      BEARISH (unvaluable)      ║
+║ Confidence:  LOW                       ║
+║ Horizon:     MEDIUM-TERM (3-12 months) ║
+║ Score:       5.07 / 10                 ║
+╠════════════════════════════════════════╣
+║ Action:      HOLD                      ║
+║ Conviction:  WEAK                      ║
+╚════════════════════════════════════════╝</pre></div>
+<p class="fignote">評分指引：8.0–10.0 強力偏多｜6.0–7.9 偏多｜4.0–5.9 中性｜2.0–3.9 偏空｜0.0–1.9 強力偏空。
+信賴度：HIGH（資料充足、訊號清楚）｜MEDIUM（訊號混雜）｜LOW（資料有限或訊號矛盾）。</p>
+<div class="disc" style="margin-top:var(--s-24)"><strong>本報告的定位</strong>
+本報告為 InvestSkill 框架的能力展示，內容由大型語言模型依 yfinance 公開資料自動生成，
+非投資建議。所有計算（Piotroski、ROIC／WACC、DCF、常態化盈餘、最大痛點、隱含波動率）
+均以程式由同一份快照推導，可獨立重算；但估值假設（無風險利率、股權風險溢酬、
+成長率、利益率情境）皆為<strong>假設值</strong>，
+不同假設會得出不同結論。任何決策前請查證第一手文件（SEC EDGAR、公司投資人關係網站）。</div>
+<div class="chips" style="margin-top:var(--s-32)">
+<a class="btn btn--soft" href="mu.html">MU 報告 →</a><a class="btn btn--soft" href="skhy.html">SKHY 報告 →</a><a class="btn btn--soft" href="sndl.html">SNDL 報告 →</a>
+<a class="btn" href="screener.html">四檔對決 →</a>
+<a class="btn btn--soft" href="index.html">← 回展示櫃</a>
+</div></section></div></div>
+</main>
+<footer class="foot"><div class="wrap">
+<p><strong>InvestSkill Autopilot — 展示櫃</strong>　·　由 <a href="https://github.com/yennanliu/InvestSkill">InvestSkill</a> v1.11.0（27 個分析框架）驅動，
+報告內容由 LLM 依據 yfinance 公開資料生成。</p>
+<p style="margin-top:8px">資料快照：2026-07-29　·　<a href="https://github.com/yennanliu/InvestSkill-test">原始碼與完整報告存檔</a>　·　<a href="../index.html">回專案首頁</a></p>
+<div class="disc"><strong>免責聲明</strong>　本頁為技術與框架能力展示，並非投資建議。所有內容由大型語言模型依據免費公開資料自動生成，
+可能存在錯誤、過時或內部不一致之處；文中已刻意保留並標示資料本身的缺陷（例如貨幣單位混用、上市歷史不足），
+以示範 <code>result-validator</code> 框架的稽核能力。任何投資決策前請自行查證第一手文件（SEC EDGAR、公司投資人關係網站）。</div>
+</div></footer>
+<script>
+// TOC scroll-spy
+(function(){
+  var links=[].slice.call(document.querySelectorAll('.toc a[href^="#"]'));
+  if(!links.length)return;
+  var targets=links.map(function(a){return document.getElementById(a.getAttribute('href').slice(1));});
+  function upd(){
+    var y=window.scrollY+120,cur=-1;
+    targets.forEach(function(t,i){if(t&&t.offsetTop<=y)cur=i;});
+    links.forEach(function(a,i){a.classList.toggle('on',i===cur);});
+  }
+  var raf=null;
+  addEventListener('scroll',function(){if(raf)return;raf=requestAnimationFrame(function(){raf=null;upd();});},{passive:true});
+  upd();
+})();
+
+// Line-chart crosshair + tooltip
+(function(){
+  document.querySelectorAll('svg[data-chart="line"]').forEach(function(svg){
+    var holder=svg.parentNode, script=holder.querySelector('.ch-data');
+    if(!script)return;
+    var cfg=JSON.parse(script.textContent);
+    var cross=svg.querySelector('.ch-cross'), cap=svg.querySelector('.ch-cap');
+    var tip=document.createElement('div'); tip.className='ch-tip'; holder.appendChild(tip);
+    var dots=[];
+    var ns='http://www.w3.org/2000/svg';
+    cfg.series.forEach(function(s){
+      var c=document.createElementNS(ns,'circle');
+      c.setAttribute('r','5.5');c.setAttribute('fill',s.colour);
+      c.setAttribute('stroke','#fff');c.setAttribute('stroke-width','2');
+      c.style.display='none';svg.appendChild(c);dots.push(c);
+    });
+    function fmt(v){
+      var f=cfg.fmt||'{:.0f}';
+      var m=f.match(/\{:,?\.(\d)f\}/);
+      var d=m?+m[1]:0;
+      var s=v.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
+      if(f.indexOf('$')===0)s='$'+s;
+      if(f.indexOf('%')>-1)s=s+'%';
+      return s;
+    }
+    function move(e){
+      var r=svg.getBoundingClientRect();
+      var vb=svg.viewBox.baseVal;
+      var sx=(e.clientX-r.left)/r.width*vb.width;
+      var rows='',label='',any=false;
+      cfg.series.forEach(function(s,si){
+        if(!s.pts.length){dots[si].style.display='none';return;}
+        var best=s.pts[0],bd=1e9;
+        s.pts.forEach(function(p){var d=Math.abs(p[0]-sx);if(d<bd){bd=d;best=p;}});
+        dots[si].setAttribute('cx',best[0]);dots[si].setAttribute('cy',best[1]);
+        dots[si].style.display='';
+        label=best[2];any=true;
+        rows+='<div class="r"><span class="sw" style="background:'+s.colour+'"></span>'+
+              s.name+' <b>'+fmt(best[3])+'</b></div>';
+        if(si===0)cross.setAttribute('x1',best[0]),cross.setAttribute('x2',best[0]);
+      });
+      if(!any)return;
+      cross.style.display='';
+      tip.innerHTML='<b>'+label+'</b>'+rows;
+      tip.style.opacity='1';
+      var px=(e.clientX-r.left), tw=tip.offsetWidth;
+      tip.style.left=Math.max(4,Math.min(r.width-tw-4,px-tw/2))+'px';
+      tip.style.top=Math.max(4,(e.clientY-r.top)-tip.offsetHeight-14)+'px';
+    }
+    function out(){
+      cross.style.display='none';tip.style.opacity='0';
+      dots.forEach(function(d){d.style.display='none';});
+    }
+    cap.addEventListener('mousemove',move);
+    cap.addEventListener('mouseleave',out);
+    cap.addEventListener('touchmove',function(e){if(e.touches[0])move(e.touches[0]);},{passive:true});
+    cap.addEventListener('touchend',out);
+  });
+})();
+</script>
+</body>
+</html>
