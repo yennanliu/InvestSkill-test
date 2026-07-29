@@ -28,7 +28,7 @@ def test_resolves_provider_defaults(monkeypatch):
 
     monkeypatch.setitem(llm._RUNNERS, "gemini", fake_runner)
     llm.call_llm("gemini", "AAPL", "p", "s")  # no model/max_tokens
-    assert seen["model"] == "gemini-3.5-flash"
+    assert seen["model"] == "gemini-3.6-flash"
     assert seen["max_tokens"] == 20000
 
 

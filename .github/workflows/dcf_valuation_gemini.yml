@@ -18,9 +18,10 @@ on:
       model:
         description: "Gemini model"
         required: false
-        default: "gemini-3.5-flash"
+        default: "gemini-3.6-flash"
         type: choice
         options:
+          - gemini-3.6-flash
           - gemini-3.5-flash
           - gemini-2.5-flash
           - gemini-2.5-pro
@@ -79,7 +80,7 @@ jobs:
         id: params
         run: |
           DEFAULT_TICKER="AAPL"
-          DEFAULT_MODEL="gemini-3.5-flash"
+          DEFAULT_MODEL="gemini-3.6-flash"
           DEFAULT_MAX_TOKENS="20000"
 
           TICKER="${{ github.event.inputs.ticker }}"

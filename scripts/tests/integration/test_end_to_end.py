@@ -26,7 +26,7 @@ def test_single_report_end_to_end(monkeypatch, tmp_path, fake_invest_skill,
 
     cli.run_single("dcf-valuation")
 
-    report = out_dir / f"dcf_valuation_{TODAY}_gemini-3.5-flash.md"
+    report = out_dir / f"dcf_valuation_{TODAY}_gemini-3.6-flash.md"
     assert report.exists()
     text = report.read_text(encoding="utf-8")
     assert "analysis_type: dcf-valuation" in text
@@ -50,7 +50,7 @@ def test_full_report_end_to_end(monkeypatch, tmp_path, fake_invest_skill,
 
     cli.run_full()
 
-    report = out_dir / f"full_report_{TODAY}_gemini-3.5-flash.md"
+    report = out_dir / f"full_report_{TODAY}_gemini-3.6-flash.md"
     assert report.exists()
     text = report.read_text(encoding="utf-8")
     assert "modules: 3" in text

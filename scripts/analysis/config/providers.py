@@ -16,7 +16,7 @@ PROVIDER_CONTEXT_FILE = {
 
 PROVIDER_DEFAULTS = {
     "gemini": {
-        "default_model": "gemini-3.5-flash",
+        "default_model": "gemini-3.6-flash",
         "default_tokens": 20000,
     },
     "openai": {

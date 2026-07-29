@@ -1,0 +1,669 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>InvestSkill Autopilot — institutional-grade US stock analysis, on a schedule</title>
+<meta name="description" content="27 InvestSkill analysis frameworks, run on a schedule by GitHub Actions and Gemini 3.6 Flash. No data vendor. No subscription. Reports committed straight to the repo.">
+<meta name="theme-color" content="#00b14f">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%2300b14f'/><path d='M8 21l5-6 4 3 7-9' stroke='white' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   Design tokens — Grab-derived (playful/grab.md)
+   Light only: dark-mode defaults are explicitly rejected.
+   ============================================================ */
+:root{
+  /* brand — one confident green, no second brand hue */
+  --green:#00b14f;
+  --green-press:#009644;
+  --green-wash:#e6f7ee;
+  --green-band:#00692e;
+
+  /* status — never reused decoratively */
+  --amber:#ff8c00;
+  --red:#e02020;
+
+  /* neutrals */
+  --white:#ffffff;
+  --ink:#16181a;
+  --ink-2:#4a4f55;
+  --ink-3:#767c85;
+  --line:#e6e8eb;
+  --surface:#f7f8f9;
+
+  /* type scale 12/14/16/18/20/24/32/40/56/72 */
+  --t-12:.75rem; --t-14:.875rem; --t-16:1rem;   --t-18:1.125rem;
+  --t-20:1.25rem; --t-24:1.5rem; --t-32:2rem;   --t-40:2.5rem;
+  --t-56:3.5rem;  --t-72:4.5rem;
+
+  /* 4px spacing grid */
+  --s-4:4px; --s-8:8px; --s-12:12px; --s-16:16px;
+  --s-24:24px; --s-32:32px; --s-48:48px; --s-64:64px; --s-80:80px;
+
+  --r-btn:8px; --r-card:16px; --r-pill:999px;
+  --shadow:0 2px 8px rgba(22,24,26,.08);
+  --shadow-lift:0 8px 24px rgba(22,24,26,.12);
+
+  --sans:"Inter","Poppins",-apple-system,BlinkMacSystemFont,"Segoe UI",
+         "Noto Sans TC","Noto Sans SC","Noto Sans Thai","Noto Sans Vietnamese",
+         Roboto,Helvetica,Arial,sans-serif;
+  --display:"Poppins","Inter",-apple-system,BlinkMacSystemFont,
+         "Noto Sans TC","Noto Sans SC","Noto Sans Thai","Noto Sans Vietnamese",
+         Segoe UI,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,"Cascadia Mono","Liberation Mono",monospace;
+
+  --wrap:1200px; --gutter:var(--s-24);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0;background:var(--white);color:var(--ink);
+  font-family:var(--sans);font-size:var(--t-16);line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+img,svg{max-width:100%;display:block}
+a{color:inherit}
+
+h1,h2,h3,h4{font-family:var(--display);line-height:1.15;letter-spacing:-.02em;margin:0}
+h1{font-size:clamp(2.5rem,6vw,var(--t-72));font-weight:800}
+h2{font-size:clamp(var(--t-32),4vw,var(--t-56));font-weight:800}
+h3{font-size:var(--t-20);font-weight:700;letter-spacing:-.01em}
+p{margin:0}
+
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:var(--gutter)}
+.section{padding-block:var(--s-80)}
+.section--wash{background:var(--green-wash)}
+.section--surface{background:var(--surface)}
+
+.eyebrow{
+  font-family:var(--display);font-size:var(--t-14);font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--green);
+  margin-bottom:var(--s-12);
+}
+.section--band .eyebrow{color:#9ce8bd}
+.lede{font-size:var(--t-18);color:var(--ink-2);max-width:60ch}
+.head{max-width:64ch;margin-bottom:var(--s-48)}
+
+/* ---------- buttons: 8px radius, 14/24 padding, press 0.98 ---------- */
+.btn{
+  --btn-bg:var(--green);--btn-fg:#fff;
+  display:inline-flex;align-items:center;gap:var(--s-8);
+  padding:14px 24px;border:0;border-radius:var(--r-btn);
+  background:var(--btn-bg);color:var(--btn-fg);
+  font-family:var(--display);font-size:var(--t-16);font-weight:700;
+  text-decoration:none;cursor:pointer;
+  transition:background .16s ease,transform .1s ease,box-shadow .16s ease;
+}
+.btn:hover{background:var(--green-press)}
+.btn:active{transform:scale(.98)}
+.btn:focus-visible{outline:3px solid var(--green-band);outline-offset:2px}
+.btn--soft{--btn-bg:var(--green-wash);--btn-fg:var(--green-band)}
+.btn--soft:hover{background:#d3f0e0}
+.btn--onband{--btn-bg:#fff;--btn-fg:var(--green-band)}
+.btn--onband:hover{background:#eef8f2}
+.btn--ghost{--btn-bg:transparent;--btn-fg:#fff;box-shadow:inset 0 0 0 2px rgba(255,255,255,.55)}
+.btn--ghost:hover{background:rgba(255,255,255,.12)}
+.btn--sm{padding:10px 18px;font-size:var(--t-14)}
+
+/* ---------- nav ---------- */
+.nav{
+  position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);
+  backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid var(--line);
+}
+.nav__in{display:flex;align-items:center;gap:var(--s-16);height:68px;min-width:0}
+.brand{display:flex;align-items:center;gap:var(--s-12);min-width:0;text-decoration:none;font-family:var(--display);font-weight:800;letter-spacing:-.02em;white-space:nowrap}
+.brand__text{overflow:hidden;text-overflow:ellipsis}
+.brand__mark{width:32px;height:32px;border-radius:var(--r-btn);background:var(--green);display:grid;place-items:center;flex:0 0 auto}
+.nav__links{display:none;gap:var(--s-24);margin-left:auto;font-size:var(--t-14);font-weight:600}
+.nav__links a{text-decoration:none;color:var(--ink-2);padding-block:var(--s-8);transition:color .16s ease}
+.nav__links a:hover{color:var(--green)}
+.nav__cta{margin-left:auto;flex:0 0 auto}
+@media(min-width:900px){
+  .nav__links{display:flex}
+  .nav__cta{margin-left:0}
+}
+/* Below 560px the label would push the row past the viewport — icon carries it. */
+@media(max-width:559px){
+  .nav__cta-label{display:none}
+  .nav__cta{padding:10px 12px}
+  .brand{font-size:var(--t-14)}
+}
+
+/* ---------- hero: dark-green band + white overlay type ----------
+   Grab anchors white type over full-bleed photography with a left
+   gradient scrim. No licensed photography ships with this repo, so the
+   band treatment carries the same job — guaranteed contrast for white
+   type — instead of a flat-vector stand-in.                        */
+.hero{
+  position:relative;overflow:hidden;color:#fff;
+  background:
+    radial-gradient(120% 140% at 88% 8%,rgba(0,177,79,.95) 0%,rgba(0,177,79,0) 58%),
+    linear-gradient(104deg,var(--green-band) 0%,#007d38 52%,#009243 100%);
+}
+.hero::after{ /* left-anchored scrim, exactly as the photo rule prescribes */
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(90deg,rgba(0,58,26,.55) 0%,rgba(0,58,26,.18) 42%,rgba(0,58,26,0) 72%);
+}
+.hero__in{position:relative;z-index:1;display:grid;gap:var(--s-48);padding-block:var(--s-64) var(--s-80)}
+@media(min-width:980px){
+  .hero__in{grid-template-columns:1.05fr .95fr;align-items:center;gap:var(--s-64);padding-block:var(--s-80)}
+}
+.hero h1{max-width:18ch}
+.hero__sub{margin-top:var(--s-24);font-size:var(--t-18);max-width:52ch;color:rgba(255,255,255,.92)}
+.hero__actions{display:flex;flex-wrap:wrap;gap:var(--s-12);margin-top:var(--s-32)}
+.hero__note{margin-top:var(--s-24);font-size:var(--t-14);color:rgba(255,255,255,.78)}
+.pill{
+  display:inline-flex;align-items:center;gap:var(--s-8);
+  padding:6px 14px;border-radius:var(--r-pill);
+  background:rgba(255,255,255,.16);box-shadow:inset 0 0 0 1px rgba(255,255,255,.28);
+  font-size:var(--t-14);font-weight:600;
+}
+.pill__dot{width:8px;height:8px;border-radius:50%;background:#7ff0ae}
+
+/* hero card — a real report header, not a fake screenshot */
+.card-mock{background:#fff;border-radius:var(--r-card);box-shadow:var(--shadow-lift);color:var(--ink);overflow:hidden}
+.card-mock__bar{display:flex;align-items:center;gap:var(--s-8);padding:var(--s-12) var(--s-16);border-bottom:1px solid var(--line);background:var(--surface)}
+.card-mock__dot{width:10px;height:10px;border-radius:50%;background:var(--line)}
+/* min-width:0 is required — a nowrap flex item defaults to min-width:auto and
+   would otherwise push the card, the hero grid, and the page past the viewport. */
+.card-mock__path{font-family:var(--mono);font-size:var(--t-12);color:var(--ink-3);margin-left:var(--s-8);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.card-mock__body{padding:var(--s-24)}
+.card-mock__row{display:flex;justify-content:space-between;align-items:baseline;gap:var(--s-16);padding-block:var(--s-12);border-bottom:1px solid var(--line)}
+.card-mock__row:last-child{border-bottom:0}
+.card-mock__k{font-size:var(--t-14);color:var(--ink-2)}
+.card-mock__v{font-family:var(--display);font-weight:700}
+.tag{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:var(--r-pill);font-size:var(--t-12);font-weight:700}
+.tag--bull{background:var(--green-wash);color:var(--green-band)}
+.tag--warn{background:#fff3e0;color:#9a5400}
+.score{font-family:var(--display);font-size:var(--t-32);font-weight:800;letter-spacing:-.03em}
+
+/* ---------- stat row ---------- */
+.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s-16)}
+@media(min-width:880px){.stats{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.stat{background:#fff;border-radius:var(--r-card);box-shadow:var(--shadow);padding:var(--s-24);display:flex;flex-direction:column;gap:var(--s-4)}
+.stat__v{font-family:var(--display);font-size:var(--t-40);font-weight:800;letter-spacing:-.03em;color:var(--green-band)}
+.stat__l{font-size:var(--t-14);color:var(--ink-2)}
+
+/* ---------- service tiles: 2-up mobile → 4-up desktop, equal height ---------- */
+.tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s-16)}
+@media(min-width:760px){.tiles{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(min-width:1040px){.tiles{gap:var(--s-24)}}
+.tile{
+  display:flex;flex-direction:column;gap:var(--s-12);height:100%;
+  padding:var(--s-24);border-radius:var(--r-card);background:#fff;
+  box-shadow:var(--shadow);text-decoration:none;
+  transition:transform .16s ease,box-shadow .16s ease;
+}
+.tile:hover{transform:translateY(-3px);box-shadow:var(--shadow-lift)}
+.tile:active{transform:scale(.98)}
+.tile__icon{width:48px;height:48px;border-radius:var(--r-btn);background:var(--green-wash);display:grid;place-items:center;flex:0 0 auto}
+.tile__count{font-size:var(--t-12);font-weight:700;color:var(--green);letter-spacing:.04em;text-transform:uppercase}
+.tile p{font-size:var(--t-14);color:var(--ink-2)}
+.tile__list{margin:auto 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px;padding-top:var(--s-8)}
+.tile__list li{font-family:var(--mono);font-size:var(--t-12);color:var(--ink-3);background:var(--surface);border-radius:6px;padding:3px 7px}
+
+/* ---------- depth tiers ---------- */
+.tiers{display:grid;gap:var(--s-24);grid-template-columns:1fr}
+@media(min-width:900px){.tiers{grid-template-columns:repeat(3,1fr)}}
+.tier{position:relative;display:flex;flex-direction:column;gap:var(--s-16);padding:var(--s-32);border-radius:var(--r-card);background:#fff;box-shadow:var(--shadow)}
+.tier--default{box-shadow:0 0 0 2px var(--green),var(--shadow-lift)}
+.tier__flag{position:absolute;top:calc(-1*var(--s-12));left:var(--s-32);background:var(--green);color:#fff;font-family:var(--display);font-size:var(--t-12);font-weight:700;padding:4px 12px;border-radius:var(--r-pill)}
+.tier__n{font-family:var(--display);font-size:var(--t-40);font-weight:800;letter-spacing:-.03em;color:var(--green-band);line-height:1}
+.tier__n span{font-size:var(--t-16);font-weight:600;color:var(--ink-3);letter-spacing:0}
+.tier ul{margin:0;padding-left:1.1em;font-size:var(--t-14);color:var(--ink-2);display:grid;gap:6px}
+.tier code{font-family:var(--mono);font-size:var(--t-12);background:var(--surface);padding:2px 6px;border-radius:6px}
+.tier__cmd{margin-top:auto;font-family:var(--mono);font-size:var(--t-12);color:var(--ink-2);background:var(--surface);border-radius:var(--r-btn);padding:var(--s-12);overflow-x:auto}
+
+/* ---------- steps ---------- */
+.steps{display:grid;gap:var(--s-24);grid-template-columns:1fr;counter-reset:step}
+@media(min-width:760px){.steps{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1040px){.steps{grid-template-columns:repeat(4,1fr)}}
+.step{counter-increment:step;display:flex;flex-direction:column;gap:var(--s-12)}
+.step::before{
+  content:counter(step);width:40px;height:40px;border-radius:50%;
+  background:var(--green);color:#fff;display:grid;place-items:center;
+  font-family:var(--display);font-weight:800;
+}
+.step p{font-size:var(--t-14);color:var(--ink-2)}
+.step code{font-family:var(--mono);font-size:var(--t-12);background:var(--surface);padding:2px 6px;border-radius:6px}
+
+/* ---------- coverage chips ---------- */
+.chips{display:flex;flex-wrap:wrap;gap:var(--s-8)}
+.chip{
+  display:inline-flex;align-items:center;gap:var(--s-8);
+  padding:10px 16px;border-radius:var(--r-pill);background:#fff;
+  box-shadow:inset 0 0 0 1px var(--line);text-decoration:none;
+  font-family:var(--display);font-weight:700;font-size:var(--t-14);
+  transition:box-shadow .16s ease,transform .1s ease,background .16s ease;
+}
+.chip:hover{background:var(--green-wash);box-shadow:inset 0 0 0 1px var(--green);transform:translateY(-2px)}
+.chip:active{transform:scale(.98)}
+.chip__date{font-family:var(--sans);font-weight:500;font-size:var(--t-12);color:var(--ink-3)}
+
+/* ---------- providers ---------- */
+.providers{display:grid;gap:var(--s-16);grid-template-columns:1fr}
+@media(min-width:760px){.providers{grid-template-columns:repeat(3,1fr)}}
+.provider{position:relative;display:flex;flex-direction:column;gap:var(--s-8);padding:var(--s-24);border-radius:var(--r-card);background:#fff;box-shadow:var(--shadow)}
+.provider__name{font-family:var(--display);font-weight:700;padding-right:72px}
+.provider__id{font-family:var(--mono);font-size:var(--t-12);color:var(--ink-3)}
+/* Absolute so the three provider names sit on one baseline across the row. */
+.provider__badge{position:absolute;top:var(--s-24);right:var(--s-24);font-size:var(--t-12);font-weight:700;color:var(--green-band);background:var(--green-wash);padding:3px 10px;border-radius:var(--r-pill)}
+
+/* ---------- band CTA ---------- */
+.band{background:var(--green-band);color:#fff}
+.band h2{max-width:22ch}
+.band p{color:rgba(255,255,255,.86);max-width:56ch;margin-top:var(--s-16)}
+.band__actions{display:flex;flex-wrap:wrap;gap:var(--s-12);margin-top:var(--s-32)}
+
+/* ---------- footer ---------- */
+.footer{border-top:1px solid var(--line);padding-block:var(--s-48);font-size:var(--t-14);color:var(--ink-3)}
+.footer__in{display:grid;gap:var(--s-24)}
+@media(min-width:760px){.footer__in{grid-template-columns:1.4fr 1fr 1fr}}
+.footer h4{font-size:var(--t-14);font-weight:700;color:var(--ink);margin-bottom:var(--s-12)}
+.footer ul{margin:0;padding:0;list-style:none;display:grid;gap:var(--s-8)}
+.footer a{text-decoration:none}
+.footer a:hover{color:var(--green)}
+.disclaimer{margin-top:var(--s-32);padding-top:var(--s-24);border-top:1px solid var(--line);font-size:var(--t-12);max-width:80ch}
+
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:var(--s-16);top:var(--s-16);z-index:50;background:#fff;color:var(--green-band);padding:12px 18px;border-radius:var(--r-btn);box-shadow:var(--shadow-lift)}
+
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="wrap nav__in">
+    <a class="brand" href="#top">
+      <span class="brand__mark" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 32 32" fill="none"><path d="M7 21l6-7 4 3 8-10" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      <span class="brand__text">InvestSkill Autopilot</span>
+    </a>
+    <nav class="nav__links" aria-label="Sections">
+      <a href="#frameworks">Frameworks</a>
+      <a href="#depth">Depth</a>
+      <a href="#how">How it works</a>
+      <a href="#coverage">Coverage</a>
+    </nav>
+    <a class="btn btn--sm nav__cta" href="https://github.com/yennanliu/InvestSkill-test" aria-label="View this project on GitHub">
+      <span class="nav__cta-label">View on GitHub</span>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0a8 8 0 00-2.53 15.59c.4.07.55-.17.55-.38v-1.34c-2.23.48-2.7-1.07-2.7-1.07-.36-.93-.89-1.18-.89-1.18-.73-.5.05-.49.05-.49.8.06 1.23.83 1.23.83.71 1.22 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 014 0c1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.19c0 .21.14.46.55.38A8 8 0 008 0z"/></svg>
+    </a>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="top">
+  <div class="wrap hero__in">
+    <div>
+      <span class="pill"><span class="pill__dot" aria-hidden="true"></span> Runs every weekday, 08:35 UTC</span>
+      <h1>Institutional-grade stock research, on autopilot.</h1>
+      <p class="hero__sub">
+        27 InvestSkill analysis frameworks, driven by GitHub Actions and Gemini 3.6 Flash.
+        Pick a ticker, pick a depth, and a full research report lands in the repo —
+        no data vendor, no subscription, no API bill beyond your own key.
+      </p>
+      <div class="hero__actions">
+        <a class="btn btn--onband" href="#depth">Run a report</a>
+        <a class="btn btn--ghost" href="#coverage">Browse 155 reports</a>
+      </div>
+      <p class="hero__note">Free market data via yfinance · Reports in Traditional Chinese (繁體中文) by default</p>
+    </div>
+
+    <!-- Values below are read from the real committed report, not illustrative. -->
+    <a class="card-mock" style="text-decoration:none;display:block"
+       href="https://github.com/yennanliu/InvestSkill-test/blob/main/output/full_report/msft/full_report_2026-07-28_gemini-3.5-flash.md">
+      <div class="card-mock__bar">
+        <span class="card-mock__dot" aria-hidden="true"></span>
+        <span class="card-mock__dot" aria-hidden="true"></span>
+        <span class="card-mock__dot" aria-hidden="true"></span>
+        <span class="card-mock__path">output/full_report/msft/full_report_2026-07-28.md</span>
+      </div>
+      <div class="card-mock__body">
+        <div class="card-mock__row">
+          <span class="card-mock__k">Composite score</span>
+          <span class="score">8.2<span style="font-size:var(--t-16);color:var(--ink-3);font-weight:600">/10</span></span>
+        </div>
+        <div class="card-mock__row">
+          <span class="card-mock__k">Signal · 12 months+</span>
+          <span class="tag tag--bull">▲ Bullish</span>
+        </div>
+        <div class="card-mock__row">
+          <span class="card-mock__k">Signal · 1–3 months</span>
+          <span class="tag tag--warn">Neutral / correction</span>
+        </div>
+        <div class="card-mock__row">
+          <span class="card-mock__k">Confidence</span>
+          <span class="card-mock__v">High</span>
+        </div>
+        <div class="card-mock__row">
+          <span class="card-mock__k">Modules run</span>
+          <span class="card-mock__v">15 <span style="font-weight:500;color:var(--ink-3);font-size:var(--t-14)">comprehensive</span></span>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ===================== STATS ===================== -->
+<section class="section section--wash">
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat"><span class="stat__v">27</span><span class="stat__l">Analysis frameworks, synced to InvestSkill v1.11.0</span></div>
+      <div class="stat"><span class="stat__v">155</span><span class="stat__l">Reports generated and committed to date</span></div>
+      <div class="stat"><span class="stat__v">15</span><span class="stat__l">Tickers covered across five report types</span></div>
+      <div class="stat"><span class="stat__v">$0</span><span class="stat__l">Spent on market data or subscriptions</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FRAMEWORKS ===================== -->
+<section class="section" id="frameworks">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">What we analyse</p>
+      <h2>Every angle on a ticker, one framework at a time.</h2>
+      <p class="lede">
+        Each framework is a structured prompt from the
+        <a href="https://github.com/yennanliu/InvestSkill" style="color:var(--green);font-weight:600">InvestSkill</a>
+        plugin. Every one ends in the same investment signal block — score out of 10, direction,
+        confidence, and a buy / hold / avoid call — so modules can be compared and combined.
+      </p>
+    </div>
+
+    <div class="tiles">
+      <a class="tile" href="https://github.com/yennanliu/InvestSkill/tree/main/prompts">
+        <span class="tile__icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00692e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg>
+        </span>
+        <span class="tile__count">6 frameworks</span>
+        <h3>Core analysis</h3>
+        <p>Valuation and quality from first principles — the modules every report starts with.</p>
+        <ul class="tile__list"><li>stock-eval</li><li>fundamental-analysis</li><li>technical-analysis</li><li>dcf-valuation</li><li>stock-valuation</li><li>economics-analysis</li></ul>
+      </a>
+
+      <a class="tile" href="https://github.com/yennanliu/InvestSkill/tree/main/prompts">
+        <span class="tile__icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00692e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M9 15h6M9 11h3"/></svg>
+        </span>
+        <span class="tile__count">3 frameworks</span>
+        <h3>Filings &amp; calls</h3>
+        <p>Deep reads of the primary documents, including a prior-year promise tracker.</p>
+        <ul class="tile__list"><li>10k-digest</li><li>financial-report-analyst</li><li>earnings-call-analysis</li></ul>
+      </a>
+
+      <a class="tile" href="https://github.com/yennanliu/InvestSkill/tree/main/prompts">
+        <span class="tile__icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00692e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        </span>
+        <span class="tile__count">4 frameworks</span>
+        <h3>Positioning signals</h3>
+        <p>Who is buying, who is selling, and how crowded the trade already is.</p>
+        <ul class="tile__list"><li>insider-trading</li><li>institutional-ownership</li><li>short-interest</li><li>dividend-analysis</li></ul>
+      </a>
+
+      <a class="tile" href="https://github.com/yennanliu/InvestSkill/tree/main/prompts">
+        <span class="tile__icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00692e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 6 6 1-4.5 4.4 1 6.6-5.5-3-5.5 3 1-6.6L3 9l6-1z"/></svg>
+        </span>
+        <span class="tile__count">9 frameworks</span>
+        <h3>Advanced research</h3>
+        <p>Moats, supply chains, catalysts, and a deliberate short-seller red team.</p>
+        <ul class="tile__list"><li>competitor-analysis</li><li>industry-map</li><li>bear-case</li><li>catalyst-calendar</li><li>position-ladder</li><li>stock-screener</li><li>options-analysis</li><li>portfolio-review</li><li>sector-analysis</li></ul>
+      </a>
+
+      <a class="tile" href="https://github.com/yennanliu/InvestSkill/tree/main/prompts">
+        <span class="tile__icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00692e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h7v7H4zM13 4h7v4h-7zM13 10h7v10h-7zM4 13h7v7H4z"/></svg>
+        </span>
+        <span class="tile__count">5 frameworks</span>
+        <h3>Output &amp; validation</h3>
+        <p>Chains the modules together, renders them, and scores how much to trust the result.</p>
+        <ul class="tile__list"><li>full-report</li><li>report-generator</li><li>chart-master</li><li>result-validator</li><li>research-bundle</li></ul>
+      </a>
+    </div>
+
+    <p style="margin-top:var(--s-32);font-size:var(--t-14);color:var(--ink-3)">
+      27 frameworks in total. <code style="font-family:var(--mono);font-size:var(--t-12)">research-bundle</code>
+      is retained as a redirect — it was folded into <code style="font-family:var(--mono);font-size:var(--t-12)">full-report</code>'s depth flag in v1.8.0.
+    </p>
+  </div>
+</section>
+
+<!-- ===================== DEPTH ===================== -->
+<section class="section section--surface" id="depth">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Pick your depth</p>
+      <h2>Five modules or fifteen — same pipeline.</h2>
+      <p class="lede">
+        One shared market-data snapshot feeds every module in the run, then a synthesis pass
+        reconciles the signal blocks into a single verdict. A module that fails is recorded and
+        skipped; it never takes the run down with it.
+      </p>
+    </div>
+
+    <div class="tiers">
+      <div class="tier">
+        <span class="tier__n">5 <span>modules</span></span>
+        <h3>Quick</h3>
+        <p style="font-size:var(--t-14);color:var(--ink-2)">Rapid screen when time is the constraint.</p>
+        <ul>
+          <li><code>stock-eval</code></li>
+          <li><code>technical-analysis</code></li>
+          <li><code>dcf-valuation</code></li>
+          <li><code>insider-trading</code></li>
+          <li><code>earnings-call-analysis</code></li>
+        </ul>
+        <div class="tier__cmd">--depth quick</div>
+      </div>
+
+      <div class="tier">
+        <span class="tier__n">10 <span>modules</span></span>
+        <h3>Standard</h3>
+        <p style="font-size:var(--t-14);color:var(--ink-2)">Balanced research before opening a position.</p>
+        <ul>
+          <li>Everything in Quick, plus:</li>
+          <li><code>institutional-ownership</code></li>
+          <li><code>competitor-analysis</code></li>
+          <li><code>sector-analysis</code></li>
+          <li><code>options-analysis</code></li>
+          <li><code>short-interest</code></li>
+        </ul>
+        <div class="tier__cmd">--depth standard</div>
+      </div>
+
+      <div class="tier tier--default">
+        <span class="tier__flag">Default</span>
+        <span class="tier__n">15 <span>modules</span></span>
+        <h3>Comprehensive</h3>
+        <p style="font-size:var(--t-14);color:var(--ink-2)">Full pre-commitment due diligence.</p>
+        <ul>
+          <li>Everything in Standard, plus:</li>
+          <li><code>fundamental-analysis</code></li>
+          <li><code>stock-valuation</code></li>
+          <li><code>economics-analysis</code></li>
+          <li><code>financial-report-analyst</code></li>
+          <li><code>dividend-analysis</code></li>
+        </ul>
+        <div class="tier__cmd">--depth comprehensive</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== HOW ===================== -->
+<section class="section" id="how">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">How it works</p>
+      <h2>Four steps, no infrastructure.</h2>
+      <p class="lede">
+        The whole thing is a Python package and a handful of GitHub Actions workflows.
+        Trigger one by hand, or let the weekday schedule do it.
+      </p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <h3>Load the frameworks</h3>
+        <p>The workflow clones <code>yennanliu/InvestSkill</code> so <code>GEMINI.md</code> becomes the system context and <code>prompts/*.md</code> supply the frameworks.</p>
+      </div>
+      <div class="step">
+        <h3>Snapshot the market</h3>
+        <p>One <code>yfinance</code> fetch per run — price history, financials, and valuation inputs — shared across every module so the numbers can't drift mid-report.</p>
+      </div>
+      <div class="step">
+        <h3>Run the modules</h3>
+        <p>Each framework goes to the model with the shared snapshot. Gemini 3.6 Flash by default; <code>--provider openai</code> or <code>claude</code> swaps it.</p>
+      </div>
+      <div class="step">
+        <h3>Commit the report</h3>
+        <p>Markdown is written to <code>output/&lt;type&gt;/&lt;ticker&gt;/</code>, Mermaid charts are linted, and the bot commits it back to <code>main</code>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== COVERAGE ===================== -->
+<section class="section section--wash" id="coverage">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Coverage</p>
+      <h2>15 tickers, 155 reports, all in the open.</h2>
+      <p class="lede">
+        Every report ever generated is committed to the repository — including the ones that
+        aged badly. Pick a ticker to read its report history.
+      </p>
+    </div>
+
+    <div class="chips">
+      <a class="chip" href="https://github.com/yennanliu/InvestSkill-test/tree/main/output/full_report/msft">MSFT <span class="chip__date">Jul 28</span></a>
+      <a class="chip" href="https://github.com/yennanliu/InvestSkill-test/tree/main/output/full_report/tsm">TSM <span class="chip__date">Jul 27</span></a>
+      <a class="chip" href="https://github.com/yennanliu/InvestSkill-test/tree/main/output/full_report/avav">AVAV <span class="chip__date">Jul 19</span></a>
+      <a class="chip" href="https://github.com/yennanliu/InvestSkill-test/tree/main/output/full_report/ktos">KTOS <span class="chip__date">Jul 19</span></a>
+      <a class="chip" href="https://github.com/yennanliu/InvestSkill-test/tree/main/output/full_report/mrvl">MRVL <span class="chip__date">Jul 18</span></a>
+      <a class="chip" href="https://github.com/yennanliu/InvestSkill-test/tree/main/output/full_report/spcx">SPCX <span class="chip__date">Jul 17</span></a>
+      <a class="chip" href="https://github.com/yennanliu/InvestSkill-test/tree/main/output/full_report/onds">ONDS <span class="chip__date">Jul 13</span></a>
+      <a class="chip" href="https://github.com/yennanliu/InvestSkill-test/tree/main/output/full_report/amzn">AMZN <span class="chip__date">Jul 12</span></a>
+      <a class="chip" href="https://github.com/yennanliu/InvestSkill-test/tree/main/output/full_report/aapl">AAPL <span class="chip__date">Jul 10</span></a>
+      <a class="chip" href="https://github.com/yennanliu/InvestSkill-test/tree/main/output/full_report/meta">META <span class="chip__date">Jul 5</span></a>
+      <a class="chip" href="https://github.com/yennanliu/InvestSkill-test/tree/main/output/full_report/nu">NU <span class="chip__date">Jul 5</span></a>
+      <a class="chip" href="https://github.com/yennanliu/InvestSkill-test/tree/main/output/full_report/uber">UBER <span class="chip__date">Jul 5</span></a>
+      <a class="chip" href="https://github.com/yennanliu/InvestSkill-test/tree/main/output/full_report/pltr">PLTR <span class="chip__date">Jul 4</span></a>
+      <a class="chip" href="https://github.com/yennanliu/InvestSkill-test/tree/main/output/full_report/pl">PL <span class="chip__date">Jul 3</span></a>
+      <a class="chip" href="https://github.com/yennanliu/InvestSkill-test/tree/main/output/stock_eval/mu">MU <span class="chip__date">stock-eval</span></a>
+    </div>
+
+    <p style="margin-top:var(--s-32);font-size:var(--t-14);color:var(--ink-2)">
+      Dates show the latest full report per ticker. Also archived:
+      <a href="https://github.com/yennanliu/InvestSkill-test/tree/main/output/stock_eval" style="color:var(--green-band);font-weight:600">stock-eval</a>,
+      <a href="https://github.com/yennanliu/InvestSkill-test/tree/main/output/dcf_valuation" style="color:var(--green-band);font-weight:600">DCF valuation</a>,
+      <a href="https://github.com/yennanliu/InvestSkill-test/tree/main/output/fundamental_analysis" style="color:var(--green-band);font-weight:600">fundamental analysis</a>, and
+      <a href="https://github.com/yennanliu/InvestSkill-test/tree/main/output/crewai_fundamental_analysis" style="color:var(--green-band);font-weight:600">CrewAI multi-agent</a> runs.
+    </p>
+  </div>
+</section>
+
+<!-- ===================== PROVIDERS ===================== -->
+<section class="section">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Bring your own model</p>
+      <h2>One pipeline, three providers.</h2>
+      <p class="lede">Set the matching API key as a repository secret and pass <code style="font-family:var(--mono);font-size:var(--t-14)">--provider</code>. Defaults live in one file.</p>
+    </div>
+    <div class="providers">
+      <div class="provider">
+        <span class="provider__badge">Default</span>
+        <span class="provider__name">Google Gemini</span>
+        <span class="provider__id">gemini-3.6-flash · 20,000 max output tokens</span>
+        <p style="font-size:var(--t-14);color:var(--ink-2)">Secret: <code style="font-family:var(--mono);font-size:var(--t-12)">GEMINI_API_KEY</code></p>
+      </div>
+      <div class="provider">
+        <span class="provider__name">OpenAI</span>
+        <span class="provider__id">gpt-4o · 16,000 max output tokens</span>
+        <p style="font-size:var(--t-14);color:var(--ink-2)">Secret: <code style="font-family:var(--mono);font-size:var(--t-12)">OPENAI_API_KEY</code></p>
+      </div>
+      <div class="provider">
+        <span class="provider__name">Anthropic Claude</span>
+        <span class="provider__id">claude-sonnet · 8,000 max output tokens</span>
+        <p style="font-size:var(--t-14);color:var(--ink-2)">Secret: <code style="font-family:var(--mono);font-size:var(--t-12)">ANTHROPIC_API_KEY</code></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA BAND ===================== -->
+<section class="section band">
+  <div class="wrap">
+    <p class="eyebrow">Get started</p>
+    <h2>Fork it, add one key, get a report tomorrow morning.</h2>
+    <p>
+      Add <code style="font-family:var(--mono);font-size:var(--t-14);background:rgba(255,255,255,.16);padding:2px 6px;border-radius:6px">GEMINI_API_KEY</code>
+      to your repository secrets, edit the scheduled ticker, and the weekday cron takes over from there.
+    </p>
+    <div class="band__actions">
+      <a class="btn btn--onband" href="https://github.com/yennanliu/InvestSkill-test/fork">Fork the repo</a>
+      <a class="btn btn--ghost" href="https://github.com/yennanliu/InvestSkill-test/tree/main/.github/workflows">Read the workflows</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__in">
+    <div>
+      <a class="brand" href="#top" style="margin-bottom:var(--s-12)">
+        <span class="brand__mark" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 32 32" fill="none"><path d="M7 21l6-7 4 3 8-10" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <span class="brand__text">InvestSkill Autopilot</span>
+      </a>
+      <p>Scheduled US-equity research built on the InvestSkill framework library. MIT licensed.</p>
+    </div>
+    <div>
+      <h4>This project</h4>
+      <ul>
+        <li><a href="https://github.com/yennanliu/InvestSkill-test">Repository</a></li>
+        <li><a href="https://github.com/yennanliu/InvestSkill-test/tree/main/output">Report archive</a></li>
+        <li><a href="https://github.com/yennanliu/InvestSkill-test/tree/main/.github/workflows">Workflows</a></li>
+        <li><a href="https://github.com/yennanliu/InvestSkill-test/tree/main/scripts">Python package</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Frameworks</h4>
+      <ul>
+        <li><a href="https://github.com/yennanliu/InvestSkill">InvestSkill plugin</a></li>
+        <li><a href="https://github.com/yennanliu/InvestSkill/tree/main/prompts">All 27 prompts</a></li>
+        <li><a href="https://github.com/yennanliu/InvestSkill/blob/main/CHANGELOG.md">Changelog</a></li>
+        <li><a href="https://yennj12.js.org/InvestSkill/full-demo-rklb.html">Live demo report</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap">
+    <p class="disclaimer">
+      <strong style="color:var(--ink)">Not investment advice.</strong>
+      Everything here is LLM-generated output over free public data, produced for research and
+      engineering demonstration. Reports can be wrong, stale, or internally inconsistent, and the
+      archive deliberately keeps old reports that later proved incorrect. Do your own research
+      before risking capital.
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
