@@ -39,16 +39,66 @@ def _fmt(v, dp=2, prefix="", suffix=""):
     return f"{prefix}{v:,.{dp}f}{suffix}"
 
 
-def figure(svg, caption, table_html=None, note=None):
-    """Wrap a chart as a <figure> with caption, optional note and table view."""
+def figure(svg, caption, table_html=None, note=None, extra_cls=""):
+    """Wrap a chart as a <figure> with caption, optional note and table view.
+
+    ``extra_cls="dagfig"`` marks a flow diagram: the shell's CSS staggers its
+    nodes in and animates its connectors once the figure scrolls into view.
+    """
     tid = uid("t")
     t = ""
     if table_html:
         t = (f'<details class="tblview"><summary>檢視數據表</summary>'
              f'<div class="tblwrap" id="{tid}">{table_html}</div></details>')
     n = f'<p class="fignote">{note}</p>' if note else ""
-    return (f'<figure class="fig"><div class="figbox">{svg}</div>'
+    cls = f"fig {extra_cls}".strip()
+    return (f'<figure class="{cls}"><div class="figbox">{svg}</div>'
             f'<figcaption>{caption}</figcaption>{n}{t}</figure>')
+
+
+def wrap_cells(text, cells):
+    """Greedy line-wrap by monospace display width (CJK/fullwidth glyph = 2).
+
+    SVG has no text flow, so every diagram label is wrapped here. Latin runs stay
+    whole; CJK breaks anywhere, which is correct for zh-TW.
+    """
+    import re as _re
+    import unicodedata
+
+    def w(s):
+        return sum(2 if unicodedata.east_asian_width(c) in ("W", "F") else 1 for c in s)
+
+    tokens = _re.findall(r"[A-Za-z0-9$%.,\-_/+()<>=:']+|\s+|.", str(text))
+    lines, cur, cw = [], "", 0
+    for t in tokens:
+        if t.isspace():
+            if cur:
+                cur += " "
+                cw += 1
+            continue
+        tw = w(t)
+        if cur and cw + tw > cells:
+            lines.append(cur.rstrip())
+            cur, cw = "", 0
+        cur += t
+        cw += tw
+    if cur.strip():
+        lines.append(cur.rstrip())
+    return lines or [""]
+
+
+def aria_attr(label):
+    """`role="img"` needs an accessible name; the flow diagrams supply one."""
+    return f' aria-label="{escape(str(label))}"' if label else ""
+
+
+def _arrow(x, y, col, size=6, down=False):
+    """Solid arrowhead pointing right (or down)."""
+    if down:
+        return (f'<path d="M{x-size*.8:.1f},{y-size:.1f} L{x+size*.8:.1f},{y-size:.1f} '
+                f'L{x:.1f},{y:.1f} Z" fill="{col}"/>')
+    return (f'<path d="M{x-size:.1f},{y-size*.8:.1f} L{x-size:.1f},{y+size*.8:.1f} '
+            f'L{x:.1f},{y:.1f} Z" fill="{col}"/>')
 
 
 def legend(items):
@@ -123,9 +173,12 @@ def line_chart(series, width=760, height=320, y_label="", y_fmt="{:.0f}",
         if area_first and si == 0:
             o.append(f'<path d="{d} L{pairs[-1][0]:.1f},{pt+ih} L{pairs[0][0]:.1f},{pt+ih} Z" '
                      f'fill="{col}" fill-opacity=".10"/>')
+        # pathLength="1" normalises the dash maths so the CSS draw-in animation is
+        # exact for any path; a dashed series keeps its pattern and is not animated.
         dash = f' stroke-dasharray="{s["dash"]}"' if s.get("dash") else ""
+        anim = "" if s.get("dash") else ' class="ch-draw" pathLength="1"'
         o.append(f'<path d="{d}" fill="none" stroke="{col}" stroke-width="{s.get("width",2)}" '
-                 f'stroke-linejoin="round" stroke-linecap="round"{dash}/>')
+                 f'stroke-linejoin="round" stroke-linecap="round"{dash}{anim}/>')
         # end marker with 2px surface ring (overlap rule) + direct label
         ex, ey = pairs[-1]
         o.append(f'<circle cx="{ex:.1f}" cy="{ey:.1f}" r="4.5" fill="{col}" '
@@ -436,15 +489,16 @@ def gauge(score, width=250, height=158, rmax=10, caption=""):
     """Single headline number with an arc — a stat tile, not a chart."""
     import math
     cx, cy, R = width / 2, height - 26, width / 2 - 26
-    def arc(frm, to, col, w):
+    def arc(frm, to, col, w, cls=""):
         a0, a1 = math.pi * (1 - frm / rmax), math.pi * (1 - to / rmax)
         x0, y0 = cx + R * math.cos(a0), cy - R * math.sin(a0)
         x1, y1 = cx + R * math.cos(a1), cy - R * math.sin(a1)
+        c = f' class="{cls}" pathLength="1"' if cls else ""
         return (f'<path d="M{x0:.1f},{y0:.1f} A{R},{R} 0 0 1 {x1:.1f},{y1:.1f}" fill="none" '
-                f'stroke="{col}" stroke-width="{w}" stroke-linecap="round"/>')
+                f'stroke="{col}" stroke-width="{w}" stroke-linecap="round"{c}/>')
     col = BAD if score < 4 else (WARN if score < 6.5 else GOOD)
     o = [f'<svg class="chart" viewBox="0 0 {width} {height}" role="img" preserveAspectRatio="xMidYMid meet">',
-         arc(0, rmax, GRID, 12), arc(0, score, col, 12)]
+         arc(0, rmax, GRID, 12), arc(0, score, col, 12, cls="g-arc")]
     o.append(f'<text x="{cx}" y="{cy-8}" text-anchor="middle" font-size="40" font-weight="800" fill="{INK}">{score:.2f}</text>')
     o.append(f'<text x="{cx}" y="{cy+12}" text-anchor="middle" font-size="12" fill="{INK3}">／ {rmax}</text>')
     if caption:
@@ -474,6 +528,177 @@ def heat_table(col_heads, rows, fmt="{:.1f}", vmin=0, vmax=10, first_col="項目
             h += f'<td style="background:{c};color:{t}">{txt}</td>'
         h += "</tr>"
     return h + "</tbody></table>"
+
+
+# ------------------------------------------------- pipeline (linear workflow)
+KIND_COL = {"": None, "data": "#2a78d6", "gate": BAD, "audit": WARN, "out": GOOD}
+
+
+def pipeline_chart(steps, width=880, accent="#00b14f", aria=""):
+    """A left→right workflow: numbered stages joined by flowing connectors.
+
+    steps: [{"n", "title", "sub", "meta"?, "kind"?}]
+    ``kind`` only tints the badge — "gate" (blocked), "audit", "data", "out".
+    Animation lives in CSS (``.fl-node`` / ``.fl-dash``); the SVG carries no
+    <animate> element so the whole thing degrades to a static diagram.
+    """
+    n = len(steps)
+    padx, gap = 5, 42
+    nw = (width - 2 * padx - gap * (n - 1)) / n
+    cells = max(10, int((nw - 26) / 5.9))
+    wrapped = [wrap_cells(s.get("sub", ""), cells) for s in steps]
+    lines = max(len(x) for x in wrapped)
+    has_meta = any(s.get("meta") for s in steps)
+    nh = 56 + 16 * lines + (20 if has_meta else 6)
+    height = nh + 14
+    o = [f'<svg class="chart" viewBox="0 0 {width} {height}" role="img" '
+         f'preserveAspectRatio="xMidYMid meet"'
+         f'{aria_attr(aria)}>']
+    mid = 7 + nh / 2
+    for i, s in enumerate(steps):
+        x = padx + i * (nw + gap)
+        col = KIND_COL.get(s.get("kind", ""), None) or accent
+        o.append(f'<g class="fl-node" style="animation-delay:{i*0.11:.2f}s">')
+        o.append(f'<rect x="{x:.1f}" y="7" width="{nw:.1f}" height="{nh}" rx="14" ry="14" '
+                 f'fill="{SURFACE}" stroke="{GRID}" stroke-width="1"/>')
+        o.append(f'<rect x="{x:.1f}" y="7" width="{nw:.1f}" height="3.5" rx="1.8" ry="1.8" fill="{col}"/>')
+        o.append(f'<circle cx="{x+26:.1f}" cy="{40}" r="13" fill="{col}"/>')
+        o.append(f'<text x="{x+26:.1f}" y="{44.5}" text-anchor="middle" font-size="12.5" '
+                 f'font-weight="800" fill="#fff">{escape(str(s["n"]))}</text>')
+        o.append(f'<text x="{x+46:.1f}" y="{45}" font-size="13.5" font-weight="800" '
+                 f'fill="{INK}">{escape(s["title"])}</text>')
+        for k, ln in enumerate(wrapped[i]):
+            o.append(f'<text x="{x+16:.1f}" y="{68+k*16}" font-size="11.5" '
+                     f'fill="{INK2}">{escape(ln)}</text>')
+        if s.get("meta"):
+            o.append(f'<text x="{x+16:.1f}" y="{7+nh-13}" font-size="10.5" font-weight="700" '
+                     f'fill="{col}">{escape(s["meta"])}</text>')
+        o.append("</g>")
+        if i < n - 1:
+            x0, x1 = x + nw + 7, x + nw + gap - 9
+            o.append(f'<line class="fl-dash" x1="{x0:.1f}" y1="{mid:.1f}" x2="{x1:.1f}" '
+                     f'y2="{mid:.1f}" stroke="{accent}" stroke-width="2.4" stroke-linecap="round"/>')
+            o.append(_arrow(x1 + 8, mid, accent))
+    o.append("</svg>")
+    return "".join(o)
+
+
+# ------------------------------------- phase ladder (full-report's five stages)
+def phase_chart(phases, width=920, accent="#00b14f", head="", foot="", aria=""):
+    """The full-report dependency ladder.
+
+    phases: [{"label", "score"?, "note"?, "modules": [str]}]
+    One shared snapshot feeds every phase (the bar across the top), the phases run
+    in order (the chevrons between them), and one audited verdict comes out (the
+    band at the bottom). That shape is the architecture, so it is drawn, not told.
+    """
+    n = len(phases)
+    padx, gap = 5, 14
+    cw = (width - 2 * padx - gap * (n - 1)) / n
+    lcells = max(8, int((cw - 18) / 6.2))
+    labels = [wrap_cells(p["label"], lcells) for p in phases]
+    llines = max(len(x) for x in labels)
+    nmods = max(len(p["modules"]) for p in phases)
+    head_h, hgap = 38, 26
+    ph_y = head_h + hgap
+    ph_h = 30 + 15 * llines + (26 if any(p.get("score") is not None for p in phases) else 0)
+    mod_y = ph_y + ph_h + 10
+    mod_h, mod_gap = 27, 6
+    foot_y = mod_y + nmods * (mod_h + mod_gap) + 20
+    height = foot_y + 44 + 4
+    o = [f'<svg class="chart" viewBox="0 0 {width} {height}" role="img" '
+         f'preserveAspectRatio="xMidYMid meet"'
+         f'{aria_attr(aria)}>']
+    # shared-snapshot bar
+    if head:
+        o.append('<g class="fl-node">')
+        o.append(f'<rect x="{padx}" y="0" width="{width-2*padx:.1f}" height="{head_h}" rx="12" ry="12" '
+                 f'fill="#e6f7ee" stroke="#b9e7cf" stroke-width="1.5"/>')
+        o.append(f'<text x="{width/2:.1f}" y="{head_h/2+5:.1f}" text-anchor="middle" font-size="12.5" '
+                 f'font-weight="800" fill="#00692e">{escape(head)}</text>')
+        o.append("</g>")
+    for i, p in enumerate(phases):
+        x = padx + i * (cw + gap)
+        cx = x + cw / 2
+        if head:
+            o.append(f'<line class="fl-dash" x1="{cx:.1f}" y1="{head_h+3}" x2="{cx:.1f}" '
+                     f'y2="{ph_y-9}" stroke="{accent}" stroke-width="2" stroke-linecap="round"/>')
+            o.append(_arrow(cx, ph_y - 2, accent, down=True))
+        o.append(f'<g class="fl-node" style="animation-delay:{i*0.09:.2f}s">')
+        o.append(f'<rect x="{x:.1f}" y="{ph_y}" width="{cw:.1f}" height="{ph_h}" rx="12" ry="12" '
+                 f'fill="#fff" stroke="{accent}" stroke-width="1.5"/>')
+        for k, ln in enumerate(labels[i]):
+            o.append(f'<text x="{cx:.1f}" y="{ph_y+21+k*15}" text-anchor="middle" font-size="12" '
+                     f'font-weight="800" fill="{INK}">{escape(ln)}</text>')
+        if p.get("score") is not None:
+            o.append(f'<text x="{cx:.1f}" y="{ph_y+ph_h-9}" text-anchor="middle" font-size="21" '
+                     f'font-weight="800" fill="{accent}">{p["score"]:.1f}</text>')
+        o.append("</g>")
+        for k, m in enumerate(p["modules"]):
+            my = mod_y + k * (mod_h + mod_gap)
+            o.append(f'<g class="fl-node" style="animation-delay:{0.2+i*0.05+k*0.04:.2f}s">')
+            o.append(f'<rect x="{x:.1f}" y="{my}" width="{cw:.1f}" height="{mod_h}" rx="8" ry="8" '
+                     f'fill="{SURFACE}" stroke="{GRID}" stroke-width="1"/>')
+            o.append(f'<text x="{cx:.1f}" y="{my+18}" text-anchor="middle" font-size="10.5" '
+                     f'font-family="ui-monospace,Menlo,monospace" fill="{INK2}">{escape(m)}</text>')
+            o.append("</g>")
+        if i < n - 1:
+            ax = x + cw + gap / 2
+            ay = ph_y + ph_h / 2
+            o.append(f'<path d="M{ax-4:.1f},{ay-6:.1f} L{ax+3:.1f},{ay:.1f} L{ax-4:.1f},{ay+6:.1f}" '
+                     f'fill="none" stroke="{INK3}" stroke-width="2" stroke-linecap="round" '
+                     f'stroke-linejoin="round" class="fl-pulse"/>')
+        if foot:
+            o.append(f'<line class="fl-dash" x1="{cx:.1f}" y1="{foot_y-17}" x2="{cx:.1f}" '
+                     f'y2="{foot_y-7}" stroke="{accent}" stroke-width="2" stroke-linecap="round"/>')
+            o.append(_arrow(cx, foot_y - 1, accent, down=True))
+    if foot:
+        o.append('<g class="fl-node" style="animation-delay:.55s">')
+        o.append(f'<rect x="{padx}" y="{foot_y}" width="{width-2*padx:.1f}" height="42" rx="12" ry="12" '
+                 f'fill="#00692e"/>')
+        o.append(f'<text x="{width/2:.1f}" y="{foot_y+26}" text-anchor="middle" font-size="12.5" '
+                 f'font-weight="800" fill="#fff">{escape(foot)}</text>')
+        o.append("</g>")
+    o.append("</svg>")
+    return "".join(o)
+
+
+# --------------------------------------------------- presence matrix (dot grid)
+def matrix_dots(cols, rows, width=760, cell=30, label_w=232, accent="#00b14f", aria=""):
+    """rows: [(label, [bool per col], tail)] — which workflow used which framework.
+
+    A presence matrix, not a heatmap: one hue, filled = used, hollow ring = not.
+    """
+    grid_w = cell * len(cols)
+    tail_x = label_w + grid_w + 16
+    height = 30 + len(rows) * cell + 8
+    o = [f'<svg class="chart" viewBox="0 0 {max(width, tail_x+96)} {height}" role="img" '
+         f'preserveAspectRatio="xMidYMid meet"'
+         f'{aria_attr(aria)}>']
+    for j, c in enumerate(cols):
+        o.append(f'<text x="{label_w+cell*j+cell/2:.1f}" y="16" text-anchor="middle" font-size="11.5" '
+                 f'font-weight="800" fill="{INK2}">{escape(str(c))}</text>')
+    o.append(f'<text x="{tail_x}" y="16" font-size="11" font-weight="700" fill="{INK3}">用量</text>')
+    for i, (lbl, flags, tail) in enumerate(rows):
+        y = 30 + i * cell
+        if i % 2 == 0:
+            o.append(f'<rect x="0" y="{y}" width="{max(width, tail_x+96)}" height="{cell}" '
+                     f'fill="{SURFACE}"/>')
+        o.append(f'<text x="{label_w-14}" y="{y+cell/2+4:.1f}" text-anchor="end" font-size="11.5" '
+                 f'font-family="ui-monospace,Menlo,monospace" fill="{INK}">{escape(str(lbl))}</text>')
+        for j, on in enumerate(flags):
+            cx, cy = label_w + cell * j + cell / 2, y + cell / 2
+            if on:
+                o.append(f'<circle class="fl-cell" cx="{cx:.1f}" cy="{cy:.1f}" r="7" fill="{accent}" '
+                         f'style="animation-delay:{min(0.6, i*0.03+j*0.02):.2f}s">'
+                         f'<title>{escape(str(lbl))} · {escape(str(cols[j]))}：使用</title></circle>')
+            else:
+                o.append(f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="4.5" fill="none" stroke="{GRID}" '
+                         f'stroke-width="1.5"/>')
+        o.append(f'<text x="{tail_x}" y="{y+cell/2+4:.1f}" font-size="11" font-weight="700" '
+                 f'fill="{INK2}">{escape(str(tail))}</text>')
+    o.append("</svg>")
+    return "".join(o)
 
 
 def simple_table(heads, rows, cls="dt", align=None):

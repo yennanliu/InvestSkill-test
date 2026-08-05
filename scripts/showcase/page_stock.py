@@ -5,9 +5,6 @@ import viz as V
 from shell import page, toc
 from prose import P
 
-PHASE_LABEL = {"business": "商業品質", "valuation": "估值", "signal": "市場訊號",
-               "technical": "技術時機", "risk": "風險剖面"}
-
 
 def build(tk):
     i = RAW[tk]["info"]; n = C[tk]["norm"]; h = RAW[tk]["hist_1y"]
@@ -82,8 +79,15 @@ def build(tk):
 
     # ══════════════════════════════════════════════════════════ summary
     ph_rows = [(PHASE_LABEL[k], comp["phases"][k], col,
-                f'×{comp["weights"][k]:.0%} = {comp["weighted"][k]:.2f}') for k in
-               ["business", "valuation", "signal", "technical", "risk"]]
+                f'×{comp["weights"][k]:.0%} = {comp["weighted"][k]:.2f}') for k in PHASE_ORDER]
+    ladder = V.phase_chart(
+        [{"label": f"階段{n} · {PHASE_LABEL[k]}", "score": comp["phases"][k],
+          "modules": PHASE_MODULES[k]} for n, k in zip("一二三四五", PHASE_ORDER)],
+        accent=col,
+        head=f"yfinance 單次快照 · {ASOF} · 15 個模組共用同一組數字",
+        foot=f"綜合評分 {comp['total']:.2f}／10 · {rec} → result-validator 信賴稽核",
+        aria=f"{tk} 報告的五階段相依階梯：單一共用快照餵入五個依序執行的階段、共 15 個模組，"
+             f"收斂為綜合評分 {comp['total']:.2f}")
     d.append(f"""<section id="summary"><h2>結論摘要</h2>
 <div class="grid g2">
 <div>{V.figure(V.gauge(comp['total'], width=300, height=180, caption=rec),
@@ -91,6 +95,18 @@ def build(tk):
 <div>{V.figure(V.hbar_chart(ph_rows, width=470, vmax=10, fmt="{:.1f}", pad=(12,138,26,86)),
    "五階段子分數（0–10）")}</div>
 </div>
+{V.figure(ladder, f"圖 ── 本報告的執行路徑：{tk} 的 15 個模組如何收斂成 {comp['total']:.2f}／10",
+  V.simple_table(["階段", "模組", "子分數", "權重", "加權貢獻"],
+    [[f"階段{n} · {PHASE_LABEL[k]}",
+      "、".join(f"<code>{m}</code>" for m in PHASE_MODULES[k]),
+      f'{comp["phases"][k]:.1f}', f'{comp["weights"][k]:.0%}', f'{comp["weighted"][k]:.2f}']
+     for n, k in zip("一二三四五", PHASE_ORDER)] +
+    [["<strong>合計</strong>", "<strong>15 個模組</strong>", "—", "100%",
+      f'<strong>{comp["total"]:.2f}</strong>']],
+    align=["left", "left", "right", "right", "right"]),
+  "階段之間是<strong>相依</strong>的：階段一算出的資本結構與 Beta 決定階段二的 WACC，"
+  "階段二的內在價值決定階段四的進場區間。因此下方 15 個模組的閱讀順序即為執行順序。",
+  extra_cls="dagfig")}
 {sig_block([("Signal", pr['sig']['signal']), ("Confidence", pr['sig']['conf']),
             ("Horizon", pr['sig']['hz']), ("Score", f"{comp['total']:.2f} / 10"), None,
             ("Action", pr['sig']['action']), ("Conviction", pr['sig']['conv'])])}

@@ -97,6 +97,15 @@ byte-identical.
   `build.py`, commit the regenerated HTML.
 - Anything non-deterministic (`date.today()`, dict iteration over unsorted input, unstable float
   formatting) breaks the byte-identical gate. `ASOF` in `context.py` is a hardcoded date for this reason.
+- Motion is layered on, never load-bearing. `shell.py` sets `html.js` from an inline head script and
+  every animation selector is gated on it, so a no-JS (or `prefers-reduced-motion`, or print) reader
+  gets the final state. Two consequences when editing: reveal targets are chosen by selector in the
+  shell's JS rather than marked up in the pages, and anything that hides an element until an animation
+  runs (`.rv`, `.ch-draw`'s dash offset, `.fl-node`) **must** be reset in both guard blocks at the
+  bottom of the CSS — otherwise "animations off" means "content invisible".
+- Flow diagrams (`viz.pipeline_chart` / `phase_chart` / `matrix_dots`) are plain SVG plus CSS classes
+  (`fl-node`, `fl-dash`, `fl-cell`); no `<animate>` elements, so they stay static images when motion is
+  off. Wrap them with `V.figure(..., extra_cls="dagfig")` to opt into the staggered entrance.
 - Flat module layout: `build.py` puts its own directory on `sys.path`, so pages `import context`, not
   `from .context import`. `page_*.py` modules use `from context import *` deliberately — this is
   whitelisted in `ruff.toml` per-file-ignores and shouldn't spread elsewhere.
