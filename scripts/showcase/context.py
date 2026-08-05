@@ -28,6 +28,20 @@ ROLE = {
 
 BENCH = RAW["_bench"]
 
+# full-report's five ordered phases and the modules each one runs (15 in total).
+# Shared by the per-ticker reports and by the pipeline diagrams on the hub.
+PHASE_LABEL = {"business": "商業品質", "valuation": "估值", "signal": "市場訊號",
+               "technical": "技術時機", "risk": "風險剖面"}
+PHASE_ORDER = ["business", "valuation", "signal", "technical", "risk"]
+PHASE_MODULES = {
+    "business": ["stock-eval", "competitor-analysis", "fundamental-analysis"],
+    "valuation": ["dcf-valuation", "stock-valuation"],
+    "signal": ["insider-trading", "institutional-ownership", "earnings-call-analysis"],
+    "technical": ["technical-analysis", "sector-analysis"],
+    "risk": ["short-interest", "options-analysis", "economics-analysis",
+             "financial-report-analyst", "dividend-analysis"],
+}
+
 # --------------------------------------------------- yesterday's gap-down
 GAP = {}
 for tk in T:
@@ -200,6 +214,18 @@ def pcf(v, dp=1, sign=False):
 
 def num(v, dp=2):
     return "—" if v is None else f"{v:,.{dp}f}"
+
+def countv(text, value, dp=2, pre="", suf=""):
+    """Wrap a figure so the shell's JS can count it up when it scrolls into view.
+
+    The element already contains its final, correct text — the animation only ever
+    replaces it with the same value, so a reader without JS loses nothing.
+    """
+    if value is None:
+        return text
+    return (f'<span data-count="{value:.4f}" data-dp="{dp}" data-pre="{pre}" '
+            f'data-suf="{suf}">{text}</span>')
+
 
 def cls(v, invert=False):
     if v is None: return ""

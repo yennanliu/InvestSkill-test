@@ -24,6 +24,8 @@
   --s-48:48px; --s-64:64px; --s-80:80px;
   --r-btn:8px; --r-card:16px; --r-pill:999px;
   --shadow:0 2px 8px rgba(22,24,26,.08); --shadow-lift:0 8px 24px rgba(22,24,26,.12);
+  --shadow-hi:0 16px 40px rgba(0,86,40,.16);
+  --ease:cubic-bezier(.22,1,.36,1); --dur:.6s;
   --sans:"Inter","Poppins",-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",
          "PingFang TC","Microsoft JhengHei",Roboto,Helvetica,Arial,sans-serif;
   --display:"Poppins","Inter",-apple-system,BlinkMacSystemFont,"Noto Sans TC",
@@ -48,8 +50,15 @@ p{margin:0}
 
 /* ---------- nav ---------- */
 .nav{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.94);
-  backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid var(--line)}
+  backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid var(--line);
+  transition:box-shadow .24s ease,background .24s ease}
+.nav.stuck{box-shadow:0 6px 22px rgba(22,24,26,.08);background:rgba(255,255,255,.97)}
 .nav__in{display:flex;align-items:center;gap:var(--s-16);height:68px;min-width:0}
+/* reading-progress rail, welded to the nav's bottom edge (sticky nav is the
+   containing block, so this spans the viewport rather than the wrap) */
+.prog{position:absolute;left:0;right:0;bottom:-1px;height:2px;overflow:hidden;pointer-events:none}
+.prog i{display:block;height:100%;width:0;border-radius:0 2px 2px 0;
+  background:linear-gradient(90deg,var(--green-band),var(--green) 60%,#7ee2a8)}
 .brand{display:flex;align-items:center;gap:var(--s-12);min-width:0;text-decoration:none;
   font-family:var(--display);font-weight:800;letter-spacing:-.02em;white-space:nowrap;color:var(--ink)}
 .brand:hover{text-decoration:none}
@@ -57,8 +66,12 @@ p{margin:0}
 .brand__mark{width:32px;height:32px;border-radius:var(--r-btn);background:var(--green);
   display:grid;place-items:center;flex:0 0 auto}
 .nav__links{display:none;gap:var(--s-24);margin-left:auto;font-size:.875rem;font-weight:600}
-.nav__links a{text-decoration:none;color:var(--ink-2);padding-block:var(--s-8)}
+.nav__links a{position:relative;text-decoration:none;color:var(--ink-2);padding-block:var(--s-8);
+  transition:color .18s ease}
 .nav__links a:hover,.nav__links a[aria-current="page"]{color:var(--green)}
+.nav__links a::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:2px;border-radius:2px;
+  background:var(--green);transform:scaleX(0);transform-origin:left;transition:transform .24s var(--ease)}
+.nav__links a:hover::after,.nav__links a[aria-current="page"]::after{transform:scaleX(1)}
 .nav__cta{margin-left:auto;flex:0 0 auto}
 @media(min-width:1000px){.nav__links{display:flex}.nav__cta{margin-left:0}}
 @media(max-width:559px){.nav__cta-label{display:none}.brand{font-size:.875rem}}
@@ -81,13 +94,23 @@ p{margin:0}
 .rhero{position:relative;overflow:hidden;color:#fff;
   background:radial-gradient(120% 140% at 88% 8%,rgba(0,177,79,.95) 0%,rgba(0,177,79,0) 58%),
   linear-gradient(104deg,var(--green-band) 0%,#007d38 52%,#009243 100%)}
+/* ::before = slow-drifting aurora; ::after = scrim (contrast guarantee) plus a
+   barely-there moving hatch. Both are decoration only, so no markup carries them. */
+.rhero::before{content:"";position:absolute;top:-45%;right:-12%;width:74%;height:190%;
+  pointer-events:none;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(126,226,168,.40),rgba(126,226,168,0) 72%);
+  animation:drift 24s ease-in-out infinite alternate}
 .rhero::after{content:"";position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(90deg,rgba(0,58,26,.55) 0%,rgba(0,58,26,.18) 42%,rgba(0,58,26,0) 72%)}
+  background:linear-gradient(90deg,rgba(0,58,26,.55) 0%,rgba(0,58,26,.18) 42%,rgba(0,58,26,0) 72%),
+    repeating-linear-gradient(115deg,rgba(255,255,255,.055) 0 1px,rgba(255,255,255,0) 1px 26px);
+  background-position:0 0,0 0;animation:hatch 40s linear infinite}
 .rhero__in{position:relative;z-index:1;padding-block:var(--s-48) var(--s-64)}
 .rhero .eyebrow{color:#9ce8bd}
 .rhero__sub{margin-top:var(--s-16);font-size:1.06rem;max-width:62ch;color:rgba(255,255,255,.93)}
 .eyebrow{font-family:var(--display);font-size:.8125rem;font-weight:700;letter-spacing:.08em;
   text-transform:uppercase;color:var(--green);margin-bottom:var(--s-8)}
+.eyebrow::before{content:"";display:inline-block;width:20px;height:2px;border-radius:2px;
+  background:currentColor;vertical-align:.22em;margin-right:9px;opacity:.85}
 .chips{display:flex;flex-wrap:wrap;gap:var(--s-8);margin-top:var(--s-24)}
 .chip{display:inline-flex;align-items:center;gap:6px;padding:6px 13px;border-radius:var(--r-pill);
   background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.30);
@@ -133,11 +156,22 @@ p{margin:0}
 .g3{grid-template-columns:repeat(auto-fit,minmax(216px,1fr))}
 .g4{grid-template-columns:repeat(auto-fit,minmax(174px,1fr))}
 .card{background:var(--white);border:1px solid var(--line);border-radius:var(--r-card);
-  padding:var(--s-24);box-shadow:var(--shadow)}
+  padding:var(--s-24);box-shadow:var(--shadow);
+  transition:transform .24s var(--ease),box-shadow .24s var(--ease),border-color .24s ease}
 .card--wash{background:var(--green-wash);border-color:#b9e7cf}
 .card--surface{background:var(--surface)}
 .card__h{font-family:var(--display);font-weight:800;font-size:1rem;margin-bottom:var(--s-8)}
-.tile{background:var(--white);border:1px solid var(--line);border-radius:var(--r-card);padding:var(--s-16) var(--s-16)}
+/* only cards that are links lift — a static card that moves under the cursor lies */
+a.card{position:relative;overflow:hidden}
+a.card::before{content:"";position:absolute;left:0;top:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--green-band),var(--green) 55%,#7ee2a8);
+  transform:scaleX(0);transform-origin:left;transition:transform .34s var(--ease)}
+a.card:hover,a.card:focus-visible{transform:translateY(-4px);box-shadow:var(--shadow-hi);
+  border-color:#b9e7cf;text-decoration:none}
+a.card:hover::before,a.card:focus-visible::before{transform:scaleX(1)}
+.tile{background:var(--white);border:1px solid var(--line);border-radius:var(--r-card);padding:var(--s-16) var(--s-16);
+  transition:transform .24s var(--ease),box-shadow .24s var(--ease)}
+.tile:hover{transform:translateY(-3px);box-shadow:var(--shadow-lift)}
 .tile__k{font-size:.75rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-3)}
 .tile__v{font-family:var(--display);font-size:1.6rem;font-weight:800;line-height:1.2;margin-top:4px;
   letter-spacing:-.02em;font-variant-numeric:tabular-nums}
@@ -202,8 +236,13 @@ figcaption{font-size:.8125rem;color:var(--ink-2);margin-top:var(--s-8);font-weig
 .call ul{margin:6px 0;font-size:.9375rem}
 
 /* signal block — the InvestSkill house style, kept monospace */
-.sig{background:#0f1113;color:#e8edf1;border-radius:var(--r-card);padding:var(--s-24);
+.sig{position:relative;background:linear-gradient(158deg,#0f1113 0%,#151b1e 100%);color:#e8edf1;
+  border-radius:var(--r-card);padding:var(--s-24);box-shadow:inset 0 0 0 1px rgba(126,226,168,.16);
   font-family:var(--mono);font-size:.8125rem;line-height:1.85;overflow-x:auto;margin-block:var(--s-24)}
+.sig::before{content:"";position:absolute;left:0;top:0;right:0;height:2px;pointer-events:none;
+  border-radius:var(--r-card) var(--r-card) 0 0;background-repeat:no-repeat;background-size:38% 100%;
+  background-image:linear-gradient(90deg,rgba(126,226,168,0),#7ee2a8,rgba(126,226,168,0));
+  animation:sheen 5.5s linear infinite}
 .sig b{color:#7ee2a8;font-weight:700}
 .sig .k{color:#8b98a5}
 .sig pre{margin:0;font:inherit}
@@ -218,7 +257,9 @@ code{font-family:var(--mono);font-size:.9em;background:var(--surface);border:1px
 .flow{display:grid;gap:var(--s-12);margin-block:var(--s-24)}
 .flow__row{display:grid;gap:var(--s-12);grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
 .node{border:1px solid var(--line);border-radius:12px;padding:var(--s-12) var(--s-16);background:#fff;
-  box-shadow:var(--shadow);position:relative}
+  box-shadow:var(--shadow);position:relative;
+  transition:transform .22s var(--ease),box-shadow .22s var(--ease)}
+.node:hover{transform:translateY(-3px);box-shadow:var(--shadow-lift);z-index:2}
 .node--choke{border-color:var(--red);border-width:2px;background:#fdf0f0}
 .node--target{border-color:var(--green);border-width:2px;background:var(--green-wash)}
 .node__pos{font-size:.6875rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3)}
@@ -226,6 +267,76 @@ code{font-family:var(--mono);font-size:.9em;background:var(--surface);border:1px
 .node__t{font-family:var(--mono);font-size:.75rem;color:var(--ink-2);margin-top:5px;line-height:1.6}
 .node__m{font-size:.6875rem;color:var(--ink-3);margin-top:5px}
 .arrowrow{text-align:center;color:var(--ink-3);font-size:1.1rem;line-height:1}
+
+/* ---------- stepper: a workflow chain as a rail of numbered steps ---------- */
+.stp{position:relative;display:grid;gap:var(--s-8);margin-block:var(--s-16);padding-left:38px}
+.stp::before{content:"";position:absolute;left:15px;top:14px;bottom:16px;width:2px;border-radius:2px;
+  background:linear-gradient(180deg,var(--stp-c,var(--green)),rgba(118,124,133,.28));
+  transform-origin:top;transform:scaleY(1)}
+.js .stp::before{transform:scaleY(0);transition:transform .8s var(--ease) .1s}
+.js .stp.in::before{transform:scaleY(1)}
+.stp__i{position:relative;background:#fff;border:1px solid var(--line);border-radius:12px;
+  padding:9px 14px;box-shadow:var(--shadow);
+  transition:transform .2s var(--ease),box-shadow .2s var(--ease),border-color .2s ease}
+.stp__i:hover{transform:translateX(3px);box-shadow:var(--shadow-lift);border-color:#b9e7cf}
+.stp__i::before{content:attr(data-n);position:absolute;left:-38px;top:8px;width:26px;height:26px;
+  border-radius:50%;display:grid;place-items:center;background:var(--stp-c,var(--green));color:#fff;
+  font-family:var(--display);font-size:.75rem;font-weight:800;
+  box-shadow:0 0 0 3px #fff,0 0 0 4px rgba(0,177,79,.16)}
+.stp__i--gate::before{background:var(--red)}
+.stp__i--gate{border-color:#f7c4c4;background:#fdf0f0}
+.stp__s{font-family:var(--mono);font-size:.8125rem;font-weight:700;color:var(--ink)}
+.stp__w{font-size:.75rem;color:var(--ink-2);margin-top:2px;line-height:1.55}
+
+/* ---------- flow diagrams (SVG) ---------- */
+.dagfig .figbox{background:linear-gradient(180deg,#fcfdfd,#f7f8f9)}
+/* flow diagrams are wider than the data charts; keep their labels legible and let
+   the figbox scroll rather than shrinking 10px type into nothing */
+.dagfig .chart{min-width:min(100%,820px)}
+.fl-dash{stroke-dasharray:5 7;animation:dashflow 1.1s linear infinite}
+.fl-pulse{animation:pulse 2.6s ease-in-out infinite}
+.fl-node{transition:transform .2s var(--ease)}
+.fl-cell{transition:opacity .2s ease,transform .2s ease;transform-origin:center;transform-box:fill-box}
+.fl-cell:hover{transform:scale(1.35)}
+.js .dagfig .fl-node,.js .dagfig .fl-cell{opacity:0}
+.js .dagfig.in .fl-node{animation:pop .5s var(--ease) forwards}
+/* cells fade only — an animated transform would out-rank the :hover scale above */
+.js .dagfig.in .fl-cell{animation:fade .45s ease forwards}
+.js .dagfig .fl-dash{opacity:0}
+.js .dagfig.in .fl-dash{animation:dashflow 1.1s linear infinite,fade .5s ease .35s forwards}
+
+/* ---------- motion system ---------- */
+@keyframes drift{
+  0%{transform:translate3d(0,0,0) scale(1)}
+  50%{transform:translate3d(-5%,4%,0) scale(1.1)}
+  100%{transform:translate3d(4%,-3%,0) scale(1.04)}}
+@keyframes hatch{to{background-position:0 0,-520px 0}}
+@keyframes dashflow{to{stroke-dashoffset:-24}}
+@keyframes draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes pulse{0%,100%{opacity:.30}50%{opacity:.85}}
+@keyframes pop{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes sheen{from{background-position:-45% 0}to{background-position:145% 0}}
+
+/* scroll reveal — the .js gate means no-JS readers get everything, unanimated */
+.js .rv{opacity:0;transform:translateY(18px);
+  transition:opacity var(--dur) var(--ease),transform var(--dur) var(--ease)}
+.js .rv.in{opacity:1;transform:none}
+
+/* charts draw themselves once their figure scrolls in (pathLength=1 → dash maths
+   is exact regardless of the path's real length) */
+.js .fig .ch-draw,.js .fig .g-arc{stroke-dasharray:1 1;stroke-dashoffset:1}
+.js .fig.in .ch-draw{animation:draw 1.5s var(--ease) .08s forwards}
+.js .fig.in .g-arc{animation:draw 1.1s var(--ease) .12s forwards}
+
+/* back-to-top */
+.totop{position:fixed;right:16px;bottom:16px;z-index:40;width:44px;height:44px;border-radius:50%;
+  display:grid;place-items:center;background:var(--green);color:#fff;box-shadow:var(--shadow-lift);
+  opacity:0;visibility:hidden;transform:translateY(12px) scale(.9);
+  transition:opacity .26s var(--ease),transform .26s var(--ease),visibility .26s,background .16s}
+.totop.on{opacity:1;visibility:visible;transform:none}
+.totop:hover{background:var(--green-press);text-decoration:none}
+.totop:focus-visible{outline:3px solid var(--green-band);outline-offset:3px}
 
 /* ---------- misc ---------- */
 .band{background:var(--green-band);color:#fff;padding-block:var(--s-48)}
@@ -243,13 +354,31 @@ code{font-family:var(--mono);font-size:.9em;background:var(--surface);border:1px
 .skip:focus{left:var(--s-16);top:var(--s-8);z-index:60;background:#fff;color:var(--ink);
   padding:10px 16px;border-radius:var(--r-btn);box-shadow:var(--shadow-lift)}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+/* Motion is decoration: every animated element must also be legible with the
+   animation removed. Both guards below assert that, and the dash-array resets
+   matter most — a mid-draw chart line with animations off is an invisible line. */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+  .js .rv{opacity:1!important;transform:none!important}
+  .js .dagfig .fl-node,.js .dagfig .fl-cell,.js .dagfig .fl-dash{opacity:1!important}
+  .ch-draw,.g-arc{stroke-dasharray:none!important;stroke-dashoffset:0!important}
+  .fl-dash{stroke-dasharray:5 7!important}
+  .js .stp::before{transform:scaleY(1)!important}
+}
 @media print{
-  .nav,.toc,.tblview{display:none}
+  .nav,.toc,.tblview,.totop,.prog{display:none}
   .shell{display:block}
   .figbox,.card{break-inside:avoid;box-shadow:none}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .js .rv{opacity:1!important;transform:none!important}
+  .js .dagfig .fl-node,.js .dagfig .fl-cell,.js .dagfig .fl-dash{opacity:1!important}
+  .ch-draw,.g-arc{stroke-dasharray:none!important;stroke-dashoffset:0!important}
+  .js .stp::before{transform:scaleY(1)!important}
   a[href^="http"]::after{content:" (" attr(href) ")";font-size:.7em;color:#666}
 }
 </style>
+<script>document.documentElement.className="js"</script>
 </head>
 <body>
 <a class="skip" href="#main">跳至主要內容</a>
@@ -260,7 +389,7 @@ code{font-family:var(--mono);font-size:.9em;background:var(--surface);border:1px
 <a class="btn btn--sm nav__cta" href="https://github.com/yennanliu/InvestSkill-test">
 <span class="nav__cta-label">GitHub</span>
 <svg width="17" height="17" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-2.92-.88-2.92-2.90 0-.86.31-1.57.82-2.12-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.81a5.4 5.4 0 0 1 2 0c1.53-1.04 2.2-.81 2.2-.81.44 1.1.16 1.92.08 2.12.51.55.82 1.25.82 2.12 0 2.03-1.15 2.70-2.93 2.90.3.26.56.76.56 1.54 0 1.11-.01 2.01-.01 2.29 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg></a>
-</div></header>
+</div><div class="prog" aria-hidden="true"><i></i></div></header>
 <main id="main">
 <section class="rhero"><div class="wrap rhero__in">
 <p class="crumb"><a href="../index.html">InvestSkill Autopilot</a> ／ <a href="index.html">展示櫃</a> ／ SKHY</p>
@@ -299,9 +428,10 @@ HBM 市佔領先、ROIC 對 WACC 價差 +16.6pp。但它也是唯一一檔<stron
 一律標記「未評估」並在綜合評分中揭露，<strong>不以中性值 5.0 填補</strong>。</p>
 </section><section id="summary"><h2>結論摘要</h2>
 <div class="grid g2">
-<div><figure class="fig"><div class="figbox"><svg class="chart" viewBox="0 0 300 180" role="img" preserveAspectRatio="xMidYMid meet"><path d="M26.0,154.0 A124.0,124.0 0 0 1 274.0,154.0" fill="none" stroke="#e6e8eb" stroke-width="12" stroke-linecap="round"/><path d="M26.0,154.0 A124.0,124.0 0 0 1 187.9,35.9" fill="none" stroke="#b35c00" stroke-width="12" stroke-linecap="round"/><text x="150.0" y="146" text-anchor="middle" font-size="40" font-weight="800" fill="#16181a">5.99</text><text x="150.0" y="166" text-anchor="middle" font-size="12" fill="#767c85">／ 10</text><text x="150.0" y="176" text-anchor="middle" font-size="12" font-weight="700" fill="#b35c00">持有／觀察 Hold / Watch</text></svg></div><figcaption>綜合評分 5.99／10</figcaption></figure></div>
+<div><figure class="fig"><div class="figbox"><svg class="chart" viewBox="0 0 300 180" role="img" preserveAspectRatio="xMidYMid meet"><path d="M26.0,154.0 A124.0,124.0 0 0 1 274.0,154.0" fill="none" stroke="#e6e8eb" stroke-width="12" stroke-linecap="round"/><path d="M26.0,154.0 A124.0,124.0 0 0 1 187.9,35.9" fill="none" stroke="#b35c00" stroke-width="12" stroke-linecap="round" class="g-arc" pathLength="1"/><text x="150.0" y="146" text-anchor="middle" font-size="40" font-weight="800" fill="#16181a">5.99</text><text x="150.0" y="166" text-anchor="middle" font-size="12" fill="#767c85">／ 10</text><text x="150.0" y="176" text-anchor="middle" font-size="12" font-weight="700" fill="#b35c00">持有／觀察 Hold / Watch</text></svg></div><figcaption>綜合評分 5.99／10</figcaption></figure></div>
 <div><figure class="fig"><div class="figbox"><svg class="chart" viewBox="0 0 470 228" role="img" preserveAspectRatio="xMidYMid meet"><line x1="86.0" y1="8" x2="86.0" y2="204" stroke="#e6e8eb" stroke-width="1"/><text x="86.0" y="220" text-anchor="middle" font-size="11" fill="#767c85">0.0</text><line x1="147.5" y1="8" x2="147.5" y2="204" stroke="#e6e8eb" stroke-width="1"/><text x="147.5" y="220" text-anchor="middle" font-size="11" fill="#767c85">2.5</text><line x1="209.0" y1="8" x2="209.0" y2="204" stroke="#e6e8eb" stroke-width="1"/><text x="209.0" y="220" text-anchor="middle" font-size="11" fill="#767c85">5.0</text><line x1="270.5" y1="8" x2="270.5" y2="204" stroke="#e6e8eb" stroke-width="1"/><text x="270.5" y="220" text-anchor="middle" font-size="11" fill="#767c85">7.5</text><line x1="332.0" y1="8" x2="332.0" y2="204" stroke="#e6e8eb" stroke-width="1"/><text x="332.0" y="220" text-anchor="middle" font-size="11" fill="#767c85">10.0</text><text x="76" y="29.0" text-anchor="end" font-size="12.5" font-weight="600" fill="#16181a">商業品質</text><rect x="86.0" y="12" width="201.7" height="26" rx="4" ry="4" fill="#1baf7a"><title>商業品質: 8.2 · ×25% = 2.05</title></rect><text x="295.7" y="29.0" font-size="12.5" font-weight="700" fill="#4a4f55">8.2 ×25% = 2.05</text><text x="76" y="67.0" text-anchor="end" font-size="12.5" font-weight="600" fill="#16181a">估值</text><rect x="86.0" y="50" width="211.6" height="26" rx="4" ry="4" fill="#1baf7a"><title>估值: 8.6 · ×25% = 2.15</title></rect><text x="305.6" y="67.0" font-size="12.5" font-weight="700" fill="#4a4f55">8.6 ×25% = 2.15</text><text x="76" y="105.0" text-anchor="end" font-size="12.5" font-weight="600" fill="#16181a">市場訊號</text><rect x="86.0" y="88" width="127.9" height="26" rx="4" ry="4" fill="#1baf7a"><title>市場訊號: 5.2 · ×20% = 1.04</title></rect><text x="221.9" y="105.0" font-size="12.5" font-weight="700" fill="#4a4f55">5.2 ×20% = 1.04</text><text x="76" y="143.0" text-anchor="end" font-size="12.5" font-weight="600" fill="#16181a">技術時機</text><rect x="86.0" y="126" width="49.2" height="26" rx="4" ry="4" fill="#1baf7a"><title>技術時機: 2.0 · ×15% = 0.30</title></rect><text x="143.2" y="143.0" font-size="12.5" font-weight="700" fill="#4a4f55">2.0 ×15% = 0.30</text><text x="76" y="181.0" text-anchor="end" font-size="12.5" font-weight="600" fill="#16181a">風險剖面</text><rect x="86.0" y="164" width="73.8" height="26" rx="4" ry="4" fill="#1baf7a"><title>風險剖面: 3.0 · ×15% = 0.45</title></rect><text x="167.8" y="181.0" font-size="12.5" font-weight="700" fill="#4a4f55">3.0 ×15% = 0.45</text></svg></div><figcaption>五階段子分數（0–10）</figcaption></figure></div>
 </div>
+<figure class="fig dagfig"><div class="figbox"><svg class="chart" viewBox="0 0 920 378" role="img" preserveAspectRatio="xMidYMid meet" aria-label="SKHY 報告的五階段相依階梯：單一共用快照餵入五個依序執行的階段、共 15 個模組，收斂為綜合評分 5.99"><g class="fl-node"><rect x="5" y="0" width="910.0" height="38" rx="12" ry="12" fill="#e6f7ee" stroke="#b9e7cf" stroke-width="1.5"/><text x="460.0" y="24.0" text-anchor="middle" font-size="12.5" font-weight="800" fill="#00692e">yfinance 單次快照 · 2026-07-29 · 15 個模組共用同一組數字</text></g><line class="fl-dash" x1="90.4" y1="41" x2="90.4" y2="55" stroke="#1baf7a" stroke-width="2" stroke-linecap="round"/><path d="M85.6,56.0 L95.2,56.0 L90.4,62.0 Z" fill="#1baf7a"/><g class="fl-node" style="animation-delay:0.00s"><rect x="5.0" y="64" width="170.8" height="71" rx="12" ry="12" fill="#fff" stroke="#1baf7a" stroke-width="1.5"/><text x="90.4" y="85" text-anchor="middle" font-size="12" font-weight="800" fill="#16181a">階段一 · 商業品質</text><text x="90.4" y="126" text-anchor="middle" font-size="21" font-weight="800" fill="#1baf7a">8.2</text></g><g class="fl-node" style="animation-delay:0.20s"><rect x="5.0" y="145" width="170.8" height="27" rx="8" ry="8" fill="#ffffff" stroke="#e6e8eb" stroke-width="1"/><text x="90.4" y="163" text-anchor="middle" font-size="10.5" font-family="ui-monospace,Menlo,monospace" fill="#4a4f55">stock-eval</text></g><g class="fl-node" style="animation-delay:0.24s"><rect x="5.0" y="178" width="170.8" height="27" rx="8" ry="8" fill="#ffffff" stroke="#e6e8eb" stroke-width="1"/><text x="90.4" y="196" text-anchor="middle" font-size="10.5" font-family="ui-monospace,Menlo,monospace" fill="#4a4f55">competitor-analysis</text></g><g class="fl-node" style="animation-delay:0.28s"><rect x="5.0" y="211" width="170.8" height="27" rx="8" ry="8" fill="#ffffff" stroke="#e6e8eb" stroke-width="1"/><text x="90.4" y="229" text-anchor="middle" font-size="10.5" font-family="ui-monospace,Menlo,monospace" fill="#4a4f55">fundamental-analysis</text></g><path d="M178.8,93.5 L185.8,99.5 L178.8,105.5" fill="none" stroke="#767c85" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fl-pulse"/><line class="fl-dash" x1="90.4" y1="313" x2="90.4" y2="323" stroke="#1baf7a" stroke-width="2" stroke-linecap="round"/><path d="M85.6,323.0 L95.2,323.0 L90.4,329.0 Z" fill="#1baf7a"/><line class="fl-dash" x1="275.2" y1="41" x2="275.2" y2="55" stroke="#1baf7a" stroke-width="2" stroke-linecap="round"/><path d="M270.4,56.0 L280.0,56.0 L275.2,62.0 Z" fill="#1baf7a"/><g class="fl-node" style="animation-delay:0.09s"><rect x="189.8" y="64" width="170.8" height="71" rx="12" ry="12" fill="#fff" stroke="#1baf7a" stroke-width="1.5"/><text x="275.2" y="85" text-anchor="middle" font-size="12" font-weight="800" fill="#16181a">階段二 · 估值</text><text x="275.2" y="126" text-anchor="middle" font-size="21" font-weight="800" fill="#1baf7a">8.6</text></g><g class="fl-node" style="animation-delay:0.25s"><rect x="189.8" y="145" width="170.8" height="27" rx="8" ry="8" fill="#ffffff" stroke="#e6e8eb" stroke-width="1"/><text x="275.2" y="163" text-anchor="middle" font-size="10.5" font-family="ui-monospace,Menlo,monospace" fill="#4a4f55">dcf-valuation</text></g><g class="fl-node" style="animation-delay:0.29s"><rect x="189.8" y="178" width="170.8" height="27" rx="8" ry="8" fill="#ffffff" stroke="#e6e8eb" stroke-width="1"/><text x="275.2" y="196" text-anchor="middle" font-size="10.5" font-family="ui-monospace,Menlo,monospace" fill="#4a4f55">stock-valuation</text></g><path d="M363.6,93.5 L370.6,99.5 L363.6,105.5" fill="none" stroke="#767c85" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fl-pulse"/><line class="fl-dash" x1="275.2" y1="313" x2="275.2" y2="323" stroke="#1baf7a" stroke-width="2" stroke-linecap="round"/><path d="M270.4,323.0 L280.0,323.0 L275.2,329.0 Z" fill="#1baf7a"/><line class="fl-dash" x1="460.0" y1="41" x2="460.0" y2="55" stroke="#1baf7a" stroke-width="2" stroke-linecap="round"/><path d="M455.2,56.0 L464.8,56.0 L460.0,62.0 Z" fill="#1baf7a"/><g class="fl-node" style="animation-delay:0.18s"><rect x="374.6" y="64" width="170.8" height="71" rx="12" ry="12" fill="#fff" stroke="#1baf7a" stroke-width="1.5"/><text x="460.0" y="85" text-anchor="middle" font-size="12" font-weight="800" fill="#16181a">階段三 · 市場訊號</text><text x="460.0" y="126" text-anchor="middle" font-size="21" font-weight="800" fill="#1baf7a">5.2</text></g><g class="fl-node" style="animation-delay:0.30s"><rect x="374.6" y="145" width="170.8" height="27" rx="8" ry="8" fill="#ffffff" stroke="#e6e8eb" stroke-width="1"/><text x="460.0" y="163" text-anchor="middle" font-size="10.5" font-family="ui-monospace,Menlo,monospace" fill="#4a4f55">insider-trading</text></g><g class="fl-node" style="animation-delay:0.34s"><rect x="374.6" y="178" width="170.8" height="27" rx="8" ry="8" fill="#ffffff" stroke="#e6e8eb" stroke-width="1"/><text x="460.0" y="196" text-anchor="middle" font-size="10.5" font-family="ui-monospace,Menlo,monospace" fill="#4a4f55">institutional-ownership</text></g><g class="fl-node" style="animation-delay:0.38s"><rect x="374.6" y="211" width="170.8" height="27" rx="8" ry="8" fill="#ffffff" stroke="#e6e8eb" stroke-width="1"/><text x="460.0" y="229" text-anchor="middle" font-size="10.5" font-family="ui-monospace,Menlo,monospace" fill="#4a4f55">earnings-call-analysis</text></g><path d="M548.4,93.5 L555.4,99.5 L548.4,105.5" fill="none" stroke="#767c85" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fl-pulse"/><line class="fl-dash" x1="460.0" y1="313" x2="460.0" y2="323" stroke="#1baf7a" stroke-width="2" stroke-linecap="round"/><path d="M455.2,323.0 L464.8,323.0 L460.0,329.0 Z" fill="#1baf7a"/><line class="fl-dash" x1="644.8" y1="41" x2="644.8" y2="55" stroke="#1baf7a" stroke-width="2" stroke-linecap="round"/><path d="M640.0,56.0 L649.6,56.0 L644.8,62.0 Z" fill="#1baf7a"/><g class="fl-node" style="animation-delay:0.27s"><rect x="559.4" y="64" width="170.8" height="71" rx="12" ry="12" fill="#fff" stroke="#1baf7a" stroke-width="1.5"/><text x="644.8" y="85" text-anchor="middle" font-size="12" font-weight="800" fill="#16181a">階段四 · 技術時機</text><text x="644.8" y="126" text-anchor="middle" font-size="21" font-weight="800" fill="#1baf7a">2.0</text></g><g class="fl-node" style="animation-delay:0.35s"><rect x="559.4" y="145" width="170.8" height="27" rx="8" ry="8" fill="#ffffff" stroke="#e6e8eb" stroke-width="1"/><text x="644.8" y="163" text-anchor="middle" font-size="10.5" font-family="ui-monospace,Menlo,monospace" fill="#4a4f55">technical-analysis</text></g><g class="fl-node" style="animation-delay:0.39s"><rect x="559.4" y="178" width="170.8" height="27" rx="8" ry="8" fill="#ffffff" stroke="#e6e8eb" stroke-width="1"/><text x="644.8" y="196" text-anchor="middle" font-size="10.5" font-family="ui-monospace,Menlo,monospace" fill="#4a4f55">sector-analysis</text></g><path d="M733.2,93.5 L740.2,99.5 L733.2,105.5" fill="none" stroke="#767c85" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fl-pulse"/><line class="fl-dash" x1="644.8" y1="313" x2="644.8" y2="323" stroke="#1baf7a" stroke-width="2" stroke-linecap="round"/><path d="M640.0,323.0 L649.6,323.0 L644.8,329.0 Z" fill="#1baf7a"/><line class="fl-dash" x1="829.6" y1="41" x2="829.6" y2="55" stroke="#1baf7a" stroke-width="2" stroke-linecap="round"/><path d="M824.8,56.0 L834.4,56.0 L829.6,62.0 Z" fill="#1baf7a"/><g class="fl-node" style="animation-delay:0.36s"><rect x="744.2" y="64" width="170.8" height="71" rx="12" ry="12" fill="#fff" stroke="#1baf7a" stroke-width="1.5"/><text x="829.6" y="85" text-anchor="middle" font-size="12" font-weight="800" fill="#16181a">階段五 · 風險剖面</text><text x="829.6" y="126" text-anchor="middle" font-size="21" font-weight="800" fill="#1baf7a">3.0</text></g><g class="fl-node" style="animation-delay:0.40s"><rect x="744.2" y="145" width="170.8" height="27" rx="8" ry="8" fill="#ffffff" stroke="#e6e8eb" stroke-width="1"/><text x="829.6" y="163" text-anchor="middle" font-size="10.5" font-family="ui-monospace,Menlo,monospace" fill="#4a4f55">short-interest</text></g><g class="fl-node" style="animation-delay:0.44s"><rect x="744.2" y="178" width="170.8" height="27" rx="8" ry="8" fill="#ffffff" stroke="#e6e8eb" stroke-width="1"/><text x="829.6" y="196" text-anchor="middle" font-size="10.5" font-family="ui-monospace,Menlo,monospace" fill="#4a4f55">options-analysis</text></g><g class="fl-node" style="animation-delay:0.48s"><rect x="744.2" y="211" width="170.8" height="27" rx="8" ry="8" fill="#ffffff" stroke="#e6e8eb" stroke-width="1"/><text x="829.6" y="229" text-anchor="middle" font-size="10.5" font-family="ui-monospace,Menlo,monospace" fill="#4a4f55">economics-analysis</text></g><g class="fl-node" style="animation-delay:0.52s"><rect x="744.2" y="244" width="170.8" height="27" rx="8" ry="8" fill="#ffffff" stroke="#e6e8eb" stroke-width="1"/><text x="829.6" y="262" text-anchor="middle" font-size="10.5" font-family="ui-monospace,Menlo,monospace" fill="#4a4f55">financial-report-analyst</text></g><g class="fl-node" style="animation-delay:0.56s"><rect x="744.2" y="277" width="170.8" height="27" rx="8" ry="8" fill="#ffffff" stroke="#e6e8eb" stroke-width="1"/><text x="829.6" y="295" text-anchor="middle" font-size="10.5" font-family="ui-monospace,Menlo,monospace" fill="#4a4f55">dividend-analysis</text></g><line class="fl-dash" x1="829.6" y1="313" x2="829.6" y2="323" stroke="#1baf7a" stroke-width="2" stroke-linecap="round"/><path d="M824.8,323.0 L834.4,323.0 L829.6,329.0 Z" fill="#1baf7a"/><g class="fl-node" style="animation-delay:.55s"><rect x="5" y="330" width="910.0" height="42" rx="12" ry="12" fill="#00692e"/><text x="460.0" y="356" text-anchor="middle" font-size="12.5" font-weight="800" fill="#fff">綜合評分 5.99／10 · 持有／觀察 Hold / Watch → result-validator 信賴稽核</text></g></svg></div><figcaption>圖 ── 本報告的執行路徑：SKHY 的 15 個模組如何收斂成 5.99／10</figcaption><p class="fignote">階段之間是<strong>相依</strong>的：階段一算出的資本結構與 Beta 決定階段二的 WACC，階段二的內在價值決定階段四的進場區間。因此下方 15 個模組的閱讀順序即為執行順序。</p><details class="tblview"><summary>檢視數據表</summary><div class="tblwrap" id="t26"><table class="dt"><thead><tr><th style="text-align:left">階段</th><th style="text-align:left">模組</th><th style="text-align:right">子分數</th><th style="text-align:right">權重</th><th style="text-align:right">加權貢獻</th></tr></thead><tbody><tr><th scope="row" style="text-align:left">階段一 · 商業品質</th><td style="text-align:left"><code>stock-eval</code>、<code>competitor-analysis</code>、<code>fundamental-analysis</code></td><td style="text-align:right">8.2</td><td style="text-align:right">25%</td><td style="text-align:right">2.05</td></tr><tr><th scope="row" style="text-align:left">階段二 · 估值</th><td style="text-align:left"><code>dcf-valuation</code>、<code>stock-valuation</code></td><td style="text-align:right">8.6</td><td style="text-align:right">25%</td><td style="text-align:right">2.15</td></tr><tr><th scope="row" style="text-align:left">階段三 · 市場訊號</th><td style="text-align:left"><code>insider-trading</code>、<code>institutional-ownership</code>、<code>earnings-call-analysis</code></td><td style="text-align:right">5.2</td><td style="text-align:right">20%</td><td style="text-align:right">1.04</td></tr><tr><th scope="row" style="text-align:left">階段四 · 技術時機</th><td style="text-align:left"><code>technical-analysis</code>、<code>sector-analysis</code></td><td style="text-align:right">2.0</td><td style="text-align:right">15%</td><td style="text-align:right">0.30</td></tr><tr><th scope="row" style="text-align:left">階段五 · 風險剖面</th><td style="text-align:left"><code>short-interest</code>、<code>options-analysis</code>、<code>economics-analysis</code>、<code>financial-report-analyst</code>、<code>dividend-analysis</code></td><td style="text-align:right">3.0</td><td style="text-align:right">15%</td><td style="text-align:right">0.45</td></tr><tr><th scope="row" style="text-align:left"><strong>合計</strong></th><td style="text-align:left"><strong>15 個模組</strong></td><td style="text-align:right">—</td><td style="text-align:right">100%</td><td style="text-align:right"><strong>5.99</strong></td></tr></tbody></table></div></details></figure>
 <div class="sig"><pre>╔═════════════════════════════════════╗
 ║          INVESTMENT SIGNAL          ║
 ╠═════════════════════════════════════╣
@@ -414,7 +544,7 @@ SKHY 的 TTM 自由現金流 $18.70B 僅為淨利 $54.45B 的 34%。</p>
 而同一家公司在 2023 會計年度的營業利益率是
 <strong>-23.6%</strong>。</p></div>
 <h3>估值方法對照（Football Field）</h3>
-<figure class="fig"><div class="figbox"><svg class="chart" viewBox="0 0 760 386" role="img" preserveAspectRatio="xMidYMid meet"><line x1="196.0" y1="22" x2="196.0" y2="354" stroke="#e6e8eb" stroke-width="1"/><text x="196.0" y="370" text-anchor="middle" font-size="11" fill="#767c85">$-4</text><line x1="329.5" y1="22" x2="329.5" y2="354" stroke="#e6e8eb" stroke-width="1"/><text x="329.5" y="370" text-anchor="middle" font-size="11" fill="#767c85">$94</text><line x1="463.0" y1="22" x2="463.0" y2="354" stroke="#e6e8eb" stroke-width="1"/><text x="463.0" y="370" text-anchor="middle" font-size="11" fill="#767c85">$192</text><line x1="596.5" y1="22" x2="596.5" y2="354" stroke="#e6e8eb" stroke-width="1"/><text x="596.5" y="370" text-anchor="middle" font-size="11" fill="#767c85">$291</text><line x1="730.0" y1="22" x2="730.0" y2="354" stroke="#e6e8eb" stroke-width="1"/><text x="730.0" y="370" text-anchor="middle" font-size="11" fill="#767c85">$389</text><text x="186" y="46.0" text-anchor="end" font-size="12.5" font-weight="600" fill="#16181a">均值回歸（含谷底四年均值）</text><text x="186" y="60.0" text-anchor="end" font-size="10.5" fill="#767c85">營業利益率 18.9%，10–18 倍</text><rect x="231.0" y="30" width="23.6" height="30" rx="4" ry="4" fill="#1baf7a" fill-opacity=".26" stroke="#1baf7a" stroke-width="1.5"><title>均值回歸（含谷底四年均值）: $21.69 – $39.05</title></rect><text x="225.0" y="49.0" text-anchor="end" font-size="11" fill="#4a4f55" font-weight="600">$22</text><text x="260.6" y="49.0" font-size="11" fill="#4a4f55" font-weight="600">$39</text><text x="186" y="92.0" text-anchor="end" font-size="12.5" font-weight="600" fill="#16181a">除谷底均值</text><text x="186" y="106.0" text-anchor="end" font-size="10.5" fill="#767c85">營業利益率 33.1%，10–18 倍</text><rect x="253.1" y="76" width="41.2" height="30" rx="4" ry="4" fill="#1baf7a" fill-opacity=".26" stroke="#1baf7a" stroke-width="1.5"><title>除谷底均值: $37.94 – $68.29</title></rect><text x="247.1" y="95.0" text-anchor="end" font-size="11" fill="#4a4f55" font-weight="600">$38</text><text x="300.3" y="95.0" font-size="11" fill="#4a4f55" font-weight="600">$68</text><text x="186" y="138.0" text-anchor="end" font-size="12.5" font-weight="600" fill="#16181a">結構性中循環</text><text x="186" y="152.0" text-anchor="end" font-size="10.5" fill="#767c85">營業利益率 52.3%，10–18 倍</text><rect x="283.0" y="122" width="65.2" height="30" rx="4" ry="4" fill="#1baf7a" fill-opacity=".26" stroke="#1baf7a" stroke-width="1.5"><title>結構性中循環: $59.96 – $107.93</title></rect><text x="277.0" y="141.0" text-anchor="end" font-size="11" fill="#4a4f55" font-weight="600">$60</text><text x="354.2" y="141.0" font-size="11" fill="#4a4f55" font-weight="600">$108</text><text x="186" y="184.0" text-anchor="end" font-size="12.5" font-weight="600" fill="#16181a">維持目前 TTM 利益率</text><text x="186" y="198.0" text-anchor="end" font-size="10.5" fill="#767c85">營業利益率 71.5%，10–18 倍</text><rect x="312.9" y="168" width="89.1" height="30" rx="4" ry="4" fill="#1baf7a" fill-opacity=".26" stroke="#1baf7a" stroke-width="1.5"><title>維持目前 TTM 利益率: $81.99 – $147.57</title></rect><text x="306.9" y="187.0" text-anchor="end" font-size="11" fill="#4a4f55" font-weight="600">$82</text><text x="408.1" y="187.0" font-size="11" fill="#4a4f55" font-weight="600">$148</text><text x="186" y="230.0" text-anchor="end" font-size="12.5" font-weight="600" fill="#16181a">DCF 三情境</text><text x="186" y="244.0" text-anchor="end" font-size="10.5" fill="#767c85">WACC 11.0%</text><rect x="223.6" y="214" width="58.1" height="30" rx="4" ry="4" fill="#4a4f55" fill-opacity=".26" stroke="#4a4f55" stroke-width="1.5"><title>DCF 三情境: $16.27 – $59.04</title></rect><text x="217.6" y="233.0" text-anchor="end" font-size="11" fill="#4a4f55" font-weight="600">$16</text><text x="287.7" y="233.0" font-size="11" fill="#4a4f55" font-weight="600">$59</text><text x="186" y="276.0" text-anchor="end" font-size="12.5" font-weight="600" fill="#16181a">分析師目標價區間</text><text x="186" y="290.0" text-anchor="end" font-size="10.5" fill="#767c85">3 位分析師，平均 $281.67</text><rect x="419.0" y="260" width="265.0" height="30" rx="4" ry="4" fill="#4a3aa7" fill-opacity=".26" stroke="#4a3aa7" stroke-width="1.5"><title>分析師目標價區間: $160.00 – $355.00</title></rect><text x="413.0" y="279.0" text-anchor="end" font-size="11" fill="#4a4f55" font-weight="600">$160</text><text x="690.0" y="279.0" font-size="11" fill="#4a4f55" font-weight="600">$355</text><text x="186" y="322.0" text-anchor="end" font-size="12.5" font-weight="600" fill="#16181a">52 週實際區間</text><text x="186" y="336.0" text-anchor="end" font-size="10.5" fill="#767c85">過去一年市場實際成交範圍</text><rect x="375.9" y="306" width="90.4" height="30" rx="4" ry="4" fill="#767c85" fill-opacity=".26" stroke="#767c85" stroke-width="1.5"><title>52 週實際區間: $128.29 – $194.80</title></rect><text x="369.9" y="325.0" text-anchor="end" font-size="11" fill="#4a4f55" font-weight="600">$128</text><text x="472.2" y="325.0" font-size="11" fill="#4a4f55" font-weight="600">$195</text><line x1="378.4" y1="16" x2="378.4" y2="352" stroke="#16181a" stroke-width="2"/><text x="378.4" y="11" text-anchor="middle" font-size="11.5" font-weight="800" fill="#16181a">現價 $130.17</text></svg></div><figcaption>圖 ── SKHY 各估值方法的價值區間 vs 現價</figcaption><p class="fignote">各方法的區間寬度差異本身即是資訊：區間越寬，該方法對假設越敏感。</p><details class="tblview"><summary>檢視數據表</summary><div class="tblwrap" id="t24"><table class="dt"><thead><tr><th style="text-align:left">方法</th><th style="text-align:right">下緣</th><th style="text-align:right">上緣</th><th style="text-align:right">說明</th></tr></thead><tbody><tr><th scope="row" style="text-align:left">均值回歸（含谷底四年均值）</th><td style="text-align:right">$21.69</td><td style="text-align:right">$39.05</td><td style="text-align:right">營業利益率 18.9%，10–18 倍</td></tr><tr><th scope="row" style="text-align:left">除谷底均值</th><td style="text-align:right">$37.94</td><td style="text-align:right">$68.29</td><td style="text-align:right">營業利益率 33.1%，10–18 倍</td></tr><tr><th scope="row" style="text-align:left">結構性中循環</th><td style="text-align:right">$59.96</td><td style="text-align:right">$107.93</td><td style="text-align:right">營業利益率 52.3%，10–18 倍</td></tr><tr><th scope="row" style="text-align:left">維持目前 TTM 利益率</th><td style="text-align:right">$81.99</td><td style="text-align:right">$147.57</td><td style="text-align:right">營業利益率 71.5%，10–18 倍</td></tr><tr><th scope="row" style="text-align:left">DCF 三情境</th><td style="text-align:right">$16.27</td><td style="text-align:right">$59.04</td><td style="text-align:right">WACC 11.0%</td></tr><tr><th scope="row" style="text-align:left">分析師目標價區間</th><td style="text-align:right">$160.00</td><td style="text-align:right">$355.00</td><td style="text-align:right">3 位分析師，平均 $281.67</td></tr><tr><th scope="row" style="text-align:left">52 週實際區間</th><td style="text-align:right">$128.29</td><td style="text-align:right">$194.80</td><td style="text-align:right">過去一年市場實際成交範圍</td></tr></tbody></table></div></details></figure>
+<figure class="fig"><div class="figbox"><svg class="chart" viewBox="0 0 760 386" role="img" preserveAspectRatio="xMidYMid meet"><line x1="196.0" y1="22" x2="196.0" y2="354" stroke="#e6e8eb" stroke-width="1"/><text x="196.0" y="370" text-anchor="middle" font-size="11" fill="#767c85">$-4</text><line x1="329.5" y1="22" x2="329.5" y2="354" stroke="#e6e8eb" stroke-width="1"/><text x="329.5" y="370" text-anchor="middle" font-size="11" fill="#767c85">$94</text><line x1="463.0" y1="22" x2="463.0" y2="354" stroke="#e6e8eb" stroke-width="1"/><text x="463.0" y="370" text-anchor="middle" font-size="11" fill="#767c85">$192</text><line x1="596.5" y1="22" x2="596.5" y2="354" stroke="#e6e8eb" stroke-width="1"/><text x="596.5" y="370" text-anchor="middle" font-size="11" fill="#767c85">$291</text><line x1="730.0" y1="22" x2="730.0" y2="354" stroke="#e6e8eb" stroke-width="1"/><text x="730.0" y="370" text-anchor="middle" font-size="11" fill="#767c85">$389</text><text x="186" y="46.0" text-anchor="end" font-size="12.5" font-weight="600" fill="#16181a">均值回歸（含谷底四年均值）</text><text x="186" y="60.0" text-anchor="end" font-size="10.5" fill="#767c85">營業利益率 18.9%，10–18 倍</text><rect x="231.0" y="30" width="23.6" height="30" rx="4" ry="4" fill="#1baf7a" fill-opacity=".26" stroke="#1baf7a" stroke-width="1.5"><title>均值回歸（含谷底四年均值）: $21.69 – $39.05</title></rect><text x="225.0" y="49.0" text-anchor="end" font-size="11" fill="#4a4f55" font-weight="600">$22</text><text x="260.6" y="49.0" font-size="11" fill="#4a4f55" font-weight="600">$39</text><text x="186" y="92.0" text-anchor="end" font-size="12.5" font-weight="600" fill="#16181a">除谷底均值</text><text x="186" y="106.0" text-anchor="end" font-size="10.5" fill="#767c85">營業利益率 33.1%，10–18 倍</text><rect x="253.1" y="76" width="41.2" height="30" rx="4" ry="4" fill="#1baf7a" fill-opacity=".26" stroke="#1baf7a" stroke-width="1.5"><title>除谷底均值: $37.94 – $68.29</title></rect><text x="247.1" y="95.0" text-anchor="end" font-size="11" fill="#4a4f55" font-weight="600">$38</text><text x="300.3" y="95.0" font-size="11" fill="#4a4f55" font-weight="600">$68</text><text x="186" y="138.0" text-anchor="end" font-size="12.5" font-weight="600" fill="#16181a">結構性中循環</text><text x="186" y="152.0" text-anchor="end" font-size="10.5" fill="#767c85">營業利益率 52.3%，10–18 倍</text><rect x="283.0" y="122" width="65.2" height="30" rx="4" ry="4" fill="#1baf7a" fill-opacity=".26" stroke="#1baf7a" stroke-width="1.5"><title>結構性中循環: $59.96 – $107.93</title></rect><text x="277.0" y="141.0" text-anchor="end" font-size="11" fill="#4a4f55" font-weight="600">$60</text><text x="354.2" y="141.0" font-size="11" fill="#4a4f55" font-weight="600">$108</text><text x="186" y="184.0" text-anchor="end" font-size="12.5" font-weight="600" fill="#16181a">維持目前 TTM 利益率</text><text x="186" y="198.0" text-anchor="end" font-size="10.5" fill="#767c85">營業利益率 71.5%，10–18 倍</text><rect x="312.9" y="168" width="89.1" height="30" rx="4" ry="4" fill="#1baf7a" fill-opacity=".26" stroke="#1baf7a" stroke-width="1.5"><title>維持目前 TTM 利益率: $81.99 – $147.57</title></rect><text x="306.9" y="187.0" text-anchor="end" font-size="11" fill="#4a4f55" font-weight="600">$82</text><text x="408.1" y="187.0" font-size="11" fill="#4a4f55" font-weight="600">$148</text><text x="186" y="230.0" text-anchor="end" font-size="12.5" font-weight="600" fill="#16181a">DCF 三情境</text><text x="186" y="244.0" text-anchor="end" font-size="10.5" fill="#767c85">WACC 11.0%</text><rect x="223.6" y="214" width="58.1" height="30" rx="4" ry="4" fill="#4a4f55" fill-opacity=".26" stroke="#4a4f55" stroke-width="1.5"><title>DCF 三情境: $16.27 – $59.04</title></rect><text x="217.6" y="233.0" text-anchor="end" font-size="11" fill="#4a4f55" font-weight="600">$16</text><text x="287.7" y="233.0" font-size="11" fill="#4a4f55" font-weight="600">$59</text><text x="186" y="276.0" text-anchor="end" font-size="12.5" font-weight="600" fill="#16181a">分析師目標價區間</text><text x="186" y="290.0" text-anchor="end" font-size="10.5" fill="#767c85">3 位分析師，平均 $281.67</text><rect x="419.0" y="260" width="265.0" height="30" rx="4" ry="4" fill="#4a3aa7" fill-opacity=".26" stroke="#4a3aa7" stroke-width="1.5"><title>分析師目標價區間: $160.00 – $355.00</title></rect><text x="413.0" y="279.0" text-anchor="end" font-size="11" fill="#4a4f55" font-weight="600">$160</text><text x="690.0" y="279.0" font-size="11" fill="#4a4f55" font-weight="600">$355</text><text x="186" y="322.0" text-anchor="end" font-size="12.5" font-weight="600" fill="#16181a">52 週實際區間</text><text x="186" y="336.0" text-anchor="end" font-size="10.5" fill="#767c85">過去一年市場實際成交範圍</text><rect x="375.9" y="306" width="90.4" height="30" rx="4" ry="4" fill="#767c85" fill-opacity=".26" stroke="#767c85" stroke-width="1.5"><title>52 週實際區間: $128.29 – $194.80</title></rect><text x="369.9" y="325.0" text-anchor="end" font-size="11" fill="#4a4f55" font-weight="600">$128</text><text x="472.2" y="325.0" font-size="11" fill="#4a4f55" font-weight="600">$195</text><line x1="378.4" y1="16" x2="378.4" y2="352" stroke="#16181a" stroke-width="2"/><text x="378.4" y="11" text-anchor="middle" font-size="11.5" font-weight="800" fill="#16181a">現價 $130.17</text></svg></div><figcaption>圖 ── SKHY 各估值方法的價值區間 vs 現價</figcaption><p class="fignote">各方法的區間寬度差異本身即是資訊：區間越寬，該方法對假設越敏感。</p><details class="tblview"><summary>檢視數據表</summary><div class="tblwrap" id="t30"><table class="dt"><thead><tr><th style="text-align:left">方法</th><th style="text-align:right">下緣</th><th style="text-align:right">上緣</th><th style="text-align:right">說明</th></tr></thead><tbody><tr><th scope="row" style="text-align:left">均值回歸（含谷底四年均值）</th><td style="text-align:right">$21.69</td><td style="text-align:right">$39.05</td><td style="text-align:right">營業利益率 18.9%，10–18 倍</td></tr><tr><th scope="row" style="text-align:left">除谷底均值</th><td style="text-align:right">$37.94</td><td style="text-align:right">$68.29</td><td style="text-align:right">營業利益率 33.1%，10–18 倍</td></tr><tr><th scope="row" style="text-align:left">結構性中循環</th><td style="text-align:right">$59.96</td><td style="text-align:right">$107.93</td><td style="text-align:right">營業利益率 52.3%，10–18 倍</td></tr><tr><th scope="row" style="text-align:left">維持目前 TTM 利益率</th><td style="text-align:right">$81.99</td><td style="text-align:right">$147.57</td><td style="text-align:right">營業利益率 71.5%，10–18 倍</td></tr><tr><th scope="row" style="text-align:left">DCF 三情境</th><td style="text-align:right">$16.27</td><td style="text-align:right">$59.04</td><td style="text-align:right">WACC 11.0%</td></tr><tr><th scope="row" style="text-align:left">分析師目標價區間</th><td style="text-align:right">$160.00</td><td style="text-align:right">$355.00</td><td style="text-align:right">3 位分析師，平均 $281.67</td></tr><tr><th scope="row" style="text-align:left">52 週實際區間</th><td style="text-align:right">$128.29</td><td style="text-align:right">$194.80</td><td style="text-align:right">過去一年市場實際成交範圍</td></tr></tbody></table></div></details></figure>
 <h3>相對倍數（四檔橫向對照）</h3>
 <div class="tblwrap"><table class="dt"><thead><tr><th style="text-align:left">倍數</th><th style="text-align:right">SKHY</th><th style="text-align:right">MU</th><th style="text-align:right">SKHY</th><th style="text-align:right">MRVL</th><th style="text-align:right">SNDL</th><th style="text-align:left">評註</th></tr></thead><tbody><tr><th scope="row" style="text-align:left">本益比（TTM）</th><td style="text-align:right">19.8x</td><td style="text-align:right">20.4x</td><td style="text-align:right">19.8x</td><td style="text-align:right">60.0x</td><td style="text-align:right">n/a</td><td style="text-align:left">SNDL 獲利為負，不適用</td></tr><tr><th scope="row" style="text-align:left">前瞻本益比</th><td style="text-align:right">3.2x</td><td style="text-align:right">5.3x</td><td style="text-align:right">3.2x</td><td style="text-align:right">28.0x</td><td style="text-align:right">40.7x</td><td style="text-align:left">SKHY 3.2x 與 SNDL 40.7x 均不可信，見各報告稽核</td></tr><tr><th scope="row" style="text-align:left">P/S（校正後）</th><td style="text-align:right">9.65x</td><td style="text-align:right">10.27x</td><td style="text-align:right">9.65x</td><td style="text-align:right">17.96x</td><td style="text-align:right">0.34x</td><td style="text-align:left"></td></tr><tr><th scope="row" style="text-align:left">EV/EBITDA（校正後）</th><td style="text-align:right">13.6x</td><td style="text-align:right">13.3x</td><td style="text-align:right">13.6x</td><td style="text-align:right">58.3x</td><td style="text-align:right">36.2x</td><td style="text-align:left"></td></tr><tr><th scope="row" style="text-align:left">股價淨值比（申報 BS 重算）</th><td style="text-align:right">7.76x</td><td style="text-align:right">9.20x</td><td style="text-align:right">7.76x</td><td style="text-align:right">8.60x</td><td style="text-align:right">0.30x</td><td style="text-align:left">SNDL 0.30x（依申報資產負債表重算）是唯一低於 1 者</td></tr><tr><th scope="row" style="text-align:left">PEG</th><td style="text-align:right">0.49</td><td style="text-align:right">0.13</td><td style="text-align:right">0.49</td><td style="text-align:right">1.07</td><td style="text-align:right">n/a</td><td style="text-align:left"></td></tr></tbody></table></div>
 </section><section id="m6"><h2><span class="modnum">6</span>內部人交易<span class="skilltag">insider-trading</span></h2>
@@ -557,7 +687,7 @@ yfinance 提供的財報數字以<strong>韓元</strong>計價，市值與股價
 <div class="card" style="background:#fdf0f0;border-color:#f7c4c4">
 <p style="font-size:1.0625rem;line-height:1.85">SK hynix 可能是本籃子中最優秀的公司，但沒有人能從現有資料證實這一點：企業價值是負數、前瞻本益比對不上每股獲利、股息欄位與現金流量表矛盾、價格歷史只有 13 天，而內部人與法人資料完全不存在。在能夠稽核之前，優秀是一個假設，不是一個事實。</p></div>
 <h3>空方論點強度：5.5 / 10</h3>
-<figure class="fig"><div class="figbox"><svg class="chart" viewBox="0 0 280 170" role="img" preserveAspectRatio="xMidYMid meet"><path d="M26.0,144.0 A114.0,114.0 0 0 1 254.0,144.0" fill="none" stroke="#e6e8eb" stroke-width="12" stroke-linecap="round"/><path d="M26.0,144.0 A114.0,114.0 0 0 1 157.8,31.4" fill="none" stroke="#b35c00" stroke-width="12" stroke-linecap="round"/><text x="140.0" y="136" text-anchor="middle" font-size="40" font-weight="800" fill="#16181a">5.50</text><text x="140.0" y="156" text-anchor="middle" font-size="12" fill="#767c85">／ 10</text><text x="140.0" y="166" text-anchor="middle" font-size="12" font-weight="700" fill="#b35c00">空方論點強度</text></svg></div><figcaption>空方論點強度評分</figcaption></figure>
+<figure class="fig"><div class="figbox"><svg class="chart" viewBox="0 0 280 170" role="img" preserveAspectRatio="xMidYMid meet"><path d="M26.0,144.0 A114.0,114.0 0 0 1 254.0,144.0" fill="none" stroke="#e6e8eb" stroke-width="12" stroke-linecap="round"/><path d="M26.0,144.0 A114.0,114.0 0 0 1 157.8,31.4" fill="none" stroke="#b35c00" stroke-width="12" stroke-linecap="round" class="g-arc" pathLength="1"/><text x="140.0" y="136" text-anchor="middle" font-size="40" font-weight="800" fill="#16181a">5.50</text><text x="140.0" y="156" text-anchor="middle" font-size="12" fill="#767c85">／ 10</text><text x="140.0" y="166" text-anchor="middle" font-size="12" font-weight="700" fill="#b35c00">空方論點強度</text></svg></div><figcaption>空方論點強度評分</figcaption></figure>
 <h3>下行量化與基本面底部</h3>
 <p><strong>基本面底部：</strong>淨現金 $23.57B（校正後）＋ 每股帳面淨值 $15.87。「均值回歸 × 10 倍」對應 $21.69。但需誠實說明：<strong>這個底部同樣建立在假設匯率上</strong>，因此其精確度低於其他三檔。</p>
 <h3>論點殺手 — 什麼會證明空方是錯的（框架強制項）</h3>
@@ -618,7 +748,7 @@ SKHY 的 Beta 2.03 超過 2.0，屬高 Beta 類別。</p>
 <div class="tblwrap"><table class="dt"><thead><tr><th style="text-align:left">監控指標</th><th style="text-align:right">目前值</th><th style="text-align:left">為什麼重要／觸發條件</th></tr></thead><tbody><tr><th scope="row" style="text-align:left"><strong>幣別與換股比率驗證</strong></th><td style="text-align:right">假設 1 USD = 1,380 KRW</td><td style="text-align:left">最高優先。取得 20-F 後所有估值需重算</td></tr><tr><th scope="row" style="text-align:left"><strong>本日（7/29）財報</strong></th><td style="text-align:right">共識營收 84.12 兆 KRW（+60% QoQ）</td><td style="text-align:left">為本報告後首個可用的基本面更新</td></tr><tr><th scope="row" style="text-align:left"><strong>首份 13F 申報</strong></th><td style="text-align:right">無資料</td><td style="text-align:left">預計 2026 年 11 月中，將首次揭露法人持股</td></tr><tr><th scope="row" style="text-align:left"><strong>交易日累積數</strong></th><td style="text-align:right">13 天</td><td style="text-align:left">達 50 天可算 MA50；達 200 天可算 MA200 與可靠 Beta</td></tr><tr><th scope="row" style="text-align:left"><strong>HBM 市佔</strong></th><td style="text-align:right">領先（未量化）</td><td style="text-align:left">與 MU、Samsung 的相對市佔是護城河評等的核心輸入</td></tr><tr><th scope="row" style="text-align:left"><strong>韓元匯率</strong></th><td style="text-align:right">假設 1,380</td><td style="text-align:left">每貶值 10%，以美元計每股獲利約降 10%</td></tr><tr><th scope="row" style="text-align:left"><strong>ADR 日均量</strong></th><td style="text-align:right">5,432 萬股（13 日）</td><td style="text-align:left">若量能大幅萎縮，代表初期量能來自被動配置而非真實需求</td></tr></tbody></table></div>
 </section><section id="valid"><h2>結果稽核<span class="skilltag">result-validator</span></h2>
 <div class="grid g2" style="margin-bottom:var(--s-16)">
-<div><figure class="fig"><div class="figbox"><svg class="chart" viewBox="0 0 290 178" role="img" preserveAspectRatio="xMidYMid meet"><path d="M26.0,152.0 A119.0,119.0 0 0 1 264.0,152.0" fill="none" stroke="#e6e8eb" stroke-width="12" stroke-linecap="round"/><path d="M26.0,152.0 A119.0,119.0 0 0 1 185.3,40.0" fill="none" stroke="#b35c00" stroke-width="12" stroke-linecap="round"/><text x="145.0" y="144" text-anchor="middle" font-size="40" font-weight="800" fill="#16181a">6.10</text><text x="145.0" y="164" text-anchor="middle" font-size="12" fill="#767c85">／ 10</text><text x="145.0" y="174" text-anchor="middle" font-size="12" font-weight="700" fill="#b35c00">MEDIUM · 61/100</text></svg></div><figcaption>綜合信賴分數</figcaption></figure></div>
+<div><figure class="fig"><div class="figbox"><svg class="chart" viewBox="0 0 290 178" role="img" preserveAspectRatio="xMidYMid meet"><path d="M26.0,152.0 A119.0,119.0 0 0 1 264.0,152.0" fill="none" stroke="#e6e8eb" stroke-width="12" stroke-linecap="round"/><path d="M26.0,152.0 A119.0,119.0 0 0 1 185.3,40.0" fill="none" stroke="#b35c00" stroke-width="12" stroke-linecap="round" class="g-arc" pathLength="1"/><text x="145.0" y="144" text-anchor="middle" font-size="40" font-weight="800" fill="#16181a">6.10</text><text x="145.0" y="164" text-anchor="middle" font-size="12" fill="#767c85">／ 10</text><text x="145.0" y="174" text-anchor="middle" font-size="12" font-weight="700" fill="#b35c00">MEDIUM · 61/100</text></svg></div><figcaption>綜合信賴分數</figcaption></figure></div>
 <div class="card card--surface"><div class="card__h">信賴等級對照</div>
 <p style="font-size:.875rem;color:var(--ink-2);line-height:2">
 85–100 <strong>VERY HIGH</strong> — 可據以行動<br>
@@ -676,6 +806,8 @@ SKHY 的 Beta 2.03 超過 2.0，屬高 Beta 類別。</p>
 <a class="btn btn--soft" href="index.html">← 回展示櫃</a>
 </div></section></div></div>
 </main>
+<a class="totop" href="#main" aria-label="回到頁首">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></a>
 <footer class="foot"><div class="wrap">
 <p><strong>InvestSkill Autopilot — 展示櫃</strong>　·　由 <a href="https://github.com/yennanliu/InvestSkill">InvestSkill</a> v1.11.0（27 個分析框架）驅動，
 報告內容由 LLM 依據 yfinance 公開資料生成。</p>
@@ -685,6 +817,92 @@ SKHY 的 Beta 2.03 超過 2.0，屬高 Beta 類別。</p>
 以示範 <code>result-validator</code> 框架的稽核能力。任何投資決策前請自行查證第一手文件（SEC EDGAR、公司投資人關係網站）。</div>
 </div></footer>
 <script>
+// Scroll reveal. Targets are picked here rather than marked up in the HTML so the
+// pages stay free of presentational classes; the .js gate in the CSS means a
+// reader without JS sees every element in its final state.
+(function(){
+  var REVEAL='.fig,.dagfig,.card,.tile,.call,.flow,.stp,.sig,.tblwrap,.disc';
+  var els=[].slice.call(document.querySelectorAll(REVEAL)).filter(function(el){
+    // inside a <details>: display:none never intersects, so it would stay hidden
+    return !el.closest('details');
+  });
+  if(!els.length)return;
+  var pid=0,seen={};
+  els.forEach(function(el){
+    el.classList.add('rv');
+    var p=el.parentNode;
+    if(!p.__rv)p.__rv=++pid;
+    var n=seen[p.__rv]=(seen[p.__rv]||0)+1;
+    if(n>1)el.style.transitionDelay=Math.min(n-1,5)*55+'ms';
+  });
+  if(!('IntersectionObserver' in window)){
+    els.forEach(function(el){el.classList.add('in');});
+    return;
+  }
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(!e.isIntersecting)return;
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+    });
+  },{rootMargin:'0px 0px -6% 0px',threshold:.04});
+  els.forEach(function(el){io.observe(el);});
+})();
+
+// Count-up on headline figures. The element already contains its final text, so
+// this only ever replaces a correct value with the same correct value.
+(function(){
+  var ns=[].slice.call(document.querySelectorAll('[data-count]'));
+  if(!ns.length||!('IntersectionObserver' in window))return;
+  if(window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  function run(el){
+    var to=parseFloat(el.getAttribute('data-count'));
+    if(isNaN(to))return;
+    var dp=+(el.getAttribute('data-dp')||0),
+        pre=el.getAttribute('data-pre')||'',
+        suf=el.getAttribute('data-suf')||'',
+        t0=null,D=850;
+    function frame(ts){
+      if(t0===null)t0=ts;
+      var p=Math.min(1,(ts-t0)/D),v=to*(1-Math.pow(1-p,3));
+      el.textContent=pre+v.toLocaleString('en-US',
+        {minimumFractionDigits:dp,maximumFractionDigits:dp})+suf;
+      if(p<1)requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(!e.isIntersecting)return;
+      io.unobserve(e.target);
+      run(e.target);
+    });
+  },{threshold:.35});
+  ns.forEach(function(n){io.observe(n);});
+})();
+
+// Reading progress, nav elevation, back-to-top — one rAF-throttled listener.
+(function(){
+  var bar=document.querySelector('.prog i'),
+      nav=document.querySelector('.nav'),
+      top=document.querySelector('.totop'),
+      raf=null;
+  if(!bar&&!nav&&!top)return;
+  function upd(){
+    var y=window.scrollY||0,
+        h=Math.max(1,document.documentElement.scrollHeight-window.innerHeight);
+    if(bar)bar.style.width=Math.min(100,y/h*100).toFixed(2)+'%';
+    if(nav)nav.classList.toggle('stuck',y>8);
+    if(top)top.classList.toggle('on',y>720);
+  }
+  addEventListener('scroll',function(){
+    if(raf)return;
+    raf=requestAnimationFrame(function(){raf=null;upd();});
+  },{passive:true});
+  addEventListener('resize',upd,{passive:true});
+  upd();
+})();
+
 // TOC scroll-spy
 (function(){
   var links=[].slice.call(document.querySelectorAll('.toc a[href^="#"]'));

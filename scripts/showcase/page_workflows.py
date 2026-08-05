@@ -40,20 +40,44 @@ WF = [
 ]
 
 
-def chain(steps, tk_color="#00b14f"):
-    h = '<div class="flow">'
+def chain(steps, tk_color="#00b14f", gate=None):
+    """A workflow as a stepper: numbered badges on a rail that draws itself in.
+
+    ``gate`` marks the 1-based step where the workflow refuses to continue — the
+    step turns red so a blocked chain is visible before reading a word of it.
+    """
+    h = f'<div class="stp" style="--stp-c:{tk_color}">'
     for k, (skill, what) in enumerate(steps):
-        h += (f'<div class="node" style="border-left:3px solid {tk_color}">'
-              f'<div class="node__pos">步驟 {k+1}</div>'
-              f'<div class="node__t" style="font-size:.8125rem;font-weight:700;color:var(--ink)">'
-              f'/{skill}</div>'
-              f'<div class="node__m" style="font-size:.75rem">{what}</div></div>')
-        if k < len(steps) - 1:
-            h += '<div class="arrowrow">↓</div>'
+        cls = "stp__i stp__i--gate" if gate == k + 1 else "stp__i"
+        h += (f'<div class="{cls}" data-n="{k+1}">'
+              f'<div class="stp__s">/{skill}</div>'
+              f'<div class="stp__w">{what}</div></div>')
     return h + "</div>"
 
 
+CODES = [w[0] for w in WF]
+
+
+def usage():
+    """Framework → which workflows chain it, derived from WF itself.
+
+    The skill strings carry flags (``--scenarios``) and combinations
+    (``stock-eval + bear-case``); both are normalised here so the matrix, the
+    table and the prose can never disagree about who uses what.
+    """
+    used = {}
+    for code, *_rest in WF:
+        for skill, _what in _rest[-1]:
+            for part in skill.split("+"):
+                name = part.strip().split(" ")[0]
+                if not name:
+                    continue
+                used.setdefault(name, set()).add(code)
+    return sorted(used.items(), key=lambda kv: (-len(kv[1]), kv[0]))
+
+
 def build():
+    use = usage()
     b = []
     b.append(f"""<section class="rhero"><div class="wrap rhero__in">
 <p class="crumb"><a href="../index.html">InvestSkill Autopilot</a> ／ <a href="index.html">展示櫃</a> ／ 工作流 A–G</p>
@@ -94,6 +118,24 @@ def build():
 更是示範<strong>當前置條件不成立時，工作流會停下來</strong>：
 工作流 C 與 D 都在第一步的篩選閘門被擋下，而這正是它們有用的證據。
 一個永遠會給你答案的流程，不是分析流程，而是產生器。</p>
+{V.figure(V.pipeline_chart(
+  [{"n": 1, "title": "前提閘門", "kind": "gate",
+    "sub": "檢查這個決策的前提是否成立（例如：空單是否真的擁擠、標的是否真的配息）",
+    "meta": "不成立 → 工作流終止"},
+   {"n": 2, "title": "獨立訊號蒐集",
+    "sub": "2–5 個框架各自從不同資料面取得一個訊號，彼此不互看結論",
+    "meta": "C 與 D 從未走到這裡"},
+   {"n": 3, "title": "交叉驗證",
+    "sub": "訊號一致則加強結論；互相矛盾則把矛盾寫出來，而不是平均掉",
+    "meta": "矛盾＝資訊，不是雜訊"},
+   {"n": 4, "title": "決策或拒絕", "kind": "out",
+    "sub": "產出可執行的部位決策，或明確說明為何此刻不該有任何動作",
+    "meta": "7 條中 5 條產出、2 條拒絕"}],
+  aria="工作流的四段結構：前提閘門 → 獨立訊號蒐集 → 交叉驗證 → 決策或拒絕"),
+  "圖 ── 七條工作流共用的四段結構", None,
+  "第 1 段是工作流與單一框架最大的差別：單獨執行一個框架永遠會產出一份分析，"
+  "而工作流會先問「這個問題此刻是否適用於這個標的」。",
+  extra_cls="dagfig")}
 <div class="tblwrap">{ov}</div>
 </section>""")
 
@@ -255,7 +297,7 @@ DCF 假設 −8% 的營收衰退，但它沒有假設股東權益持續侵蝕；
     d.append(f"""<section id="wfc"><h2>工作流 C · 股息組合建構<span class="skilltag">閘門擋下</span></h2>
 <p><strong>決策</strong>：用這四檔能不能組出一個收益型組合？</p>
 <div class="grid g2">
-<div>{chain(WF[2][5])}</div>
+<div>{chain(WF[2][5], gate=2)}</div>
 <div><h3 style="margin-top:0">結果：<span class="dn">工作流在第一步終止</span></h3>
 <p style="font-size:.9375rem">Cookbook 的工作流 C 原始範例使用 JNJ、ABBV、PG——
 殖利率 3%–4% 的成熟配息股。本籃子<strong>沒有一檔符合收益型標的的基本定義</strong>：
@@ -295,7 +337,7 @@ DCF 假設 −8% 的營收衰退，但它沒有假設股東權益持續侵蝕；
     d.append(f"""<section id="wfd"><h2>工作流 D · 波段做多設定<span class="skilltag">閘門擋下</span></h2>
 <p><strong>決策</strong>：在空單擁擠的標的中，找出有明確風報比的短線做多機會。</p>
 <div class="grid g2">
-<div>{chain(WF[3][5])}</div>
+<div>{chain(WF[3][5], gate=1)}</div>
 <div><h3 style="margin-top:0">結果：<span class="dn">四檔全部未通過第一步篩選</span></h3>
 <p style="font-size:.9375rem">工作流 D 的前提是<strong>空單擁擠</strong>——
 流通股空單比 >20% 且回補天數 >5 天。這兩個條件同時成立時，
@@ -340,13 +382,13 @@ MU −12.9%、MRVL −17.4%、SNDL −25.7%。<strong>空方在回補，不是�
 因為 <code>full-report</code> 本身就是一個協調器——它在內部依五個階段推進 15 個模組，
 前階段的產出成為後階段的輸入。</p>
 <div class="tblwrap" style="margin-top:var(--s-16)">{V.simple_table(["階段","模組數","子分數"],
-  [["階段一 · 商業品質", "3", f'{cmu["phases"]["business"]:.1f}'],
-   ["階段二 · 估值", "2", f'{cmu["phases"]["valuation"]:.1f}'],
-   ["階段三 · 市場訊號", "3", f'{cmu["phases"]["signal"]:.1f}'],
-   ["階段四 · 技術時機", "2", f'{cmu["phases"]["technical"]:.1f}'],
-   ["階段五 · 風險", "4", f'{cmu["phases"]["risk"]:.1f}'],
-   ["<strong>綜合</strong>", "<strong>15</strong>", f'<strong>{cmu["total"]:.2f}</strong>']],
-  align=["left","center","right"])}</div></div></div>
+  [[f'階段{n} · {PHASE_LABEL[k]}', str(len(PHASE_MODULES[k])), f'{cmu["phases"][k]:.1f}']
+   for n, k in zip("一二三四五", PHASE_ORDER)] +
+  [["<strong>綜合</strong>", f'<strong>{sum(len(PHASE_MODULES[k]) for k in PHASE_ORDER)}</strong>',
+    f'<strong>{cmu["total"]:.2f}</strong>']],
+  align=["left","center","right"])}</div>
+<p class="fignote" style="margin-top:var(--s-8)">階段與模組的對應關係見
+<a href="index.html">展示櫃總覽的管線圖</a>。</p></div></div>
 <div class="call call--warn"><div class="call__h">⚠ 工作流 E 最重要的一步是第二步</div>
 <p><code>full-report</code> 產出的是一個綜合評分 <strong>{cmu["total"]:.2f}／10</strong>，
 落在「持有／觀察」區間。但這個分數是<strong>兩股方向相反的力量加權平均</strong>的結果：
@@ -541,30 +583,24 @@ FY2025 資本支出已占營運現金流 90%。</li>
 <strong>工作流 D 若強行執行</strong>，會在回補天數 0.88 天的標的上規劃軋空交易。
 兩者技術上都能算，實務上都是錯的。</p></div>
 </div>
-<h3>七條工作流的框架使用統計</h3>
-<div class="tblwrap">{V.simple_table(["框架", "被幾條工作流使用", "使用於"],
-  [["<code>technical-analysis</code>", "4", "A · D · F(隱含) · G"],
-   ["<code>stock-eval</code>", "3", "B · F · G"],
-   ["<code>options-analysis</code>", "2", "A · D"],
-   ["<code>portfolio-review</code>", "3", "C · F · G"],
-   ["<code>result-validator</code>", "2", "B · E"],
-   ["<code>dcf-valuation</code>", "1", "B"],
-   ["<code>insider-trading</code>", "1", "A"],
-   ["<code>earnings-call-analysis</code>", "1", "A"],
-   ["<code>competitor-analysis</code>", "1", "B"],
-   ["<code>financial-report-analyst</code>", "1", "B"],
-   ["<code>dividend-analysis</code>", "1", "C"],
-   ["<code>short-interest</code>", "1", "D"],
-   ["<code>chart-master</code>", "1", "D"],
-   ["<code>full-report</code>", "1", "E（內含 15 個模組）"],
-   ["<code>economics-analysis</code>", "1", "F"],
-   ["<code>sector-analysis</code>", "1", "F"],
-   ["<code>bear-case</code>", "1", "G"],
-   ["<code>position-ladder</code>", "1", "G"]],
-  align=["left","center","left"])}</div>
-<p class="fignote">18 個不同框架被七條工作流使用，其中 <code>technical-analysis</code>
-出現在四條中——它是最常被當作「時機層」串接的框架。
-<code>full-report</code>（工作流 E）本身又內含 15 個模組，因此七條工作流的實際框架覆蓋率達 100%。</p>
+<h3>七條工作流的框架使用矩陣</h3>
+{V.figure(
+  V.matrix_dots(CODES, [(sk, [c in codes for c in CODES],
+                         f'{len(codes)} 條' + ("（內含 15 模組）" if sk == "full-report" else ""))
+                        for sk, codes in use]),
+  "圖 ── 框架 × 工作流使用矩陣（實心＝該工作流明確串接此框架）",
+  V.simple_table(["框架", "被幾條工作流使用", "使用於"],
+    [[f"<code>{sk}</code>", str(len(codes)),
+      " · ".join(sorted(codes)) + ("（內含 15 個模組）" if sk == "full-report" else "")]
+     for sk, codes in use],
+    align=["left", "center", "left"]),
+  f"{len(use)} 個不同框架被七條工作流串接，"
+  f"其中 <code>technical-analysis</code>、<code>stock-eval</code>、<code>portfolio-review</code> "
+  f"各出現在三條中——分別擔任時機層、品質閘門與部位層。"
+  f"矩陣由本頁的工作流定義程式化推導，因此不會與各節內文脫節。"
+  f"<code>full-report</code>（工作流 E）本身又內含 15 個模組，"
+  f"因此七條工作流的實際框架覆蓋率達 100%。",
+  extra_cls="dagfig")}
 <div class="chips" style="margin-top:var(--s-32)">
 <a class="btn" href="mu.html">MU 完整備忘錄 →</a>
 <a class="btn btn--soft" href="supply-chain.html">產業鏈地圖 →</a>

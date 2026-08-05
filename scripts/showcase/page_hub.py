@@ -12,7 +12,7 @@ def build():
         g = GAP[tk]
         tiles += f"""<div class="tile" style="background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.28)">
 <div class="tile__k" style="color:#9ce8bd">{tk} · {NAMES[tk][1]}</div>
-<div class="tile__v" style="color:#fff">{money(i['currentPrice'])}</div>
+<div class="tile__v" style="color:#fff">{countv(money(i['currentPrice']), i['currentPrice'], 2, "$")}</div>
 <div class="tile__n" style="color:rgba(255,255,255,.82)">昨日 {arrow(g)} {pc(g,2,True)}　·　距 52 週高點 {pc(DD[tk],0)}</div></div>"""
 
     b.append(f"""<section class="rhero"><div class="wrap rhero__in">
@@ -237,7 +237,7 @@ SKHY 的動能維度因上市僅 13 個交易日而<strong>無法評分</strong>
 <div style="font-family:var(--display);font-weight:800;font-size:1.25rem;margin-top:2px">{tk} · {NAMES[tk][1]}</div>
 <div style="font-size:.875rem;color:var(--ink-2);margin-top:4px">{sub}</div></div>
 <div style="text-align:right;flex:0 0 auto">
-<div style="font-family:var(--display);font-weight:800;font-size:1.75rem;line-height:1">{c['total']:.2f}</div>
+<div style="font-family:var(--display);font-weight:800;font-size:1.75rem;line-height:1">{countv(f"{c['total']:.2f}", c['total'], 2)}</div>
 <div style="font-size:.6875rem;color:var(--ink-3)">綜合評分／10</div></div></div>
 <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">{st(k, lbl.split(' ')[0])}
 <span class="skilltag" style="margin-left:0">15 模組</span>
@@ -312,10 +312,50 @@ SKHY 的動能維度因上市僅 13 個交易日而<strong>無法評分</strong>
 <th style="text-align:left">出現於</th></tr></thead><tbody>{rows}</tbody></table></div>
 </div></section>""")
 
-    # ------------------------------------------------ how
+    # ------------------------------------------------ how (pipeline diagrams)
+    pipe = V.pipeline_chart(
+        [{"n": 1, "title": "單次資料快照", "kind": "data",
+          "sub": "yfinance 一次擷取：即時報價、四年三大表、五季季報、13F、Form 4、選擇權鏈",
+          "meta": "1 次 fetch · 四檔共用"},
+         {"n": 2, "title": "框架依相依序執行",
+          "sub": "27 個框架分五階段推進，前階段產出即後階段輸入（Beta → WACC → DCF）",
+          "meta": "5 階段 · 15 模組"},
+         {"n": 3, "title": "數值全部重算",
+          "sub": "Piotroski、ROIC／WACC、22 個子因子、三情境 DCF、最大痛點皆由快照計算",
+          "meta": "0 個模型自行宣稱的數字"},
+         {"n": 4, "title": "交付前稽核", "kind": "audit",
+          "sub": "result-validator 打五維度共 100 分的信賴分數，不足者降級或拒絕出結論",
+          "meta": "SKHY 47／100 → LOW"}],
+        aria="分析管線四步：單次資料快照 → 框架依相依序執行 → 數值全部重算 → 交付前稽核")
+    mucomp = C["MU"]["composite"]
+    ladder = V.phase_chart(
+        [{"label": f"階段{n} · {PHASE_LABEL[k]}", "score": mucomp["phases"][k],
+          "modules": PHASE_MODULES[k]}
+         for n, k in zip("一二三四五", PHASE_ORDER)],
+        head=f"yfinance 單次快照 · {ASOF} · 所有模組共用同一組數字",
+        foot=f"綜合評分 {mucomp['total']:.2f}／10 → result-validator 信賴稽核（訊號一致性 6／20）",
+        aria="full-report 的五階段相依階梯：單一共用快照向下餵入五個依序執行的階段，"
+             "共 15 個模組，收斂為一個經稽核的結論")
+
     b.append(f"""<section class="section"><div class="wrap">
 <p class="eyebrow">方法論</p>
 <h2>這些報告是怎麼產生的</h2>
+{V.figure(pipe, "圖 4 ── 報告生成管線（每一步的產出都是下一步的唯一輸入）", None,
+  "四個步驟都在 GitHub Actions 內完成，無人工介入。步驟 3 的所有計算由 "
+  "<code>scripts/showcase/derive.py</code> 執行，可獨立重跑驗證。",
+  extra_cls="dagfig")}
+{V.figure(ladder, "圖 5 ── <code>full-report --depth comprehensive</code> 的五階段相依階梯（數字為 MU 報告的階段子分數）",
+  V.simple_table(["階段", "模組數", "子分數", "權重", "加權貢獻"],
+    [[f"階段{n} · {PHASE_LABEL[k]}", str(len(PHASE_MODULES[k])),
+      f'{mucomp["phases"][k]:.1f}', f'{mucomp["weights"][k]:.0%}',
+      f'{mucomp["weighted"][k]:.2f}'] for n, k in zip("一二三四五", PHASE_ORDER)] +
+    [["<strong>合計</strong>", "<strong>15</strong>", "—", "100%",
+      f'<strong>{mucomp["total"]:.2f}</strong>']],
+    align=["left", "center", "right", "right", "right"]),
+  "階段之間是<strong>相依</strong>而非平行：階段一的 Beta 與資本結構決定階段二的 WACC，"
+  "階段二的內在價值決定階段四的進場區間。因此模組不能任意重排，"
+  "也不能只跑其中一段就宣稱得到綜合結論。",
+  extra_cls="dagfig")}
 <div class="grid g4" style="margin-top:var(--s-24)">
 <div class="card"><div class="tile__k">步驟 1</div><div class="card__h" style="margin-top:4px">單次資料快照</div>
 <p style="font-size:.875rem;color:var(--ink-2)">每檔標的取一份 yfinance 快照：即時報價、四年損益表／現金流量表／資產負債表、

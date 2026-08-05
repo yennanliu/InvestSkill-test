@@ -230,3 +230,85 @@ def test_insider_timeline_scales_by_value_and_marks_price():
 
 def test_insider_timeline_empty_is_empty_string():
     assert viz.insider_timeline([], price=100.0) == ""
+
+
+# ── flow diagrams ────────────────────────────────────────────────────────────
+# These animate, so the invariant that matters is that the animation is *added*
+# to a diagram that already reads correctly: geometry in the SVG, motion in CSS.
+
+def test_wrap_cells_counts_cjk_as_two_columns():
+    lines = viz.wrap_cells("一二三四五", 6)
+    assert lines == ["一二三", "四五"]
+
+
+def test_wrap_cells_keeps_latin_tokens_whole():
+    """A framework name split across two lines is unreadable, so words don't break."""
+    lines = viz.wrap_cells("執行 stock-eval 模組", 12)
+    assert any("stock-eval" in ln for ln in lines)
+
+
+STEPS = [{"n": 1, "title": "快照", "sub": "yfinance 單次擷取", "kind": "data", "meta": "1 fetch"},
+         {"n": 2, "title": "執行", "sub": "27 個框架依序執行"},
+         {"n": 3, "title": "稽核", "sub": "result-validator", "kind": "audit"}]
+
+
+def test_pipeline_chart_is_wellformed_and_labelled():
+    out = viz.pipeline_chart(STEPS, aria="三步管線")
+    parse(out)
+    assert 'aria-label="三步管線"' in out
+    assert out.count('class="fl-node"') == len(STEPS)
+
+
+def test_pipeline_chart_links_every_gap_once():
+    """N nodes need exactly N-1 connectors — a missing one reads as a break."""
+    out = viz.pipeline_chart(STEPS)
+    assert out.count('class="fl-dash"') == len(STEPS) - 1
+
+
+def test_pipeline_chart_gate_step_is_not_the_accent_colour():
+    """A blocked step must be distinguishable without reading the label."""
+    out = viz.pipeline_chart([{"n": 1, "title": "閘門", "sub": "前提檢查", "kind": "gate"}])
+    assert viz.BAD in out
+
+
+PHASES = [{"label": "階段一 · 商業品質", "score": 8.6, "modules": ["stock-eval", "competitor-analysis"]},
+          {"label": "階段二 · 估值", "score": 7.8, "modules": ["dcf-valuation"]}]
+
+
+def test_phase_chart_draws_every_module():
+    out = viz.phase_chart(PHASES, head="共用快照", foot="綜合評分")
+    parse(out)
+    for mod in ("stock-eval", "competitor-analysis", "dcf-valuation"):
+        assert mod in out
+    assert "共用快照" in out and "綜合評分" in out
+
+
+def test_phase_chart_survives_missing_scores():
+    out = viz.phase_chart([{"label": "階段一", "modules": ["m"]}])
+    parse(out)
+
+
+def test_matrix_dots_separates_presence_from_absence():
+    out = viz.matrix_dots(["A", "B"], [("stock-eval", [True, False], "1 條")])
+    parse(out)
+    assert out.count('class="fl-cell"') == 1        # one filled dot
+    assert 'stroke="#e6e8eb"' in out                # one hollow ring
+
+
+def test_figure_carries_the_diagram_class():
+    out = viz.figure("<svg role='img'></svg>", "cap", extra_cls="dagfig")
+    assert 'class="fig dagfig"' in out
+
+
+def test_solid_line_is_drawable_and_dashed_line_is_not():
+    """The draw-in animation normalises on pathLength; a dashed series keeps its
+    pattern instead, or the dash maths would fight the animation."""
+    solid = viz.line_chart([_series()])
+    assert 'class="ch-draw" pathLength="1"' in solid
+    dashed = viz.line_chart([dict(_series(), dash="5 4")])
+    assert "ch-draw" not in dashed
+
+
+def test_gauge_value_arc_is_drawable_but_the_track_is_not():
+    out = viz.gauge(6.49)
+    assert out.count("g-arc") == 1
