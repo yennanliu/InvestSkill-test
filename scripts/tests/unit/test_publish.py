@@ -49,3 +49,17 @@ def test_save_full_report_structure(tmp_path):
     assert "### 1. 技術分析" in text
     assert "### 2. DCF 估值" in text
     assert "tech body" in text and "dcf body" in text
+
+
+def test_skill_commit_recorded_when_known(tmp_path):
+    path = publish.save_report("stock-eval", "AAPL", "x", tmp_path, "gemini", "m",
+                               skill_commit="639fe56041e496abe38f4dad0e0a076bcd40e2bb")
+    assert "skill_commit: 639fe56041e496abe38f4dad0e0a076bcd40e2bb" in path.read_text(encoding="utf-8")
+
+
+def test_skill_commit_omitted_when_unknown(tmp_path):
+    path = publish.save_report("stock-eval", "AAPL", "x", tmp_path, "gemini", "m")
+    assert "skill_commit" not in path.read_text(encoding="utf-8")
+    full = publish.save_full_report("AAPL", [("L", "c")], "s", tmp_path, "gemini", "m",
+                                    skill_commit="abc1234")
+    assert "skill_commit: abc1234" in full.read_text(encoding="utf-8")

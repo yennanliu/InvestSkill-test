@@ -10,12 +10,14 @@ referenced as ``@prompts/<skill>.md``.
   * ``system_context(provider)`` — the provider's system markdown (GEMINI.md / CLAUDE.md)
   * ``framework(analysis_type)`` — the ``prompts/<slug>.md`` analysis framework
   * ``available(analysis_type)`` — whether that framework file exists
+  * ``revision()`` — the clone's commit SHA, stamped into report frontmatter
 
 All reads are cached so a full-report run touches each file once.
 """
 
 from __future__ import annotations
 
+import subprocess
 from pathlib import Path
 
 from ..config import context_file
@@ -53,6 +55,20 @@ class PromptRepo:
 
     def available(self, analysis_type: str) -> bool:
         return self._framework_path(analysis_type).exists()
+
+    # ── provenance ──────────────────────────────────────────────────────────
+    def revision(self) -> str | None:
+        """Return the cloned repo's HEAD commit, or None if it is not a git checkout.
+
+        Recorded as ``skill_commit`` in every report so a sandbox result can be
+        traced to the exact upstream skill version that produced it.
+        """
+        try:
+            out = subprocess.run(["git", "-C", str(self.root), "rev-parse", "HEAD"],
+                                 capture_output=True, text=True, timeout=10, check=True)
+        except (OSError, subprocess.SubprocessError):
+            return None
+        return out.stdout.strip() or None
 
     def _framework_path(self, analysis_type: str) -> Path:
         return self.root / "prompts" / f"{analysis_type}.md"

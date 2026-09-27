@@ -33,8 +33,13 @@ def _frontmatter(fields: dict[str, object]) -> str:
     return "\n".join(lines)
 
 
+def _provenance(skill_commit: str | None) -> dict[str, object]:
+    """Frontmatter fields tying a report to the upstream skill revision (if known)."""
+    return {"skill_commit": skill_commit} if skill_commit else {}
+
+
 def save_report(analysis_type: str, ticker: str, content: str, output_dir: str | Path,
-                provider: str, model: str) -> Path:
+                provider: str, model: str, *, skill_commit: str | None = None) -> Path:
     """Write a single-module report with frontmatter; return the path."""
     meta = analysis_meta(analysis_type)
     ticker = ticker.upper()
@@ -54,6 +59,7 @@ def save_report(analysis_type: str, ticker: str, content: str, output_dir: str |
         "model": model,
         "language": "zh-TW",
         "generated_by": "InvestSkill analysis package (scripts/analysis)",
+        **_provenance(skill_commit),
     })
     path.write_text(frontmatter + content, encoding="utf-8")
     logger.info(f"Saved report → {path}")
@@ -61,7 +67,8 @@ def save_report(analysis_type: str, ticker: str, content: str, output_dir: str |
 
 
 def save_full_report(ticker: str, sections: list[tuple[str, str]], synthesis: str,
-                     output_dir: str | Path, provider: str, model: str) -> Path:
+                     output_dir: str | Path, provider: str, model: str, *,
+                     skill_commit: str | None = None) -> Path:
     """Write the combined full-report (verdict + all module sections); return path."""
     ticker = ticker.upper()
     safe_model = model.replace("/", "-")
@@ -80,6 +87,7 @@ def save_full_report(ticker: str, sections: list[tuple[str, str]], synthesis: st
         "model": model,
         "language": "zh-TW",
         "generated_by": "InvestSkill analysis package (scripts/analysis)",
+        **_provenance(skill_commit),
     })
 
     body = [

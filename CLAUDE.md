@@ -4,10 +4,16 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this repo is
 
-A *consumer* of the [InvestSkill](https://github.com/yennanliu/InvestSkill) framework library, not the
-library itself. GitHub Actions clones InvestSkill, takes one `yfinance` snapshot per run, sends each
-analysis framework to an LLM with that shared snapshot, and commits the resulting Markdown to `output/`.
-A separate deterministic generator renders the zh-TW showcase site under `docs/`.
+The **sandbox** for the [InvestSkill](https://github.com/yennanliu/InvestSkill) skill library: a real
+test environment where the skills maintained upstream are run end to end on live market data, by a real
+LLM. It consumes InvestSkill and doesn't contain it. GitHub Actions clones InvestSkill, takes one
+`yfinance` snapshot per run, sends each analysis framework to an LLM with that shared snapshot, and
+commits the resulting Markdown to `output/`. A separate deterministic generator renders the zh-TW
+showcase site under `docs/`.
+
+Changes here usually do one of three jobs: exercise an upstream skill (`run_skill.py`,
+`skill_sandbox.yml`), follow an upstream change (`upstream_sync.py`), or keep output manageable
+(`cleanup_reports.py`). Fixes to the *skills themselves* belong upstream, not in this repo.
 
 Reports are Traditional Chinese (繁體中文) by default — prompts, section headings, and the
 "投資訊號框" signal box are all zh-TW string literals in `scripts/analysis/pipeline.py`.
@@ -29,7 +35,28 @@ clone via the `fake_invest_skill` fixture, so tests need neither the clone nor n
 `ANALYSIS_TYPES` in `scripts/analysis/config/__init__.py` maps a slug to its output prefix/label; the
 slug **is** the upstream filename. Adding a framework upstream means adding a row there (an unknown slug
 falls back to a derived prefix/label rather than erroring). `DEPTH_TIERS` mirrors upstream's
-`full-report --depth` module sets — keep it in sync with `prompts/full-report.md`.
+`full-report --depth` module sets from `prompts/full-report.md`. `ALIASES` lists upstream redirect
+cards ("has been merged into `<target>`"). `dcf-valuation` and `fundamental-analysis` are aliases, so
+the daily jobs named after them run a stub. The CLI warns when that happens.
+
+### Staying in sync: `investskill.lock.json`
+
+The lock records the upstream commit, version and SHA-256 of every `prompts/*.md` plus
+`GEMINI.md`/`CLAUDE.md` as of the last reviewed sync. `scripts/upstream_sync.py` separates two kinds
+of difference:
+
+- **Upstream changes** (the commit or file hashes differ from the lock) can be adopted by rewriting
+  the lock (`--write-lock`).
+- **Drift** (`ANALYSIS_TYPES`, `DEPTH_TIERS` or `ALIASES` disagree with the clone, which the script
+  parses directly) needs a code edit here.
+
+`upstream_sync.yml` turns upstream changes into a PR on `bot/investskill-sync`, and drift into an
+`upstream-drift` issue. `test_committed_lock_matches_config` requires the lock's skill set to equal
+`ANALYSIS_TYPES`. When you bump the lock, update the config in the same change.
+
+Report workflows still clone InvestSkill `main` at run time, not the locked commit. The lock is the
+review baseline, not a runtime pin. Each report's frontmatter `skill_commit` records the revision
+that actually ran.
 
 ## Commands
 
@@ -57,11 +84,23 @@ python scripts/validate_html.py docs        # structure · links · a11y · temp
 python scripts/stock_eval_gemini.py AAPL
 python scripts/full_report_gemini.py NVDA --depth quick
 python scripts/full_report_gemini.py MSFT --skills technical-analysis,bear-case
+python scripts/run_skill.py bear-case NVDA        # any upstream slug, no wrapper needed
+
+# Upstream sync (needs the clone; no keys, no network)
+python scripts/upstream_sync.py --check           # exit 1 on drift
+python scripts/upstream_sync.py --write-lock      # adopt the clone as the new baseline
+
+# Report retention (default: older than 30 days, under output/ + InvestSkill_output/)
+python scripts/cleanup_reports.py --dry-run
 ```
 
 Every entrypoint shares `--provider {gemini,openai,claude}`, `--model`, `--max-tokens`, `--output-dir`,
 `--invest-skill-dir` (default `./InvestSkill`) and `--language` (default zh-TW). `full_report` adds
 `--depth` (default `comprehensive`), `--skills` (overrides `--depth`) and `--sleep` (between modules).
+`run_skill.py` takes the slug as its first positional, before the ticker.
+
+`upstream_sync.py`, `cleanup_reports.py` and `run_skill.py` sit directly in `scripts/`. `pytest.ini` puts
+`scripts/` on the path, so tests import them as top-level modules (`import upstream_sync`).
 
 ## Architecture: `scripts/analysis/`
 
@@ -124,11 +163,17 @@ byte-identical.
   `nan`, `{placeholder}`, tracebacks) in rendered output; `ARTIFACT_ALLOW` holds the legitimate
   substrings that trip those regexes.
 
-## Generated output is committed
+## Generated output: committed, 30-day retention
 
-`output/` and `InvestSkill_output/` hold LLM-generated reports and are committed deliberately, including
-ones that later proved wrong. Treat them as an archive: don't clean, rewrite, or regenerate them to
-"fix" a bad call. CodeRabbit review is filtered off these paths.
+`output/` and `InvestSkill_output/` hold LLM-generated reports, committed by the workflows that
+produce them. `cleanup_reports.yml` deletes reports older than 30 days every week, dating each one by
+the date in its filename, else its frontmatter `date:` (never file mtime). Git history keeps
+everything it deletes. Remove reports by age only: don't delete, rewrite or regenerate one to "fix" a
+bad call. CodeRabbit review is filtered off these paths.
+
+`docs/index.html` links to reports through a commit permalink
+(`blob/<sha>/output/…`), because a `blob/main` link would 404 once retention removes the file. Keep
+new report links in that form.
 
 ## Legacy vs current entrypoints
 

@@ -85,10 +85,12 @@ def test_every_depth_skill_has_metadata():
 
 
 def test_analysis_types_cover_current_plugin_skills():
-    """Registry tracks InvestSkill's prompts/ set (27 frameworks as of v1.11.0)."""
+    """Registry tracks InvestSkill's prompts/ set (34 files as of v1.12.0)."""
     for slug in ("10k-digest", "bear-case", "catalyst-calendar", "industry-map",
                  "position-ladder", "stock-screener", "portfolio-review",
-                 "report-generator", "result-validator", "research-bundle"):
+                 "report-generator", "result-validator", "research-bundle",
+                 "earnings-preview", "etf-analysis", "fact-check", "learning-coach",
+                 "risk-stress-test", "tax-lens", "thesis-tracker"):
         assert slug in config.ANALYSIS_TYPES, slug
     # every entry carries a prefix, a label, and an extension
     for slug, meta in config.ANALYSIS_TYPES.items():
@@ -113,3 +115,17 @@ def test_analysis_meta_unknown_fallback():
 def test_today_is_iso():
     # e.g. 2026-07-03
     assert len(config.TODAY) == 10 and config.TODAY[4] == "-"
+
+
+def test_depth_tiers_skip_alias_stubs():
+    # upstream 654bf72: full-report runs the real frameworks, never a redirect card
+    assert config.DEPTH_TIERS["quick"][2] == "stock-valuation"
+    assert config.DEPTH_TIERS["comprehensive"][10:12] == ["bear-case", "catalyst-calendar"]
+    for tier in config.DEPTH_TIERS.values():
+        assert not set(tier) & set(config.ALIASES)
+
+
+def test_aliases_point_at_known_skills():
+    for alias, target in config.ALIASES.items():
+        assert alias in config.ANALYSIS_TYPES, alias
+        assert target in config.ANALYSIS_TYPES, target

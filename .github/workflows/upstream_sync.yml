@@ -1,0 +1,153 @@
+name: InvestSkill upstream sync
+
+# Watches yennanliu/InvestSkill and turns each change into reviewable work here:
+#
+#   * a PR (branch bot/investskill-sync) that bumps investskill.lock.json, with the
+#     upstream commit log and changed prompt files as its body — merging it marks
+#     the new upstream revision as reviewed;
+#   * an issue (label upstream-drift) when upstream changed something this repo's
+#     code must follow — a new/removed skill, a full-report depth-tier change, a
+#     new alias stub. It is updated in place, and closed once the drift is gone.
+#
+# Script: scripts/upstream_sync.py (runs offline against the clone below).
+#
+# Triggers: daily cron, manual, or a repository_dispatch sent from InvestSkill:
+#   gh api repos/yennanliu/InvestSkill-test/dispatches -f event_type=investskill-updated
+#
+# Setup: Settings → Actions → General → "Allow GitHub Actions to create and approve
+# pull requests" must be on. PRs opened with the default GITHUB_TOKEN do not start
+# other workflows (tests.yml); add a fine-grained PAT as the SYNC_TOKEN secret
+# (contents, pull requests, issues: read/write) if the sync PR should run CI.
+
+on:
+  schedule:
+    - cron: "40 5 * * *"
+  workflow_dispatch:
+  repository_dispatch:
+    types: [investskill-updated]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+concurrency:
+  group: upstream-sync
+  cancel-in-progress: false
+
+env:
+  SYNC_BRANCH: bot/investskill-sync
+  PR_LABEL: upstream-sync
+  DRIFT_LABEL: upstream-drift
+  DRIFT_TITLE: "InvestSkill upstream drift: code changes needed"
+
+jobs:
+  sync:
+    name: Detect InvestSkill changes
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.SYNC_TOKEN || github.token }}
+
+      # Blobless but full-history, so `git log <locked>..HEAD` works cheaply.
+      - name: Clone InvestSkill
+        run: git clone --filter=blob:none https://github.com/yennanliu/InvestSkill.git InvestSkill
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Compare upstream with the lock and local config
+        id: sync
+        run: |
+          python scripts/upstream_sync.py --invest-skill-dir InvestSkill \
+            --report "$RUNNER_TEMP/sync-report.md" --write-lock
+          cat "$RUNNER_TEMP/sync-report.md" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Ensure labels exist
+        env:
+          GH_TOKEN: ${{ secrets.SYNC_TOKEN || github.token }}
+        run: |
+          gh label create "$PR_LABEL" --color 1d76db --force \
+            --description "Automated InvestSkill lock bump"
+          gh label create "$DRIFT_LABEL" --color d93f0b --force \
+            --description "Upstream InvestSkill change this repo's code must follow"
+
+      - name: Open or update the lock-bump PR
+        if: steps.sync.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.SYNC_TOKEN || github.token }}
+          SHORT: ${{ steps.sync.outputs.upstream_short }}
+          VERSION: ${{ steps.sync.outputs.upstream_version }}
+          DRIFT: ${{ steps.sync.outputs.drift }}
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          TITLE="chore(sync): InvestSkill ${SHORT} (v${VERSION})"
+          BODY="$RUNNER_TEMP/pr-body.md"
+          {
+            echo "Automated by \`upstream_sync.yml\`. Merging bumps \`investskill.lock.json\`,"
+            echo "which marks this upstream revision as reviewed; the next run diffs against it."
+            echo
+            if [ "$DRIFT" = "true" ]; then
+              echo "> [!WARNING]"
+              echo "> Upstream also changed something this repo's code must follow — see the"
+              echo "> **Drift** section and the \`${DRIFT_LABEL}\` issue. Fix it in this PR or a"
+              echo "> separate one; bumping the lock alone does not resolve drift."
+              echo
+            fi
+            cat "$RUNNER_TEMP/sync-report.md"
+          } > "$BODY"
+
+          # Re-running while the PR is open must not churn its branch: only push
+          # when the lock differs from what the branch already carries.
+          if git fetch --quiet origin "$SYNC_BRANCH" 2>/dev/null \
+             && git diff --quiet FETCH_HEAD -- investskill.lock.json; then
+            echo "$SYNC_BRANCH already carries this lock; refreshing the PR body only."
+          else
+            git switch -C "$SYNC_BRANCH"
+            git add investskill.lock.json
+            git commit -m "$TITLE"
+            git push --force origin "$SYNC_BRANCH"
+          fi
+
+          PR=$(gh pr list --head "$SYNC_BRANCH" --state open --json number -q '.[0].number')
+          if [ -n "$PR" ]; then
+            gh pr edit "$PR" --title "$TITLE" --body-file "$BODY"
+            echo "Updated PR #$PR"
+          else
+            gh pr create --base main --head "$SYNC_BRANCH" --title "$TITLE" \
+              --body-file "$BODY" --label "$PR_LABEL"
+          fi
+
+      - name: Open, update, or close the drift issue
+        env:
+          GH_TOKEN: ${{ secrets.SYNC_TOKEN || github.token }}
+          DRIFT: ${{ steps.sync.outputs.drift }}
+          SHORT: ${{ steps.sync.outputs.upstream_short }}
+        run: |
+          ISSUE=$(gh issue list --label "$DRIFT_LABEL" --state open --json number -q '.[0].number')
+          BODY="$RUNNER_TEMP/issue-body.md"
+          {
+            echo "Opened and kept current by \`upstream_sync.yml\`; it closes itself once"
+            echo "\`scripts/upstream_sync.py --check\` passes on main."
+            echo
+            cat "$RUNNER_TEMP/sync-report.md"
+          } > "$BODY"
+
+          if [ "$DRIFT" = "true" ]; then
+            if [ -n "$ISSUE" ]; then
+              gh issue edit "$ISSUE" --body-file "$BODY"
+              echo "Updated issue #$ISSUE"
+            else
+              gh issue create --title "$DRIFT_TITLE" --body-file "$BODY" --label "$DRIFT_LABEL"
+            fi
+          elif [ -n "$ISSUE" ]; then
+            gh issue close "$ISSUE" --comment "Resolved: main matches InvestSkill \`${SHORT}\`."
+          fi

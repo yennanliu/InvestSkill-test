@@ -60,3 +60,22 @@ def test_read_is_cached(fake_invest_skill):
     # mutate file on disk; cached value should be returned unchanged
     (fake_invest_skill / "prompts" / "stock-eval.md").write_text("CHANGED", encoding="utf-8")
     assert repo.framework("stock-eval") == first
+
+
+def test_revision_none_outside_git(fake_invest_skill):
+    # tmp_path lives outside any repo, so the fixture has no HEAD to report
+    assert PromptRepo(fake_invest_skill).revision() is None
+
+
+def test_revision_reads_git_head(fake_invest_skill):
+    import shutil
+    import subprocess
+    if shutil.which("git") is None:
+        pytest.skip("git not installed")
+    run = lambda *a: subprocess.run(["git", "-C", str(fake_invest_skill), *a],  # noqa: E731
+                                    check=True, capture_output=True, text=True)
+    run("init", "-q")
+    run("add", ".")
+    run("-c", "user.name=t", "-c", "user.email=t@t", "commit", "-qm", "init")
+    head = run("rev-parse", "HEAD").stdout.strip()
+    assert PromptRepo(fake_invest_skill).revision() == head
