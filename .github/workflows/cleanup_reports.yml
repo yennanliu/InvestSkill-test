@@ -1,0 +1,87 @@
+name: Clean up old reports
+
+# Deletes generated reports under output/ and InvestSkill_output/ whose
+# generation date (from the filename, else the frontmatter `date:`) is older than
+# the retention window, and commits the deletions to main. Deleted reports stay
+# recoverable from git history.
+#
+# Script: scripts/cleanup_reports.py  (run with --dry-run locally to preview)
+
+on:
+  workflow_dispatch:
+    inputs:
+      days:
+        description: "Retention window in days (reports older than this are deleted)"
+        required: false
+        default: "30"
+      dry_run:
+        description: "Only list what would be deleted"
+        required: false
+        default: false
+        type: boolean
+
+  schedule:
+    # Sundays 03:20 UTC — clear of every weekday report job.
+    - cron: "20 3 * * 0"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: cleanup-reports
+  cancel-in-progress: false
+
+jobs:
+  cleanup:
+    name: Delete reports older than the retention window
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Delete expired reports
+        env:
+          DAYS: ${{ github.event.inputs.days || '30' }}
+          DRY_RUN: ${{ github.event.inputs.dry_run || 'false' }}
+        run: |
+          ARGS=(--days "$DAYS")
+          if [ "$DRY_RUN" = "true" ]; then ARGS+=(--dry-run); fi
+          python scripts/cleanup_reports.py "${ARGS[@]}" | tee cleanup.log
+          {
+            echo '## Report cleanup'
+            echo '```'
+            cat cleanup.log
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+          rm cleanup.log
+
+      - name: Commit and push deletions
+        if: github.event.inputs.dry_run != 'true'
+        env:
+          DAYS: ${{ github.event.inputs.days || '30' }}
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # The checkout is otherwise clean, so this stages only the deletions
+          # (and works after a report root has been pruned away entirely).
+          git add -A
+
+          if git diff --cached --quiet; then
+            echo "Nothing older than ${DAYS} days — no changes."
+            exit 0
+          fi
+
+          COUNT=$(git diff --cached --name-only --diff-filter=D | wc -l | tr -d ' ')
+          git commit -m "chore: remove ${COUNT} reports older than ${DAYS} days"
+          # Report jobs push to main too; rebase onto whatever landed meanwhile.
+          git pull --rebase origin main
+          git push
+          echo "✅ Removed ${COUNT} reports."
