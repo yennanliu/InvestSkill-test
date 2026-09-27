@@ -3,7 +3,9 @@ Shared CLI for the thin ``scripts/*_gemini.py`` wrappers.
 
 Each wrapper calls ``run_single(analysis_type)`` or ``run_full()``; all argument
 parsing, default resolution, generation, and saving live here so the wrappers
-stay a couple of lines.
+stay a couple of lines. ``run_skill()`` backs ``scripts/run_skill.py``, which
+takes the slug as an argument so any upstream skill can be exercised in the
+sandbox without adding a wrapper.
 """
 
 from __future__ import annotations
@@ -13,6 +15,7 @@ import sys
 from pathlib import Path
 
 from .config import (
+    ALIASES,
     DEFAULT_DEPTH,
     DEFAULT_INVEST_SKILL_DIR,
     DEFAULT_LANGUAGE,
@@ -24,11 +27,14 @@ from .config import (
 )
 from .exceptions import AnalysisError
 from .pipeline import generate_analysis, generate_full_report
+from .prompts import PromptRepo
 from .publish import save_full_report, save_report
 
 
-def _base_parser(description: str) -> argparse.ArgumentParser:
+def _base_parser(description: str, *, with_skill: bool = False) -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(description=description)
+    if with_skill:
+        p.add_argument("skill", help="InvestSkill slug, i.e. the prompts/<skill>.md filename")
     p.add_argument("ticker", help="Stock ticker symbol (e.g. AAPL)")
     p.add_argument("--provider", default=DEFAULT_PROVIDER, choices=SUPPORTED_PROVIDERS,
                    help=f"LLM provider (default: {DEFAULT_PROVIDER})")
@@ -54,13 +60,18 @@ def _default_output_dir(analysis_type: str, ticker: str) -> Path:
     return Path("output") / analysis_meta(analysis_type)["prefix"] / ticker.lower()
 
 
-def run_single(analysis_type: str) -> None:
-    """Entrypoint for a single-module wrapper script."""
-    meta = analysis_meta(analysis_type)
-    args = _base_parser(f"{meta['label']} via InvestSkill ({analysis_type})").parse_args()
+def _warn_if_alias(analysis_type: str) -> None:
+    if analysis_type in ALIASES:
+        print(f"WARNING: {analysis_type} is an upstream alias stub merged into "
+              f"{ALIASES[analysis_type]}; run that skill to test the full framework.",
+              file=sys.stderr)
+
+
+def _generate_and_save(analysis_type: str, args) -> None:
     ticker = args.ticker.upper()
     model, max_tokens = _resolve(args)
     output_dir = Path(args.output_dir) if args.output_dir else _default_output_dir(analysis_type, ticker)
+    _warn_if_alias(analysis_type)
 
     try:
         content = generate_analysis(
@@ -68,11 +79,29 @@ def run_single(analysis_type: str) -> None:
             provider=args.provider, model=model, max_tokens=max_tokens,
             invest_skill_dir=args.invest_skill_dir, language=args.language,
         )
-        path = save_report(analysis_type, ticker, content, output_dir, args.provider, model)
+        path = save_report(analysis_type, ticker, content, output_dir, args.provider, model,
+                           skill_commit=PromptRepo(args.invest_skill_dir).revision())
     except AnalysisError as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
         sys.exit(1)
     print(f"✅ Report saved to: {path}")
+
+
+def run_single(analysis_type: str) -> None:
+    """Entrypoint for a single-module wrapper script."""
+    meta = analysis_meta(analysis_type)
+    args = _base_parser(f"{meta['label']} via InvestSkill ({analysis_type})").parse_args()
+    _generate_and_save(analysis_type, args)
+
+
+def run_skill() -> None:
+    """Entrypoint for ``scripts/run_skill.py``: any InvestSkill slug, chosen at run time."""
+    parser = _base_parser("Run any InvestSkill framework (prompts/<skill>.md) on one ticker",
+                          with_skill=True)
+    args = parser.parse_args()
+    if args.skill == "full-report":
+        parser.error("full-report orchestrates modules; use scripts/full_report_gemini.py")
+    _generate_and_save(args.skill, args)
 
 
 def run_full() -> None:
@@ -103,7 +132,8 @@ def run_full() -> None:
             print("ERROR: no modules produced output.", file=sys.stderr)
             sys.exit(1)
         path = save_full_report(ticker, result["sections"], result["synthesis"],
-                                output_dir, args.provider, model)
+                                output_dir, args.provider, model,
+                                skill_commit=PromptRepo(args.invest_skill_dir).revision())
     except AnalysisError as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
         sys.exit(1)

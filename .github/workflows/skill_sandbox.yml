@@ -1,0 +1,135 @@
+name: Skill sandbox (any InvestSkill skill, any revision)
+
+# The sandbox entrypoint: run one InvestSkill framework on one ticker against a
+# chosen upstream revision — main, a release tag, a feature branch, a commit SHA,
+# or an open PR (`pull/<n>/head`) — so a skill change can be exercised on real
+# market data before it merges upstream.
+#
+# By default the report is uploaded as a run artifact and NOT committed, so
+# experiments do not land in output/. Tick commit_report to archive it.
+#
+# Script: scripts/run_skill.py <skill> <ticker>
+# Output: output/<prefix>/<ticker>/<prefix>_YYYY-MM-DD_<model>.md
+#         (frontmatter `skill_commit` records the exact upstream SHA used)
+
+on:
+  workflow_dispatch:
+    inputs:
+      skill:
+        description: "InvestSkill slug — the prompts/<skill>.md filename (e.g. bear-case)"
+        required: true
+        default: "stock-eval"
+      ticker:
+        description: "Stock ticker symbol"
+        required: true
+        default: "AAPL"
+      invest_skill_ref:
+        description: "InvestSkill revision: branch, tag, SHA, or pull/<n>/head"
+        required: false
+        default: "main"
+      provider:
+        description: "LLM provider"
+        required: false
+        default: "gemini"
+        type: choice
+        options:
+          - gemini
+          - claude
+          - openai
+      model:
+        description: "Model ID (blank = the provider default in config/providers.py)"
+        required: false
+        default: ""
+      commit_report:
+        description: "Commit the report to output/ (otherwise artifact only)"
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: write
+
+concurrency:
+  group: "skill-sandbox-${{ github.run_id }}"
+  cancel-in-progress: false
+
+jobs:
+  run-skill:
+    name: "${{ inputs.skill }} · ${{ inputs.ticker }} @ ${{ inputs.invest_skill_ref }}"
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    env:
+      SKILL: ${{ inputs.skill }}
+      TICKER: ${{ inputs.ticker }}
+      REF: ${{ inputs.invest_skill_ref }}
+      PROVIDER: ${{ inputs.provider }}
+      MODEL: ${{ inputs.model }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # init + fetch (rather than clone --branch) so a SHA or pull/<n>/head works too.
+      - name: Install InvestSkill at the requested revision
+        run: |
+          git init --quiet InvestSkill
+          git -C InvestSkill remote add origin https://github.com/yennanliu/InvestSkill.git
+          git -C InvestSkill fetch --quiet --depth 1 origin "$REF"
+          git -C InvestSkill checkout --quiet FETCH_HEAD
+          echo "InvestSkill @ $(git -C InvestSkill rev-parse --short HEAD) ($REF)"
+          if [ ! -f "InvestSkill/prompts/${SKILL}.md" ]; then
+            echo "::error::prompts/${SKILL}.md does not exist at ${REF}. Available:"
+            find InvestSkill/prompts -name '*.md' -exec basename {} .md \; | sort
+            exit 1
+          fi
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Python dependencies
+        run: |
+          pip install --upgrade pip
+          case "$PROVIDER" in
+            gemini) SDK="google-generativeai>=0.8.0" ;;
+            claude) SDK="anthropic" ;;
+            openai) SDK="openai" ;;
+          esac
+          pip install "$SDK" "yfinance>=0.2.40"
+
+      - name: Generate report
+        timeout-minutes: 15
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          ARGS=("$SKILL" "$TICKER" --provider "$PROVIDER" --invest-skill-dir InvestSkill)
+          if [ -n "$MODEL" ]; then ARGS+=(--model "$MODEL"); fi
+          python scripts/run_skill.py "${ARGS[@]}" | tee "$RUNNER_TEMP/run.log"
+          # The CLI prints "✅ Report saved to: <path>"; keep the path for later steps.
+          REPORT=$(sed -n 's/^✅ Report saved to: //p' "$RUNNER_TEMP/run.log")
+          echo "REPORT=$REPORT" >> "$GITHUB_ENV"
+          {
+            echo "## ${SKILL} · ${TICKER} @ ${REF} ($(git -C InvestSkill rev-parse --short HEAD))"
+            echo
+            echo "Report: \`${REPORT}\`"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload report artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: sandbox-${{ inputs.skill }}-${{ inputs.ticker }}-${{ github.run_id }}
+          path: ${{ env.REPORT }}
+
+      - name: Commit and push report
+        if: inputs.commit_report
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add "$REPORT"
+          git commit -m "chore: sandbox ${TICKER} ${SKILL} $(date -u +%Y-%m-%d) [${PROVIDER} @ InvestSkill ${REF}]"
+          git pull --rebase origin main
+          git push

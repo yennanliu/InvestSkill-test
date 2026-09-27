@@ -51,8 +51,26 @@ ANALYSIS_TYPES = {
     "portfolio-review":         {"prefix": "portfolio_review",         "label": "投資組合檢視",     "ext": ".md"},
     "report-generator":         {"prefix": "report_generator",         "label": "報告產出工具",     "ext": ".md"},
     "result-validator":         {"prefix": "result_validator",         "label": "結果驗證與信心評分", "ext": ".md"},
+    # ── added upstream in v1.11–v1.12 (labels follow InvestSkill's README-zh-TW) ──
+    "earnings-preview":         {"prefix": "earnings_preview",         "label": "財報前瞻",         "ext": ".md"},
+    "etf-analysis":             {"prefix": "etf_analysis",             "label": "ETF 分析",         "ext": ".md"},
+    "fact-check":               {"prefix": "fact_check",               "label": "事實查核",         "ext": ".md"},
+    "learning-coach":           {"prefix": "learning_coach",           "label": "學習教練",         "ext": ".md"},
+    "risk-stress-test":         {"prefix": "risk_stress_test",         "label": "風險壓力測試",     "ext": ".md"},
+    "tax-lens":                 {"prefix": "tax_lens",                 "label": "稅務視角",         "ext": ".md"},
+    "thesis-tracker":           {"prefix": "thesis_tracker",           "label": "論點追蹤",         "ext": ".md"},
     # Deprecated upstream in 1.8.0 — folded into full-report's --depth flag.
     "research-bundle":          {"prefix": "research_bundle",          "label": "研究套組（已棄用）", "ext": ".md"},
+}
+
+# Upstream slugs that are now redirect cards ("This skill has been merged into
+# `<target>`") rather than full frameworks. They still resolve, but a report
+# generated from one exercises a stub — run the target to test the real skill.
+# ``scripts/upstream_sync.py`` detects these from the prompt text and flags drift.
+ALIASES = {
+    "dcf-valuation": "stock-valuation",
+    "fundamental-analysis": "stock-eval",
+    "research-bundle": "full-report",
 }
 
 
@@ -71,10 +89,13 @@ def analysis_meta(analysis_type: str) -> dict:
 # in the plugin's own analytical order — each tier extends the previous one.
 # Source: InvestSkill prompts/full-report.md § "Module Sets by Depth"
 # https://yennj12.js.org/InvestSkill/full-demo-rklb.html
+# Upstream 654bf72 (after v1.12.0) swapped the alias stubs out: quick #3 is
+# stock-valuation, comprehensive #11–#12 are bear-case + catalyst-calendar.
+# ``scripts/upstream_sync.py`` parses that table and reports any divergence.
 _QUICK_SKILLS = [
     "stock-eval",
     "technical-analysis",
-    "dcf-valuation",
+    "stock-valuation",
     "insider-trading",
     "earnings-call-analysis",
 ]
@@ -88,8 +109,8 @@ _STANDARD_EXTRA = [
 ]
 
 _COMPREHENSIVE_EXTRA = [
-    "fundamental-analysis",
-    "stock-valuation",
+    "bear-case",
+    "catalyst-calendar",
     "economics-analysis",
     "financial-report-analyst",
     "dividend-analysis",
@@ -124,6 +145,7 @@ __all__ = [
     "INVEST_SKILL_REPO",
     "DEFAULT_INVEST_SKILL_DIR",
     "ANALYSIS_TYPES",
+    "ALIASES",
     "FULL_DEMO_SKILLS",
     "DEPTH_TIERS",
     "SUPPORTED_DEPTHS",
