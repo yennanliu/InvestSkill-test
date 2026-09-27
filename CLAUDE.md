@@ -33,6 +33,10 @@ falls back to a derived prefix/label rather than erroring). `DEPTH_TIERS` mirror
 
 ## Commands
 
+There is no requirements file. CI installs only `pytest pandas` for tests. Tests that touch
+`data/sources.py` or `utils/formatting.py` use `importorskip("pandas")`, so without pandas about a
+dozen tests are **skipped silently** instead of failing. Install it before you trust a green run.
+
 ```bash
 # Tests (no keys, no network — SDKs and yfinance are stubbed in conftest.py)
 python -m pytest
@@ -54,6 +58,10 @@ python scripts/stock_eval_gemini.py AAPL
 python scripts/full_report_gemini.py NVDA --depth quick
 python scripts/full_report_gemini.py MSFT --skills technical-analysis,bear-case
 ```
+
+Every entrypoint shares `--provider {gemini,openai,claude}`, `--model`, `--max-tokens`, `--output-dir`,
+`--invest-skill-dir` (default `./InvestSkill`) and `--language` (default zh-TW). `full_report` adds
+`--depth` (default `comprehensive`), `--skills` (overrides `--depth`) and `--sleep` (between modules).
 
 ## Architecture: `scripts/analysis/`
 
