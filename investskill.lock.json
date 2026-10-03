@@ -1,7 +1,7 @@
 {
   "repo": "https://github.com/yennanliu/InvestSkill.git",
-  "commit": "639fe56041e496abe38f4dad0e0a076bcd40e2bb",
-  "commit_date": "2026-09-26",
+  "commit": "8c30accab52ed698b6e827913b613a39be4b465f",
+  "commit_date": "2026-10-02",
   "version": "1.12.0",
   "files": {
     "prompts/10k-digest.md": "1311aec665db7328aa665134a0f8454a748ae67e471cd7208c18e0eb7efc0c5b",
