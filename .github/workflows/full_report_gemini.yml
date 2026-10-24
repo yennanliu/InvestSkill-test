@@ -1,7 +1,7 @@
 name: Full Report — Gemini (InvestSkill)
 
 # Runs an InvestSkill full-report depth tier (quick 5 / standard 10 /
-# comprehensive 15 modules) for one ticker in a single job, then synthesises a
+# comprehensive 25 modules) for one ticker in a single job, then synthesises a
 # consolidated verdict — mirrors:
 #   Install:  git clone yennanliu/InvestSkill   (GEMINI.md auto-loaded as context)
 #   Prompts:  prompts/*.md                       (@prompts/<skill>.md, one per module)

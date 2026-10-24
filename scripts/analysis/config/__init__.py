@@ -59,6 +59,11 @@ ANALYSIS_TYPES = {
     "risk-stress-test":         {"prefix": "risk_stress_test",         "label": "風險壓力測試",     "ext": ".md"},
     "tax-lens":                 {"prefix": "tax_lens",                 "label": "稅務視角",         "ext": ".md"},
     "thesis-tracker":           {"prefix": "thesis_tracker",           "label": "論點追蹤",         "ext": ".md"},
+    # ── added upstream in v1.13–v1.14 (labels follow InvestSkill's README-zh-TW) ──
+    "compare":                  {"prefix": "compare",                  "label": "多股比較",         "ext": ".md"},
+    "credit-check":             {"prefix": "credit_check",             "label": "信用與償債檢查",   "ext": ".md"},
+    "forensic-accounting":      {"prefix": "forensic_accounting",      "label": "鑑識會計",         "ext": ".md"},
+    "trade-postmortem":         {"prefix": "trade_postmortem",         "label": "交易檢討",         "ext": ".md"},
     # Deprecated upstream in 1.8.0 — folded into full-report's --depth flag.
     "research-bundle":          {"prefix": "research_bundle",          "label": "研究套組（已棄用）", "ext": ".md"},
 }
@@ -89,31 +94,41 @@ def analysis_meta(analysis_type: str) -> dict:
 # in the plugin's own analytical order — each tier extends the previous one.
 # Source: InvestSkill prompts/full-report.md § "Module Sets by Depth"
 # https://yennj12.js.org/InvestSkill/full-demo-rklb.html
-# Upstream 654bf72 (after v1.12.0) swapped the alias stubs out: quick #3 is
-# stock-valuation, comprehensive #11–#12 are bear-case + catalyst-calendar.
+# v1.14.0 reordered quick/standard (one scored component each, bear-case in
+# quick) and widened comprehensive to every single-stock framework (25).
 # ``scripts/upstream_sync.py`` parses that table and reports any divergence.
 _QUICK_SKILLS = [
     "stock-eval",
-    "technical-analysis",
     "stock-valuation",
     "insider-trading",
-    "earnings-call-analysis",
+    "technical-analysis",
+    "bear-case",
 ]
 
 _STANDARD_EXTRA = [
-    "institutional-ownership",
     "competitor-analysis",
-    "sector-analysis",
-    "options-analysis",
-    "short-interest",
+    "financial-report-analyst",
+    "earnings-call-analysis",
+    "institutional-ownership",
+    "catalyst-calendar",
 ]
 
 _COMPREHENSIVE_EXTRA = [
-    "bear-case",
-    "catalyst-calendar",
-    "economics-analysis",
-    "financial-report-analyst",
+    "10k-digest",
+    "industry-map",
     "dividend-analysis",
+    "earnings-preview",
+    "sector-analysis",
+    "short-interest",
+    "options-analysis",
+    "economics-analysis",
+    "forensic-accounting",
+    "credit-check",
+    "position-ladder",
+    "chart-master",
+    "fact-check",
+    "result-validator",
+    "thesis-tracker",
 ]
 
 DEPTH_TIERS = {
@@ -125,7 +140,7 @@ DEPTH_TIERS = {
 SUPPORTED_DEPTHS = tuple(DEPTH_TIERS)
 DEFAULT_DEPTH = "comprehensive"  # matches the plugin's own default
 
-# Back-compat alias: the full 15-module set.
+# Back-compat alias: the full 25-module set.
 FULL_DEMO_SKILLS = DEPTH_TIERS[DEFAULT_DEPTH]
 
 

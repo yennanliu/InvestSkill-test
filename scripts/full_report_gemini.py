@@ -3,7 +3,7 @@
 full_report_gemini.py — thin wrapper.
 
 Runs an InvestSkill full-report depth tier (quick 5 / standard 10 /
-comprehensive 15 modules) for one ticker and synthesises a consolidated verdict
+comprehensive 25 modules) for one ticker and synthesises a consolidated verdict
 — mirrors the plugin's own ``full-report --depth`` flag and the public full-demo
 (https://yennj12.js.org/InvestSkill/full-demo-rklb.html). All logic lives in the
 layered ``analysis`` package (config · prompts · data · llm · pipeline ·

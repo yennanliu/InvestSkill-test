@@ -119,7 +119,7 @@ Layered; each layer has one job and the layer above never reaches past it.
 Two design decisions worth knowing before editing:
 
 - **One fetch, one PromptRepo per run.** `generate_full_report` fetches yfinance once and injects the
-  same `stock_data` string into all 5/10/15 modules, so every section of a report cites identical
+  same `stock_data` string into all 5/10/25 modules, so every section of a report cites identical
   numbers. Don't add a per-module fetch.
 - **A failing module never aborts the run.** `generate_full_report` catches per-module exceptions and
   writes `_模組生成失敗：…_` into that section; the synthesis pass is likewise guarded.

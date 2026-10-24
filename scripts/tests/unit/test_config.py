@@ -39,9 +39,9 @@ def test_context_file_mapping():
     assert config.context_file("nope") == "GEMINI.md"
 
 
-def test_full_demo_has_15_modules():
-    assert len(config.FULL_DEMO_SKILLS) == 15
-    assert len(set(config.FULL_DEMO_SKILLS)) == 15  # no dupes
+def test_full_demo_has_25_modules():
+    assert len(config.FULL_DEMO_SKILLS) == 25
+    assert len(set(config.FULL_DEMO_SKILLS)) == 25  # no dupes
 
 
 def test_every_full_demo_skill_has_metadata():
@@ -50,10 +50,10 @@ def test_every_full_demo_skill_has_metadata():
 
 
 def test_depth_tiers_match_plugin_module_counts():
-    # InvestSkill prompts/full-report.md: quick 5 / standard 10 / comprehensive 15
+    # InvestSkill prompts/full-report.md (v1.14.0): quick 5 / standard 10 / comprehensive 25
     assert len(config.DEPTH_TIERS["quick"]) == 5
     assert len(config.DEPTH_TIERS["standard"]) == 10
-    assert len(config.DEPTH_TIERS["comprehensive"]) == 15
+    assert len(config.DEPTH_TIERS["comprehensive"]) == 25
     assert config.DEFAULT_DEPTH == "comprehensive"
     assert config.FULL_DEMO_SKILLS == config.DEPTH_TIERS["comprehensive"]
 
@@ -85,12 +85,13 @@ def test_every_depth_skill_has_metadata():
 
 
 def test_analysis_types_cover_current_plugin_skills():
-    """Registry tracks InvestSkill's prompts/ set (34 files as of v1.12.0)."""
+    """Registry tracks InvestSkill's prompts/ set (38 files as of v1.14.0)."""
     for slug in ("10k-digest", "bear-case", "catalyst-calendar", "industry-map",
                  "position-ladder", "stock-screener", "portfolio-review",
                  "report-generator", "result-validator", "research-bundle",
                  "earnings-preview", "etf-analysis", "fact-check", "learning-coach",
-                 "risk-stress-test", "tax-lens", "thesis-tracker"):
+                 "risk-stress-test", "tax-lens", "thesis-tracker",
+                 "compare", "credit-check", "forensic-accounting", "trade-postmortem"):
         assert slug in config.ANALYSIS_TYPES, slug
     # every entry carries a prefix, a label, and an extension
     for slug, meta in config.ANALYSIS_TYPES.items():
@@ -119,8 +120,8 @@ def test_today_is_iso():
 
 def test_depth_tiers_skip_alias_stubs():
     # upstream 654bf72: full-report runs the real frameworks, never a redirect card
-    assert config.DEPTH_TIERS["quick"][2] == "stock-valuation"
-    assert config.DEPTH_TIERS["comprehensive"][10:12] == ["bear-case", "catalyst-calendar"]
+    assert config.DEPTH_TIERS["quick"][1] == "stock-valuation"
+    assert config.DEPTH_TIERS["quick"][4] == "bear-case"
     for tier in config.DEPTH_TIERS.values():
         assert not set(tier) & set(config.ALIASES)
 
