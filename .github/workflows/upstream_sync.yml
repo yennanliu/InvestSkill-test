@@ -121,12 +121,24 @@ jobs:
           if [ -n "$PR" ]; then
             gh pr edit "$PR" --title "$TITLE" --body-file "$BODY"
             echo "Updated PR #$PR"
-          else
-            gh pr create --base main --head "$SYNC_BRANCH" --title "$TITLE" \
-              --body-file "$BODY" --label "$PR_LABEL"
+          elif ! gh pr create --base main --head "$SYNC_BRANCH" --title "$TITLE" \
+                 --body-file "$BODY" --label "$PR_LABEL"; then
+            # Usually "GitHub Actions is not permitted to create or approve pull
+            # requests" — a repo setting (see Setup above), not a sync failure. The
+            # branch is pushed, so leave a link instead of failing the job and
+            # skipping the drift issue below.
+            URL="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/compare/main...$SYNC_BRANCH?expand=1"
+            echo "::warning title=Sync PR not opened::Could not open the PR (enable Settings → Actions → General → \"Allow GitHub Actions to create and approve pull requests\", or set SYNC_TOKEN). Open it by hand: $URL"
+            {
+              echo
+              echo "> [!WARNING]"
+              echo "> The lock-bump PR could not be opened automatically. Branch \`$SYNC_BRANCH\` is pushed — [open the PR]($URL)."
+            } >> "$GITHUB_STEP_SUMMARY"
           fi
 
+      # Runs even if the PR step failed: drift needs its issue either way.
       - name: Open, update, or close the drift issue
+        if: ${{ !cancelled() && steps.sync.outcome == 'success' }}
         env:
           GH_TOKEN: ${{ secrets.SYNC_TOKEN || github.token }}
           DRIFT: ${{ steps.sync.outputs.drift }}
