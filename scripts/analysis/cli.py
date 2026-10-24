@@ -109,7 +109,7 @@ def run_full() -> None:
     parser = _base_parser("Run the full InvestSkill analysis suite (full-report depth tiers)")
     parser.add_argument("--depth", default=DEFAULT_DEPTH, choices=SUPPORTED_DEPTHS,
                         help=f"Module set to run: quick (5) / standard (10) / "
-                             f"comprehensive (15) (default: {DEFAULT_DEPTH})")
+                             f"comprehensive (25) (default: {DEFAULT_DEPTH})")
     parser.add_argument("--skills", default=None,
                         help="Comma-separated skill slugs to run (overrides --depth)")
     parser.add_argument("--sleep", type=float, default=1.0,

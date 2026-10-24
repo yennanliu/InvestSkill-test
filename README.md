@@ -47,7 +47,7 @@ back to `output/`. Three loops keep it useful as a sandbox:
 | | |
 |---|---|
 | Frameworks | 34 files in InvestSkill's `prompts/`, all runnable via `run_skill.py` |
-| Depth tiers | `--depth quick` (5) · `standard` (10) · `comprehensive` (15, default) |
+| Depth tiers | `--depth quick` (5) · `standard` (10) · `comprehensive` (25, default) |
 | Default model | `gemini-3.6-flash` (also `--provider openai` / `claude`) |
 | Report language | Traditional Chinese (繁體中文) by default, `--language` to change |
 | Output | `output/<type>/<ticker>/<type>_<date>_<model>.md` |
