@@ -1,10 +1,11 @@
 {
   "repo": "https://github.com/yennanliu/InvestSkill.git",
-  "commit": "cba40eebdfcca95f0ccbde7afadd96014dfe685d",
-  "commit_date": "2026-10-24",
-  "version": "1.14.0",
+  "commit": "35d68f92c0cbde9ac3b55b16b0d42cf5f4eb4ba3",
+  "commit_date": "2026-11-15",
+  "version": "1.15.0",
   "files": {
     "prompts/10k-digest.md": "62e6b6c4982cda9e67db8d02d5f45d7ddf79e23c235ada5b686c12b02e709351",
+    "prompts/basket-report.md": "eccf550b042d115070cf94027245e5b1078916d886ed575fcabaaba8c585c7bf",
     "prompts/bear-case.md": "2e235b9b031a3098ced7948599be0970132facf8d421ce42572ee7c9ba1d2db7",
     "prompts/catalyst-calendar.md": "03b5e3a16510304ac9f8d7c43affeab1065aac53e3f5e6658105a62897a04b13",
     "prompts/chart-master.md": "34524b4ed6aa17a56814a27a6a9413143fdbd29ad6d6bf180e1068c588142a13",
@@ -20,7 +21,7 @@
     "prompts/fact-check.md": "a0c7cb1032a35349a489907e487bcc6912ecab549b24b51b1f049219c0788828",
     "prompts/financial-report-analyst.md": "b69019974257a283dbaa8a1af1379cbc19b593de0f90c2251a600c3e48b58751",
     "prompts/forensic-accounting.md": "b7b33008a6715805106667aacbf1f40402273ef4953dbb6f26c82b65ef7b716b",
-    "prompts/full-report.md": "316dacb683ccf4937dee1366fbb2b3acc9d5c479314974745eae605466b7a368",
+    "prompts/full-report.md": "6228cb326995d496c892633fef0e188fff23205f23acc19f49e0804582a30037",
     "prompts/fundamental-analysis.md": "abcbbb73f222face35e637ceca2c8e1f42225daecd42b2511bc65b051d9c3dac",
     "prompts/industry-map.md": "828f5dfcbf85bfa51e78da6abac856de177fb7786b689f580464b2882ae333df",
     "prompts/insider-trading.md": "9809dddba7b9055e3de4c59965e35a3459814fb1874d264c6e7701f1fdd4dd77",
@@ -36,13 +37,13 @@
     "prompts/sector-analysis.md": "4966f8b80f42009df40dc9e0257cd8556d7a6dc6628e222f739c21639402aeaf",
     "prompts/short-interest.md": "6775b15715cde8056efe87490a0251c33a6972c1bc261821c8d7aaf463a41070",
     "prompts/stock-eval.md": "1ac03e7cb80bb6e1c06b17a298c1dc91976b38d083df951a7f98076830a53b2f",
-    "prompts/stock-screener.md": "5e773276deebb2d313e4a6aa369af2c5da7971b9b5729778885dfa2cc25f92ed",
+    "prompts/stock-screener.md": "4642b0991ff2bed351a6e3508e12b2ce1e81ceac477fa1a35f41e81b5476cf85",
     "prompts/stock-valuation.md": "88360c97c79e8b347de64900b4d7d9362cda664ee27e8dbb46beec561b1ac1d8",
     "prompts/tax-lens.md": "0aa81e3ace6d75d701f0a92582fc2aa529938eb2d10defe23c93b9a0dd0227ef",
     "prompts/technical-analysis.md": "2f31a8a48ab7e62f56479b03b9c90eae7ab1d40ca480940563df2849c9827c03",
     "prompts/thesis-tracker.md": "97f4ce025d23eb348d5e4bc1a4a1d62c5f6b7f4a7c6195d77c020a3909ef777d",
     "prompts/trade-postmortem.md": "82422ece938589fdfbd47a4e3ec95138ee8fa3792737cd1ad617e636565c97ae",
-    "GEMINI.md": "386d8a6801b1538b62a6e0cb1aa137558fdb8b6e0d8de77abd0efa08b36fb44d",
-    "CLAUDE.md": "acf1f7203f398dae2768df0a21d62f9e869f8f79ccf1d5a98eab5d754c8a81ca"
+    "GEMINI.md": "3a826db4a21e9743031a615d4003ccd3a318f6d62155214bb7cf989afe3cb2b4",
+    "CLAUDE.md": "9d924c5eb69e4a3eb6910f49d6b7ca8ffd7ceba186a7423d9c5f96458cfdf4b0"
   }
 }

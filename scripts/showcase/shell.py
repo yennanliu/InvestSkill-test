@@ -544,6 +544,7 @@ NAV_ITEMS = [
     ("sndl.html", "SNDL"),
     ("workflows.html", "工作流 A–G"),
     ("supply-chain.html", "產業鏈"),
+    ("live/index.html", "即時實跑"),
 ]
 
 
@@ -594,7 +595,8 @@ def page(title, desc, body, active="", css_extra=""):
 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></a>
 <footer class="foot"><div class="wrap">
 <p><strong>InvestSkill Autopilot — 展示櫃</strong>　·　由 <a href="{IS}">InvestSkill</a> v1.11.0（27 個分析框架）驅動，
-報告內容由 LLM 依據 yfinance 公開資料生成。</p>
+報告內容由 LLM 依據 yfinance 公開資料生成。
+以最新版框架自動產生的報告見<a href="live/index.html">即時實跑</a>。</p>
 <p style="margin-top:8px">資料快照：2026-07-29　·　<a href="{GH}">原始碼與完整報告存檔</a>　·　<a href="../index.html">回專案首頁</a></p>
 <div class="disc"><strong>免責聲明</strong>　本頁為技術與框架能力展示，並非投資建議。所有內容由大型語言模型依據免費公開資料自動生成，
 可能存在錯誤、過時或內部不一致之處；文中已刻意保留並標示資料本身的缺陷（例如貨幣單位混用、上市歷史不足），

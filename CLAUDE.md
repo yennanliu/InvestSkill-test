@@ -80,6 +80,11 @@ python scripts/showcase/build.py --check    # fail if committed HTML is stale
 python scripts/showcase/derive.py           # print the derived-metrics digest
 python scripts/validate_html.py docs        # structure · links · a11y · template artifacts
 
+# Live showcase (needs the InvestSkill clone + GEMINI_API_KEY, except the last two)
+python scripts/run_showcase_live.py --ticker NVDA --depth quick
+python scripts/run_showcase_live.py --print-pick       # which ticker a scheduled run would take
+python scripts/run_showcase_live.py --rebuild-index    # re-render docs/showcase/live/index.html
+
 # Report generation (needs the InvestSkill clone + GEMINI_API_KEY)
 python scripts/stock_eval_gemini.py AAPL
 python scripts/full_report_gemini.py NVDA --depth quick
@@ -162,6 +167,32 @@ byte-identical.
 - `validate_html.py` is stdlib-only by design. Its `ARTIFACTS` list flags Python leakage (`None`,
   `nan`, `{placeholder}`, tracebacks) in rendered output; `ARTIFACT_ALLOW` holds the legitimate
   substrings that trip those regexes.
+
+## The live showcase (`scripts/showcase_live/`)
+
+`docs/showcase/live/` is the part of the site that is **not** reproducible: each page is one LLM run of
+the current InvestSkill frameworks on one ticker, published by `showcase_live.yml`. Keep the two halves
+separate — nothing under `scripts/showcase/` may import from `showcase_live`, and `build.py` neither
+renders nor checks the `live/` directory (its orphan check globs `docs/showcase/*.html` only).
+
+- `universe.py` holds the ticker list and `pick()`, which excludes the most recently run half so the
+  rotation completes. Funds are detected at run time from yfinance `quoteType`, not listed.
+- `mdhtml.py` is a deliberately small stdlib converter. It escapes everything, turns only `http(s)`
+  links into anchors, and flattens headings to `h3`/`h4` — model output jumps heading levels, and the
+  site validator rejects a skipped level.
+- `site.py` reuses `shell.CSS` / `shell.JS` from the curated showcase but has its own page wrapper,
+  because the nav and relative links differ one directory down.
+- Report pages carry `<meta name="content-origin" content="model-written">`; `validate_html.py` skips
+  only the template-artifact check for them (free prose legitimately contains `{CF}` or "None"). The
+  index is template-written and gets every check.
+- Scores come only from a module's JSON footer or signal box (`parse_signal`). Do not add fallbacks
+  that guess a score from prose; an unparsed module shows "未解析". The headline falls back to an
+  unweighted mean of module scores and is labelled as exactly that.
+- `runs.json` is the manifest (newest first, capped at `HISTORY_CAP`). One page per ticker — a new
+  run overwrites it; older runs survive as manifest rows and as Markdown under `output/showcase_live/`
+  until the 30-day cleanup.
+- The provider layer sleeps between retries; tests that drive `runner.main` patch
+  `analysis.llm.gemini.time.sleep` (see `test_showcase_live_run.py`).
 
 ## Generated output: committed, 30-day retention
 

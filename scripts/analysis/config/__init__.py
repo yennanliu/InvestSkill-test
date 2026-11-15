@@ -64,6 +64,10 @@ ANALYSIS_TYPES = {
     "credit-check":             {"prefix": "credit_check",             "label": "信用與償債檢查",   "ext": ".md"},
     "forensic-accounting":      {"prefix": "forensic_accounting",      "label": "鑑識會計",         "ext": ".md"},
     "trade-postmortem":         {"prefix": "trade_postmortem",         "label": "交易檢討",         "ext": ".md"},
+    # ── added upstream in v1.15 — an output tool that orchestrates compare and
+    # full-report over a 2–5 stock basket; it is a multi-ticker skill, so it is
+    # in no single-ticker depth tier ──
+    "basket-report":            {"prefix": "basket_report",            "label": "籃子報告",         "ext": ".md"},
     # Deprecated upstream in 1.8.0 — folded into full-report's --depth flag.
     "research-bundle":          {"prefix": "research_bundle",          "label": "研究套組（已棄用）", "ext": ".md"},
 }

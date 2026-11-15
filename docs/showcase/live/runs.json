@@ -1,0 +1,271 @@
+{
+  "runs": [
+    {
+      "ticker": "MSFT",
+      "name": null,
+      "kind": "stock",
+      "mode": "full-report · 25 modules",
+      "date": "2026-11-13",
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "skill_version": "1.14.1",
+      "skill_commit": "f6af133d0b91dc45c51a6901f8ea432d82558fd7",
+      "page": "msft.html",
+      "source_md": "output/full_report/msft/full_report_2026-11-13_gemini-3.6-flash.md",
+      "modules": [
+        {
+          "slug": "stock-eval",
+          "label": "綜合股票評估",
+          "status": "ok",
+          "signal": "BULLISH",
+          "action": "BUY",
+          "confidence": "HIGH",
+          "horizon": "LONG-TERM",
+          "score": 8.5
+        },
+        {
+          "slug": "stock-valuation",
+          "label": "多方法估值分析",
+          "status": "ok",
+          "signal": "BULLISH",
+          "action": "BUY",
+          "confidence": "HIGH",
+          "horizon": "MEDIUM-TERM",
+          "score": 7.2
+        },
+        {
+          "slug": "insider-trading",
+          "label": "內部人交易分析",
+          "status": "ok",
+          "signal": "NEUTRAL",
+          "action": "HOLD",
+          "confidence": "HIGH",
+          "horizon": "MEDIUM-TERM",
+          "score": 5.5
+        },
+        {
+          "slug": "technical-analysis",
+          "label": "技術分析",
+          "status": "ok",
+          "signal": "BULLISH",
+          "action": "BUY",
+          "confidence": "HIGH",
+          "horizon": "MEDIUM-TERM",
+          "score": 7.8
+        },
+        {
+          "slug": "bear-case",
+          "label": "空頭觀點",
+          "status": "ok",
+          "signal": "BEARISH",
+          "action": "SELL",
+          "confidence": "HIGH",
+          "horizon": "MEDIUM-TERM",
+          "score": 3.7
+        },
+        {
+          "slug": "competitor-analysis",
+          "label": "競爭護城河分析",
+          "status": "ok",
+          "signal": "BULLISH",
+          "action": "BUY",
+          "confidence": "HIGH",
+          "horizon": "LONG-TERM",
+          "score": 9.1
+        },
+        {
+          "slug": "financial-report-analyst",
+          "label": "財報深度分析",
+          "status": "ok",
+          "signal": "BULLISH",
+          "action": "BUY",
+          "confidence": "HIGH",
+          "horizon": "LONG-TERM",
+          "score": 8.5
+        },
+        {
+          "slug": "earnings-call-analysis",
+          "label": "財報電話會議分析",
+          "status": "ok",
+          "signal": "BULLISH",
+          "action": "BUY",
+          "confidence": "HIGH",
+          "horizon": "MEDIUM-TERM",
+          "score": 8.5
+        },
+        {
+          "slug": "institutional-ownership",
+          "label": "機構持股分析",
+          "status": "ok",
+          "signal": "BULLISH",
+          "action": "BUY",
+          "confidence": "HIGH",
+          "horizon": "LONG-TERM",
+          "score": 8.3
+        },
+        {
+          "slug": "catalyst-calendar",
+          "label": "催化劑日曆",
+          "status": "ok",
+          "signal": "BULLISH",
+          "action": "BUY",
+          "confidence": "HIGH",
+          "horizon": "SHORT-TERM",
+          "score": 7.8
+        },
+        {
+          "slug": "10k-digest",
+          "label": "10-K 年報摘要",
+          "status": "ok",
+          "signal": "BULLISH",
+          "action": "BUY",
+          "confidence": "HIGH",
+          "horizon": "LONG-TERM",
+          "score": 8.5
+        },
+        {
+          "slug": "industry-map",
+          "label": "產業地圖",
+          "status": "ok",
+          "signal": "BULLISH",
+          "action": "BUY",
+          "confidence": "HIGH",
+          "horizon": "LONG-TERM",
+          "score": 8.8
+        },
+        {
+          "slug": "dividend-analysis",
+          "label": "股利與資本回報",
+          "status": "ok",
+          "signal": "BULLISH",
+          "action": "BUY",
+          "confidence": "HIGH",
+          "horizon": "LONG-TERM",
+          "score": 8.8
+        },
+        {
+          "slug": "earnings-preview",
+          "label": "財報前瞻",
+          "status": "ok",
+          "signal": "BULLISH",
+          "action": "HOLD",
+          "confidence": "HIGH",
+          "horizon": "SHORT-TERM",
+          "score": 7.2
+        },
+        {
+          "slug": "sector-analysis",
+          "label": "產業板塊分析",
+          "status": "ok",
+          "signal": "BULLISH",
+          "action": "BUY",
+          "confidence": "HIGH",
+          "horizon": "MEDIUM-TERM",
+          "score": 8.5
+        },
+        {
+          "slug": "short-interest",
+          "label": "空頭部位分析",
+          "status": "ok",
+          "signal": "BULLISH",
+          "action": "BUY",
+          "confidence": "HIGH",
+          "horizon": "MEDIUM-TERM",
+          "score": 8.0
+        },
+        {
+          "slug": "options-analysis",
+          "label": "選擇權分析",
+          "status": "ok",
+          "signal": "BULLISH",
+          "action": "BUY",
+          "confidence": "HIGH",
+          "horizon": "SHORT-TERM",
+          "score": 7.5
+        },
+        {
+          "slug": "economics-analysis",
+          "label": "總體經濟分析",
+          "status": "ok",
+          "signal": "BULLISH",
+          "action": "BUY",
+          "confidence": "HIGH",
+          "horizon": "MEDIUM-TERM",
+          "score": 8.5
+        },
+        {
+          "slug": "forensic-accounting",
+          "label": "鑑識會計",
+          "status": "ok",
+          "signal": "BULLISH",
+          "action": "BUY",
+          "confidence": "HIGH",
+          "horizon": "LONG-TERM",
+          "score": 8.6
+        },
+        {
+          "slug": "credit-check",
+          "label": "信用與償債檢查",
+          "status": "ok",
+          "signal": "BULLISH",
+          "action": "BUY",
+          "confidence": "HIGH",
+          "horizon": "LONG-TERM",
+          "score": 9.8
+        },
+        {
+          "slug": "position-ladder",
+          "label": "分批建倉與降成本",
+          "status": "ok",
+          "signal": "BULLISH",
+          "action": "BUY",
+          "confidence": "HIGH",
+          "horizon": "MEDIUM-TERM",
+          "score": 8.7
+        },
+        {
+          "slug": "chart-master",
+          "label": "圖表視覺化",
+          "status": "ok",
+          "signal": "BULLISH",
+          "action": "BUY",
+          "confidence": "HIGH",
+          "horizon": "MEDIUM-TERM",
+          "score": 7.8
+        },
+        {
+          "slug": "fact-check",
+          "label": "事實查核",
+          "status": "ok",
+          "signal": "NEUTRAL",
+          "action": "HOLD",
+          "confidence": "LOW",
+          "horizon": "MEDIUM-TERM",
+          "score": 4.0
+        },
+        {
+          "slug": "result-validator",
+          "label": "結果驗證與信心評分",
+          "status": "ok",
+          "signal": "BULLISH",
+          "action": "BUY",
+          "confidence": "MEDIUM",
+          "horizon": "LONG-TERM",
+          "score": 6.4
+        },
+        {
+          "slug": "thesis-tracker",
+          "label": "論點追蹤",
+          "status": "ok",
+          "signal": "BULLISH",
+          "action": "BUY",
+          "confidence": "HIGH",
+          "horizon": "MEDIUM-TERM",
+          "score": 8.5
+        }
+      ],
+      "mean_score": 7.78,
+      "mean_n": 25
+    }
+  ]
+}

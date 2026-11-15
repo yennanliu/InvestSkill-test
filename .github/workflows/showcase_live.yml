@@ -1,0 +1,157 @@
+name: Showcase — live run (latest InvestSkill, random ticker)
+
+# Keeps the site's "即時實跑" section current. Each run:
+#
+#   1. clones the latest InvestSkill main, so the run always uses the newest
+#      frameworks — the version and commit are stamped on the page;
+#   2. reports any drift between that checkout and this repo's lock / config
+#      (informational here; upstream_sync.yml owns the lock-bump PR and the issue);
+#   3. picks one ticker at random from the universe in
+#      scripts/showcase_live/universe.py, skipping the half that ran most recently;
+#   4. runs full-report's module set on it from one yfinance snapshot (a fund runs
+#      etf-analysis and three companions instead) and renders the result to
+#      docs/showcase/live/<ticker>.html plus the index and runs.json;
+#   5. validates the site and commits the page and the Markdown archive.
+#
+# A run in which fewer than half the modules produce output publishes nothing.
+#
+# AI: Google Gemini API (secret: GEMINI_API_KEY)
+# Triggers: weekdays after the US close, manual, or the same repository_dispatch
+#           InvestSkill sends upstream_sync.yml (so a new release gets a run).
+
+on:
+  schedule:
+    - cron: "15 22 * * 1-5"      # 22:15 UTC — after the 21:00 UTC US close
+  workflow_dispatch:
+    inputs:
+      ticker:
+        description: "Ticker to run (blank = random from the universe)"
+        required: false
+        default: ""
+      depth:
+        description: "full-report module set for a stock"
+        required: false
+        default: "standard"
+        type: choice
+        options:
+          - standard
+          - quick
+          - comprehensive
+      model:
+        description: "Gemini model"
+        required: false
+        default: "gemini-3.6-flash"
+        type: choice
+        options:
+          - gemini-3.6-flash
+          - gemini-3.5-flash
+          - gemini-2.5-flash
+          - gemini-2.5-pro
+      ref:
+        description: "InvestSkill branch, tag or SHA (default: main)"
+        required: false
+        default: "main"
+  repository_dispatch:
+    types: [investskill-updated]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: showcase-live
+  cancel-in-progress: false
+
+jobs:
+  live:
+    name: Live showcase run
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Clone the latest InvestSkill
+        env:
+          REF: ${{ github.event.inputs.ref || 'main' }}
+        run: |
+          git clone --filter=blob:none https://github.com/yennanliu/InvestSkill.git InvestSkill
+          git -C InvestSkill checkout --quiet "$REF"
+          echo "InvestSkill $(jq -r .version InvestSkill/package.json) @ $(git -C InvestSkill rev-parse --short HEAD)"
+          echo "$(ls InvestSkill/prompts | wc -l) prompt files"
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Python dependencies
+        run: |
+          pip install --upgrade pip
+          pip install "google-generativeai>=0.8.0" "yfinance>=0.2.40"
+
+      # Informational: a drifted config still runs (unknown slugs fall back to a
+      # derived label), but the summary says what this repo has not followed yet.
+      - name: Report drift against the lock
+        continue-on-error: true
+        run: |
+          python scripts/upstream_sync.py --invest-skill-dir InvestSkill \
+            --report "$RUNNER_TEMP/sync-report.md" || true
+          cat "$RUNNER_TEMP/sync-report.md" >> "$GITHUB_STEP_SUMMARY" || true
+
+      - name: Pick the ticker
+        id: pick
+        env:
+          TICKER_INPUT: ${{ github.event.inputs.ticker }}
+        run: |
+          if [ -n "$TICKER_INPUT" ]; then
+            TICKER=$(printf '%s' "$TICKER_INPUT" | tr '[:lower:]' '[:upper:]' | tr -cd 'A-Z0-9.-')
+          else
+            TICKER=$(python scripts/run_showcase_live.py --print-pick)
+          fi
+          [ -n "$TICKER" ] || { echo "::error::no ticker resolved"; exit 1; }
+          echo "ticker=$TICKER" >> "$GITHUB_OUTPUT"
+          echo "### Live showcase: \`$TICKER\`" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Check GEMINI_API_KEY secret
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          if [ -z "$GEMINI_API_KEY" ]; then
+            echo "::error::GEMINI_API_KEY secret is not set (Settings → Secrets and variables → Actions)."
+            exit 1
+          fi
+
+      - name: Run the frameworks and render the page
+        timeout-minutes: 35
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          TICKER: ${{ steps.pick.outputs.ticker }}
+          DEPTH: ${{ github.event.inputs.depth || 'standard' }}
+          MODEL: ${{ github.event.inputs.model || 'gemini-3.6-flash' }}
+        run: |
+          python scripts/run_showcase_live.py --ticker "$TICKER" --depth "$DEPTH" \
+            --model "$MODEL" --max-tokens 20000 --invest-skill-dir InvestSkill
+
+      # The page is not committed unless the whole site still validates: tag
+      # balance, head metadata, heading order, internal links and anchors.
+      - name: Validate the site
+        run: |
+          python scripts/validate_html.py docs --quiet
+          python scripts/showcase/build.py --check
+
+      - name: Commit and push
+        env:
+          TICKER: ${{ steps.pick.outputs.ticker }}
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git pull --rebase origin main
+          git add docs/showcase/live output/showcase_live
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          VERSION=$(jq -r .version InvestSkill/package.json)
+          git commit -m "chore(showcase): live run ${TICKER} $(date -u +%Y-%m-%d) [InvestSkill v${VERSION}]"
+          git push
