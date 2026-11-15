@@ -147,7 +147,6 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git pull --rebase origin main
           git add docs/showcase/live docs/index.html output/showcase_live
           if git diff --cached --quiet; then
             echo "No changes to commit."
@@ -155,4 +154,9 @@ jobs:
           fi
           VERSION=$(jq -r .version InvestSkill/package.json)
           git commit -m "chore(showcase): live run ${TICKER} $(date -u +%Y-%m-%d) [InvestSkill v${VERSION}]"
+          # Commit first, then rebase: this job rewrites tracked files (runs.json,
+          # the index, the landing block), and `git pull --rebase` refuses to run
+          # on a dirty tree. The other report workflows only add files under
+          # output/, so replaying this commit on top of them cannot conflict.
+          git pull --rebase origin main
           git push
