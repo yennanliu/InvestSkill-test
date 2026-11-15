@@ -188,9 +188,14 @@ renders nor checks the `live/` directory (its orphan check globs `docs/showcase/
 - Scores come only from a module's JSON footer or signal box (`parse_signal`). Do not add fallbacks
   that guess a score from prose; an unparsed module shows "未解析". The headline falls back to an
   unweighted mean of module scores and is labelled as exactly that.
-- `runs.json` is the manifest (newest first, capped at `HISTORY_CAP`). One page per ticker — a new
-  run overwrites it; older runs survive as manifest rows and as Markdown under `output/showcase_live/`
-  until the 30-day cleanup.
+- **Every run is kept.** A run's page is `live/<yyyymmdd>/show_case.html` (`<yyyymmdd>-<ticker>/` when
+  another ticker already holds that day; the same ticker on the same day is replaced). A published
+  page is never re-rendered — its Markdown source is deleted by the 30-day cleanup — so anything that
+  must change later cannot live in the page: the CSS/JS are `live/assets/live.css|js` (rewritten each
+  run), and the "newer" link is filled in by `live.js` from `runs.json`.
+- `runs.json` is the manifest (newest first, capped at `HISTORY_CAP`). The archive index and the
+  block between `<!-- live-runs:start -->` / `<!-- live-runs:end -->` in `docs/index.html` are
+  rendered from it; never hand-edit inside those markers.
 - The provider layer sleeps between retries; tests that drive `runner.main` patch
   `analysis.llm.gemini.time.sleep` (see `test_showcase_live_run.py`).
 

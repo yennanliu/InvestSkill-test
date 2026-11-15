@@ -9,8 +9,9 @@ name: Showcase — live run (latest InvestSkill, random ticker)
 #   3. picks one ticker at random from the universe in
 #      scripts/showcase_live/universe.py, skipping the half that ran most recently;
 #   4. runs full-report's module set on it from one yfinance snapshot (a fund runs
-#      etf-analysis and three companions instead) and renders the result to
-#      docs/showcase/live/<ticker>.html plus the index and runs.json;
+#      etf-analysis and three companions instead) and renders the result to its
+#      own page, docs/showcase/live/<yyyymmdd>/show_case.html — every run is kept —
+#      then refreshes the archive index, runs.json and the landing-page block;
 #   5. validates the site and commits the page and the Markdown archive.
 #
 # A run in which fewer than half the modules produce output publishes nothing.
@@ -147,7 +148,7 @@ jobs:
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git pull --rebase origin main
-          git add docs/showcase/live output/showcase_live
+          git add docs/showcase/live docs/index.html output/showcase_live
           if git diff --cached --quiet; then
             echo "No changes to commit."
             exit 0

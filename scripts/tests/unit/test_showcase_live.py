@@ -151,9 +151,12 @@ def test_run_record_marks_ok_failed_and_missing_modules():
 
 
 def test_report_page_is_valid_and_states_what_was_not_assessed():
-    run, sections = _run()
-    page = site.render_report(run, sections, "整體結論。")
-    assert _validate({"mu.html": page}) == []
+    run, sections = _run(page="20261116/show_case.html")
+    older = {"page": "20261110/show_case.html", "date": "2026-11-10", "ticker": "NVDA"}
+    page = site.render_report(run, sections, "整體結論。", older)
+    assert _validate({"show_case.html": page}) == []
+    assert 'href="../20261110/show_case.html"' in page       # older neighbour, one level up
+    assert 'href="../assets/live.css"' in page and "<style>" not in page
     assert "未評估 — 生成失敗" in page and "未評估 — 上游沒有這個框架" in page
     assert "v1.15.0" in page and "35d68f9" in page
     assert "算術平均" in page                         # the mean is labelled as a mean
@@ -162,26 +165,55 @@ def test_report_page_is_valid_and_states_what_was_not_assessed():
 
 def test_index_is_valid_empty_and_populated(tmp_path):
     empty = site.render_index({"runs": []}, UNIVERSE)
-    assert _validate({"index.html": empty}) == [] and "尚未有實跑紀錄" in empty
+    assert _validate({"index.html": empty}) == [] and "尚未有展示" in empty
     assert validate_html.MODEL_WRITTEN not in empty   # the index is template-written
 
     run, sections = _run()
     page = runner.publish(run, sections, "整體結論。", tmp_path)
-    assert page == tmp_path / "mu.html"
+    assert page == tmp_path / "20261116" / "show_case.html"
     index = (tmp_path / "index.html").read_text(encoding="utf-8")
     assert _validate({"index.html": index}) == []
-    assert 'href="mu.html"' in index and "尚未輪到的標的（31）" in index
+    assert 'href="20261116/show_case.html"' in index and "尚未輪到的標的（31）" in index
+    assert (tmp_path / "assets" / "live.css").exists() and (tmp_path / "assets" / "live.js").exists()
 
 
-def test_publish_replaces_a_same_day_rerun_and_keeps_history(tmp_path):
+def test_every_run_keeps_its_own_dated_page(tmp_path):
     run, sections = _run()
     runner.publish(run, sections, "x", tmp_path)
-    runner.publish(dict(run), sections, "x", tmp_path)
+    runner.publish(dict(run), sections, "x", tmp_path)            # same ticker, same day: replaced
     older, _ = _run(date="2026-11-10")
-    runner.publish(older, sections, "x", tmp_path)
+    runner.publish(older, sections, "x", tmp_path)                # imported out of order
+    other, _ = _run()
+    other["ticker"] = "NVDA"
+    runner.publish(other, sections, "x", tmp_path)                # second ticker on the 16th
+
     runs = site.load_manifest(tmp_path)["runs"]
-    assert [(r["ticker"], r["date"]) for r in runs] == [("MU", "2026-11-10"), ("MU", "2026-11-16")]
-    assert len(site.latest_per_ticker(runs)) == 1
+    assert [(r["ticker"], r["date"], r["page"]) for r in runs] == [
+        ("NVDA", "2026-11-16", "20261116-nvda/show_case.html"),
+        ("MU", "2026-11-16", "20261116/show_case.html"),
+        ("MU", "2026-11-10", "20261110/show_case.html")]
+    for r in runs:
+        assert (tmp_path / r["page"]).exists()
+    assert len(site.latest_per_ticker(runs)) == 2
+    index = (tmp_path / "index.html").read_text(encoding="utf-8")
+    assert index.count('class="lv-card"') == 3 and "全部 3 次展示，2 檔標的" in index
+
+
+def test_landing_block_is_rewritten_between_its_markers(tmp_path):
+    landing = tmp_path / "index.html"
+    landing.write_text(f"<p>before</p>\n{site.LANDING_START}stale{site.LANDING_END}\n<p>after</p>",
+                       encoding="utf-8")
+    run, sections = _run()
+    runner.publish(run, sections, "x", tmp_path / "live", landing=landing)
+    text = landing.read_text(encoding="utf-8")
+    assert "stale" not in text and "<p>before</p>" in text and "<p>after</p>" in text
+    assert 'href="showcase/live/20261116/show_case.html"' in text and "All 1 live showcases" in text
+    assert text.count(site.LANDING_START) == 1 and text.count(site.LANDING_END) == 1
+
+    bare = tmp_path / "bare.html"
+    bare.write_text("<p>no markers</p>", encoding="utf-8")
+    assert site.update_landing({"runs": []}, bare) is False
+    assert bare.read_text(encoding="utf-8") == "<p>no markers</p>"
 
 
 # ── importing a saved full-report file ──────────────────────────────────────

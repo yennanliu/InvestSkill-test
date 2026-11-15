@@ -47,7 +47,8 @@ def test_stock_run_writes_page_index_manifest_and_markdown(tmp_path, clone, fake
     assert [m["slug"] for m in run["modules"]] == [
         "stock-eval", "stock-valuation", "insider-trading", "technical-analysis", "bear-case"]
     assert all(m["status"] == "ok" and m["score"] == 5.0 for m in run["modules"])
-    assert (live / "mu.html").exists() and 'href="mu.html"' in (live / "index.html").read_text("utf-8")
+    assert run["page"].endswith("/show_case.html") and (live / run["page"]).exists()
+    assert f'href="{run["page"]}"' in (live / "index.html").read_text("utf-8")
     assert len(list((tmp_path / "out").glob("full_report_*.md"))) == 1
 
 

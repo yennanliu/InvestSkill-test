@@ -92,7 +92,7 @@ def build_run(ticker: str, *, kind: str, name: str | None, mode: str, requested:
         "ticker": ticker, "name": name, "kind": kind, "mode": mode, "date": date,
         "provider": provider, "model": model,
         "skill_version": version, "skill_commit": commit,
-        "page": f"{ticker.lower()}.html", "source_md": source_md,
+        "page": None, "source_md": source_md,          # page is assigned on publish
         "modules": modules,
     }
     headline = site.parse_signal(synthesis)
@@ -102,16 +102,27 @@ def build_run(ticker: str, *, kind: str, name: str | None, mode: str, requested:
 
 
 def publish(run: dict, sections: list[tuple[str, str]], synthesis: str,
-            live_dir: Path, universe: tuple[str, ...] = UNIVERSE) -> Path:
-    live_dir.mkdir(parents=True, exist_ok=True)
-    page = live_dir / run["page"]
-    page.write_text(site.render_report(run, sections, synthesis), encoding="utf-8")
+            live_dir: Path, universe: tuple[str, ...] = UNIVERSE, *,
+            landing: Path | None = None) -> Path:
+    """Write the run's own page, then the manifest, the index and the landing block.
+
+    Earlier runs are never rewritten: every showcase keeps its directory.
+    """
     manifest = site.load_manifest(live_dir)
-    manifest["runs"] = [run] + [
-        r for r in manifest.get("runs", [])
-        if not (r["ticker"] == run["ticker"] and r["date"] == run["date"])]
+    others = [r for r in manifest.get("runs", [])
+              if not (r["ticker"] == run["ticker"] and r["date"] == run["date"])]
+    run["page"] = site.page_for(manifest.get("runs", []), run["ticker"], run["date"])
+    manifest["runs"] = site.sort_runs([run] + others)
+    position = manifest["runs"].index(run)
+    older = manifest["runs"][position + 1] if position + 1 < len(manifest["runs"]) else None
+
+    page = live_dir / run["page"]
+    page.parent.mkdir(parents=True, exist_ok=True)
+    page.write_text(site.render_report(run, sections, synthesis, older), encoding="utf-8")
     site.save_manifest(manifest, live_dir)
     site.write_index(manifest, universe, live_dir)
+    if landing is not None:
+        site.update_landing(manifest, landing)
     return page
 
 
@@ -154,7 +165,9 @@ def parse_report(text: str) -> tuple[dict, str, list[tuple[str, str]]]:
     return meta, synthesis, sections
 
 
-def import_report(path: Path, live_dir: Path, invest_skill_dir: Path) -> Path:
+def import_report(path: Path, live_dir: Path, invest_skill_dir: Path,
+                  landing: Path | None = None,
+                  profiles: dict[str, tuple[str, str | None]] | None = None) -> Path:
     meta, synthesis, sections = parse_report(path.read_text(encoding="utf-8"))
     if not sections:
         raise ValueError(f"no module sections found in {path}")
@@ -167,14 +180,20 @@ def import_report(path: Path, live_dir: Path, invest_skill_dir: Path) -> Path:
         source = str(path.resolve().relative_to(site.REPO))
     except ValueError:
         source = path.name
+    if profiles is None:
+        kind, name = "stock", None
+    else:                                   # one lookup per ticker across a batch
+        if ticker not in profiles:
+            profiles[ticker] = quote_profile(ticker)
+        kind, name = profiles[ticker]
     run = build_run(
-        ticker, kind="stock", name=None, mode=f"full-report · {len(ran)} modules",
+        ticker, kind=kind, name=name, mode=f"full-report · {len(ran)} modules",
         requested=ran, ran=ran, sections=sections, synthesis=synthesis,
         provider=meta.get("provider", "—"), model=meta.get("model", "—"),
         date=meta.get("date", TODAY),
         version=skill_version(invest_skill_dir, commit) if commit else None,
         commit=commit, source_md=source)
-    return publish(run, sections, synthesis, live_dir)
+    return publish(run, sections, synthesis, live_dir, landing=landing)
 
 
 # ── main ────────────────────────────────────────────────────────────────────
@@ -193,8 +212,11 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--live-dir", default=str(site.LIVE_DIR), help="where the pages are written")
     ap.add_argument("--output-dir", default=None,
                     help="where the Markdown is archived (default: output/showcase_live/<ticker>)")
-    ap.add_argument("--from-report", default=None, metavar="FILE",
-                    help="publish an existing full-report Markdown file instead of generating")
+    ap.add_argument("--from-report", default=None, metavar="FILE", nargs="+",
+                    help="publish existing full-report Markdown files instead of generating")
+    ap.add_argument("--landing", default=None,
+                    help="landing page whose live-runs block is refreshed "
+                         "(default: docs/index.html when --live-dir is the default)")
     ap.add_argument("--rebuild-index", action="store_true",
                     help="re-render index.html from runs.json and exit")
     ap.add_argument("--print-pick", action="store_true",
@@ -203,20 +225,31 @@ def main(argv: list[str] | None = None) -> int:
 
     live_dir = Path(args.live_dir)
     invest_skill_dir = Path(args.invest_skill_dir)
+    if args.landing:
+        landing = Path(args.landing)
+    else:
+        landing = site.LANDING if live_dir.resolve() == site.LIVE_DIR.resolve() else None
 
     if args.rebuild_index:
-        path = site.write_index(site.load_manifest(live_dir), UNIVERSE, live_dir)
+        manifest = site.load_manifest(live_dir)
+        path = site.write_index(manifest, UNIVERSE, live_dir)
+        if landing is not None:
+            site.update_landing(manifest, landing)
         print(f"✅ Index written to {path}")
         return 0
 
     if args.from_report:
-        try:
-            page = import_report(Path(args.from_report), live_dir, invest_skill_dir)
-        except (OSError, ValueError) as exc:
-            print(f"ERROR: {exc}", file=sys.stderr)
-            return 1
-        print(f"✅ Imported → {page}")
-        return 0
+        failures = 0
+        profiles: dict[str, tuple[str, str | None]] = {}
+        for source in args.from_report:
+            try:
+                page = import_report(Path(source), live_dir, invest_skill_dir, landing, profiles)
+            except (OSError, ValueError) as exc:
+                print(f"ERROR: {source}: {exc}", file=sys.stderr)
+                failures += 1
+                continue
+            print(f"✅ Imported → {page}")
+        return 1 if failures else 0
 
     recent = [r["ticker"] for r in site.load_manifest(live_dir).get("runs", [])]
     ticker = (args.ticker or pick(recent)).upper()
@@ -263,6 +296,6 @@ def main(argv: list[str] | None = None) -> int:
         sections=sections, synthesis=result["synthesis"], provider=args.provider, model=model,
         date=TODAY, version=skill_version(invest_skill_dir), commit=commit,
         source_md=str(md_path))
-    page = publish(run, sections, result["synthesis"], live_dir)
+    page = publish(run, sections, result["synthesis"], live_dir, landing=landing)
     print(f"✅ {ticker}: {ok}/{len(requested)} modules → {page}  (Markdown: {md_path})")
     return 0
