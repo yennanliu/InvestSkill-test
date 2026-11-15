@@ -42,6 +42,11 @@ ARTIFACTS = [
 ]
 # Substrings that legitimately contain an ARTIFACTS match; skipped before scanning.
 ARTIFACT_ALLOW = ["yennanliu", "finance", "financial", "Financial", "nan-"]
+# Pages whose body is model-written prose (the live showcase reports) carry this
+# marker. The artifact patterns exist to catch Python leaking out of the page
+# templates; in free prose they match ordinary text — a LaTeX ``{CF}``, the word
+# "None" — so those pages skip that one check. Every other check still applies.
+MODEL_WRITTEN = '<meta name="content-origin" content="model-written">'
 
 
 class Balance(html.parser.HTMLParser):
@@ -152,6 +157,8 @@ def check_accessibility(page: str, src: str, rep: Report) -> None:
 
 
 def check_artifacts(page: str, src: str, rep: Report) -> None:
+    if MODEL_WRITTEN in src:
+        return
     text = src
     for allow in ARTIFACT_ALLOW:
         text = text.replace(allow, "")

@@ -27,6 +27,31 @@ Three data defects are left in deliberately (KRW filings against a USD ADR, 13 d
 history, a `bookValue` field 27% below the filed balance sheet) so `result-validator` has
 something real to catch. Every figure is derived from one shared snapshot and is recomputable.
 
+## Live showcase — the latest InvestSkill on a random ticker
+
+The showcase above is frozen at v1.11.0. The [live runs](https://yennj12.js.org/InvestSkill-test/showcase/live/index.html)
+are the moving half: every weekday [`showcase_live.yml`](.github/workflows/showcase_live.yml) clones the
+latest InvestSkill `main`, picks one ticker at random from a 32-name universe (skipping the half that
+ran most recently), runs `full-report`'s module set on it from one `yfinance` snapshot — a fund runs
+`etf-analysis` and three companions instead — and publishes it as its own page,
+`docs/showcase/live/<yyyymmdd>/show_case.html`. **Every run is kept**; the archive index, `runs.json`
+and the "Live showcases" block on the landing page are refreshed each time.
+
+```bash
+python scripts/run_showcase_live.py                           # random ticker, standard depth (10 modules)
+python scripts/run_showcase_live.py --ticker NVDA --depth quick
+python scripts/run_showcase_live.py --from-report output/full_report/msft/*.md        # publish saved reports
+python scripts/run_showcase_live.py --rebuild-index           # re-render the index from runs.json
+```
+
+Each page records the InvestSkill version and commit that produced it. Scores and signals are read
+from each module's own JSON footer or signal box; a module that failed is shown as "not assessed",
+never as a neutral score, and a run in which fewer than half the modules produce output publishes
+nothing. A second ticker on a day that already has a showcase goes to `<yyyymmdd>-<ticker>/`.
+These pages are model-written and unreviewed — unlike the curated showcase, their figures
+are not recomputed — and every page says so. The universe is `UNIVERSE` in
+[`scripts/showcase_live/universe.py`](scripts/showcase_live/universe.py).
+
 ## What this repo does
 
 GitHub Actions clones the InvestSkill plugin, takes one `yfinance` snapshot per run, sends each
@@ -80,7 +105,9 @@ python scripts/upstream_sync.py --check         # exit 1 if this repo's config h
 python scripts/upstream_sync.py --write-lock    # adopt the clone's revision as the new baseline
 ```
 
-`upstream_sync.yml` runs the same script daily and on `workflow_dispatch`. To get a run as soon as
+`upstream_sync.yml` runs the same script daily and on `workflow_dispatch`. `showcase_live.yml` does not
+wait for the lock: it always clones the latest `main`, stamps the version on the page, and prints the
+same drift report in its job summary. To get a run as soon as
 InvestSkill changes, add this step to a workflow there, using a token that can dispatch to this repo:
 
 ```bash
@@ -114,6 +141,8 @@ scripts/run_skill.py  any skill by slug (the sandbox entrypoint)
 scripts/upstream_sync.py   InvestSkill change + drift detector (investskill.lock.json)
 scripts/cleanup_reports.py report retention
 scripts/showcase/     zh-TW showcase generator + committed yfinance snapshot
+scripts/showcase_live/     live showcase: ticker universe, Markdown → HTML, pages, runner
+scripts/run_showcase_live.py  live showcase entrypoint
 scripts/validate_html.py  stdlib HTML/link/a11y checker for docs/
 scripts/tests/        pytest suite (run: python -m pytest)
 .github/workflows/    scheduled report jobs + CI
@@ -145,6 +174,7 @@ reverted by the next build, so don't.
 | [`tests.yml`](.github/workflows/tests.yml) | pytest on Python 3.11 + 3.13. All LLM SDKs and `yfinance` are faked, so no keys or network are needed. |
 | [`upstream_sync.yml`](.github/workflows/upstream_sync.yml) | Daily: InvestSkill vs. the lock and `analysis.config`. Changes → lock-bump PR; drift → `upstream-drift` issue |
 | [`skill_sandbox.yml`](.github/workflows/skill_sandbox.yml) | Manual: one skill × one ticker × one InvestSkill revision; report uploaded as an artifact, and committed only if asked |
+| [`showcase_live.yml`](.github/workflows/showcase_live.yml) | Weekdays 22:15 UTC, manual, or on `investskill-updated`: latest InvestSkill × one random ticker → `docs/showcase/live/<yyyymmdd>/show_case.html`, every run kept. Validates the whole site before committing; needs `GEMINI_API_KEY` |
 | [`cleanup_reports.yml`](.github/workflows/cleanup_reports.yml) | Weekly + manual: delete reports older than the retention window (default 30 days) |
 | [`site.yml`](.github/workflows/site.yml) | **build** — `docs/showcase` matches a fresh render, and two renders are byte-identical · **validate** — every page in `docs/` passes tag balance, head metadata, heading order, `img`/`svg` labelling, dead internal links and anchors, unrendered template artifacts, and flush borders on the CJK signal blocks · **lint** — `ruff` (pyflakes rules) plus a Python 3.11 grammar check |
 

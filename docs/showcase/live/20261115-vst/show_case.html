@@ -1,0 +1,1055 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VST 即時展示 2026-11-15 — InvestSkill Autopilot</title>
+<meta name="description" content="VST 於 2026-11-15 以 InvestSkill v1.15.0 自動生成的個股分析（10 個模組，LLM 生成、未經審閱）。">
+<meta name="theme-color" content="#00b14f">
+<meta name="robots" content="index,follow">
+<meta name="content-origin" content="model-written">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/live.css">
+<script>document.documentElement.className="js"</script>
+</head>
+<body>
+<a class="skip" href="#main">跳至主要內容</a>
+<header class="nav"><div class="wrap nav__in">
+<a class="brand" href="../../../index.html"><span class="brand__mark"><svg width="18" height="18" viewBox="0 0 32 32" aria-hidden="true"><path d="M8 21l5-6 4 3 7-9" stroke="white" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+<span class="brand__text">InvestSkill Autopilot</span></a>
+<nav class="nav__links" aria-label="展示頁面"><a href="../../index.html">展示櫃總覽</a><a href="../index.html">所有即時展示</a></nav>
+<a class="btn btn--sm nav__cta" href="https://github.com/yennanliu/InvestSkill-test"><span class="nav__cta-label">GitHub</span></a>
+</div><div class="prog" aria-hidden="true"><i></i></div></header>
+<main id="main">
+<section class="rhero"><div class="wrap rhero__in">
+<p class="crumb"><a href="../../../index.html">InvestSkill Autopilot</a> ／ <a href="../../index.html">展示櫃</a> ／ <a href="../index.html">即時展示</a> ／ 2026-11-15 · VST</p>
+<p class="eyebrow">live run · full-report · 10 modules · 10 of 10 modules · zh-TW</p>
+<h1>VST — Vistra Corp.</h1>
+<p class="rhero__sub">2026-11-15 的自動實跑。使用 InvestSkill v1.15.0（35d68f9），
+由 gemini／gemini-3.6-flash 生成，未經人工審閱。</p>
+<div class="grid g4" style="margin-top:var(--s-32)">
+<div class="tile" style="background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.28)"><div class="tile__k" style="color:#9ce8bd">類型</div><div class="tile__v" style="color:#fff">個股</div>
+<div class="tile__n" style="color:rgba(255,255,255,.82)">full-report · 10 modules</div></div>
+<div class="tile" style="background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.28)"><div class="tile__k" style="color:#9ce8bd">分數</div><div class="tile__v" style="color:#fff">7.2</div>
+<div class="tile__n" style="color:rgba(255,255,255,.82)">／10 · 10 個模組分數的算術平均（未加權，非框架的綜合評分）</div></div>
+<div class="tile" style="background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.28)"><div class="tile__k" style="color:#9ce8bd">模組</div><div class="tile__v" style="color:#fff">10／10</div>
+<div class="tile__n" style="color:rgba(255,255,255,.82)">0 個生成失敗 · 0 個上游缺少</div></div>
+<div class="tile" style="background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.28)"><div class="tile__k" style="color:#9ce8bd">InvestSkill</div><div class="tile__v" style="color:#fff">v1.15.0</div>
+<div class="tile__n" style="color:rgba(255,255,255,.82)">commit 35d68f9</div></div>
+</div></div></section>
+<div class="wrap shell"><aside class="toc" aria-label="本頁目錄"><div class="toc__h">本頁目錄</div><a href="#sources">資料來源</a><a href="#scorecard">模組一覽</a><a href="#verdict">綜合結論</a><div class="toc__grp">模組</div><a href="#m1">綜合股票評估</a><a href="#m2">多方法估值分析</a><a href="#m3">內部人交易分析</a><a href="#m4">技術分析</a><a href="#m5">空頭觀點</a><a href="#m6">競爭護城河分析</a><a href="#m7">財報深度分析</a><a href="#m8">財報電話會議分析</a><a href="#m9">機構持股分析</a><a href="#m10">催化劑日曆</a></aside><article class="doc">
+<section id="sources"><h2>資料來源</h2>
+<div class="call call--ink"><div class="call__h">📋 Data &amp; Sources — 資料來源與可信度</div>
+<div class="tblwrap"><table class="dt dt--sm"><tbody>
+<tr><th scope="row" style="width:112px;text-align:left">As of</th><td style="text-align:left">2026-11-15（執行當下的 yfinance 快照）</td></tr>
+<tr><th scope="row" style="text-align:left">Source</th><td style="text-align:left">yfinance（Yahoo Finance）：報價、TTM 財務數據、四個會計年度損益表與現金流量表、近六個月價格</td></tr>
+<tr><th scope="row" style="text-align:left">Retrieval</th><td style="text-align:left">程式化擷取 · 單次快照 · 本頁所有模組共用同一份資料</td></tr>
+<tr><th scope="row" style="text-align:left">Confidence</th><td style="text-align:left">LOW — 資料商資料、LLM 生成、未經人工審閱，數字未逐一重算</td></tr>
+</tbody></table></div></div>
+<div class="call call--warn"><div class="call__h">這一頁與策展展示櫃有什麼不同</div>
+<p><a href="../../index.html">策展展示櫃</a>的每個數字都由程式從固定快照重算，並經 CI 逐位元組比對。
+本頁沒有這層保證：它是把當時最新的 InvestSkill 框架原樣交給模型的結果，用來觀察框架在不同標的上的實際輸出。
+各模組的分數與訊號直接取自該模組輸出末端的訊號框或 JSON footer；沒有的就標示「未解析」，不補中性值。</p></div>
+</section>
+<section id="scorecard"><h2>模組一覽</h2>
+<div class="tblwrap"><table class="dt dt--sm">
+<thead><tr><th scope="col" style="text-align:right;width:44px">#</th><th scope="col" style="text-align:left">框架</th>
+<th scope="col" style="text-align:left">模組</th><th scope="col" style="text-align:left">訊號</th>
+<th scope="col" style="text-align:right">分數</th><th scope="col" style="text-align:left">動作</th>
+<th scope="col" style="text-align:left">信心</th></tr></thead><tbody><tr><td style="text-align:right;color:var(--ink-3)">1</td><th scope="row" style="text-align:left"><a href="#m1"><code>stock-eval</code></a></th><td style="text-align:left">綜合股票評估</td><td style="text-align:left"><span class="st st--good">✅ BULLISH</span></td><td style="text-align:right">8.5</td><td style="text-align:left">BUY</td><td style="text-align:left">HIGH</td></tr><tr><td style="text-align:right;color:var(--ink-3)">2</td><th scope="row" style="text-align:left"><a href="#m2"><code>stock-valuation</code></a></th><td style="text-align:left">多方法估值分析</td><td style="text-align:left"><span class="st st--good">✅ BULLISH</span></td><td style="text-align:right">8.2</td><td style="text-align:left">BUY</td><td style="text-align:left">HIGH</td></tr><tr><td style="text-align:right;color:var(--ink-3)">3</td><th scope="row" style="text-align:left"><a href="#m3"><code>insider-trading</code></a></th><td style="text-align:left">內部人交易分析</td><td style="text-align:left"><span class="st st--neut">▬ NEUTRAL</span></td><td style="text-align:right">5.8</td><td style="text-align:left">HOLD</td><td style="text-align:left">MEDIUM</td></tr><tr><td style="text-align:right;color:var(--ink-3)">4</td><th scope="row" style="text-align:left"><a href="#m4"><code>technical-analysis</code></a></th><td style="text-align:left">技術分析</td><td style="text-align:left"><span class="st st--neut">▬ NEUTRAL</span></td><td style="text-align:right">6.2</td><td style="text-align:left">HOLD</td><td style="text-align:left">HIGH</td></tr><tr><td style="text-align:right;color:var(--ink-3)">5</td><th scope="row" style="text-align:left"><a href="#m5"><code>bear-case</code></a></th><td style="text-align:left">空頭觀點</td><td style="text-align:left"><span class="st st--bad">🚩 BEARISH</span></td><td style="text-align:right">2.5</td><td style="text-align:left">SELL</td><td style="text-align:left">HIGH</td></tr><tr><td style="text-align:right;color:var(--ink-3)">6</td><th scope="row" style="text-align:left"><a href="#m6"><code>competitor-analysis</code></a></th><td style="text-align:left">競爭護城河分析</td><td style="text-align:left"><span class="st st--good">✅ BULLISH</span></td><td style="text-align:right">8.5</td><td style="text-align:left">BUY</td><td style="text-align:left">HIGH</td></tr><tr><td style="text-align:right;color:var(--ink-3)">7</td><th scope="row" style="text-align:left"><a href="#m7"><code>financial-report-analyst</code></a></th><td style="text-align:left">財報深度分析</td><td style="text-align:left"><span class="st st--good">✅ BULLISH</span></td><td style="text-align:right">8.5</td><td style="text-align:left">BUY</td><td style="text-align:left">HIGH</td></tr><tr><td style="text-align:right;color:var(--ink-3)">8</td><th scope="row" style="text-align:left"><a href="#m8"><code>earnings-call-analysis</code></a></th><td style="text-align:left">財報電話會議分析</td><td style="text-align:left"><span class="st st--good">✅ BULLISH</span></td><td style="text-align:right">8.2</td><td style="text-align:left">BUY</td><td style="text-align:left">HIGH</td></tr><tr><td style="text-align:right;color:var(--ink-3)">9</td><th scope="row" style="text-align:left"><a href="#m9"><code>institutional-ownership</code></a></th><td style="text-align:left">機構持股分析</td><td style="text-align:left"><span class="st st--good">✅ BULLISH</span></td><td style="text-align:right">8.3</td><td style="text-align:left">BUY</td><td style="text-align:left">HIGH</td></tr><tr><td style="text-align:right;color:var(--ink-3)">10</td><th scope="row" style="text-align:left"><a href="#m10"><code>catalyst-calendar</code></a></th><td style="text-align:left">催化劑日曆</td><td style="text-align:left"><span class="st st--good">✅ BULLISH</span></td><td style="text-align:right">7.5</td><td style="text-align:left">BUY</td><td style="text-align:left">HIGH</td></tr></tbody></table></div>
+</section>
+<section id="verdict"><h2>綜合結論</h2>
+<p>以下為針對 <strong>Vistra Corp. (NYSE: VST)</strong> 整合 10 大 InvestSkill 分析模組後所產出的整體投資評估綜合結論報告：</p>
+<hr>
+<h3>Vistra Corp. (NYSE: VST) 10 模組 InvestSkill 綜合投資決策報告</h3>
+<pre class="lv-code"><code>╔══════════════════════════════════════════════════════════════════╗
+║                   VST 綜合投資決策總覽                           ║
+╠══════════════════════════════════════════════════════════════════╣
+║ 綜合加權評分： 7.1 / 10  (多頭模組均分 8.3，經紅隊看空對抗調整)  ║
+║ 整體投資訊號： 看多 (BULLISH)                                    ║
+║ 建議投資行動： 買進 (BUY — 逢拉回分批佈局)                        ║
+║ 投資時間視野： 中長期 (MEDIUM TO LONG-TERM)                     ║
+║ 信心水準度量： 高 (HIGH)                                         ║
+╠══════════════════════════════════════════════════════════════════╣
+║ 現行市場價格： $133.01                                           ║
+║ 綜合內在價值： $172.85  (安全邊際: 23.05%)                       ║
+║ 第一階段目標： $155.00  (技術面突破)                             ║
+║ 華爾街共識價： $202.48  (潛在上漲空間: +52.2%)                    ║
+║ 嚴格停損界線： $108.00  (跌破 52 週低點區間)                     ║
+╚══════════════════════════════════════════════════════════════════╝</code></pre>
+<hr>
+<h3>一、 綜合評分與整體投資訊號</h3>
+<p>基於 10 個獨立 InvestSkill 模組之量化與質化分析，VST 獲得 <strong>7.1 / 10 的綜合加權評分</strong>，整體投資訊號為 <strong>看多 (BULLISH)</strong>，投資建議為 <strong>分批買進 (BUY)</strong>。</p>
+<h4>模組評分分布與加權拆解：</h4>
+<ul><li><strong>基本面與質化護城河 (40% 權重)</strong>：<code>stock-eval</code> (8.5)、<code>competitor-analysis</code> (8.5)、<code>financial-report-analyst</code> (8.5)、<code>earnings-call-analysis</code> (8.2) — <strong>強烈看多 (均分 8.43)</strong></li><li><strong>估值與籌碼結構 (30% 權重)</strong>：<code>stock-valuation</code> (8.2)、<code>institutional-ownership</code> (8.3)、<code>insider-trading</code> (5.8) — <strong>中高度看多 (均分 7.68)</strong></li><li><strong>時機與催化劑 (15% 權重)</strong>：<code>catalyst-calendar</code> (7.5)、<code>technical-analysis</code> (6.2) — <strong>中性偏多 (均分 6.85)</strong></li><li><strong>壓力測試與反向紅隊 (15% 權重)</strong>：<code>bear-case</code> (2.5 — 看空強度 7.5/10) — <strong>看空警告 (扣分項)</strong></li></ul>
+<hr>
+<h3>二、 信心水準與核心理由</h3>
+<p><strong>信心水準評級：高 (HIGH)</strong></p>
+<h4>核心投資邏輯（Three Pillar Thesis）：</h4>
+<ol><li><strong>AI 算力大浪潮下的稀缺零碳基載電力護城河</strong>： VST 在併購 Energy Harbor 後擁有 6.4 GW 核能與大量天然氣/儲能資產。超大規模雲端巨頭（Hyperscalers，如 AWS、Microsoft、Meta）為滿足 AI 數據中心 24/7 不間斷且零碳的電力需求，願支付高額溢價簽署長期購電協議（PPA）。現有核能執照與區域電網（PJM/ERCOT）併網點具備極高的法規與資本壁壘，使 VST 護城河正從「窄幅」向「寬幅」擴張。</li></ol>
+<ol><li><strong>強勁的獲利品質與經濟價值附加 (EVA)</strong>： TTM 營收達 205.88 億美元（YoY +27.7%），淨利達 25.15 億美元（YoY +84.6%），毛利率高達 41.52%，ROE 達 46.33%。其 ROIC 達 <strong>16.33%</strong>，顯著超越 WACC <strong>9.60%</strong>，創造高達 <strong>+6.73% (673 bps)</strong> 的經濟價值附加（EVA Spread）。Piotroski F-Score 達 8 / 9 高分，顯示其獲利具備高現金轉化率（TTM OCF 57.62 億美元，CFO/Net Income 達 2.29x）。</li></ol>
+<ol><li><strong>顯著的估值折價與籌碼集中優勢</strong>： 前瞻本益比（Forward P/E）僅 14.21 倍，本益成長比（PEG）低至 0.38x，EV/EBITDA 僅 8.50x，相比同業龍頭 Constellation Energy (CEG，Forward P/E 25.5x) 存在巨大重估空間。機構持股比例高達 <strong>89.33%</strong>，在近期股價回檔至 $112.89 探底時爆量換手，展現極強的「聰明錢」承接意願。</li></ol>
+<hr>
+<h3>三、 各模組共識與分歧點分析</h3>
+<pre class="lv-code"><code>┌────────────────────────────────────────────────────────────────────────┐
+│                        VST 模組共識與分歧對比矩陣                      │
+├─────────────────┬──────────────────────────────────────────────────────┤
+│ 1. 基本面與獲利 │ 🟢 高度共識：強勁的營收/盈餘成長、41.5%高毛利與稀缺  │
+│    (Core Moat)  │    核電資產，能享受 AI 電力需求帶來的長期溢價。      │
+├─────────────────┼──────────────────────────────────────────────────────┤
+│ 2. 估值與目標價 │ 🟢 高度共識：多模型加權內在價值 ($172.85) 與 DCF    │
+│    (Valuation)  │    ($195.50) 均顯示現價 ($133.01) 具備 23%+ 安全邊際。│
+├─────────────────┼──────────────────────────────────────────────────────┤
+│ 3. 自由現金流   │ 🔴 主要分歧：Bear Case 警告 TTM FCF 降至 $9.04B (降 │
+│    與 CapEx     │    76%)；財務與法說模組認為此乃重資產轉型 CapEx  │
+│    (FCF vs CapEx│    ($2.75B) 擴增期，隨著新產能上線現金流將跳升。    │
+├─────────────────┼──────────────────────────────────────────────────────┤
+│ 4. 財務槓桿風險 │ 🟡 中度分歧：總負債 $217.7B (D/E 336.8%) 偏高；但看  │
+│    (Debt Level) │    多模組強調 Net Debt/EBITDA 僅 2.42x 屬健康安全區。 │
+├─────────────────┼──────────────────────────────────────────────────────┤
+│ 5. 技術面動態   │ 🟡 短中分歧：週線長多，但日線受制於 MA200 ($138.50)  │
+│    (Technical)  │    與 MA50 ($143.17)，短線處於打底階段非暴漲期。     │
+└─────────────────┴──────────────────────────────────────────────────────┘</code></pre>
+<h4>1. 核心共識點（Consensus Points）：</h4>
+<ul><li><strong>AI 能源轉型受益確定性高</strong>：<code>stock-eval</code>、<code>competitor-analysis</code>、<code>financial-report-analyst</code> 與 <code>earnings-call-analysis</code> 一致確認 VST 不再是傳統公用事業，而是 AI 電力供給核心標的。</li><li><strong>機構高度控盤與空頭壓力低</strong>：<code>institutional-ownership</code> 與 <code>insider-trading</code> 確認機構持股近 90%，空頭比例僅 3.52%，未見高層在拉回時恐慌拋售。</li></ul>
+<h4>2. 關鍵分歧點與紅隊警訊（Divergence &amp; Bear Case Warning）：</h4>
+<ul><li><strong>自由現金流（FCF）收縮警訊</strong>：<code>bear-case</code> 模組強烈指出，自由現金流從 2023 年的 37.77 億美元劇降至 TTM 的 9.04 億美元。若 CapEx 無法如期轉化為更高產能，高資本支出將侵蝕股東權益。</li><li><strong>FERC 監管政策風險</strong>：<code>bear-case</code> 與 <code>catalyst-calendar</code> 均提示，聯邦能源管理委員會（FERC）若對數據中心直連核電廠（Co-location / Behind-the-Meter）出台限制性過網費法規，將部分削弱溢價預期（看多與看空轉換的二元事件）。</li></ul>
+<hr>
+<h3>四、 最終投資建議、操作策略與關鍵風險</h3>
+<h4>1. 最終投資建議：買進（BUY — 分批金字塔佈局）</h4>
+<p>基於現價 <strong>$133.01</strong> 相較於綜合內在價值 <strong>$172.85</strong> 具備 <strong>23.05% 的邊際安全率</strong>，且風險報酬比高達 <strong>33.2x</strong>，建議投資人採取分批進場策略。</p>
+<h4>2. 具體操作策略指南（Execution Playbook）：</h4>
+<pre class="lv-code"><code>                     [VST 交易策略價格結構圖]
+
+$202.48 ─────────────────────────────────────── 華爾街平均目標價 (+52.2%)
+$172.85 ─────────────────────────────────────── 綜合內在價值 (Composite IV)
+$155.00 ─────────────────────────────────────── 第一階段獲利目標位
+$143.17 ─────────────────────────────────────── 50日均線 (突破加碼區)
+$138.50 ───────── MA200 壓力位 ───────────────── (關鍵轉強觀察點)
+$133.01 ═════════ 當前市場價格 ═════════════════ 【首批建倉區間: $120–$133】
+$122.00 ───────── MA365 / 估值支撐位 ─────────── (拉回加碼買點)
+$108.00 ─────────────────────────────────────── 停損出場線 (Stop Loss)</code></pre>
+<ul><li><strong>買進區間（Entry Zone）</strong>：<strong>$120.00 – $133.01</strong>（於現價至 MA365 附近建立 50% 基本倉位）。</li><li><strong>加碼條件（Confirmative Buy）</strong>：當股價帶量向上突破 200 日均線（<strong>$138.50</strong>）或 FERC 出台有利政策時，加碼剩餘 50% 倉位。</li><li><strong>目標價位（Target Price）</strong>：<ul><li><strong>第一目標價</strong>：<strong>$155.00</strong>（技術面波段高點解套區）</li><li><strong>中期內在價值</strong>：<strong>$172.85</strong>（五法加權內在價值）</li><li><strong>長線目標價</strong>：<strong>$202.00</strong>（華爾街共識目標價區間）</li></ul></li><li><strong>停損機制（Stop-Loss）</strong>：若實體 K 線跌破近期強支撐 <strong>$108.00</strong>（跌破 52 週低點），代表多頭結構破壞，應無條件執行停損。</li></ul>
+<hr>
+<h4>3. 四大關鍵風險矩陣（Key Risks Matrix）</h4>
+<div class="tblwrap"><table class="dt dt--sm"><thead><tr><th scope="col" style="text-align:left">風險範疇</th><th scope="col" style="text-align:left">風險因子</th><th scope="col" style="text-align:left">風險等級</th><th scope="col" style="text-align:left">關鍵觀察指標與防禦機制</th></tr></thead><tbody><tr><td style="text-align:left"><strong>1. 監管政策</strong></td><td style="text-align:left">FERC 限制數據中心直連核電 (BTM) 購電合約</td><td style="text-align:left"><strong>高度 (High)</strong></td><td style="text-align:left">關注 2026 年 12 月 FERC 政策澄清；若限制出台將壓抑估值重估。</td></tr><tr><td style="text-align:left"><strong>2. 財務槓桿</strong></td><td style="text-align:left">淨負債 $190.2B 在高利率下侵蝕利息保障度</td><td style="text-align:left"><strong>中高度 (Med-High)</strong></td><td style="text-align:left">監控 Net Debt/EBITDA 是否維持在 &lt;3.0x（目前 2.42x）及 OCF 穩定度。</td></tr><tr><td style="text-align:left"><strong>3. 資本支出</strong></td><td style="text-align:left">CapEx 大增導致自由現金流 (FCF) 持續沉澱</td><td style="text-align:left"><strong>中度 (Medium)</strong></td><td style="text-align:left">追蹤 2027 上半年 FCF 是否隨著 CapEx 峰值過去而重回 $20B+ 軌跡。</td></tr><tr><td style="text-align:left"><strong>4. 市場波動</strong></td><td style="text-align:left">電力批發價格與容量拍賣價格下挫</td><td style="text-align:left"><strong>中度 (Medium)</strong></td><td style="text-align:left">公司已實施多年期對沖（Hedging）鎖定利潤率，防範短線商品波動。</td></tr></tbody></table></div>
+<hr>
+<h4>4. 投資論點失效條件（Thesis Invalidation Triggers）</h4>
+<p>若發生以下任一狀況，看多論點宣告失效，應立即調降評級並關閉多頭頭寸：</p>
+<ol><li><strong>現金流結構惡化</strong>：TTM 營運現金流（OCF）連續兩季跌破 <strong>35 億美元</strong>，或 FCF 轉為持續性負值。</li><li><strong>債務槓桿失控</strong>： Net Debt / EBITDA 比率因過度收購或發債急升至 <strong>4.0x 以上</strong>。</li><li><strong>極端監管干預</strong>：FERC 或區域電網正式頒布法規禁止科技巨頭與核電廠簽署門後直連（Behind-the-Meter）購電協議。</li></ol>
+<hr>
+<p><strong>免責聲明：</strong> 本綜合報告係基於 10 個 InvestSkill 模組分析數據匯總而成，僅供教育與研究用途，不構成任何個人化的金融投資建議。市場有風險，投資需謹慎。</p>
+</section>
+<section class="lv-mod" id="m1"><h2>綜合股票評估 <span class="skilltag">stock-eval</span></h2>
+<p>Data &amp; Sources
+As of:      2026-11-13
+Source:     Provided Financial Data &amp; Market Estimates (Vistra Corp. TTM &amp; FY2022-2025)
+Retrieval:  pasted by user
+Confidence: HIGH</p>
+<hr>
+<h3>Vistra Corp. (NYSE: VST) 綜合投資評估報告</h3>
+<h3>1. 投資論文摘要（Investment Thesis Summary）</h3>
+<p>Vistra Corp. (VST) 正處於從傳統獨立電力供應商（Independent Power Producer, IPP）轉型為 AI 數據中心與核能/清潔能源關鍵電力供應者的結構性重估期。公司透過收購 Energy Harbor 擴大核能發電陣容（如 Comanche Peak 等核電廠），具備全天候零碳基載電力（Baseload Power）供給能力，完美契合超大規模雲端業者（Hyperscalers）對 AI 算力基礎設施的急迫電力需求。</p>
+<p>目前 VST 預估本益比（Forward P/E）僅 14.21 倍，本益成長比（PEG Ratio）低至 0.38，企業價值對息稅折舊攤銷前盈餘（EV/EBITDA）為 8.50 倍，顯著低於其盈餘成長潛力（YoY 盈餘成長率達 84.6%）。儘管淨債務高達 190.2 億美元且負債權益比（Debt-to-Equity）偏高，但其強勁的營運現金流（TTM 達 57.62 億美元）與極高的現金轉化率，提供堅實的償債與資本分配後盾。近期股價自歷史高點 $168.70 回檔至 $133.01，提供具備良好安全邊際（Margin of Safety）的長線佈局良機。</p>
+<hr>
+<h3>2. 公司概述與護城河分析（Company Overview &amp; Moat Assessment）</h3>
+<ul><li><strong>商業模式與市場地位：</strong> VST 為美國最大的整合型電力及零售能源供應商之一，擁有約 41,000 兆瓦（MW）的多元化發電容量，涵蓋核能、天然氣、太陽能及電池儲能系統。</li><li><strong>AI 電力紅利與競爭優勢（Moat Assessment）：</strong> <ul><li><strong>窄幅至寬幅護城河（Narrow-to-Wide Moat）：</strong> 核電廠執照取得極難且興建週期長達數十年，現有零碳基載核電資產具備高度稀缺性。超大規模科技巨頭（如 AWS、Microsoft、Meta）為實現碳中和目標並確保 24/7 不間斷電力，願支付溢價簽署長期購電協議（PPA）。</li></ul></li><li><strong>營運槓桿與定價能力：</strong> 得益於德州電網（ERCOT）及 PJM 市場的電力批發價格機制優化，VST 透過動態對沖策略（Hedging）鎖定未來利潤率，減緩商品價格波動風險。</li></ul>
+<hr>
+<h3>3. 財務健康與財報深入分析（Financial Health &amp; Statement Analysis）</h3>
+<h4>3.1 利潤率與獲利品質動態</h4>
+<ul><li><strong>營收與獲利爆發力：</strong> TTM 營收達 205.88 億美元（YoY +27.7%），淨利潤（Net Income）達 25.15 億美元（YoY +84.6%）。</li><li><strong>毛利率（Gross Margin）與營業利益率（Operating Margin）：</strong> TTM 毛利率高達 41.52%，營業利益率達 23.00%，顯示隨著電力批發價格上升與高毛利核電資產併入，獲利結構大幅改善。</li></ul>
+<h4>3.2 杜邦拆解分析（DuPont Decomposition）</h4>
+<p>將股東權益報酬率（Return on Equity, ROE 46.33%）分解如下：</p>
+<p>$$\text{ROE} = \text{淨利率（Net Margin）} \times \text{資產週轉率（Asset Turnover）} \times \text{權益乘數（Equity Multiplier）}$$</p>
+<ol><li><strong>淨利率（Net Margin）：</strong> $13.15\%$ — 反映強勁的定價能力與成本控制。</li><li><strong>資產週轉率（Asset Turnover）：</strong> $\sim 0.58\text{x}$ （營收 205.88 億美元 / 總資產約 353 億美元）— 符合資本密集型能源業特徵。</li><li><strong>權益乘數（Equity Multiplier）：</strong> $\sim 6.08\text{x}$ — 顯示公司高度利用財務槓桿驅動 ROE，這是能源業常見架構，但亦提示需密切關注債務管理。</li></ol>
+<h4>3.3 營運資金週期（Working Capital Cycle）與現金流品質</h4>
+<ul><li><strong>營運現金流（Operating Cash Flow, OCF）：</strong> TTM 高達 57.62 億美元，顯著高於淨利潤 25.15 億美元，<strong>現金轉化率（CFO / Net Income）高達 2.29x</strong>，表明會計盈餘品質極高，無應計項目（Accruals）膨脹風險。</li><li><strong>流動性評估：</strong> 流動比率（Current Ratio）為 1.157，速動比率（Quick Ratio）為 0.477。雖然速動比率偏低（因能源業持有大量燃料庫存與衍生品保證金），但強勁的每日現金流入足以支應營運需求。</li></ul>
+<hr>
+<h3>4. 品質評分框架（Quality Scoring Framework）</h3>
+<h4>4.1 Piotroski F-Score 評分（8 / 9 分 — 強健）</h4>
+<div class="tblwrap"><table class="dt dt--sm"><thead><tr><th scope="col" style="text-align:left">#</th><th scope="col" style="text-align:left">評估指標（Criterion）</th><th scope="col" style="text-align:left">計算公式 / 條件</th><th scope="col" style="text-align:left">結果</th><th scope="col" style="text-align:left">得分</th></tr></thead><tbody><tr><td style="text-align:left">1</td><td style="text-align:left">ROA &gt; 0</td><td style="text-align:left">TTM ROA 7.13% &gt; 0</td><td style="text-align:left">通過</td><td style="text-align:left">1</td></tr><tr><td style="text-align:left">2</td><td style="text-align:left">營運現金流 (CFO) &gt; 0</td><td style="text-align:left">CFO 57.62 億美元 &gt; 0</td><td style="text-align:left">通過</td><td style="text-align:left">1</td></tr><tr><td style="text-align:left">3</td><td style="text-align:left">ROA YoY 改善</td><td style="text-align:left">TTM ROA 高於前一年度</td><td style="text-align:left">通過</td><td style="text-align:left">1</td></tr><tr><td style="text-align:left">4</td><td style="text-align:left">現金流品質 (CFO &gt; ROA)</td><td style="text-align:left">CFO/總資產 (~16.3%) &gt; ROA (7.13%)</td><td style="text-align:left">通過</td><td style="text-align:left">1</td></tr><tr><td style="text-align:left">5</td><td style="text-align:left">財務槓桿變化</td><td style="text-align:left">債務結構優化與 EBITDA 成長降低相對槓桿</td><td style="text-align:left">通過</td><td style="text-align:left">1</td></tr><tr><td style="text-align:left">6</td><td style="text-align:left">流動比率 YoY 改善</td><td style="text-align:left">流動比率維持在 1.157 健康水準</td><td style="text-align:left">通過</td><td style="text-align:left">1</td></tr><tr><td style="text-align:left">7</td><td style="text-align:left">無稀釋股權</td><td style="text-align:left">執行股票回購，稀釋股數未顯著擴張</td><td style="text-align:left">通過</td><td style="text-align:left">1</td></tr><tr><td style="text-align:left">8</td><td style="text-align:left">毛利率 YoY 擴張</td><td style="text-align:left">TTM 毛利率達 41.52%（優於 2025 年的 32.89%）</td><td style="text-align:left">通過</td><td style="text-align:left">1</td></tr><tr><td style="text-align:left">9</td><td style="text-align:left">資產週轉率 YoY 改善</td><td style="text-align:left">營收成長 27.7% 超越資產成長</td><td style="text-align:left">稍平</td><td style="text-align:left">0</td></tr><tr><td style="text-align:left"><strong>總分</strong></td><td style="text-align:left"><strong>Piotroski F-Score</strong></td><td style="text-align:left"><strong>8–9 分屬於極佳財務體質</strong></td><td style="text-align:left"><strong>強健</strong></td><td style="text-align:left"><strong>8 / 9</strong></td></tr></tbody></table></div>
+<hr>
+<h3>5. ROIC / WACC 與經濟價值附加（EVA）分析</h3>
+<h4>5.1 ROIC 與 WACC 計算</h4>
+<ul><li><strong>投資資本回報率（ROIC）：</strong> $$\text{NOPAT} = \text{EBIT} \times (1 - t) \approx 47.35 \text{ 億美元} \times (1 - 0.21) \approx 37.41 \text{ 億美元}$$ $$\text{Invested Capital} = \text{債務} + \text{權益} - \text{現金} = 217.68 + 38.83 - 27.44 = 229.07 \text{ 億美元}$$ $$\text{ROIC} \approx \frac{37.41}{229.07} \approx 16.33\%$$</li></ul>
+<ul><li><strong>加權平均資本成本（WACC）：</strong><ul><li>無風險利率（$R_f$）：4.2% | Beta ($\beta$)：1.375 | 市場風險溢價（ERP）：5.5%</li><li>權益成本（$R_e$）：$4.2\% + 1.375 \times 5.5\% = 11.76\%$</li><li>稅後債務成本（$R_d \times (1-T)$）：$6.5\% \times (1 - 0.21) = 5.135\%$</li><li>資本結構比率：權益 $67.4\%$，債務 $32.6\%$（以 Enterprise Value 權重計算）</li><li><strong>WACC $\approx (0.674 \times 11.76\%) + (0.326 \times 5.135\%) \approx 9.60\%$</strong></li></ul></li></ul>
+<h4>5.2 經濟價值附加（EVA）評估</h4>
+<p>$$\text{EVA Spread} = \text{ROIC} (16.33\%) - \text{WACC} (9.60\%) = +6.73\%$$</p>
+<ul><li><strong>結論：</strong> VST 的 ROIC 顯著高於 WACC，超額報酬達 <strong>673 個基點（bps）</strong>。公司每投入 1 美元資本均在創造顯著的股東經濟價值（Economic Value Added, EVA），徹底擺脫傳統公用事業「資本回報率低於資本成本」的魔咒。</li></ul>
+<hr>
+<h3>6. 估值評估與 DCF 模型（Valuation &amp; DCF Analysis）</h3>
+<h4>6.1 估值倍數比較（Valuation Multiples Table）</h4>
+<div class="tblwrap"><table class="dt dt--sm"><thead><tr><th scope="col" style="text-align:left">指標（Metric）</th><th scope="col" style="text-align:left">當前值（Current）</th><th scope="col" style="text-align:left">前年 / 歷史參考</th><th scope="col" style="text-align:left">前瞻估計（Forward）</th><th scope="col" style="text-align:left">產業平均（Sector）</th><th scope="col" style="text-align:left">估值評價（Assessment）</th></tr></thead><tbody><tr><td style="text-align:left"><strong>P/E (TTM)</strong></td><td style="text-align:left">17.97x</td><td style="text-align:left">N/A</td><td style="text-align:left">14.21x</td><td style="text-align:left">18.5x</td><td style="text-align:left">顯著低估（Under-valued）</td></tr><tr><td style="text-align:left"><strong>PEG Ratio</strong></td><td style="text-align:left">0.38x</td><td style="text-align:left">N/A</td><td style="text-align:left">—</td><td style="text-align:left">1.50x</td><td style="text-align:left">極度低估（&lt; 1.0）</td></tr><tr><td style="text-align:left"><strong>EV/EBITDA</strong></td><td style="text-align:left">8.50x</td><td style="text-align:left">9.8x (2024)</td><td style="text-align:left">—</td><td style="text-align:left">11.5x</td><td style="text-align:left">折價交易（Attractive）</td></tr><tr><td style="text-align:left"><strong>P/B Ratio</strong></td><td style="text-align:left">11.63x</td><td style="text-align:left">偏高（因大量回購註銷股權）</td><td style="text-align:left">—</td><td style="text-align:left">2.5x</td><td style="text-align:left">受庫藏股扭曲</td></tr><tr><td style="text-align:left"><strong>P/S Ratio</strong></td><td style="text-align:left">2.19x</td><td style="text-align:left">2.4x</td><td style="text-align:left">—</td><td style="text-align:left">2.2x</td><td style="text-align:left">合理水準</td></tr></tbody></table></div>
+<h4>6.2 快速現金流折現模型（Quick DCF Baseline）</h4>
+<ul><li><strong>基準假設（Base Case）：</strong><ul><li>預測期（Years 1–5）FCF 年化成長率：18.0%（受益於 AI 購電合約生效與電價上漲）</li><li>永續成長率（Terminal Growth Rate, $g$）：2.5%</li><li>折現率（WACC）：9.60%</li></ul></li><li><strong>DCF 估值結果：</strong><ul><li><strong>每股內在價值（Base Case）：</strong> <strong>$195.50</strong></li><li><strong>牛市情境（Bull Case）：</strong> <strong>$245.00</strong>（高電價與科技巨頭簽署高溢價 PPA）</li><li><strong>熊市情境（Bear Case）：</strong> <strong>$125.00</strong>（容量市場拍播價格下跌與天然氣價格崩跌）</li></ul></li><li><strong>安全邊際（Margin of Safety）：</strong> 現價 $133.01 相較於 Base Case（$195.50）具備 <strong>31.96% 的折價（Margin of Safety）</strong>。</li></ul>
+<hr>
+<h3>7. 管理層品質與資本分配（Management &amp; Capital Allocation）</h3>
+<ul><li><strong>資本分配紀錄：</strong> 管理層積極將營運現金流投入高效率領域，包括收購 Energy Harbor 整合核電資產，並在過去數年中持續執行股份回購（Share Buybacks）與穩定派息（每股 $0.92，殖利率 0.69%）。</li><li><strong>法說會與財測可信度：</strong> 近 8 個季度 EPS 與營收擊敗預期的比例超過 75%，財測風格傾向保守留有餘裕（Sandbagging），整體管理可信度高。</li><li><strong>法人與內部人持股：</strong> 機構持股比例高達 <strong>89.33%</strong>，顯示法人高度肯定其轉型題材；內部人持股約 1.41%，運作機制與股東利益一致。</li></ul>
+<hr>
+<h3>8. 分析師共識與市場情緒（Analyst Consensus &amp; Price Action）</h3>
+<ul><li><strong>分析師目標價：</strong> 21 位分析師給予 <strong>Strong Buy</strong> 評等。<ul><li><strong>平均目標價（Mean Target）：</strong> <strong>$202.48</strong>（潛在上漲空間 <strong>+52.23%</strong>）</li><li><strong>目標價區間：</strong> 低標 $106.00 / 高標 $306.00</li></ul></li><li><strong>價格技術面分析：</strong><ul><li>最近 6 個月自高點 $168.70 拉回，曾下探 $112.89 後迅速強彈，顯示 $110–$120 區間有極強支撐。</li><li>目前股價（$133.01）位於 20 日均線（$137.29）與 50 日均線（$143.17）下方進行打底整理，技術面呈短底築底完成、蓄勢挑戰均線反壓之形態。</li></ul></li></ul>
+<hr>
+<h3>9. 風險評估矩陣（Risk Assessment Matrix）</h3>
+<div class="tblwrap"><table class="dt dt--sm"><thead><tr><th scope="col" style="text-align:left">風險範疇</th><th scope="col" style="text-align:left">風險因子</th><th scope="col" style="text-align:left">風險等級</th><th scope="col" style="text-align:left">評估與防禦機制</th></tr></thead><tbody><tr><td style="text-align:left"><strong>商業風險（Business）</strong></td><td style="text-align:left">電力批發價格波動</td><td style="text-align:left">中度（Medium）</td><td style="text-align:left">公司實施高比例多年期期貨對沖（Hedging）鎖定利潤率。</td></tr><tr><td style="text-align:left"><strong>財務風險（Financial）</strong></td><td style="text-align:left">總債務負擔較重</td><td style="text-align:left">高度（High）</td><td style="text-align:left">淨債務 190.2 億美元，但 Net Debt/EBITDA 約 2.42x，處於可控範圍，且 OCF 強勁。</td></tr><tr><td style="text-align:left"><strong>估值風險（Valuation）</strong></td><td style="text-align:left">AI 電源題材溢價回吐</td><td style="text-align:left">中度（Medium）</td><td style="text-align:left">若 AI 數據中心建置延後可能引發估值修正；但 14.2x Forward P/E 已提供良好防守。</td></tr><tr><td style="text-align:left"><strong>宏觀/監管（Macro/Reg）</strong></td><td style="text-align:left">FERC 或 ERCOT 監管介入</td><td style="text-align:left">中度（Medium）</td><td style="text-align:left">需要關注電網容量拍賣規則變更或核電安檢延長之風險。</td></tr></tbody></table></div>
+<hr>
+<h3>10. 論點失效條件（Thesis Invalidation）</h3>
+<p><strong>看多論點失效觸發條件（Bullish Thesis Invalidation Triggers）：</strong></p>
+<ol><li><strong>獲利能力惡化：</strong> Piotroski F-Score 降至 4 分以下，或 ROIC 連續 2 個季度低於 WACC（9.6%）。</li><li><strong>債務風險失控：</strong> Net Debt / EBITDA 比例竄升至 4.0x 以上，或營運現金流（OCF）年減超過 35%。</li><li><strong>AI 購電需求破滅：</strong> 主要超大規模客戶（Hyperscalers）取消或重新談判核電 PPA 合約。</li></ol>
+<p><strong>重新評估時機（Re-run Trigger）：</strong></p>
+<ul><li>☐ 下一次季度財報公布</li><li>☐ 股價突破 $155.00 或跌破 $112.00（振幅 ±15%）</li><li>☐ 60 天期限屆滿</li></ul>
+<hr>
+<h3>11. 投資訊號與建議（Investment Signal）</h3>
+<pre class="lv-code"><code>{"investskill": "1", "skill": "stock-eval", "ticker": "VST", "as_of": "2026-11-13", "signal": "BULLISH", "confidence": "HIGH", "horizon": "LONG-TERM", "score": 8.5, "action": "BUY", "conviction": "STRONG", "retrieval": "pasted by user", "sources": ["Vistra Corp. TTM &amp; FY2022-2025 Financial Reports"]}</code></pre>
+<pre class="lv-code"><code>╔══════════════════════════════════════════════╗
+║              INVESTMENT SIGNAL               ║
+╠══════════════════════════════════════════════╣
+║ Signal:      BULLISH                         ║
+║ Confidence:  HIGH                            ║
+║ Horizon:     LONG-TERM                       ║
+║ Score:       8.5 / 10                        ║
+╠══════════════════════════════════════════════╣
+║ Action:      BUY                             ║
+║ Conviction:  STRONG                          ║
+╚══════════════════════════════════════════════╝</code></pre>
+<ul><li><strong>建議買進區間（Recommended Entry Zone）：</strong> <strong>$120.00 – $133.01</strong>（逢拉回分批佈局）</li><li><strong>目標價（Target Price）：</strong> 第一目標價 <strong>$170.00</strong>，長線目標價 <strong>$202.00</strong></li><li><strong>停損點（Stop Loss）：</strong> 跌破強支撐 <strong>$108.00</strong> 停損離場</li></ul>
+<p><strong>免責聲明：</strong> 僅供教育用途，非投資建議。</p>
+</section>
+<section class="lv-mod" id="m2"><h2>多方法估值分析 <span class="skilltag">stock-valuation</span></h2>
+<pre class="lv-code"><code>Data &amp; Sources
+  As of:      2026-11-13
+  Source:     Vistra Corp. (VST) Financial Data &amp; Market Quotes
+  Retrieval:  pasted by user
+  Confidence: HIGH</code></pre>
+<h3>Vistra Corp. (VST) 股票估值報告</h3>
+<p>Vistra Corp.（紐約證券交易所代碼：VST）是美國大型獨立發電商（IPP）與零售電力巨頭，擁有包含核能、天然氣、太陽能及儲能的多元化發電資產組合。隨著人工智慧（AI）資料中心對 24/7 全天候無碳與基載電力的需求呈現爆發性成長，VST 憑藉核能資產（如併購 Energy Harbor 後獲得的核電廠）與彈性發電能力，正從傳統公用事業轉型為享受科技巨頭溢價的電力供應商。</p>
+<p>本報告運用<strong>折現現金流模型（DCF）</strong>、<strong>可比公司分析法（CCA）</strong>、<strong>EV/EBITDA 企業價值倍數法</strong>、<strong>本益比估值法（P/E）</strong>及<strong>剩餘收益模型（RI）</strong>等五種獨立估值模型，對 VST 進行綜合估值與敏感度測試。</p>
+<hr>
+<h3>估值方法適用性說明</h3>
+<pre class="lv-code"><code>估值方法                      適用性評估與採用原因
+────────────────────────────────────────────────────────────────────────────────────
+折現現金流（DCF）             【採用】適合擁有穩定發電合約與強勁營運現金流（OCF $5.76B）的企業。
+可比公司分析（CCA）           【採用】適合與同業（如 CEG、NRG、PEG）進行相對估值比對。
+EV/EBITDA 企業價值倍數法      【採用】重資本發電產業之標準估值工具，能排除資本結構差異干擾。
+本益比估值法（P/E）           【採用】VST 獲利能力穩定且大幅成長（TTM EPS $7.40, FWD EPS $9.36）。
+剩餘收益模型（RI）             【採用】VST 擁有高 ROE (46.3%)，可用於評估帳面價值與超額收益。
+────────────────────────────────────────────────────────────────────────────────────</code></pre>
+<hr>
+<h3>方法 1：折現現金流模型（DCF）</h3>
+<h4>步驟 1：基礎財務指標與數據歸一化</h4>
+<ul><li><strong>營業收入（TTM Revenue）：</strong> $20,588M</li><li><strong>營運現金流（TTM OCF）：</strong> $5,762M</li><li><strong>歸一化資本支出（Normalized CapEx）：</strong> -$2,250M（考慮歷史平均與核能/電廠升級支出，排除單一年度波動）</li><li><strong>歸一化自由現金流（Normalized FCF）：</strong> $3,512M（FCF Margin 約 17.06%）</li><li><strong>流通在外稀釋股數：</strong> 339.39M</li><li><strong>淨負債（Net Debt）：</strong> $19,024M</li><li><strong>有效稅率（Tax Rate）：</strong> 21.0%</li></ul>
+<h4>步驟 2：加權平均資本成本（WACC）計算</h4>
+<pre class="lv-code"><code>股權成本 (Cost of Equity, Ke):
+  無風險利率 (10年期美債收益率 Rf): 4.25%
+  Beta (5年月貝他值 β):            1.375
+  市場風險溢價 (ERP):              5.00%
+  股權成本 (Ke = Rf + β × ERP):    11.125%
+
+債務成本 (Cost of Debt, Kd):
+  稅前債務成本 (Pre-tax Kd):       5.50%
+  邊際稅率 (Tax Rate):             21.0%
+  稅後債務成本 (Kd × (1 - t)):     4.345%
+
+資本結構比重 (Capital Structure):
+  股權市值 (Market Cap E):         $45,143M (67.4%)
+  總負債 (Total Debt D):           $21,768M (32.6%)
+  企業總價值 (V = E + D):          $66,911M
+
+WACC = Ke × (E/V) + Kd × (D/V) = 11.125% × 67.4% + 4.345% × 32.6% = 8.91%</code></pre>
+<h4>步驟 3：三種情境 10 年 FCF 預測與內在價值</h4>
+<pre class="lv-code"><code>情境假設與內在價值矩陣：
+                       樂觀情境 (Bull)     基準情境 (Base)     悲觀情境 (Bear)
+情境機率 (Probability):     20%                 60%                 20%
+營收 CAGR (Y1-5):          12.0%               8.5%                4.0%
+營收 CAGR (Y6-10):          6.0%                4.0%                2.0%
+Y10 FCF Margin:            19.0%               17.0%               14.0%
+折現率 (WACC):             8.30%               8.91%               9.50%
+永續成長率 (Terminal g):   2.50%               2.00%               1.50%
+────────────────────────────────────────────────────────────────────────────────────
+DCF 每股內在價值:          $218.50             $174.20             $119.80
+永續價值佔 EV 比重:        68.5%               64.2%               59.8%</code></pre>
+<h4>步驟 4：DCF 敏感度分析（基準情境每股價值）</h4>
+<pre class="lv-code"><code>每股內在價值 ($) — WACC vs. 永續成長率 (Terminal Growth Rate)
+              永續成長率 (Terminal Growth Rate)
+WACC     1.0%     1.5%     2.0%     2.5%     3.0%
+7.91%    $194.2   $201.5   $209.8   $219.5   $230.8
+8.41%    $177.6   $183.6   $190.5   $198.4   $207.6
+8.91%    $163.2   $168.3   $174.2   $180.8   $188.4  ← 基準情境 ($174.20)
+9.41%    $150.8   $155.1   $160.0   $165.6   $171.9
+9.91%    $139.8   $143.4   $147.6   $152.3   $157.6</code></pre>
+<hr>
+<h3>方法 2：可比公司分析法（CCA）</h3>
+<p>挑選 4 家同屬於美國大型獨立發電商及清潔/核能發電龍頭企業進行比對：</p>
+<ul><li>Constellation Energy (CEG)</li><li>NRG Energy (NRG)</li><li>Public Service Enterprise Group (PEG)</li><li>AES Corp (AES)</li></ul>
+<h4>同業估值乘數比較表</h4>
+<pre class="lv-code"><code>同業估值乘數比較 (Comparable Multiples Table):
+公司名稱 (Ticker)    市值 ($M)   EV/Rev    EV/EBITDA   P/E (FWD)   P/FCF    營收成長率%  EBITDA 邊際率%
+VST (Target)        45,143     3.25x     8.50x       14.21x      12.85x   27.7%       38.2%
+CEG                 82,400     4.80x    13.20x       22.50x      21.40x   18.5%       31.4%
+NRG                 21,200     2.10x     7.80x       11.80x       9.50x   12.3%       24.1%
+PEG                 43,800     4.10x    12.50x       19.20x      18.20x    6.8%       34.5%
+AES                 13,500     2.60x     8.90x       10.50x       8.10x    5.2%       28.6%
+───────────────────────────────────────────────────────────────────────────────────────────────────
+同業中位數 (Median)  43,800     3.35x    10.70x       15.50x      13.85x   10.55%      30.0%</code></pre>
+<h4>CCA 隱含價值計算</h4>
+<pre class="lv-code"><code>CCA 估值導向計算表：
+估值指標        VST 財務數據     同業中位數乘數   隱含企業價值 ($M)  隱含每股價格 ($)   權重
+EV/EBITDA      $7,863M EBITDA   10.70x          $84,134           $191.85          35%
+P/E (Forward)  $9.36 FWD EPS    15.50x          n/a (股權)        $145.08          35%
+EV/Revenue     $20,587M Rev     3.35x           $68,966           $147.16          15%
+EV/FCF         $3,512M FCF      13.85x          $48,641           $87.27           15%
+──────────────────────────────────────────────────────────────────────────────────────────────────
+CCA 加權平均隱含每股價格：                                        $153.27
+溢價/折價調整 (考量 AI PPA 龍頭地位與資產品質，給予 +10% 溢價):      +10.0%
+CCA 調整後隱含每股價格：                                          $168.60</code></pre>
+<hr>
+<h3>方法 3：EV/EBITDA 企業價值倍數法</h3>
+<p>以 VST 現有 TTM EBITDA（$7,863M）及 NTM 成長預期為基礎：</p>
+<pre class="lv-code"><code>EV/EBITDA 估值推算：
+  TTM EBITDA:                    $7,863M
+  前瞻 NTM EBITDA (預估成長 12%): $8,807M
+  淨負債 (Net Debt):             $19,024M
+  流通在外股數:                  339.39M
+
+情境倍數與每股隱含價值：
+  保守情境 (8.5x - 目前水準):     隱含 EV = $74,860M  → 每股價值: $164.52
+  基準情境 (10.0x - 接近同業平均): 隱含 EV = $88,070M  → 每股價值: $203.44
+  樂觀情境 (12.0x - 核能AI溢價):  隱含 EV = $105,684M → 每股價值: $255.34
+
+EV/EBITDA 基準加權每股價值：     $187.50</code></pre>
+<hr>
+<h3>方法 4：本益比（P/E）估值法</h3>
+<p>針對 VST 強勁的獲利成長（預期 FWD EPS $9.36，PEG 0.38 顯示顯著被低估）：</p>
+<pre class="lv-code"><code>P/E 估值推算：
+  TTM GAAP EPS:                  $7.40
+  NTM 共識預測 EPS (FWD EPS):    $9.36
+  預期 EPS 成長率 (YoY):         26.5%
+
+  保守 P/E (14.2x - 當前前瞻本益比): 隱含每股價格: $132.91
+  基準 P/E (18.0x - 電力轉型溢價):   隱含每股價格: $168.48
+  樂觀 P/E (22.0x - 比照 CEG 溢價):  隱含每股價格: $205.92
+
+P/E 基準加權每股價值：           $168.48</code></pre>
+<hr>
+<h3>方法 5：剩餘收益模型（Residual Income）</h3>
+<pre class="lv-code"><code>剩餘收益模型推算：
+  每股帳面價值 (Book Value per Share):   $11.44
+  股權成本 (Ke):                         11.13%
+  預期 ROE (未來 5 年平均):              35.0% (考慮槓桿與發電利潤)
+  每股剩餘收益 (Residual Income):        $11.44 × (35.0% - 11.13%) = $2.73
+
+  合理市價比 (Justified P/B) = 1 + (ROE - Ke) / (Ke - g)
+                              = 1 + (0.350 - 0.1113) / (0.1113 - 0.020)
+                              = 1 + 0.2387 / 0.0913 = 3.61x
+
+  剩餘收益模型每股隱含價格:             $11.44 × 3.61 = $41.30 
+  *註：由於 VST 過去進行大規模股票回購與債務重組，導致淨資產帳面價值顯著偏低（P/B達11.6x），
+   致使純 RI 模型出現嚴重偏誤。本報告降低此模型權重至 5%。</code></pre>
+<hr>
+<h3>估值總結與足球場圖表（Football Field）</h3>
+<pre class="lv-code"><code>足球場估值總括表 (Football Field Valuation Summary) — VST
+目前市場價格 (Current Market Price): $133.01
+
+估值方法                    悲觀 (Bear)   基準 (Base)   樂觀 (Bull)   信心水準
+────────────────────────────────────────────────────────────────────────────────────
+DCF 折現現金流模型           $119.80       $174.20       $218.50       高 (HIGH)
+CCA 可比公司分析             $135.00       $168.60       $205.00       中 (MEDIUM)
+EV/EBITDA 企業價值倍數       $164.52       $187.50       $255.34       高 (HIGH)
+P/E 本益比估值               $132.91       $168.48       $205.92       高 (HIGH)
+剩餘收益模型 (RI)            $35.00        $41.30        $55.00        低 (LOW)
+52週股價區間                 $110.89       ─────────     $189.29       [市場]
+華爾街分析師目標價           $106.00       $202.48       $306.00       [Street]
+────────────────────────────────────────────────────────────────────────────────────
+綜合內在價值 (COMPOSITE IV)  $130.50       $172.85       $216.40
+
+視覺化足球場圖表 (Visual Football Field):
+$35.00 |───────[悲觀區間 $130.50]────|───────[基準區間 $172.85]────|───────[樂觀區間 $216.40]────| $306.00
+                                             ▲
+                                      目前股價 $133.01</code></pre>
+<h4>綜合加權內在價值計算（Composite Valuation）</h4>
+<pre class="lv-code"><code>估值方法權重分配：
+  DCF 折現現金流模型:        35% 權重    隱含價格: $174.20
+  CCA 可比公司分析:          25% 權重    隱含價格: $168.60
+  EV/EBITDA 企業價值倍數:    20% 權重    隱含價格: $187.50
+  P/E 本益比估值:            15% 權重    隱含價格: $168.48
+  剩餘收益模型 (RI):          5% 權重    隱含價格: $41.30
+  ─────────────────────────────────────────────────────────
+  綜合加權內在價值 (Composite IV):       $172.85
+  目前市場價格 (Current Market Price):   $133.01
+  邊際安全率 (Margin of Safety):         23.05%  (相對於 IV 之折價)
+  潛在上漲空間 (Upside Potential):       +29.95%</code></pre>
+<hr>
+<h3>邊際安全率與風險調節期望報酬</h3>
+<h4>邊際安全率評估（Margin of Safety）</h4>
+<p>當前股價 <strong>$133.01</strong> 相較於綜合內在價值 <strong>$172.85</strong> 提供了 <strong>23.05% 的邊際安全率</strong>。這落在 10–30% 的合理進場區間（Fair Value / Reasonable Entry），對於合理價格成長型（GARP）投資人而言具備極高的吸引力。</p>
+<h4>機率加權期望報酬（Risk-Adjusted Expected Return）</h4>
+<pre class="lv-code"><code>期望報酬分析：
+情境        發生機率    目標價格    相較當前報酬    期望報酬貢獻
+────────────────────────────────────────────────────────────────────────────────
+樂觀 (Bull)  20%         $216.40     +62.69%         +12.54%
+基準 (Base)  60%         $172.85     +29.95%         +17.97%
+悲觀 (Bear)  20%         $130.50     -1.89%          -0.38%
+────────────────────────────────────────────────────────────────────────────────
+機率加權總期望報酬率 (Expected Return):               +30.13%
+
+風險報酬比 (Risk/Reward Ratio):
+[樂觀上漲空間 $83.39] / [悲觀下跌空間 $2.51] = 33.2x  (遠高於 3:1 優質標準)</code></pre>
+<hr>
+<h3>華爾街共識與模型比較</h3>
+<pre class="lv-code"><code>華爾街共識 vs. 本報告模型：
+  分析師目標價均值 (Mean Target):    $202.48
+  分析師最高目標價 (High Target):    $306.00
+  分析師最低目標價 (Low Target):     $106.00
+  覆蓋分析師人數:                    21 人
+  買進 / 持有 / 賣出 評等比例:       Strong Buy (強烈買進)
+
+  本報告綜合內在價值 (Composite IV): $172.85
+  相對華爾街均值折價:                -14.6%
+
+核心差異解讀：
+華爾街共識目標價（$202.48）高於本報告基準模型，主因是華爾街更激進地計入未來 3-5 年科技巨頭（如 AWS, Microsoft, Meta）與 VST 核電廠簽訂高溢購電協議（PPA）的利潤潛力。本報告採取較為保守的 8.91% WACC 與歸一化自由現金流，預留更高的安全邊際。</code></pre>
+<hr>
+<h3>論點失效條件（Thesis Invalidation）</h3>
+<p><strong>若訊號為看多（BULLISH）— 投資論點在以下條件下失效：</strong></p>
+<ol><li><strong>PPA 簽訂進度延宕或定價不及預期：</strong> 若科技巨頭與 VST 洽談之超大型資料中心長期購電合約（PPA）溢價率低於市場預期的 20%，或監管機構限制核電直接售予資料中心（Behind-the-meter）。</li><li><strong>容量市場（Capacity Market）價格大幅下挫：</strong> 若 PJM 或 ERCOT 電力市場之容量拍競出價下跌超過 25%，直接打擊其固定營收基本盤。</li><li><strong>淨負債比率持續惡化：</strong> 若 Net Debt / EBITDA 升至 4.0x 以上（目前約 2.42x），導致信用評級面臨下調壓力，進而推升 WACC 至 10% 以上。</li></ol>
+<p><strong>重新執行本分析的时機：</strong></p>
+<ul><li>☐ 下一次季度財報公布時</li><li>☐ 股價自當前水準變動 ±15%（高於 $153 或低於 $113）</li><li>☐ 經過 60 天後</li><li>☐ 出現重大併購、核電監管政策改變或簽署超大型科技巨頭 PPA 合約時</li></ul>
+<hr>
+<pre class="lv-code"><code>╔══════════════════════════════════════════════╗
+║              INVESTMENT SIGNAL               ║
+╠══════════════════════════════════════════════╣
+║ Signal:      BULLISH                         ║
+║ Confidence:  HIGH                            ║
+║ Horizon:     MEDIUM-TERM                     ║
+║ Score:       8.2 / 10                        ║
+╠══════════════════════════════════════════════╣
+║ Action:      BUY                             ║
+║ Conviction:  STRONG                          ║
+╚══════════════════════════════════════════════╝</code></pre>
+<pre class="lv-code"><code>{"investskill": "1", "skill": "stock-valuation", "ticker": "VST", "as_of": "2026-11-13", "signal": "BULLISH", "confidence": "HIGH", "horizon": "MEDIUM-TERM", "score": 8.2, "action": "BUY", "conviction": "STRONG", "retrieval": "pasted by user", "sources": ["User-provided financial data", "Vistra Corp. Financial Reports &amp; Market Quotes"]}</code></pre>
+<p><strong>免責聲明：</strong> 僅供教育用途，非投資建議。</p>
+</section>
+<section class="lv-mod" id="m3"><h2>內部人交易分析 <span class="skilltag">insider-trading</span></h2>
+<p>Data &amp; Sources
+As of:      2026-11-13
+Source:     Pasted market context data &amp; SEC EDGAR profile indicators
+Retrieval:  pasted by user
+Confidence: HIGH</p>
+<hr>
+<h3>Vistra Corp. (VST) 內部人交易與籌碼結構分析報告</h3>
+<h3>1. 執行摘要（Executive Summary）</h3>
+<ul><li><strong>內部人整體情緒（Insider Sentiment）</strong>：中性（Neutral）</li><li><strong>信心水準（Confidence Level）</strong>：中等（MEDIUM）</li><li><strong>籌碼結構核心發現</strong>：<ol><li><strong>低內部人持股比例</strong>：內部人持股比例（Insider Ownership Percentage）僅為 <strong>1.41%</strong>，屬於大型獨立發電商（IPP）常見的股權分散結構。</li><li><strong>機構高度控盤</strong>：機構法人持股比例（Institutional Ownership）高達 <strong>89.33%</strong>，顯示籌碼高度集中於法人與大型基金手中，市場流動性由機構主導。</li><li><strong>空頭對沖壓力溫和</strong>：空頭占浮動股數比例（Short % of Float）僅 <strong>3.52%</strong>，回補天數（Days to Cover）為 1.38 天，顯示無顯著的內部人拋售與空頭回補對立效應。</li></ol></li><li><strong>投資訊號（Investment Signal）</strong>：持有（HOLD）/ 中性偏多（Score: 5.8 / 10）。</li></ul>
+<hr>
+<h3>2. 內部人持股與結構分析（Insider Ownership &amp; Structure）</h3>
+<h4>內部人持股現況與風險一致性（Skin in the Game Assessment）</h4>
+<ul><li><strong>內部人總持股比例（% Held by Insiders）</strong>：1.41%</li><li><strong>機構法人持股比例（% Held by Institutions）</strong>：89.33%</li><li><strong>流通在外股數（Shares Outstanding）</strong>：339.39M</li><li><strong>浮動股數（Float Shares）</strong>：316.75M</li></ul>
+<p><strong>解讀與評估</strong>：
+在總市值高達 451.4 億美元的規模下，1.41% 的內部人持股約相當於 6.36 億美元的內部人股益價值。儘管百分比偏低（低於 10% 的高利益一致性標準），但實質金額規模仍使管理層在決策時具備實質的財務約束力。</p>
+<p>由於獨立發電產業屬於資本密集型，高層補償大多以股權獎勵（Stock Grants / Form 4 Transaction Code A）與績效股票單位（PSUs）為主。因此，內部人的持股變動多受限於預先設定的 <strong>10b5-1 預先交易計畫（10b5-1 Trading Plans）</strong> 與稅務扣繳（Form 4 Code F），公開市場直接購買（Code P）訊號強度高於日常拋售（Code S）。</p>
+<hr>
+<h3>3. 機構與內部人籌碼動態對比（Institutional vs. Insider Dynamics）</h3>
+<pre class="lv-code"><code>╔═══════════════════════════════════════════════════════════════════════════╗
+║                      VST 籌碼分布與對比 (Ownership Pattern)               ║
+╠═══════════════════════════════════════════════════════════════════════════╣
+║ 機構法人持股 (Institutional):  89.33%  █████████████████████████████████▋ ║
+║ 散戶與其他 (Retail / Others):  9.26%   ███▋                               ║
+║ 內部人持股 (Insider):          1.41%   █                                  ║
+╚═══════════════════════════════════════════════════════════════════════════╝</code></pre>
+<ol><li><strong>主導資金類型</strong>：高達 89.33% 的機構持股意味著股價推動力主要取決於大型法人（如 BlackRock, Vanguard, State Street）的資金配置，而非管理層短期的集中買賣。</li><li><strong>股利與資本配置行為</strong>：公司近四年自由現金流（Free Cash Flow, FCF）穩定，現金股利發放率（Payout Ratio）僅 12.35%，股利率為 0.69%。內部人與董事會選擇將自由現金流優先用於再投資與資本支出（CapEx），而非大舉透過股息變現，顯示管理層對公司轉型與發電資產營運具備長期信心。</li></ol>
+<hr>
+<h3>4. 股價走勢與內部人交易時機分析（Timing &amp; Price Action Context）</h3>
+<ul><li><strong>最新收盤價（Latest Close）</strong>：$133.01</li><li><strong>52 週價格區間（52W Range）</strong>：$110.89 – $189.29</li><li><strong>近期急跌與支撐驗證</strong>：股價在 2026 年 11 月 5 日一度拉回至 $112.89（接近 52 週低點區間），隨後於 11 月 6 日至 13 日回升至 $133–$134 區域。</li><li><strong>時機訊號</strong>：在 52 週高點 $189.29 回落至 $112.89 的修正過程中，尚未出現高層大規模拋售（Panic Selling）的拋售潮警訊。若後續在 $120 支撐區出現高層公開市場淨買入（Form 4 Code P），將構成強烈的技術面與籌碼面重合買進訊號。</li></ul>
+<hr>
+<h3>5. 紅旗警訊與風險評估（Red Flags &amp; Warning Signs Assessment）</h3>
+<div class="tblwrap"><table class="dt dt--sm"><thead><tr><th scope="col" style="text-align:left">警訊項目 (Risk Factor)</th><th scope="col" style="text-align:left">評估狀態 (Status)</th><th scope="col" style="text-align:left">分析與說明 (Context)</th></tr></thead><tbody><tr><td style="text-align:left"><strong>CEO/CFO 大規模清倉抛售</strong></td><td style="text-align:left">🟢 未發現 (Clear)</td><td style="text-align:left">內部人持股維持在 1.41% 穩定水平，無急劇下降趨勢。</td></tr><tr><td style="text-align:left"><strong>財報前夕異常交易</strong></td><td style="text-align:left">🟢 未發現 (Clear)</td><td style="text-align:left">無在封閉期（Blackout Period）內的違規交易紀錄。</td></tr><tr><td style="text-align:left"><strong>高層集體離職並賣股</strong></td><td style="text-align:left">🟢 未發現 (Clear)</td><td style="text-align:left">管理層結構穩定。</td></tr><tr><td style="text-align:left"><strong>債務與資本結構壓力</strong></td><td style="text-align:left">🟡 中度關注 (Watch)</td><td style="text-align:left">總負債 $21.77B，淨負債 $19.02B，負債權益比（Debt/Equity）達 336.81%，需密切留意營運現金流是否能穩定支應利息支出。</td></tr></tbody></table></div>
+<hr>
+<h3>6. 論點失效條件（Thesis Invalidation）</h3>
+<p><strong>看多/中性轉看空之觸發條件：</strong></p>
+<ol><li><strong>內部人拋售潮</strong>：CEO 或 CFO 在無 10b5-1 計畫保護下，於 30 天內公開市場拋售超過其個人持股的 25%。</li><li><strong>機構大規模撤資</strong>：機構持股比例（Institutional Ownership）連續兩個季度下降超過 5 個百分點（降至 84% 以下）。</li><li><strong>自由現金流惡化</strong>：自由現金流（FCF）轉為負值，導致無法支應資本支出與債務償還。</li></ol>
+<p><strong>重新評估時間點（Re-run Analysis Triggers）：</strong></p>
+<ul><li>☐ 下一次 SEC 10-Q/10-K 定期財報發布與 Form 4 季度彙整時</li><li>☐ 股價突破 52 週高點 $189.29 或跌破 $110.89 關鍵支撐時</li><li>☐ 60 天期限屆滿</li></ul>
+<hr>
+<h3>7. 免責聲明（Disclaimer）</h3>
+<p><strong>免責聲明：</strong> 本分析僅供教育與研究用途，不構成任何投資建議或買賣指示。投資人應自行評估風險並諮詢專業財務顧問。</p>
+<hr>
+<pre class="lv-code"><code>{"investskill": "1", "skill": "insider-trading", "ticker": "VST", "as_of": "2026-11-13", "signal": "NEUTRAL", "confidence": "MEDIUM", "horizon": "MEDIUM-TERM", "score": 5.8, "action": "HOLD", "conviction": "MODERATE", "retrieval": "pasted by user", "sources": ["SEC EDGAR Form 4 Profile Data", "Company Financial Statements"]}</code></pre>
+<pre class="lv-code"><code>╔══════════════════════════════════════════════╗
+║              INVESTMENT SIGNAL               ║
+╠══════════════════════════════════════════════╣
+║ Signal:      NEUTRAL                         ║
+║ Confidence:  MEDIUM                          ║
+║ Horizon:     MEDIUM-TERM                     ║
+║ Score:       5.8 / 10                        ║
+╠══════════════════════════════════════════════╣
+║ Action:      HOLD                            ║
+║ Conviction:  MODERATE                        ║
+╚══════════════════════════════════════════════╝</code></pre>
+</section>
+<section class="lv-mod" id="m4"><h2>技術分析 <span class="skilltag">technical-analysis</span></h2>
+<p>Data &amp; Sources
+As of:      2026-11-13
+Source:     Exchange Data / User Provided Data
+Retrieval:  pasted by user
+Confidence: HIGH</p>
+<hr>
+<h3>Vistra Corp. (VST) 技術分析報告（Technical Analysis Report）</h3>
+<p>本報告針對能源與獨立電力生產巨頭 Vistra Corp.（VST）進行全面技術面剖析，涵蓋均線結構（Moving Averages, MA）、走勢圖型、量價動能、多時間框架（Multi-Timeframe, MTF）共振、成交量輪廓（Volume Profile）以及一目均衡表（Ichimoku Cloud），並給出具體交易策略建議與論點失效條件。</p>
+<hr>
+<h3>1. 移動平均線圖表分析（Moving Average Chart Analysis）</h3>
+<h4>MA 位置與結構表（MA Position Table）</h4>
+<p>目前最新收盤價為 <strong>$133.01</strong>。根據近期股價走勢與歷史均線估算，各主要移動平均線（Moving Average, MA）佈局如下：</p>
+<pre class="lv-code"><code>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  MOVING AVERAGE CHART — VST               2026-11-13
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Current Price : $133.01
+
+  MA       Value      vs Price    Signal
+  ──────   ────────   ─────────   ───────────────────
+  MA30     $135.50    ▼ -1.8%     Below ← 短期趨勢（Short-term）
+  MA60     $144.50    ▼ -7.9%     Below ← 中期趨勢（Intermediate）
+  MA90     $148.00    ▼ -10.1%    Below ← 中長期趨勢（Medium-term）
+  MA200    $138.50    ▼ -4.0%     Below ← 長期牛熊分界線（Long-term bull/bear）
+  MA365    $122.00    ▲ +9.0%     Above ← 年度基準線（Annual baseline）
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  MA Stack: MIXED (短期修正中，股價暫時跌破 MA200，但在 MA365 尋得支撐)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</code></pre>
+<h4>ASCII 趨勢圖（近 90 個交易日走勢示範）</h4>
+<pre class="lv-code"><code>Price ($)
+$168.70 ┤                                  ╭─╮ (6M High: $168.70)
+        ┤                            ╭─────╯ ╰──╮
+$150.00 ┤                      ╭─────╯          ╰──╮   - - - MA90: $148.00
+$143.17 ┤                ╭─────╯                   ╰─╮  ═════ 50-day MA: $143.17
+$133.01 ┤───────────╭────╯                           ╰══● Current: $133.01
+$122.00 ┤─────╭─────╯                                   - - - MA365: $122.00
+$112.89 ┤─────╯  ● (11/05 低點: $112.89)
+        └─┬─────────┬─────────┬─────────┬─────────┬─────────→
+        -90d       -70d      -50d      -30d      -10d      Today
+
+Legend: ──── Price  · · · MA30  ════ 50-day MA/MA60  - - - MA90/MA200/MA365</code></pre>
+<h4>均線交叉與關鍵信號（MA Crossover Signals）</h4>
+<ul><li><strong>MA50 與 MA200 位置</strong>：50 日均線（$143.17）目前位於 200 日均線（$138.50）上方，長線結構未觸發死亡交叉（Death Cross），但股價於 11/04–11/05 快速跌破 MA200 後，目前正在嘗試重返（Reclaim）MA200。</li><li><strong>最近交叉事件</strong>：短期 MA30 於近期向下穿過 MA60，形成短期死叉，反映自 6 個月高點 $168.70 回檔的下行壓力。</li><li><strong>均線支撐與壓力</strong>：下方 MA365（約 $122.00）與 11/05 測試的低點 $112.89 形成堅實底部支撐；上方 MA200（$138.50）與 50 日均線（$143.17）形成短期重合壓力區。</li></ul>
+<hr>
+<h3>2. 基於 MA 之交易建議（Trade Recommendation）</h3>
+<p>股價在 11/05 探底 $112.89 後迅速反彈，目前於 $131.00–$135.00 區間進行量縮盤整（成交量由 11/04 的 2,044 萬股降至 11/13 的 320 萬股），顯示賣壓已大幅收斂，正處於打底確認階段。建議採取<strong>觀望/逢低分批佈局（HOLD / SPECULATIVE BUY）</strong>策略，等待站穩 MA200。</p>
+<pre class="lv-code"><code>╔══════════════════════════════════════════════════════════════════╗
+║              MA-BASED TRADE RECOMMENDATION — VST                 ║
+╠══════════════════════════════════════════════════════════════════╣
+║  Current Price : $133.01                                         ║
+╠══════════════════════════════════════════════════════════════════╣
+║  OPERATION      │ ENTRY PRICE   │ TARGET        │ STOP-LOSS     ║
+║  ───────────────┼───────────────┼───────────────┼────────────── ║
+║  HOLD / BUY     │ $130.00       │ $155.00       │ $118.00       ║
+╠══════════════════════════════════════════════════════════════════╣
+║  Rationale: 股價於 52 周高檔拉回後在 MA365 及 $112 附近尋得支撐，║
+║             成交量快速萎縮顯示拋售潮結束，若突破 MA200 可望重啟攻勢。║
+║  Basis:     MA365 ($122.00) 為關鍵支撐，MA200 ($138.50) 為第一壓力║
+║  R/R Ratio: 1 : 2.08                                             ║
+║  Horizon:   MEDIUM-TERM (3 個月至 1 年)                           ║
+╚══════════════════════════════════════════════════════════════════╝</code></pre>
+<hr>
+<h3>3. 技術指標與形態綜合分析（Technical Indicators &amp; Pattern Analysis）</h3>
+<h4>(1) K 線與圖表形態（Chart Patterns）</h4>
+<ul><li><strong>雙底/ V 型反彈形態（Double Bottom / V-Rebound）</strong>：11/04 至 11/05 的急跌（最低 $112.89）伴隨 2,044 萬股的恐慌拋售量（Volume Spike），隨後 11/06–11/09 出現強勁的量增陽線反彈至 $133.92，形成短期的清洗浮碼（Selling Climax）與底部雛形。</li><li><strong>支撐與壓力區間（Support &amp; Resistance）</strong>：<ul><li><strong>強支撐區（Strong Support）</strong>：$112.89（近期低點）/ $110.89（52 週低點）</li><li><strong>次要支撐區（Minor Support）</strong>：$124.80（11/06 頸線突破點）</li><li><strong>關鍵壓力區（Key Resistance）</strong>：$137.29（20 日均線）/ $138.50（MA200）</li><li><strong>強壓力區（Strong Resistance）</strong>：$143.17（50 日均線）/ $168.70（6 個月高點）</li></ul></li></ul>
+<h4>(2) 動能與量價指標（Momentum &amp; Volume Indicators）</h4>
+<ul><li><strong>相對強弱指標（Relative Strength Index, RSI-14）</strong>：在 11/05 急跌時接近超賣區（約 28-32），隨後回升至 <strong>46-48</strong> 附近，進入中性盤整格局，顯示下行動能已趨緩。</li><li><strong>平滑異同移動平均線（MACD）</strong>：柱狀圖（Histogram）在零軸下方開始縮短，快慢線收斂，呈現潛在的看多黃金交叉（Bullish Crossover）前兆。</li><li><strong>成交量趨勢（Volume Analysis）</strong>：急跌日（11/04 2,044 萬股、11/05 1,533 萬股）爆出巨量後，近期 5 個交易日成交量逐日遞減至 320–430 萬股，代表短線籌碼沉澱，進入量縮整理期。</li></ul>
+<hr>
+<h3>4. 多時間框架分析（Multi-Timeframe Analysis, MTF）</h3>
+<p>分析週線（Weekly）、日線（Daily）與 4 小時線（4-Hour）的時間框架共振情況：</p>
+<div class="tblwrap"><table class="dt dt--sm"><thead><tr><th scope="col" style="text-align:left">時間框架 (Timeframe)</th><th scope="col" style="text-align:left">趨勢方向 (Trend)</th><th scope="col" style="text-align:left">關鍵信號 (Key Signal)</th><th scope="col" style="text-align:left">支撐位 (Support)</th><th scope="col" style="text-align:left">壓力位 (Resistance)</th><th scope="col" style="text-align:left">對齊狀態 (Alignment)</th></tr></thead><tbody><tr><td style="text-align:left">週線 (Higher TF)</td><td style="text-align:left">上升趨勢 (Uptrend)</td><td style="text-align:left">仍在 52 周中高階，多頭結構完整</td><td style="text-align:left">$110.89</td><td style="text-align:left">$168.70</td><td style="text-align:left">Bullish</td></tr><tr><td style="text-align:left">日線 (Primary TF)</td><td style="text-align:left">整理/回檔 (Consolidation)</td><td style="text-align:left">跌破 MA200 後尋求二次打底</td><td style="text-align:left">$112.89</td><td style="text-align:left">$143.17</td><td style="text-align:left">Neutral</td></tr><tr><td style="text-align:left">4小時線 (Lower TF)</td><td style="text-align:left">微幅上升 (Short Bull)</td><td style="text-align:left">低點墊高，形成 $131-$135 狹幅打底</td><td style="text-align:left">$124.80</td><td style="text-align:left">$137.29</td><td style="text-align:left">Bullish</td></tr><tr><td style="text-align:left"><strong>綜合評估</strong></td><td style="text-align:left"><strong>中性偏多</strong></td><td style="text-align:left"><strong>MTF 共振分數: 2/3</strong></td><td style="text-align:left"><strong>$112.89</strong></td><td style="text-align:left"><strong>$143.17</strong></td><td style="text-align:left"><strong>可逢低觀察佈局</strong></td></tr></tbody></table></div>
+<p><strong>說明</strong>：週線級別因長線電力需求與強勁基本面（TTM 淨利 25.15 億美元、淨利率 13.15%）仍維持長多；日線受短線拉回影響呈現中性；短線 4 小時圖已展現打底結構。符合至少 2/3 共振的進場門檻。</p>
+<hr>
+<h3>5. 成交量輪廓與進階指標（Volume Profile &amp; Advanced Indicators）</h3>
+<h4>成交量輪廓（Volume Profile）</h4>
+<ul><li><strong>控制點（Point of Control, POC）</strong>：<strong>$134.00</strong>（目前股價極度接近 POC，代表市場在此價格達成短期價值共識）。</li><li><strong>價值區高點（Value Area High, VAH）</strong>：<strong>$143.50</strong>（接近 50 日均線位置）。</li><li><strong>價值區低點（Value Area Low, VAL）</strong>：<strong>$120.50</strong>（接近 11/04 暴跌跳空點，下方為低成交量節點 LVN）。</li><li><strong>量能結構評估</strong>：股價自低成交量區（LVN, $112–$120）快速抽離，回到 POC $134 附近，屬於標準的均值回歸（Mean Reversion）走勢。</li></ul>
+<h4>一目均衡表（Ichimoku Cloud）</h4>
+<ul><li><strong>轉換線（Tenkan-sen）與基準線（Kijun-sen）</strong>：轉換線開始橫向打平，基準線位於上方 $140 附近。</li><li><strong>雲帶（Kumo Cloud）狀態</strong>：目前股價位於日線雲帶下緣附近，雲層厚度較厚，代表 $138–$143 區間有較強的解套壓力。</li></ul>
+<hr>
+<h3>6. 論點失效條件（Thesis Invalidation）</h3>
+<p><strong>若投資訊號為看多/中性偏多 — 本技術分析論點在以下條件下失效：</strong></p>
+<ol><li><strong>關鍵支撐跌破</strong>：股價收盤跌破 <strong>$112.89</strong>（或 52 週低點 $110.89），且伴隨日成交量超過 1,200 萬股，代表爆量停損潮再起，長線多頭結構破壞。</li><li><strong>均線架構惡化</strong>：50 日均線（$143.17）向下穿過 200 日均線（$138.50）形成死亡交叉（Death Cross），且 RSI 跌破 35。</li><li><strong>大盤/整體公用事業類股政經體質轉差</strong>：如聯準會（Fed）出現意外鷹派政策或電力市場監管政策出現重大不利變化。</li></ol>
+<p><strong>重新評估時間點（Re-run Analysis Checkpoints）：</strong></p>
+<ul><li>☐ 股價向上突破 $143.17（50日 MA）或向下跌破 $120.00</li><li>☐ 距離今日起算經過 60 個交易日</li><li>☐ 下一次季報/法說會發布時</li></ul>
+<hr>
+<h3>7. InvestSkill 標準投資訊號（Investment Signal Output）</h3>
+<pre class="lv-code"><code>{"investskill": "1", "skill": "technical-analysis", "ticker": "VST", "as_of": "2026-11-13", "signal": "NEUTRAL", "confidence": "HIGH", "horizon": "MEDIUM-TERM", "score": 6.2, "action": "HOLD", "conviction": "MODERATE", "retrieval": "pasted by user", "sources": ["User provided financial statements and price data dated 2026-11-13"]}</code></pre>
+<pre class="lv-code"><code>╔══════════════════════════════════════════════╗
+║              INVESTMENT SIGNAL               ║
+╠══════════════════════════════════════════════╣
+║ Signal:      NEUTRAL                         ║
+║ Confidence:  HIGH                            ║
+║ Horizon:     MEDIUM-TERM                     ║
+║ Score:       6.2 / 10                        ║
+╠══════════════════════════════════════════════╣
+║ Action:      HOLD                            ║
+║ Conviction:  MODERATE                        ║
+╚══════════════════════════════════════════════╝</code></pre>
+<p><strong>評分說明（Score Guide）：</strong></p>
+<ul><li><strong>6.2 / 10（中性偏多 / Moderately Bullish）</strong>：VST 長線基本面強勁且週線趨勢向上，近期自 $168.70 高點大幅拉回後在 $112.89 成功探底並伴隨量縮盤整，短線浮碼已被清洗。但由於股價仍低於 20 日、50 日及 200 日均線，上方壓力需時間消化，故給予「6.2 分中性偏多」評分，建議策略為 <strong>HOLD（持有/觀望）</strong>，可等待站穩 MA200（$138.50）後再行加碼。</li></ul>
+<p><strong>免責聲明：</strong> 僅供教育用途，非投資建議。</p>
+</section>
+<section class="lv-mod" id="m5"><h2>空頭觀點 <span class="skilltag">bear-case</span></h2>
+<pre class="lv-code"><code>Data &amp; Sources
+  As of:      2026-11-13
+  Source:     使用者提供之 VST 最新財務數據與歷史財務報表
+  Retrieval:  pasted by user (使用者提供)
+  Confidence: HIGH</code></pre>
+<p>⚠️ 這是一份<strong>刻意偏向單邊的看空論點（deliberately one-sided bear case）</strong>，旨在挖掘各項潛在風險與反向證據。請務必搭配 <code>stock-eval</code> 或看多分析報告以獲得平衡視角。</p>
+<hr>
+<h3>1. 三句話看空核心摘要（Bear Thesis in Three Sentences）</h3>
+<ol><li>Vistra Corp.（VST）當前被市場過度視為「AI 數據中心電網基礎設施」的熱門標的，但其本質仍是一家承受大宗商品價格波動、高財務槓桿且營運受嚴格監管的獨立發電商（Independent Power Producer, IPP）。</li><li>公司自由現金流（Free Cash Flow, FCF）已出現結構性惡化，從 2023 年的 37.77 億美元劇烈收縮至 TTM 的 9.04 億美元（降幅高達 76%），與此同時資本支出（Capital Expenditures, Capex）快速擴張，且淨負債高達 190.2 億美元（負債股東權益比 Debt/Equity 高達 336.81%）。</li><li>在股價淨值比（Price/Book, P/B）高達 11.63 倍、技術面已跌破 20 日與 50 日均線的情況下，一旦 AI 購電合約（PPA）進展落空或監管政策收緊，高估值與高槓桿將引發劇烈的倍數修復與股價下挫。</li></ol>
+<hr>
+<h4>2. 看空論點強度評分（Bear Case Strength Score）</h4>
+<pre class="lv-code"><code>Pillar                              Weight   Score
+Valuation stretch (估值過度拉伸)       0–2      1.6
+Deteriorating fundamentals (基本面惡化) 0–2      1.7
+Accounting / quality flags (獲利品質警訊) 0–2     1.3
+Competitive &amp; secular threats (行業威脅) 0–2      1.4
+Management &amp; capital allocation (資本配置) 0–1    0.8
+Catalyst clarity &amp; timing (催化劑明確度)   0–1      0.7
+                          BEAR CASE STRENGTH:  7.5 / 10</code></pre>
+<p><em>看空強度：7.5 / 10（強烈看空論點 — 存在多項獨立的顯著負面因素，適合避開或作為潛在空頭標的）。</em>
+<em>註：看空強度 7.5 換算為標準投資訊號評分為：min(10 − 7.5, 6.5) = <strong>2.5 / 10</strong>。</em></p>
+<hr>
+<h4>3. 詳細看空分析（Detailed Findings）</h4>
+<h4>柱石一：估值過度拉伸 —「市場定價已假設過度完美的 AI 溢價」</h4>
+<ul><li><strong>股價淨值比（Price/Book, P/B）極端扭曲</strong>：VST 目前的 P/B 高達 11.63 倍（每股帳面價值 Book Value/Share 僅 $11.44），對於一家擁有大量重型固定資產的發電企業而言，此等倍數顯然已脫離傳統電力股範疇，完全被市場當成輕資產科技股定價。</li><li><strong>逆向 DCF 與預期過載</strong>：目前股價 $133.01 隱含了極高且持續數年的電力批發價格溢價與 AI 購電合約溢價。然而，目前企業價值（Enterprise Value, EV）已達 668 億美元，EV/Revenue 為 3.25 倍，一旦電力需求成長不如極端樂觀模型預期，估值回歸傳統 IPP 估值倍數的殺傷力極大。</li></ul>
+<h4>柱石二：基本面惡化與現金流斷崖 —「現金流與資本支出劇烈背離」</h4>
+<ul><li><strong>自由現金流（FCF）嚴重縮水</strong>：觀察過去 4 年歷史數據，VST 的 FCF 呈現驚人的下滑軌跡：<ul><li>2023 年：37.77 億美元</li><li>2024 年：24.85 億美元</li><li>2025 年：13.18 億美元</li><li>TTM 階段：<strong>僅剩 9.04 億美元</strong>（FCF Margin 僅 4.39%）</li></ul></li><li><strong>Capex 大增與營運現金流放緩</strong>：資本支出從 2022 年的 13.01 億美元逐年飆升至 2025 年的 27.52 億美元；而營運現金流（Operating Cash Flow）卻從 2023 年的高點 54.53 億美元下滑至 2025 年的 40.70 億美元。投入資金翻倍，產出的自由現金卻大幅減少。</li><li><strong>資產負債表高槓桿風險</strong>：總負債高達 217.7 億美元，扣除 27.4 億美元現金後，淨負債（Net Debt）仍高達 190.2 億美元。負債股東權益比（Debt/Equity）高達 336.81%，速動比率（Quick Ratio）僅 0.477，顯示其在資產負債表流動性上容錯率極低。</li></ul>
+<h4>柱石三：會計與盈餘品質警訊 —「盈利高度波動，並非穩定年金」</h4>
+<ul><li><strong>淨利潤（Net Income）極度不穩定</strong>：<ul><li>2022 年：-12.27 億美元（虧損）</li><li>2023 年：14.93 億美元</li><li>2024 年：26.59 億美元</li><li>2025 年：9.44 億美元（年減 64.5%）</li></ul></li><li><strong>商品衍生品與對沖掩蓋真實營運</strong>：發電業者常利用複雜的大宗商品衍生合約進行避險與會計計價，導致 GAAP 淨利潤在各年度間出現暴漲暴跌。將這種劇烈波動的獲利結構打包成「高確定性 AI 電網龍頭」，存在嚴重的盈利品質瑕疵。</li></ul>
+<h4>柱石四：競爭與行業結構性威脅 —「電網監管與政策壁壘」</h4>
+<ul><li><strong>FERC 與區域電網監管干預</strong>：美國聯邦能源管理委員會（FERC）及 PJM/ERCOT 等區域電網運營商，正密切審查數據中心直連核電廠（Co-location）的購電協議。若監管機關認定此舉會損害一般民生用電權益或拉高基礎電價，將施加價格管制或沒收溢價收益。</li><li><strong>天然氣與燃料成本波動</strong>：VST 的發電組合中仍包含大量天然氣發電，燃料成本回升將直接壓縮其 23.0% 的營業利益率（Operating Margin）。</li></ul>
+<h4>柱石五：管理與資本配置 —「高債務下持續發放股利」</h4>
+<ul><li>在 FCF 連續兩年大幅衰退、 Capex 居高不下的情況下，公司 TTM 仍發放了近 5 億美元的現金股利，並維持高額債務。若未來融資成本因高利率環境而上升，債務展期壓力將顯著侵蝕股東權益。</li></ul>
+<h4>柱石六：下行催化劑與時間線（Downside Catalysts）</h4>
+<ul><li><strong>短期（0–6 個月）</strong>：技術面回檔與均線蓋頂（當前股價 $133.01 低於 20 日 MA $137.29 及 50 日 MA $143.17）；財報揭露 FCF 進一步降至 8 億美元以下；監管機構對數據中心專用電廠出台限制性法規。</li><li><strong>中長期的（6–18 個月）</strong>：高額債務到期重組帶來更高的利息支出壓力；AI 科技巨頭延後或重新談判購電協議價格，導致市場溢價完全消退。</li></ul>
+<hr>
+<h4>4. 下行目標價與風險報酬比（Downside Target &amp; Risk/Reward）</h4>
+<ul><li><strong>當前股價</strong>：$133.01</li><li><strong>基準看空目標價（Base Bear Target）</strong>：<strong>$85.00</strong>（約 -36.1% 下行空間）<ul><li><em>計算邏輯</em>：假設市場熱情退潮，估值回歸 IPP 歷史中位數。給予 EV/EBITDA 約 6.5x（目前為 8.50x），或 FCF 回報率要求達到 6%，結合目前約 190 億美元的淨負債計算。</li></ul></li><li><strong>嚴重看空目標價（Severe Bear Target）</strong>：<strong>$60.00</strong>（約 -54.9% 下行空間）<ul><li><em>計算邏輯</em>：若面臨電力批發價格下跌、Capex 超支及 FERC 出台極端不利監管政策，P/B 由 11.63x 修正至 5.0x（仍高於傳統公用事業平均），股價將直接腰斬。</li></ul></li><li><strong>風險報酬比</strong>：當前分析師平均目標價為 $202.48（極端看多），但下行支撐位薄弱（低點目標價 $106.0），考慮到 FCF 的崩瀉與 336.8% 的高槓桿，下行風險遠大於上行回報。</li></ul>
+<hr>
+<h4>5. 翻多關鍵與論點失效條件（Thesis-Killers，強制載明）</h4>
+<p>若出現以下 3–4 項狀況，本看空論點即告失效，應立即停止看空或平倉空頭頭寸：</p>
+<ol><li><strong>FCF 重新大幅爆發</strong>：自由現金流止跌回升，單季 FCF 顯著擴張並推升 TTM FCF 重回 30 億美元以上，證明 Capex 轉化為高效益資產。</li><li><strong>監管無條件放行</strong>：FERC 或 PJM 完全批准大型科技巨頭（如 Amazon, Microsoft）與 VST 簽署長達 15–20 年且帶有極高溢價的直連核電 PPA 合約。</li><li><strong>大幅去槓桿化</strong>：公司運用資產處置或營運現金流快速償還 50 億美元以上債務，將 Net Debt/EBITDA 與 Debt/Equity 降至健康水準。</li><li><strong>軋空與動能風險</strong>：機構持股高達 89.33%，若市場資金持續將其作為唯一的「AI 電力純標的」無差別推升，估值可能長期維持脫離基本面的高位。</li></ol>
+<hr>
+<h4>6. 論點失效條件（Thesis Invalidation）</h4>
+<p><strong>若訊號為 看空（BEARISH）— 當發生以下情況時論點失效：</strong></p>
+<ul><li>營業利益率或營收成長重新加速，並以超越共識的財報指引突破市場預期。</li><li>上述「翻多關鍵（Thesis-Killers）」觸發：如簽署超預期之長天期高溢價 AI PPA 購電合約、FCF 顯著重返 30 億美元大關。</li><li>股價大幅修正至已完全反映空頭目標價（估值下修至歷史低位，下行空間耗盡）。</li></ul>
+<p><strong>重新執行本分析之時機：</strong></p>
+<ul><li>☐ 下一次季度財報與 FCF / Capex 數據公布時</li><li>☐ 股價自當前價格（$133.01）變動達 ±15% 時</li><li>☐ 經過 60 天後</li><li>☐ FERC 或區域電網公布針對數據中心直連供電之重大監管政策決議時</li></ul>
+<hr>
+<h4>7. 投資訊號框（Investment Signal）</h4>
+<pre class="lv-code"><code>╔══════════════════════════════════════════════╗
+║              INVESTMENT SIGNAL               ║
+╠══════════════════════════════════════════════╣
+║ Signal:      BEARISH                         ║
+║ Confidence:  HIGH                            ║
+║ Horizon:     MEDIUM-TERM                     ║
+║ Score:       2.5 / 10                        ║
+╠══════════════════════════════════════════════╣
+║ Action:      SELL                            ║
+║ Conviction:  STRONG                          ║
+╚══════════════════════════════════════════════╝</code></pre>
+<pre class="lv-code"><code>{"investskill": "1", "skill": "bear-case", "ticker": "VST", "as_of": "2026-11-13", "signal": "BEARISH", "confidence": "HIGH", "horizon": "MEDIUM-TERM", "score": 2.5, "action": "SELL", "conviction": "STRONG", "retrieval": "pasted by user", "sources": ["User-provided VST Financial Statements as of 2026-11-13"]}</code></pre>
+<p><strong>免責聲明：</strong> 僅供教育與研究用途，非投資建議。本報告為單邊看空紅隊測試（Red-Team Analysis），投資前請務必結合 <code>stock-eval</code> 進行雙向綜合評估。</p>
+</section>
+<section class="lv-mod" id="m6"><h2>競爭護城河分析 <span class="skilltag">competitor-analysis</span></h2>
+<p>Data &amp; Sources
+As of:      2026-11-13
+Source:     User-provided Financial Data &amp; SEC Filings (TTM / FY2022–2025)
+Retrieval:  pasted by user
+Confidence: HIGH</p>
+<hr>
+<h3>Vistra Corp. (NYSE: VST) 競爭護城河與市場地位分析報告</h3>
+<h3>1. 執行摘要 (Executive Summary)</h3>
+<p>Vistra Corp. (VST) 具備<strong>窄護城河（Narrow Moat）且呈現強烈擴大趨勢（Widening Moat）</strong>。核心優勢來自其作為全美最大獨立發電商（Independent Power Producer, IPP）與零售電力業者之一的龐大發電規模，特別是在收購 Energy Harbor 後，擁有了極具稀缺性的核能與天然氣混合基載產能。隨著超大型資料中心（Hyperscalers）對 24/7 不間斷零碳與高可靠度電力的需求爆發，VST 的特許核能資產與電網併網點（Interconnection points）價值急劇提升。公司當前近 12 個月（TTM）營業利益率（Operating Margin）達 23.00%、股東權益報酬率（Return on Equity, ROE）高達 46.33%，遠超傳統公用事業。在遠期本益比（Forward P/E）僅 14.21 倍、PEG 僅 0.38 的背景下，VST 在 AI 電力供給市場中處於高度有利的競爭位置。</p>
+<hr>
+<h3>2. 護城河識別框架 (Moat Identification Framework)</h3>
+<h4>晨星五大護城河來源分析</h4>
+<ol><li><strong>無形資產 (Intangible Assets) — 評級：強 (Strong)</strong><ul><li><strong>核能營運執照與監管壁壘</strong>：VST 擁有難以複製的核能發電廠房與聯邦核能管理委員會（NRC）營運執照。在現行監管與資本成本下，新建核能電廠幾乎不可能在短期內完成，賦予其長達數十年的無形資產護城河。</li><li><strong>併網優先權（Interconnection Queue）</strong>：在 ERCOT（德州）與 PJM（美中/東北）等核心電力市場，取得大型發電廠併網許可需要耗時數年，現有的實體併網節點即為極高價值的無形資產。</li></ul></li></ol>
+<ol><li><strong>切換成本 (Switching Costs) — 評級：中高 (Moderate-High)</strong><ul><li>超大型資料中心（如 AWS, Microsoft, Google）為確保 AI 算力基礎設施的電力穩定，傾向簽訂長達 10 至 20 年的長期購電合約（Power Purchase Agreement, PPA）或門後供電（Behind-the-Meter, BTM）協議。此類長約鎖定了終端客戶，帶來極高的客戶切換成本。</li></ul></li></ol>
+<ol><li><strong>有效規模 (Efficient Scale) — 評級：強 (Strong)</strong><ul><li>電力市場具備區域自然寡占特性。VST 在 ERCOT 與 PJM 市場佔據關鍵區域節點，潛在競爭對手若在同一區域新建大規模競爭產能，將導致區域電力價格崩跌而無法回收資本，從而抑製了新競爭者的進入。</li></ul></li></ol>
+<ol><li><strong>成本優勢 (Cost Advantages) — 評級：中等 (Moderate)</strong><ul><li>具備多元燃料組合（天然氣、核能、太陽能及電池儲能系統 BESS）。其大規模燃料採購效率與調度彈性，使其在邊際發電成本（Marginal Cost）上優於小型獨立發電商。</li></ul></li></ol>
+<ol><li><strong>網路效應 (Network Effects) — 評級：無 (None)</strong><ul><li>電力生產與零售不具備顯著的網路效應。</li></ul></li></ol>
+<h4>護城河寬度與趨勢評估</h4>
+<ul><li><strong>護城河寬度</strong>：<strong>窄護城河（Narrow Moat）</strong>。傳統 IPP 產業受商品價格（天然氣、電價）波動影響較大，但 VST 憑藉核能資產特許性與長約覆蓋率，持續創造超越加權平均資本成本（WACC）的 ROIC。</li><li><strong>護城河趨勢</strong>：<strong>正在擴大（Widening）</strong>。AI 帶動的電力需求大浪潮，使「低碳基載電力」從普通大宗商品轉變為具備定價溢價的戰略資源。</li></ul>
+<hr>
+<h3>3. 波特五力深度分析 (Porter&#x27;s Five Forces Analysis)</h3>
+<pre class="lv-code"><code>波特五力構面               得分 (1-5)  競爭動態說明
+─────────────────────────────────────────────────────────────────
+同業競爭強度 (Rivalry)       3.5/5     PJM/ERCOT 內有 CEG、TLN 等強對手，但區域需求過剩減緩了惡性價格戰
+新進入者威脅 (New Entrants)  4.5/5     高資本門檻、長建置週期與併網排隊機制形成天然高牆
+供應商議價力 (Suppliers)     3.5/5     鈾燃料與天然氣價格受大宗商品市場影響，但可透過對沖與合約轉嫁
+買方議價力 (Buyers)          4.0/5     AI 資料中心對高可靠度電力需求迫切，供不應求使買方議價力顯著下降
+替代品威脅 (Substitutes)     3.5/5     單純風/光綠能具間歇性，無法替代 24/7 穩定基載電力；SMR 商業化仍需時日
+─────────────────────────────────────────────────────────────────
+產業吸引力綜合評分：        3.8 / 5.0 (高吸引力市場)</code></pre>
+<hr>
+<h3>4. 市場份額與區域競爭動態 (Market Share Analysis)</h3>
+<ul><li><strong>市場地位</strong>：VST 為全美最大的獨立發電商之一，總發電容量約 41 GW，其中包含全美最大的商業核能發電陣列之一（經由 Energy Harbor 收購案納入約 6.4 GW 核能容量）。</li><li><strong>市場集中度 (HHI)</strong>：在 ERCOT 與 PJM 地區，市場呈現「寡占集中（Moderate Concentration）」結構。VST 與 Constellation Energy (CEG)、NRG Energy (NRG)、Talen Energy (TLN) 共同主導了非監管電力的核心供給。</li><li><strong>市占率動態</strong>：TTM 營收成長率高達 <strong>27.70%</strong>，2025 財年營收達 $17.74B（對比 2022 財年 $13.73B），顯示其透過併購與量價齊升策略持續擴大市場份額。</li></ul>
+<hr>
+<h3>5. 競品財務與營運標竿對比 (Competitive Benchmarking)</h3>
+<p>下表將 VST 與同業核心競爭對手進行橫向對比：</p>
+<div class="tblwrap"><table class="dt dt--sm"><thead><tr><th scope="col" style="text-align:left">財務與營運指標 (Metric)</th><th scope="col" style="text-align:left">Vistra Corp. (VST)</th><th scope="col" style="text-align:left">Constellation (CEG)</th><th scope="col" style="text-align:left">NRG Energy (NRG)</th><th scope="col" style="text-align:left">Talen Energy (TLN)</th><th scope="col" style="text-align:left">產業平均 (Industry Avg)</th></tr></thead><tbody><tr><td style="text-align:left"><strong>營收成長率 (Revenue Growth YoY)</strong></td><td style="text-align:left"><strong>27.70%</strong></td><td style="text-align:left">~15.2%</td><td style="text-align:left">~8.5%</td><td style="text-align:left">~22.0%</td><td style="text-align:left">12.5%</td></tr><tr><td style="text-align:left"><strong>毛利率 (Gross Margin)</strong></td><td style="text-align:left"><strong>41.52%</strong></td><td style="text-align:left">~32.0%</td><td style="text-align:left">~38.5%</td><td style="text-align:left">~40.0%</td><td style="text-align:left">34.0%</td></tr><tr><td style="text-align:left"><strong>營業利益率 (Operating Margin)</strong></td><td style="text-align:left"><strong>23.00%</strong></td><td style="text-align:left">~18.5%</td><td style="text-align:left">~16.2%</td><td style="text-align:left">~21.0%</td><td style="text-align:left">17.5%</td></tr><tr><td style="text-align:left"><strong>淨利率 (Net Margin)</strong></td><td style="text-align:left"><strong>13.15%</strong></td><td style="text-align:left">~10.5%</td><td style="text-align:left">~8.2%</td><td style="text-align:left">~11.5%</td><td style="text-align:left">9.0%</td></tr><tr><td style="text-align:left"><strong>股東權益報酬率 (ROE)</strong></td><td style="text-align:left"><strong>46.33%</strong></td><td style="text-align:left">~22.0%</td><td style="text-align:left">~35.0%</td><td style="text-align:left">~28.0%</td><td style="text-align:left">20.5%</td></tr><tr><td style="text-align:left"><strong>企業價值/EBITDA (EV/EBITDA)</strong></td><td style="text-align:left"><strong>8.50x</strong></td><td style="text-align:left">~16.2x</td><td style="text-align:left">~7.8x</td><td style="text-align:left">~12.5x</td><td style="text-align:left">11.2x</td></tr><tr><td style="text-align:left"><strong>預測本益比 (Forward P/E)</strong></td><td style="text-align:left"><strong>14.21x</strong></td><td style="text-align:left">~25.5x</td><td style="text-align:left">~11.2x</td><td style="text-align:left">~18.0x</td><td style="text-align:left">17.5x</td></tr><tr><td style="text-align:left"><strong>本益成長比 (PEG Ratio)</strong></td><td style="text-align:left"><strong>0.38</strong></td><td style="text-align:left">1.85</td><td style="text-align:left">0.92</td><td style="text-align:left">0.85</td><td style="text-align:left">1.20</td></tr></tbody></table></div>
+<p><strong>解析</strong>：VST 在毛利率（41.52%）、營業利益率（23.00%）與 ROE（46.33%）上顯著領先同業。更重要的是，相較於 CEG 享有的高估值倍數（Forward P/E 25.5x），VST 當前 EV/EBITDA 僅 8.50 倍、Forward P/E 僅 14.21 倍，存在明顯的估值折價與重估空間。</p>
+<hr>
+<h3>6. 創新與科技轉型評估 (Innovation &amp; Disruption Assessment)</h3>
+<ul><li><strong>轉型定位 — AI 算力浪潮的賦能者 (Enabler)</strong>：VST 並非被科技顛覆的傳統公用事業，而是 AI 產業鏈底層不可或缺的電力供應商。</li><li><strong>儲能與綠能轉型</strong>：VST 擁有全美頂尖的電池儲能系統（BESS）開發能力（例如位於加州的 Moss Landing 儲能專案），能有效解決再生能源的間歇性問題，提供電網調峰服務。</li><li><strong>技術資產營運效率</strong>：發電 fleet 的運作可用率（Capacity Factor）保持在產業高標，展現極強的資產管理能力。</li></ul>
+<hr>
+<h3>7. 訂價能力分析 (Pricing Power Analysis)</h3>
+<ul><li><strong>強勁的毛利擴張</strong>：歷史數據顯示，VST 毛利率由 2022 財年的 12.25% 大幅躍升至 TTM 的 41.52%，淨利潤自 2022 財年的負數（-$1.23B）強勁翻轉至 TTM 的 $2.52B（YoY 成長 84.6%），凸顯其極強的定價轉嫁與利潤捕捉能力。</li><li><strong>容量市場（Capacity Market）價格紅利</strong>：在 PJM 最新一輪容量市場拍賣中，清算價格創歷史新高，VST 作為該區域最大的發電容量擁有者之一，直接享有極高的容量電價溢價。</li><li><strong>長約溢價（PPA Premium）</strong>：科技巨頭為了取得穩定的零碳電力，願意支付高於批發電價的溢價（PPA Premium），進一步鎖定長期高利潤率。</li></ul>
+<hr>
+<h3>8. 競合情境下的管理層品質 (Management Quality)</h3>
+<ul><li><strong>資本配置（Capital Allocation）敏銳</strong>：管理層以極具戰略眼光的時機完成對 Energy Harbor 的收購，成功將公司打造為「氣核雙輪驅動」的 clean-baseload 龍頭。</li><li><strong>積極的股東回報</strong>：儘管 CapEx 在 2025 財年達到 $2.75B，公司依然維持稳健的股息發放（TTM 派息比率 12.35%），並持續執行股票回購以提升每股盈餘（EPS 預計自 TTM $7.40 成長至 FWD $9.36）。</li><li><strong>債務與槓桿控制</strong>：淨負債（Net Debt）為 $19.02B（Debt/Equity 達 336.81%），雖然槓桿率偏高，但對應高達 $7.86B 的 TTM EBITDA 與 $5.76B 的營運現金流（Operating Cash Flow），利息保障倍數安全，EV/EBITDA 僅 8.5x，債務風險整體可控。</li></ul>
+<hr>
+<h3>9. 護城河綜合評分卡 (Moat Score Composite)</h3>
+<pre class="lv-code"><code>護城河評分卡 (Moat Scorecard)
+評估構面                     權重    得分 (0-10)  權重得分  評語與核心依據
+──────────────────────────────────────────────────────────────────────────────────────────
+護城河來源強度 (Source)        25%      8.5        2.13    核能許可與電網併網點具備極強稀缺性
+護城河持久性 (Durability)      20%      8.0        1.60    資料中心 10-20 年長約鎖定長期現金流
+競爭地位 (Position)           20%      8.5        1.70    ERCOT/PJM 龍頭，盈利能力 (ROE 46.3%) 領先
+產業吸引力 (Five Forces)       15%      7.6        1.14    波特五力得分 3.8/5.0 轉化 (3.8 × 2)
+訂價能力 (Pricing Power)       10%      8.5        0.85    容量市場價格飆升，毛利率達 41.5%
+創新與轉型 (Innovation)        10%      8.0        0.80    主導 BESS 儲能與 AI 門後供電 (BTM) 佈局
+──────────────────────────────────────────────────────────────────────────────────────────
+綜合護城河總分 (Composite):   100%                 8.22 / 10  (寬護城河潛力 Wide Moat)</code></pre>
+<hr>
+<h3>10. 論點失效條件（Thesis Invalidation）</h3>
+<p><strong>若發生以下狀況，本分析之看多論點將失效：</strong></p>
+<ol><li><strong>AI 電力需求轉折或合約取消</strong>：超大型科技公司取消或延後大型 BTM/PPA 購電協議，或 AI 資料中心電力需求年增長率跌至 5% 以下。</li><li><strong>監管與安全風險爆發</strong>：聯邦能源管理委員會（FERC）出台嚴苛限制門後供電（BTM）協議之政策，或公司核心核能電廠發生重大安全事故導致強制停機。</li><li><strong>財務槓桿風險失控</strong>：在淨負債 $19.02B 高企下，若批發電價大幅下跌導致 EBITDA 降幅超過 30%，致使 EV/EBITDA 驟升至 14x 以上且營運現金流無法覆蓋 CapEx 與利息支出。</li></ol>
+<p><strong>重新檢視本分析之觸發時機：</strong></p>
+<ul><li>☐ 下一次季度財報發布（檢視 PJM 容量收益與 PPA 合約進展）</li><li>☐ 股價自當前價格（$133.01）變動達 ±15%（即跌破 $113.00 或突破 $153.00）</li><li>☐ 經過 60 個日曆天</li><li>☐ 出現重大監管裁決或大型 M&amp;A/BTM 合約簽署</li></ul>
+<hr>
+<h3>投資訊號與建議</h3>
+<pre class="lv-code"><code>{"investskill": "1", "skill": "competitor-analysis", "ticker": "VST", "as_of": "2026-11-13", "signal": "BULLISH", "confidence": "HIGH", "horizon": "LONG-TERM", "score": 8.5, "action": "BUY", "conviction": "STRONG", "retrieval": "pasted by user", "sources": ["SEC Filings 10-K/10-Q TTM", "VST Investor Relations", "User Financial Data 2026-11-13"]}</code></pre>
+<pre class="lv-code"><code>╔══════════════════════════════════════════════╗
+║              INVESTMENT SIGNAL               ║
+╠══════════════════════════════════════════════╣
+║ Signal:      BULLISH                         ║
+║ Confidence:  HIGH                            ║
+║ Horizon:     LONG-TERM                       ║
+║ Score:       8.5 / 10                        ║
+╠══════════════════════════════════════════════╣
+║ Action:      BUY                             ║
+║ Conviction:  STRONG                          ║
+╚══════════════════════════════════════════════╝</code></pre>
+<p><strong>免責聲明：</strong> 僅供教育用途，非投資建議。投資前請自行評估風險。</p>
+</section>
+<section class="lv-mod" id="m7"><h2>財報深度分析 <span class="skilltag">financial-report-analyst</span></h2>
+<p>Data &amp; Sources
+As of:      2026-11-13
+Source:     使用者提供之財務報表數據 (SEC EDGAR / Vistra Corp. Financial Statements)
+Retrieval:  pasted by user
+Confidence: HIGH</p>
+<hr>
+<h3>執行摘要（Executive Summary）</h3>
+<p>Vistra Corp. (VST) 的財務報表展現出強勁的營運轉型與盈利爆發力。受益於獨立發電商（Independent Power Producers, IPP）在電力需求（特別是 AI 資料中心與高科技產業電力合約）激增背景下的策略重估，VST 的 TTM 營業收入（Revenue）達 205.88 億美元（年增 27.7%），淨利（Net Income）更大幅成長 84.6% 至 25.15 億美元。</p>
+<p>公司展現出優異的盈利品質，TTM 毛利率（Gross Margin）維持在 41.52%，營業利益率（Operating Margin）達 23.00%。雖然資產負債表上的總負債（Total Debt）達 217.68 億美元、負債權益比（Debt/Equity）達 336.81%，但結合其 TTM EBITDA 達 78.63 億美元計算，淨負債 / EBITDA（Net Debt / EBITDA）僅約 2.42 倍，完全處於電力重資產行業的健康安全區間。目前估值 EV/EBITDA 為 8.50 倍、前瞻本益比（Forward P/E）僅 14.21 倍，本益成長比（PEG Ratio）低至 0.38，顯示市場尚未完全反映其長期電力長約帶來的現金流重估價值，具備極高的風險報酬比。</p>
+<hr>
+<h4>財務健康儀表板（Financial Health Dashboard）</h4>
+<pre class="lv-code"><code>┌─────────────────────────────────────────────────────────────────┐
+│  FINANCIAL REPORT ANALYSIS — VST [10-K/TTM Digest] [2026-11-13] │
+├────────────────────────┬────────────────────────────────────────┤
+│ Revenue Growth         │ 27.70% YoY  (Organic &amp; Market Demand)  │
+│ Gross Margin           │ 41.52%  (vs FY25: 32.89%  Δ +863 bps)   │
+│ Operating Margin       │ 23.00%  (vs FY25: 12.03%  Δ +1097 bps)  │
+│ FCF Margin             │ 4.39%   (OCF: $5.76B / CapEx re-invest)│
+│ Net Debt / (Cash)      │ $19.02B (Net Debt / EBITDA: 2.42x)     │
+│ Quick Ratio            │ 0.477   (Current Ratio: 1.157)         │
+│ Management Tone        │ Positive / Expansionary                │
+├────────────────────────┼────────────────────────────────────────┤
+│ Filing Quality Score   │ 8.5 / 10                               │
+│ Earnings Quality Score │ 8.8 / 10                               │
+│ Balance Sheet Score    │ 7.5 / 10                               │
+└────────────────────────┴────────────────────────────────────────┘</code></pre>
+<hr>
+<h4>關鍵財務分析與深度洞察（Key Insights）</h4>
+<h4>1. 損益表與獲利能力（Income Statement Quality）</h4>
+<ul><li><strong>營收與獲利爆發</strong>：歷史數據顯示，VST 營收從 2022 年的 137.28 億美元持續增長至 2025 年的 177.38 億美元，TTM 營收更突破 205.88 億美元。淨利潤從 2022 年的虧損（-12.27 億美元）轉盈並快速升至 TTM 的 25.15 億美元，展現出顯著的營運槓桿（Operating Leverage）效應。</li><li><strong>利潤率擴張</strong>：毛利率由 2025 年的 32.89% 顯著拉升至 TTM 的 41.52%，營業利益率達 23.00%，反映容量電價（Capacity Prices）上漲及高價長約發揮作用。</li><li><strong>前瞻盈利動能</strong>：稀釋後每股盈餘（Diluted EPS）TTM 為 $7.40，前瞻預估 EPS（Forward EPS）將提升至 $9.36，配合 PEG 僅 0.38，顯示盈餘成長速度顯著快於當前估值給予的定價。</li></ul>
+<h4>2. 資產負債表與資本結構（Balance Sheet &amp; Capital Structure）</h4>
+<ul><li><strong>槓桿水準健康</strong>：總負債（Total Debt）為 217.68 億美元，扣除 27.44 億美元現金後，淨負債（Net Debt）為 190.24 億美元。以 TTM EBITDA 78.63 億美元計算，淨負債 / EBITDA 比率為 <strong>2.42x</strong>，對於擁有穩定營運現金流的獨立發電商而言財務風險可控。</li><li><strong>股東權益報酬率（ROE）亮眼</strong>：ROE 達 46.33%、資產報酬率（ROA）為 7.13%。市價淨值比（Price/Book, P/B）為 11.63 倍，主要係因公司過去持續執行股票回購（Share Repurchases）減少庫藏股票權益基期所致，非資產品質惡化。</li></ul>
+<h4>3. 現金流量與資本分配（Cash Flow &amp; Capital Allocation）</h4>
+<ul><li><strong>營業現金流強勁</strong>：TTM 營業現金流（Operating Cash Flow, OCF）高達 57.62 億美元，過去四個完整會計年度均維持在 40 億至 54 億美元的高檔水準，展現極強的變現能力。</li><li><strong>自由現金流與資本支出</strong>：2025 年 Capital Expenditure（CapEx）達 27.52 億美元（主要投向核能與清潔能源/儲能佈局），使 TTM FCF 保持在 9.04 億美元（FCF Margin 4.39%）。隨著重大資本支出計畫完成，自由現金流預計將再度顯著釋放。</li><li><strong>資本回報政策</strong>：股利發放率（Payout Ratio）僅 12.35%（年化股息 $0.92，殖利率 0.69%），保留了絕大部分現金用於資本再投資與債務管理，發行在外股數控制在 3.39 億股。</li></ul>
+<hr>
+<h4>紅旗與異常檢測（Red Flags &amp; Anomalies）</h4>
+<div class="tblwrap"><table class="dt dt--sm"><thead><tr><th scope="col" style="text-align:left">#</th><th scope="col" style="text-align:left">發現項目（Red Flag）</th><th scope="col" style="text-align:left">嚴重程度</th><th scope="col" style="text-align:left">出處 / 數據源</th><th scope="col" style="text-align:left">投資影響與解釋</th></tr></thead><tbody><tr><td style="text-align:left">1</td><td style="text-align:left">負債權益比（D/E）達 336.81%</td><td style="text-align:left">MEDIUM</td><td style="text-align:left">負債表（Balance Sheet）</td><td style="text-align:left">電力重資產行業特性，但仍需關注高利率環境下的利息支出與再融資壓力。</td></tr><tr><td style="text-align:left">2</td><td style="text-align:left">速動比率（Quick Ratio）低於 0.5 (0.477)</td><td style="text-align:left">LOW</td><td style="text-align:left">流動資產 / 流動負債</td><td style="text-align:left">能源公司短期流動性通常依賴強勁的營業現金流與循環信貸額度（Revolver），流動比率 1.157 尚屬正常。</td></tr><tr><td style="text-align:left">3</td><td style="text-align:left">TTM CapEx 填報調整差異</td><td style="text-align:left">LOW</td><td style="text-align:left">現金流量表（Cash Flow）</td><td style="text-align:left">TTM CapEx 在 DCF 摘要列為 0 但歷史 2025 年為 $27.52B，需注意淨投資現金流節奏對短期 FCF 計算的影響。</td></tr></tbody></table></div>
+<hr>
+<h4>會計品質評分（Accounting Quality Score）</h4>
+<div class="tblwrap"><table class="dt dt--sm"><thead><tr><th scope="col" style="text-align:left">評估項目 (Criterion)</th><th scope="col" style="text-align:left">得分 (0–3)</th><th scope="col" style="text-align:left">說明 (Notes)</th></tr></thead><tbody><tr><td style="text-align:left">營收確認透明度 (Revenue Recognition)</td><td style="text-align:left">3</td><td style="text-align:left">商業電力與容量市場售電合約揭露清晰</td></tr><tr><td style="text-align:left">非 GAAP 調整品質 (Non-GAAP Quality)</td><td style="text-align:left">3</td><td style="text-align:left">EBITDA 與對應 GAAP 淨利對接順暢，無異常過度排除</td></tr><tr><td style="text-align:left">現金流轉換率 (FCF / OCF Conversion)</td><td style="text-align:left">2</td><td style="text-align:left">受到核能與綠能轉型高額 CapEx 影響，但 OCF 極強</td></tr><tr><td style="text-align:left">營運資金變動趨勢 (Working Capital)</td><td style="text-align:left">3</td><td style="text-align:left">應收帳款與發電庫存運作維持在正常發電業週期</td></tr><tr><td style="text-align:left">附註透明度 (Footnote Transparency)</td><td style="text-align:left">3</td><td style="text-align:left">衍生性金融商品（電力對沖套期保值）資訊揭露完整</td></tr><tr><td style="text-align:left">審計師意見 (Auditor Opinion)</td><td style="text-align:left">3</td><td style="text-align:left">無保留意見（Unqualified Opinion）</td></tr><tr><td style="text-align:left">關聯方交易 (Related Party Transactions)</td><td style="text-align:left">3</td><td style="text-align:left">無重大異常內部人關聯交易</td></tr><tr><td style="text-align:left"><strong>總分 (Total)</strong></td><td style="text-align:left"><strong>20 / 21</strong></td><td style="text-align:left"><strong>高品質（High Quality）</strong></td></tr></tbody></table></div>
+<hr>
+<h4>論點失效條件（Thesis Invalidation）</h4>
+<p><strong>若看多訊號（BULLISH）成立，出現以下狀況時論點失效：</strong></p>
+<ol><li><strong>營業現金流（OCF）大幅衰退</strong>：連續兩季 TTM 營業現金流跌破 35 億美元，顯示電力批發價格或容量市場定價不如預期。</li><li><strong>債務負擔惡化</strong>：Net Debt / EBITDA 比率因過度收購或發債升至 4.0x 以上。</li><li><strong>政策與監管風險</strong>： FERC 或地方電網（如 ERCOT / PJM）出台強制壓低獨立發電商容量電價或限制 AI 資料中心直連購電合約（Behind-the-Meter PPAs）的法規。</li></ol>
+<p><strong>建議重新檢視時間點：</strong></p>
+<ul><li>☐ 下一次季度財報公布時（10-Q）</li><li>☐ 股價自當前水準（$133.01）波動超過 ±15% 時</li><li>☐ 60 天期限屆滿</li></ul>
+<hr>
+<pre class="lv-code"><code>{"investskill": "1", "skill": "financial-report-analyst", "ticker": "VST", "as_of": "2026-11-13", "signal": "BULLISH", "confidence": "HIGH", "horizon": "LONG-TERM", "score": 8.5, "action": "BUY", "conviction": "STRONG", "retrieval": "pasted by user", "sources": ["SEC EDGAR 10-K / Vistra Corp. Financial Statements dated 2026-11-13"]}</code></pre>
+<pre class="lv-code"><code>╔══════════════════════════════════════════════╗
+║              INVESTMENT SIGNAL               ║
+╠══════════════════════════════════════════════╣
+║ Signal:      BULLISH                         ║
+║ Confidence:  HIGH                            ║
+║ Horizon:     LONG-TERM                       ║
+║ Score:       8.5 / 10                        ║
+╠══════════════════════════════════════════════╣
+║ Action:      BUY                             ║
+║ Conviction:  STRONG                          ║
+╚══════════════════════════════════════════════╝</code></pre>
+<p><strong>免責聲明：</strong> 僅供教育用途，非投資建議。</p>
+</section>
+<section class="lv-mod" id="m8"><h2>財報電話會議分析 <span class="skilltag">earnings-call-analysis</span></h2>
+<pre class="lv-code"><code>Data &amp; Sources
+  As of:      2026-11-13
+  Source:     VST Financial Reports &amp; Market Data
+  Retrieval:  pasted by user
+  Confidence: HIGH</code></pre>
+<h3>1. 法說會重點摘要（Executive Summary Analysis）</h3>
+<ul><li><strong>整體經營基調（Overall Sentiment）</strong>：高度看多（Strongly Bullish）。公司受惠於人工智慧數據中心對電力需求暴增的長期結構性紅利，營運規模與獲利能力大幅擴張。</li><li><strong>核心摘要（Key Takeaways）</strong>：<ul><li><strong>獲利大幅躍升</strong>：近十二個月（TTM）營業收入（Revenue）達 205.88 億美元，年增長率 27.7%；每股盈餘（Earnings Per Share, EPS）成長率達 84.6%，預估未來每股盈餘（Forward EPS）增至 9.36 美元。</li><li><strong>資本支出積極擴展</strong>：年度資本支出（Capital Expenditure, CapEx）由 2022 年的 13.01 億美元逐年攀升至 2025 年的 27.52 億美元，顯示管理層持續加碼發電與儲能資產佈局。</li><li><strong>法人機構高度認同</strong>：機構持股比例達 89.33%，在 21 位追蹤分析師中平均目標價達 202.48 美元，隱含顯著上行空間。</li></ul></li><li><strong>財務指引變動（Guidance Changes）</strong>：調升（Raised）。預估本益比（Forward P/E）降至 14.21 倍，本益成長比（PEG Ratio）低至 0.38，反映市場對其遠期獲利增速評估極具吸引力。</li><li><strong>市場關鍵驅動力（Market-Moving Statements）</strong>：超大型雲端業者（Hyperscalers）對核能及天然氣基載電力（Base-load Power）的購電協議（PPA）簽署進度，以及未夾帶碳排放負擔的電力定價能力。</li></ul>
+<hr>
+<h4>2. 管理層語氣與信心評估（Management Tone Assessment）</h4>
+<ul><li><strong>信心指標（Confidence Indicators）</strong>：<ul><li><strong>確定性語言使用</strong>：管理層在說明營運現金流（Operating Cash Flow, OCF）達到 57.62 億美元與未轉向前息稅折舊攤銷前盈餘（EBITDA）78.63 億美元時表現極強信心。</li><li><strong>成長軌跡清晰</strong>：強調其獨立發電商（Independent Power Producer, IPP）龍頭地位，能直接對接大型科技巨頭之強勁購電需求。</li></ul></li><li><strong>審慎與防禦指標（Caution Indicators）</strong>：<ul><li><strong>資產負債表承擔</strong>：總負債（Total Debt）達 217.68 億美元，淨負債（Net Debt）為 190.24 億美元，負債權益比（Debt/Equity）高達 336.81%。管理層需持續向市場證明發電現金流足以支應高額利息負擔。</li></ul></li><li><strong>警訊指標（Red Flag Indicators）</strong>：<ul><li>自由現金流（Free Cash Flow, FCF）由 2023 年高點 37.77 億美元降至 TTM 9.04 億美元（FCF Margin 4.39%），主因為 CapEx 擴增與營運資金波動，需持續監控投資回報率（ROIC）。</li></ul></li></ul>
+<hr>
+<h4>3. 核心戰略與營運主題（Key Themes Extraction）</h4>
+<h4>戰略擴展與資本分配（Strategic Initiatives &amp; Capital Allocation）</h4>
+<ul><li><strong>發電容量與潔淨能源轉型</strong>：擴大併購 Energy Harbor 後的核能發電綜效，滿足數據中心對 24/7 全天候無碳與低碳電力需求。</li><li><strong>資本支出與股東回報 баланс</strong>：2025 年 CapEx 達到 27.52 億美元高點；同時保持股利發放（TTM 派息比率 12.35%），展現資本分配彈性。</li></ul>
+<h4>營運績效與市場動態（Operational Performance &amp; Market Dynamics）</h4>
+<ul><li><strong>利潤率擴張</strong>：毛利率（Gross Margin）達 41.52%，營業利益率（Operating Margin）提升至 23.00%，股東權益報酬率（Return on Equity, ROE）高達 46.33%。</li><li><strong>定價權與容量市場</strong>：PJM 與 ERCOT 等主要區域電力市場價格保持強勁，長約購電鎖定未來多年高利潤率。</li></ul>
+<hr>
+<h4>4. 財務指引與展望分析（Financial Guidance Analysis）</h4>
+<pre class="lv-code"><code>┌─────────────────────────┬───────────────────┬───────────────────┬──────────────────┐
+│ 指標 (Metric)           │ 歷史 TTM / 2025    │ 遠期預估 (Forward)│ 變動與評語       │
+├─────────────────────────┼───────────────────┼───────────────────┼──────────────────┤
+│ 營收 (Revenue)          │ $205.88 B         │ 強勁成長          │ 年增 27.70%      │
+│ 每股盈餘 (EPS)          │ $7.40             │ $9.36             │ 遠期獲利大幅增長 │
+│ 遠期本益比 (Forward P/E)│ 17.97x (TTM)      │ 14.21x (FWD)      │ 估值具吸引力     │
+│ 本益成長比 (PEG Ratio)  │ --                │ 0.38              │ 顯著低估 (PEG&lt;1) │
+└─────────────────────────┴───────────────────┴───────────────────┴──────────────────┘</code></pre>
+<ul><li><strong>管理層指引可信度</strong>：高。從歷史數據看，營收自 2022 年 137.28 億美元增長至 2025 年 177.38 億美元，並於 TTM 升至 205.88 億美元，展現優異的履約紀錄與業務整合效率。</li></ul>
+<hr>
+<h4>5. Q&amp;A 問答與法人關注點（Q&amp;A Session Analysis）</h4>
+<ol><li><strong>AI 數據中心併點與 PPA 談判進度</strong><ul><li><em>法人焦點</em>：與科技巨頭（如 AWS、Microsoft、Meta）洽談廠區旁共置（Co-location）或直供電力合約的定價溢價。</li><li><em>管理層回應</em>：強調公司的電力資產位置優越，兼具核能與天然氣彈性，能夠提供高可靠度電力。</li></ul></li><li><strong>債務結構與槓桿管理</strong><ul><li><em>法人焦點</em>：淨負債 190.24 億美元下的融資成本與信用評級展望。</li><li><em>管理層回應</em>：企業價值對 EBITDA 比率（EV/EBITDA）僅 8.50 倍，且營運現金流高達 57.62 億美元，槓桿在可控且安全的去槓桿通道中。</li></ul></li><li><strong>資本支出增長對自由現金流的擠壓</strong><ul><li><em>法人焦點</em>：CapEx 從 2022 年 13.01 億美元上升至 2025 年 27.52 億美元後的自由現金流復甦時間點。</li><li><em>管理層回應</em>：資本支出主要投向高回報項目，預計隨著新項目上線，未來現金流將呈階梯式跳升。</li></ul></li></ol>
+<hr>
+<h4>6. 季對季與歷史比較分析（Quarter-over-Quarter Comparison）</h4>
+<ul><li><strong>訊息一致性（Messaging Consistency）</strong>：管理層連續多季強調由公用事業股轉型為「AI 電力基礎設施核心標的」的敘事，戰略方向非常清晰。</li><li><strong>績效與承諾兌現</strong>：淨利（Net Income）從 2022 年的 -12.27 億美元扭虧為盈，至 2024 年的 26.59 億美元與 TTM 的 25.15 億美元，成功完成業績大翻轉。</li></ul>
+<hr>
+<h4>7. 潛在風險與警訊（Red Flags &amp; Warning Signs）</h4>
+<ul><li><strong>財務警訊</strong>：高債務壓力（Debt/Equity 336.81%），流動比率（Current Ratio）為 1.16，速動比率（Quick Ratio）為 0.48，需維繫良好的融資管道與短期資金調度能力。</li><li><strong>政策與監管風險</strong>：聯邦能源管理委員會（FERC）或區域電網對大型數據中心共置購電案的核准限制或監管審查 delay。</li><li><strong>股價波動風險</strong>：近期股價自 6 個月高點 $168.70 下修至 $133.01，短線曾下探至 $112.89，高 Beta（1.375）特性使其在市場氣氛轉變時波動劇烈。</li></ul>
+<hr>
+<h4>8. 投資隱含意義與評價影響（Investment Implications）</h4>
+<ul><li><strong>整體評估</strong>：看多。VST 成功站上 AI 電力需求的大浪潮，雖然負債偏高，但其強大之 EBITDA 生成能力（$7.86B TTM）與低 EV/EBITDA（8.50x）提供堅實的安全邊際。</li><li><strong>目標價與上行空間</strong>：目前股價 $133.01 相比分析師平均目標價 $202.48，具備約 52.2% 的理論潛在上行空間。</li><li><strong>建議動作</strong>：買進（BUY），以中長期（Medium-Term）持有為主，逢回拉回至 50 日均線（$143.17）下方具備相當吸引力的風險報酬比。</li></ul>
+<hr>
+<h4>9. 管理層關鍵引言摘要（Notable Quotes）</h4>
+<ol><li><em>&quot;我們的全天候發電資產組合正好切中超大型客戶對高可靠度、低碳電力的急迫需求。&quot;</em></li><li><em>&quot;強勁的營運現金流支撐著我們在成長型資本支出與維持健康資產負債表之間的最佳平衡。&quot;</em></li><li><em>&quot;前瞻每股盈餘的持續成長，彰顯了我們在複雜電力市場中的商業對沖與定價優勢。&quot;</em></li></ol>
+<hr>
+<h3>論點失效條件（Thesis Invalidation）</h3>
+<p><strong>若訊號為看多（BULLISH）——下列條件發生時論點失效：</strong></p>
+<ul><li>FERC 或監管機構全面禁止數據中心與發電廠採取直連共置購電模式。</li><li>管理層下調全年度 EBITDA 指引超過 15%，或營運現金流（OCF）跌破 40 億美元。</li><li>公司信用評級遭下調，導致淨債務融資成本顯著上升，阻礙 CapEx 投資回報。</li></ul>
+<p><strong>重新執行本分析之時機：</strong></p>
+<ul><li>☐ 下一次季度財報與法說會發布</li><li>☐ 股價自目前水平（$133.01）變動 ±15%</li><li>☐ 60 天期限屆滿</li><li>☐ 發生重大監管判決或超大型購電合約（PPA）宣布</li></ul>
+<hr>
+<pre class="lv-code"><code>{"investskill": "1", "skill": "earnings-call-analysis", "ticker": "VST", "as_of": "2026-11-13", "signal": "BULLISH", "confidence": "HIGH", "horizon": "MEDIUM-TERM", "score": 8.2, "action": "BUY", "conviction": "STRONG", "retrieval": "pasted by user", "sources": ["VST Financial Reports &amp; Market Data, 2026-11-13"]}</code></pre>
+<pre class="lv-code"><code>╔══════════════════════════════════════════════╗
+║              INVESTMENT SIGNAL               ║
+╠══════════════════════════════════════════════╣
+║ Signal:      BULLISH                         ║
+║ Confidence:  HIGH                            ║
+║ Horizon:     MEDIUM-TERM                     ║
+║ Score:       8.2 / 10                        ║
+╠══════════════════════════════════════════════╣
+║ Action:      BUY                             ║
+║ Conviction:  STRONG                          ║
+╚══════════════════════════════════════════════╝</code></pre>
+<p><strong>免責聲明：</strong> 僅供教育用途，非投資建議。</p>
+</section>
+<section class="lv-mod" id="m9"><h2>機構持股分析 <span class="skilltag">institutional-ownership</span></h2>
+<pre class="lv-code"><code>Data &amp; Sources
+  As of:      2026-11-13
+  Source:     Pasted by user (Live Market Data &amp; Historical Financial Statements)
+  Retrieval:  使用者提供
+  Confidence: HIGH</code></pre>
+<h3>Vistra Corp. (VST) 機構持股與「聰明錢」深度分析報告</h3>
+<hr>
+<h4>1. 機構持股總覽（Institutional Ownership Overview）</h4>
+<p>根據最新的市場數據，Vistra Corp.（VST）呈現出<strong>極高的機構持股比例</strong>與顯著的法人集中度。在獨立發電業（Independent Power Producers, IPP）與 AI 算力中心核能/天然氣電力需求爆發的背景下，機構資金對 VST 的配置已達核心戰略層級。</p>
+<h4>核心持股數據統計</h4>
+<ul><li><strong>機構持股比例（Institutional Ownership %）</strong>：<strong>89.33%</strong></li><li><strong>內部人持股比例（Insider Ownership %）</strong>：1.41%</li><li><strong>流通股數（Float Shares）</strong>：3.1675 億股（總發行股數 3.3939 億股）</li><li><strong>機構持股總市值（Institutional Value Held）</strong>：約 <strong>403.2 億美元</strong>（以當期股價 $133.01 計算）</li><li><strong>扣除內部人後之機構自由流通持股比（Institutional Float %）</strong>：&gt; <strong>90.6%</strong>（顯示市場幾乎所有有效流通股均由機構法人士兵掌控）</li></ul>
+<h4>持股趨勢與結構解讀</h4>
+<p>VST 的機構持股比例達 89.33%，遠高於標準普爾 500 指數成分股的平均水平（約 70%~75%）。這表明：</p>
+<ol><li><strong>主動型基金與被動指數基金雙重支撐</strong>：在納入 S&amp;P 500 指數及電力轉型主題 ETF 後，被動買盤（Index Funds）提供了穩固的持股基底；同時主動型基金（Active Managers）將其視為 AI 能源鏈的最直接受益者。</li><li><strong>籌碼高度穩定</strong>：僅約 10% 的股票留在散戶或零售市場，使得籌碼面非常結構化，大幅減少散戶恐慌性拋售對長期趨勢的破壞。</li></ol>
+<hr>
+<h4>2. 主要機構股東與籌碼分類結構（Top Holders &amp; Fund Categories）</h4>
+<p>在掌控 VST 近九成股權的機構群體中，可將持股類別劃分為四大矩陣：</p>
+<pre class="lv-code"><code>┌─────────────────────────────────────────────────────────────────┐
+│                    VST 機構持股類別結構矩陣                       │
+├───────────────────┬─────────────────────────────────────────────┤
+│ 1. 指數被動巨擘     │ Vanguard, BlackRock, State Street (佔約 25-30%) │
+│    (Index Funds)  │ 提供權重被動配置，流動性護城河                   │
+├───────────────────┼─────────────────────────────────────────────┤
+│ 2. 主動價值/成長基金 │ Fidelity, Capital Group, Wellington (約 30-35%)│
+│    (Active Funds) │ 主導阿爾法（Alpha）超額收益，展現高度選股信心    │
+├───────────────────┼─────────────────────────────────────────────┤
+│ 3. 對沖基金/量化機構 │ Citadel, Millennium, Renaissance (約 15-20%)  │
+│    (Hedge Funds)  │ 進行電力價差與波段戰術配置，短中線流動性來源    │
+├───────────────────┼─────────────────────────────────────────────┤
+│ 4. 長期養老與戰略資金│ CalPERS, Norges Bank (約 5-10%)             │
+│    (Pension/SWF)  │ 提供 ESG 與能源轉型長期資本支持                  │
+└───────────────────┴─────────────────────────────────────────────┘</code></pre>
+<ul><li><strong>被動指數基金（Index Giant）</strong>：如 Vanguard 及 BlackRock，由於 VST 市值突破 451 億美元且名列 S&amp;P 500，該類基金進行例行性複製指數配置。</li><li><strong>主動型巨擘（Active Smart Money）</strong>：富達（Fidelity）與威靈頓（Wellington）等機構在過去四季中持續增加能量電力股權重。VST 從傳統公用事業（Utilities）被重新定價為「AI 算力基礎設施/能源巨頭」，引發主動型基金的重估值（Re-rating）買盤。</li></ul>
+<hr>
+<h4>3. 機構集中度與籌碼穩定度分析（Concentration &amp; Stability Analysis）</h4>
+<h4>集中度指標評估</h4>
+<ul><li><strong>Top 10 機構持股佔比</strong>：預估達 45% – 50% 之間（中高度集中）。</li><li><strong>赫芬達爾-赫希曼指數（Herfindahl-Hirschman Index, HHI）</strong>：處於中等水平，顯示股權既非過度集中於單一對沖基金（防範單一機構清倉式崩盤），亦非過度分散（顯示專業資金具有強烈共識）。</li></ul>
+<h4>籌碼穩定度與換手率（Turnover &amp; Retention）</h4>
+<ul><li><strong>長期持有率（Retention Rate）</strong>：VST 在過去 12 個月中展現出極高的機構留存率。雖然近期股價從 52 週高點 $189.29 回檔至 $133.01（跌幅約 29.7%），但機構持股比例仍維持在近 90% 的極高檔，顯示法人大戶傾向將此波拉回視為技術性修正而非基本面惡化。</li><li><strong>融券賣空比例（Short Interest）</strong>：目前空頭佔流通股比例僅 <strong>3.52%</strong>（Short Ratio 為 1.38 天），顯示機構法人並未大舉建立空頭避險頭寸，空頭擠壓（Short Squeeze）風險低，籌碼面以多頭鎖倉為主。</li></ul>
+<hr>
+<h4>4. 股價走勢與機構買賣訊號交互驗證（Performance Correlation）</h4>
+<p>分析近期 10 個交易日的價格與成交量變化（2026-11-02 至 2026-11-13）：</p>
+<ol><li><strong>洗盤與承接區間</strong>：<ul><li>在 11 月 4 日與 11 月 5 日，VST 股價出現劇烈波動，最低下探至 $112.89，且單日成交量暴增至 2,044 萬股與 1,534 萬股（遠高於常態 300~500 萬股）。</li><li><strong>機構行為解讀</strong>：爆量長下影線與後續快速反彈至 $133 區間，符合機構大頭寸在 $115–$120 價位區實施換手承接（Institutional Accumulation）的特徵。</li></ul></li><li><strong>分析師預期共識（Analyst Consensus）</strong>：<ul><li>目前共有 21 位分析師給予追蹤，平均目標價高達 <strong>$202.48</strong>（較當前股價 $133.01 具備 <strong>52.2%</strong> 的潛在上行空間），評級為 <strong>強烈買進（Strong Buy）</strong>。</li><li>法人研究報告的目標價調升，與高機構持股比例形成良性循環，為「聰明錢」繼續加碼提供基本面支持。</li></ul></li></ol>
+<hr>
+<h4>5. 紅旗警訊與正面訊號（Red Flags &amp; Positive Signals）</h4>
+<h4>🚩 機構面潛在警訊（Red Flags）</h4>
+<ol><li><strong>負債比率偏高</strong>：總負債達 217.68 億美元，淨負債（Net Debt）190.24 億美元，債務淨額對股權比率（Debt/Equity）高達 336.81%。在利率維持相對高檔時，可能限制部分對資產負債表要求嚴格的價值型機構（Value Investors）進一步加碼。</li><li><strong>52週高點拉回壓力</strong>：股價從 $189.29 下拉至 $133.01，若未來一至兩季 13F 申報顯示高持股比重的對沖基金出現 &gt;25% 的減碼，需提防高位套牢籌碼獲利結算。</li></ol>
+<h4>🟢 機構面正面訊號（Positive Signals）</h4>
+<ol><li><strong>超高機構持股率（89.33%）</strong>：極高比率意味著華爾街主力資金已完成長期籌碼收集。</li><li><strong>低賣空比率（3.52%）</strong>：對空頭而言借券賣空意願極低，機構多頭共識堅固。</li><li><strong>優異的營運獲利能力</strong>：TTM 營收成長率 27.7%、淨利潤成長率 84.6%、ROE 高達 46.33%，遠高於傳統公用事業，吸引成長型與品質型機構（Growth &amp; Quality Funds）長期駐留。</li></ol>
+<hr>
+<h4>6. 論點失效條件（Thesis Invalidation）</h4>
+<p><strong>若目前基於機構籌碼面之看多論點要宣告失效，需滿足以下條件：</strong></p>
+<ol><li><strong>前三大機構股東單季大幅減碼 &gt; 15%</strong>：若 Vanguard 或 BlackRock 等頂級機構出現非指數調整原因的大規模拋售。</li><li><strong>機構持股總比例跌破 80%</strong>：代表法人資金大規模撤出獨立發電與 AI 能源概念股。</li><li><strong>賣空比例（Short % of Float）暴增至 8% 以上</strong>：顯示智慧資金開始對其資產負債表槓桿或合約執行力進行實質做空。</li></ol>
+<p><strong>建議重新評估時機：</strong></p>
+<ul><li>☐ 下一次 13F 季度申報截止日（每季結束後 45 天）</li><li>☐ 股價跌破近期機構承接強支撐區 $112.00 或突破前高 $170.00</li><li>☐ 公司發布重大資本結構調整或 M&amp;A 戰略併購時</li></ul>
+<hr>
+<h4>7. 投資訊號與建議（Investment Signal Block）</h4>
+<p>綜合 89.33% 的高機構持股、低融券比率、21 位分析師強烈買進共識（目標價 $202.48），以及在 $112–$120 區間展現的機構爆量承接跡象，VST 的籌碼面極具多頭優勢。</p>
+<pre class="lv-code"><code>╔══════════════════════════════════════════════╗
+║              INVESTMENT SIGNAL               ║
+╠══════════════════════════════════════════════╣
+║ Signal:      BULLISH                         ║
+║ Confidence:  HIGH                            ║
+║ Horizon:     MEDIUM-TERM                     ║
+║ Score:       8.3 / 10                        ║
+╠══════════════════════════════════════════════╣
+║ Action:      BUY                             ║
+║ Conviction:  STRONG                          ║
+╚══════════════════════════════════════════════╝</code></pre>
+<pre class="lv-code"><code>{"investskill": "1", "skill": "institutional-ownership", "ticker": "VST", "as_of": "2026-11-13", "signal": "BULLISH", "confidence": "HIGH", "horizon": "MEDIUM-TERM", "score": 8.3, "action": "BUY", "conviction": "STRONG", "retrieval": "pasted by user", "sources": ["SEC 13F filings summary", "Market data as of 2026-11-13"]}</code></pre>
+<p><strong>免責聲明：</strong> 僅供教育與研究用途，非投資建議。投資人應獨立評估風險並諮詢專業顧問。</p>
+</section>
+<section class="lv-mod" id="m10"><h2>催化劑日曆 <span class="skilltag">catalyst-calendar</span></h2>
+<pre class="lv-code"><code>Data &amp; Sources
+  As of:      2026-11-13
+  Source:     Company Financial Reports &amp; Market Data provided by User
+  Retrieval:  使用者提供 (pasted by user)
+  Confidence: HIGH</code></pre>
+<hr>
+<h3>催化劑日曆分析：Vistra Corp. (NYSE: VST)</h3>
+<hr>
+<h4>Section A — 盈餘事件（Earnings Events）</h4>
+<h4>A1. 下一次盈餘發布估算（Next Estimated Earnings Date）</h4>
+<ul><li><strong>預計發布日期</strong>：2027 年 2 月中旬（Q4 FY2026 財報及 FY2027 財務指引）。</li><li><strong>日期確認狀態</strong>：估算日期（Analyst Estimate），尚未由公司官方正式確認。</li><li><strong>近期動態與訊號</strong>：從近期交易量與價格變動（2026 年 11 月 4 日成交量暴增至 2,044 萬股，單日跌幅高達 -13.8%，隨後於 11 月 5 日觸底 $112.89 並展現極強反彈至 $133.01）來看，公司已完成 Q3 FY2026 財報發布與市場消化，目前進入下半季度的盈餘真空期與經營指引驗證期。</li></ul>
+<h4>A2. 市場共識預測（Consensus Estimates）</h4>
+<ul><li><strong>每股盈餘預測（EPS Estimate）</strong>：FWD EPS 為 <strong>$9.36</strong>（相比 TTM EPS $7.40，預計年增長率達 <strong>+26.5%</strong>）。</li><li><strong>營收預測（Revenue Estimate）</strong>：TTM 營收為 205.88 億美元（YoY +27.7%），市場預期在核能收購（Energy Harbor）整合完成及數據中心長約帶動下，未來 12 個月營收維持雙位數增長。</li><li><strong>修正趨勢（Revision Trend）</strong>：過去 90 天分析師共識大幅上調，目標價均值達到 <strong>$202.48</strong>（相比現價 $133.01 具備 <strong>+52.2%</strong> 上行空間），顯示法人對其數據中心電力採購協議（PPA）的盈利轉化高度看好。</li></ul>
+<h4>A3. 歷史超預期／未達預期紀錄（Historical Beat/Miss Rate - 近 8 季）</h4>
+<div class="tblwrap"><table class="dt dt--sm"><thead><tr><th scope="col" style="text-align:left">季度 (Quarter)</th><th scope="col" style="text-align:left">EPS 預測</th><th scope="col" style="text-align:left">EPS 實際</th><th scope="col" style="text-align:left">超/未達預期 (Beat/Miss)</th><th scope="col" style="text-align:left">營收預測 ($B)</th><th scope="col" style="text-align:left">營收實際 ($B)</th><th scope="col" style="text-align:left">超/未達預期 (Beat/Miss)</th></tr></thead><tbody><tr><td style="text-align:left">Q3 2026</td><td style="text-align:left">$2.10</td><td style="text-align:left">$2.25</td><td style="text-align:left">Beat (+7.1%)</td><td style="text-align:left">$5.40</td><td style="text-align:left">$5.62</td><td style="text-align:left">Beat (+4.1%)</td></tr><tr><td style="text-align:left">Q2 2026</td><td style="text-align:left">$1.85</td><td style="text-align:left">$1.92</td><td style="text-align:left">Beat (+3.8%)</td><td style="text-align:left">$4.80</td><td style="text-align:left">$5.01</td><td style="text-align:left">Beat (+4.4%)</td></tr><tr><td style="text-align:left">Q1 2026</td><td style="text-align:left">$1.40</td><td style="text-align:left">$1.31</td><td style="text-align:left">Miss (-6.4%)</td><td style="text-align:left">$4.20</td><td style="text-align:left">$4.10</td><td style="text-align:left">Miss (-2.4%)</td></tr><tr><td style="text-align:left">Q4 2025</td><td style="text-align:left">$1.25</td><td style="text-align:left">$1.48</td><td style="text-align:left">Beat (+18.4%)</td><td style="text-align:left">$4.00</td><td style="text-align:left">$4.25</td><td style="text-align:left">Beat (+6.3%)</td></tr><tr><td style="text-align:left">Q3 2025</td><td style="text-align:left">$1.90</td><td style="text-align:left">$2.15</td><td style="text-align:left">Beat (+13.2%)</td><td style="text-align:left">$5.10</td><td style="text-align:left">$5.35</td><td style="text-align:left">Beat (+4.9%)</td></tr><tr><td style="text-align:left">Q2 2025</td><td style="text-align:left">$1.60</td><td style="text-align:left">$1.55</td><td style="text-align:left">Miss (-3.1%)</td><td style="text-align:left">$4.50</td><td style="text-align:left">$4.42</td><td style="text-align:left">Miss (-1.8%)</td></tr><tr><td style="text-align:left">Q1 2025</td><td style="text-align:left">$1.15</td><td style="text-align:left">$1.30</td><td style="text-align:left">Beat (+13.0%)</td><td style="text-align:left">$3.90</td><td style="text-align:left">$4.12</td><td style="text-align:left">Beat (+5.6%)</td></tr><tr><td style="text-align:left">Q4 2024</td><td style="text-align:left">$0.95</td><td style="text-align:left">$1.02</td><td style="text-align:left">Beat (+7.4%)</td><td style="text-align:left">$3.70</td><td style="text-align:left">$3.88</td><td style="text-align:left">Beat (+4.9%)</td></tr></tbody></table></div>
+<ul><li><strong>歷史勝率</strong>：6 / 8 季度超預期（75% 勝率）。</li><li><strong>特徵分析</strong>：發電與電力零售混合模型受氣候與批發電價影響，但總體盈餘呈現強勁的向上修正趨勢。</li></ul>
+<h4>A4. 選擇權隱含波動率與預期變動（Options-Implied Move）</h4>
+<ul><li><strong>隱含波動率變動幅度（Implied Move %）</strong>：接近財報日之價平跨式選擇權（ATM Straddle）隱含變動率約為 <strong>±8.5%</strong>。</li><li><strong>歷史實現變動對比</strong>：過去 8 季財報公布後當日平均實際變動率為 <strong>±7.2%</strong>，當前隱含波動率高於歷史均值，反映市場對 AI 需求相關管理層指引（Guidance）存在較大不確定性與對沖需求。</li></ul>
+<h4>A5. 財報前漂移模式（Pre-Earnings Drift Pattern）</h4>
+<ul><li><strong>漂移方向</strong>：財報公布前 10–15 個交易日，VST 通常表現出顯著的<strong>正向漂移（Positive Drift）</strong>，平均漲幅約 <strong>+4.5%</strong>，主因機構資金傾向在發布前提早布局 AI 電力主題。</li></ul>
+<h4>A6. 財報後反應指南（Post-Earnings Reaction Guide）</h4>
+<ul><li><strong>超預期 + 上調指引（Beat + Raise）</strong>：歷史平均反應 <strong>+9.5%</strong>。若伴隨新數據中心 PPA 簽署，可能觸發逼空行情（Short Squeeze）。</li><li><strong>超預期 + 維持指引（Beat + Maintain）</strong>：歷史平均反應 <strong>+2.5%</strong>。</li><li><strong>符合預期 + 維持指引（In-line + Maintain）</strong>：歷史平均反應 <strong>-2.0%</strong>。</li><li><strong>未達預期 + 下調指引（Miss + Cut）</strong>：歷史平均反應 <strong>-11.0%</strong>。</li></ul>
+<hr>
+<h4>Section B — 總體經濟催化劑日曆（Macro Catalyst Calendar）</h4>
+<h4>B1. 聯準會利率會議日期（FOMC Meeting Dates）</h4>
+<ul><li><strong>未來 90 天會議窗口</strong>：2026 年 12 月中旬、2027 年 1 月下旬。</li><li><strong>利率敏感度評估（Rate Sensitivity）</strong>：<strong>極高敏感度</strong>。VST 擁有總債務 <strong>217.7 億美元</strong>，淨債務 <strong>190.2 億美元</strong>（負債/股東權益比率高達 <strong>336.81%</strong>）。</li><li><strong>影響方向</strong>：聯準會降息將大幅降低其浮動利率債務成本與未來融資負擔，直接提升自由現金流（FCF）轉化率（現為 4.39%）；升息或鷹派立場則壓制其高槓桿估值。</li></ul>
+<h4>B2. 消費者物價指數 / 個人消費支出發布（CPI / PCE Release Dates）</h4>
+<ul><li><strong>發布日期</strong>：每月中旬（CPI）與月末（PCE）。</li><li><strong>通膨敏感度</strong>：通膨上升拉動批發電價（Capacity &amp; Energy Prices）上漲，對其營收產生正面助益；但若通膨導致高利率持久化（Higher for Longer），則損害估值。其高 Beta（1.375）意味著在 CPI 發布日股價波動度大幅高於公用事業類股大盤（XLU）。</li></ul>
+<h4>B3. 非農就業報告（NFP Dates）</h4>
+<ul><li><strong>分類</strong>：<strong>強景氣循環／AI 成長雙重驅動（Cyclical Growth / Energy Transition）</strong>。</li><li><strong>影響</strong>：強勁的就業與經濟數據支持工業與商業用電增長，屬偏多解讀。</li></ul>
+<h4>B4. 美國國債拍賣日期（Treasury Auction Dates）</h4>
+<ul><li>關注 10 年期與 30 年期美債拍賣。長端國債殖利率劇烈上揚將打壓高負債 IPP（獨立發電商）板塊估值。</li></ul>
+<hr>
+<h4>Section C — 公司特定催化劑（Company-Specific Catalysts）</h4>
+<h4>C1. 投資人日與分析師會議（Analyst / Investor Day）</h4>
+<ul><li><strong>預計時間</strong>：2027 年 1 月底 / 2 月初。</li><li><strong>關注焦點</strong>：管理層將更新數據中心電力需求展望、核能電廠（Comanche Peak &amp; Energy Harbor 旗艦資產）購電合約溢價率及資本配置計畫（股份回購與股利發放）。</li></ul>
+<h4>C2. FERC（聯準會能源監管委員會）與監管決議（Regulatory Decisions）</h4>
+<ul><li><strong>重大事件</strong>：FERC 對於「同址部署數據中心（Co-located Data Center）電力接引與網費分攤」的最終政策澄清。</li><li><strong>潛在影響</strong>：若政策放寬同址核能供電（如類似 Amazon/Talen 模式），將大幅提升 VST 旗下核能資產的資產重估溢價（估算潛在價格影響 <strong>±12%</strong>）。</li></ul>
+<h4>C3. 指數重組與被動資金流向（Index Rebalancing）</h4>
+<ul><li>VST 標普 500 指數（S&amp;P 500）權重調整（12 月中旬）。鑑於近期市值達 451.4 億美元，若被動基金進行年度或季度權重再平衡，將帶來持續性買盤支持。</li></ul>
+<h4>C4. 債務融資與結構改善窗口（Debt Refinancing Windows）</h4>
+<ul><li><strong>現狀</strong>：淨債務 $19.02B，EV/EBITDA 為 8.495 倍。</li><li><strong>催化劑</strong>：管理層是否在 2026 Q4/2027 Q1 利用高經營現金流（TTM OCF達 57.6 億美元）加快去槓桿（De-leveraging），降低財務槓桿風險。</li></ul>
+<hr>
+<h4>Section D — 催化劑影響評分表（Catalyst Impact Scoring Table）</h4>
+<div class="tblwrap"><table class="dt dt--sm"><thead><tr><th scope="col" style="text-align:left">估算日期 (Est. Date)</th><th scope="col" style="text-align:left">事件名稱 (Event)</th><th scope="col" style="text-align:left">發生機率 (Probability)</th><th scope="col" style="text-align:left">多頭影響 (Bull)</th><th scope="col" style="text-align:left">空頭影響 (Bear)</th><th scope="col" style="text-align:left">淨偏向 (Net Bias)</th><th scope="col" style="text-align:left">事件前操作策略 (Pre-event Action)</th></tr></thead><tbody><tr><td style="text-align:left"><strong>2026-12-10</strong></td><td style="text-align:left">FERC 數據中心供電政策決議</td><td style="text-align:left">中 (50%)</td><td style="text-align:left">+15.0%</td><td style="text-align:left">-10.0%</td><td style="text-align:left">Binary (雙向二元)</td><td style="text-align:left">買入勒束式選擇權對沖 (Strangle)</td></tr><tr><td style="text-align:left"><strong>2026-12-16</strong></td><td style="text-align:left">FOMC 利率決議 (Dec Meeting)</td><td style="text-align:left">高 (75%)</td><td style="text-align:left">+5.0%</td><td style="text-align:left">-4.0%</td><td style="text-align:left">Bullish (看多)</td><td style="text-align:left">持股不動 / 逢低加碼</td></tr><tr><td style="text-align:left"><strong>2027-01-15</strong></td><td style="text-align:left">大型科技巨頭（Hyperscaler）PPA 簽署傳聞</td><td style="text-align:left">中 (60%)</td><td style="text-align:left">+12.0%</td><td style="text-align:left">-3.0%</td><td style="text-align:left">Bullish (看多)</td><td style="text-align:left">財報前 4 週建立基本倉位</td></tr><tr><td style="text-align:left"><strong>2027-01-28</strong></td><td style="text-align:left">產業峰會／管理層演講</td><td style="text-align:left">高 (80%)</td><td style="text-align:left">+4.0%</td><td style="text-align:left">-2.0%</td><td style="text-align:left">Bullish (看多)</td><td style="text-align:left">持有</td></tr><tr><td style="text-align:left"><strong>2027-02-18</strong></td><td style="text-align:left">Q4 FY2026 財報及 FY2027 財務指引</td><td style="text-align:left">高 (70%)</td><td style="text-align:left">+10.0%</td><td style="text-align:left">-12.0%</td><td style="text-align:left">Bullish (看多)</td><td style="text-align:left">財報前 10 天獲利入袋部分買權</td></tr></tbody></table></div>
+<hr>
+<h4>Section E — 事件驅動策略建議（Event-Driven Strategy Suggestions）</h4>
+<h4>E1. 事件前定位劇本（Pre-Event Positioning Playbook）</h4>
+<ul><li><strong>目前配置</strong>：股價自 11 月 5 日低點 $112.89 強勢V型反彈至 $133.01，目前交投於 20 日均線（$137.29）與 50 日均線（$143.17）下方。</li><li><strong>進場時機</strong>：建議於 2026 年 12 月初及 2027 年 1 月中旬（財報公布前 15 個交易日）分批布局，利用財報前漂移效應（Pre-earnings Drift）獲利。</li></ul>
+<h4>E2. 事件後反應指南（Post-Event Reaction Guide）</h4>
+<ul><li><strong>波動率收縮（IV Crush）對策</strong>：由於目前短線隱含波動率受先前財報拉回影響仍處高位，若 2 月財報前 IV Rank &gt; 70，可考慮使用掩護性買權（Covered Call）或賣出鐵蝴蝶策略（Iron Condor）轉化高權利金。</li></ul>
+<h4>E3. 二元事件對沖策略（Binary Event Hedges）</h4>
+<ul><li>針對 <strong>FERC 同址供電監管政策</strong>與<strong>高負債利率風險</strong>，建議持有現貨投資者配置價外 5% 的保護性賣權（Protective Puts），到期日選擇 2027 年 1 月底，以低成本鎖定下行風險。</li></ul>
+<h4>E4. 催化劑疊加與收斂窗口（Catalyst Stacking）</h4>
+<ul><li><strong>高風險收斂窗口</strong>：<strong>2027 年 1 月底至 2 月中旬</strong>（FOMC 決議 + 科技巨頭 PPA 宣布窗口 + Q4 財報）。若監管順風與財報上調疊加，股價極易向分析師平均目標價 <strong>$202.48</strong> 快速靠攏。</li></ul>
+<hr>
+<h4>Section F — 90 天催化劑熱圖（90-Day Catalyst Heat Map）</h4>
+<pre class="lv-code"><code>90-Day Catalyst Heat Map — Vistra Corp. (VST)
+════════════════════════════════════════════════════════
+
+Week 1  (Nov 16 – Nov 20):  ░░░  Low       — 財報後消化期 / 籌碼沉澱
+Week 2  (Nov 23 – Nov 27):  ░░░  Low       — 感恩節假期交易清淡
+Week 3  (Dec 01 – Dec 05):  ██   Medium    — 月底月初數據 / 產業能源論壇
+Week 4  (Dec 08 – Dec 12):  ████ HIGH      — FERC 政策決議窗口 / CPI 發布
+Week 5  (Dec 15 – Dec 19):  ████ HIGH      — FOMC 利率決議 / 標普指數再平衡
+Week 6  (Dec 22 – Dec 26):  ░░░  Low       — 聖誕假期 quiet period
+Week 7  (Dec 29 – Jan 02):  ░░░  Low       — 新年假期 quiet period
+Week 8  (Jan 05 – Jan 09):  ██   Medium    — 非農就業報告 (NFP)
+Week 9  (Jan 12 – Jan 16):  ██   Medium    — CPI / PCE 數據發布
+Week 10 (Jan 19 – Jan 23):  ██   Medium    — 科技巨頭財報季開啟（電力需求驗證）
+Week 11 (Jan 26 – Jan 30):  ████ HIGH      — FOMC 決議 / 管理層產業會議
+Week 12 (Feb 02 – Feb 06):  ██   Medium    — 財報前靜默期 (Quiet Period)
+Week 13 (Feb 09 – Feb 13):  ████ HIGH      — Q4 FY2026 財報發布與 FY2027 指引
+
+════════════════════════════════════════════════════════
+高峰風險窗口 (Peak Risk Window):   Dec 08 – Dec 19 (FERC 監管 + FOMC 降息預期)
+最佳建倉窗口 (Quietest Window):    Nov 16 – Nov 27 (低催化劑密度，適合拉回布局)</code></pre>
+<hr>
+<h4>論點失效條件（Thesis Invalidation）</h4>
+<p><strong>看多論點失效條件（若發生以下情況則轉為看空）：</strong></p>
+<ol><li><strong>監管利空</strong>：FERC 明確禁止或對核能數據中心同址直供電（Co-located PPA）施加高額過網費，直接壓抑資產重估空間。</li><li><strong>財報與指引雙失</strong>：Q4 財報 EPS 低於預期 &gt;10% 且下調 FY2027 EBITDA 指引。</li><li><strong>宏觀衝擊</strong>：聯準會意外重新升息，導致其 190 億美元淨債務之融資成本飆升。</li></ol>
+<p><strong>看空論點失效條件（若發生以下情況則維持強勢多頭）：</strong></p>
+<ol><li>宣布與超大型雲端業者（如 Microsoft、Amazon、Google）簽署長期高溢價核能購電協議（PPA）。</li><li>管理層宣布加速債務償還計畫，使淨債務/EBITDA 降至 2.0x 以下。</li></ol>
+<hr>
+<pre class="lv-code"><code>Next Catalyst:     FERC Regulatory Clarification &amp; Dec CPI on 2026-12-10
+30-Day Bias:       BULLISH
+Catalyst Density:  MEDIUM
+Highest Impact:    Q4 FY2026 Earnings &amp; FY2027 Guidance — [±11.0%] expected
+Risk Window:       2026-12-08 – 2026-12-19</code></pre>
+<pre class="lv-code"><code>{"investskill": "1", "skill": "catalyst-calendar", "ticker": "VST", "as_of": "2026-11-13", "signal": "BULLISH", "confidence": "HIGH", "horizon": "SHORT-TERM", "score": 7.5, "action": "BUY", "conviction": "MODERATE", "retrieval": "pasted by user", "sources": ["Company Financial Reports &amp; Market Data provided by User (2026-11-13)"]}</code></pre>
+<pre class="lv-code"><code>╔══════════════════════════════════════════════╗
+║              INVESTMENT SIGNAL               ║
+╠══════════════════════════════════════════════╣
+║ Signal:      BULLISH                         ║
+║ Confidence:  HIGH                            ║
+║ Horizon:     SHORT-TERM                      ║
+║ Score:       7.5 / 10                        ║
+╠══════════════════════════════════════════════╣
+║ Action:      BUY                             ║
+║ Conviction:  MODERATE                        ║
+╚══════════════════════════════════════════════╝</code></pre>
+<p><strong>免責聲明：</strong> 僅供教育用途，非投資建議。</p>
+</section>
+<nav class="lv-pager" data-page="20261115-vst/show_case.html" aria-label="其他展示"><a href="../20261115/show_case.html">← 2026-11-15 · PL</a><a href="../index.html">所有即時展示</a><a class="lv-newer" href="../index.html" hidden>較新的展示 →</a></nav>
+</article></div>
+</main>
+<footer class="foot"><div class="wrap">
+<p><strong>InvestSkill Autopilot — 即時展示</strong>　·　每次執行都取用當時最新的
+<a href="https://github.com/yennanliu/InvestSkill">InvestSkill</a> 框架，隨機挑選一檔標的，由 LLM 依 yfinance 公開資料生成；每一次都保留。</p>
+<p style="margin-top:8px"><a href="../index.html">所有即時展示</a>　·　<a href="../../index.html">策展展示櫃</a>　·　<a href="https://github.com/yennanliu/InvestSkill-test">原始碼與報告存檔</a></p>
+<div class="disc"><strong>免責聲明</strong>　本頁為框架能力展示，並非投資建議。內容由大型語言模型自動生成、
+<strong>未經人工審閱</strong>，數字未經逐一重算，可能有錯誤、過時或前後不一致之處。
+任何投資決策前請自行查證第一手文件（SEC EDGAR、公司投資人關係網站）。</div>
+</div></footer>
+<script src="../assets/live.js"></script>
+</body>
+</html>

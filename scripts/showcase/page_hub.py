@@ -307,6 +307,13 @@ SKHY 的動能維度因上市僅 13 個交易日而<strong>無法評分</strong>
 <p class="lede" style="margin-top:var(--s-12);max-width:70ch">下表對照 InvestSkill v1.11.0 的
 <a href="{IS}/tree/main/plugins/us-stock-analysis/skills">27 個 <code>SKILL.md</code></a>
 與本展示櫃的實際使用位置。<code>research-bundle</code> 已被官方標記為棄用，故未使用。</p>
+<div class="call call--warn" style="max-width:86ch"><div class="call__h">v1.11.0 之後新增、本展示櫃未涵蓋的框架</div>
+<p>本展示櫃固定在 2026-07-29 的快照與 InvestSkill v1.11.0。上游之後新增了 12 個技能，這八個頁面都沒有用到：
+<code>compare</code>、<code>credit-check</code>、<code>earnings-preview</code>、<code>etf-analysis</code>、<code>fact-check</code>、
+<code>forensic-accounting</code>、<code>learning-coach</code>、<code>risk-stress-test</code>、<code>tax-lens</code>、
+<code>thesis-tracker</code>、<code>trade-postmortem</code>，以及 v1.15.0 的 <code>basket-report</code>。
+<code>full-report</code> 在這裡是 15 個模組，現行版本的 comprehensive 深度為 25 個。
+想看最新版框架的實際輸出，請見<a href="live/index.html">即時實跑</a>——每個交易日以當時最新的 InvestSkill 隨機跑一檔標的。</p></div>
 <div class="tblwrap"><table class="dt dt--sm">
 <thead><tr><th style="text-align:right;width:44px">#</th><th style="text-align:left">框架</th>
 <th style="text-align:left">出現於</th></tr></thead><tbody>{rows}</tbody></table></div>
@@ -337,12 +344,16 @@ SKHY 的動能維度因上市僅 13 個交易日而<strong>無法評分</strong>
         aria="full-report 的五階段相依階梯：單一共用快照向下餵入五個依序執行的階段，"
              "共 15 個模組，收斂為一個經稽核的結論")
 
+    how_note = (
+        "本展示櫃是一次性撰寫的：資料擷取與數值計算由程式完成，敘事文字在單次工作階段中寫成後固定。"
+        "CI 只負責驗證——每次建置都由快照重新產生頁面並與已提交的 HTML 逐位元組比對。步驟 3 的所有計算由 "
+        "<code>scripts/showcase/derive.py</code> 執行，可獨立重跑驗證。"
+        '每日自動執行、使用最新版框架的報告另見<a href="live/index.html">即時實跑</a>。')
     b.append(f"""<section class="section"><div class="wrap">
 <p class="eyebrow">方法論</p>
 <h2>這些報告是怎麼產生的</h2>
 {V.figure(pipe, "圖 4 ── 報告生成管線（每一步的產出都是下一步的唯一輸入）", None,
-  "四個步驟都在 GitHub Actions 內完成，無人工介入。步驟 3 的所有計算由 "
-  "<code>scripts/showcase/derive.py</code> 執行，可獨立重跑驗證。",
+  how_note,
   extra_cls="dagfig")}
 {V.figure(ladder, "圖 5 ── <code>full-report --depth comprehensive</code> 的五階段相依階梯（數字為 MU 報告的階段子分數）",
   V.simple_table(["階段", "模組數", "子分數", "權重", "加權貢獻"],
