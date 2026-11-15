@@ -353,6 +353,127 @@
       "mean_n": 10
     },
     {
+      "ticker": "META",
+      "name": "Meta Platforms, Inc.",
+      "kind": "stock",
+      "mode": "full-report · depth standard",
+      "date": "2026-11-15",
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "skill_version": "1.15.0",
+      "skill_commit": "35d68f92c0cbde9ac3b55b16b0d42cf5f4eb4ba3",
+      "page": "20261115-meta/show_case.html",
+      "source_md": "output/showcase_live/meta/full_report_2026-11-15_gemini-3.6-flash.md",
+      "modules": [
+        {
+          "slug": "stock-eval",
+          "label": "綜合股票評估",
+          "status": "ok",
+          "signal": "BULLISH",
+          "action": "BUY",
+          "confidence": "HIGH",
+          "horizon": "LONG-TERM",
+          "score": 8.5
+        },
+        {
+          "slug": "stock-valuation",
+          "label": "多方法估值分析",
+          "status": "ok",
+          "signal": "BULLISH",
+          "action": "BUY",
+          "confidence": "HIGH",
+          "horizon": "MEDIUM-TERM",
+          "score": 8.2
+        },
+        {
+          "slug": "insider-trading",
+          "label": "內部人交易分析",
+          "status": "ok",
+          "signal": "NEUTRAL",
+          "action": "HOLD",
+          "confidence": "HIGH",
+          "horizon": "MEDIUM-TERM",
+          "score": 5.2
+        },
+        {
+          "slug": "technical-analysis",
+          "label": "技術分析",
+          "status": "ok",
+          "signal": "BULLISH",
+          "action": "BUY",
+          "confidence": "HIGH",
+          "horizon": "MEDIUM-TERM",
+          "score": 6.8
+        },
+        {
+          "slug": "bear-case",
+          "label": "空頭觀點",
+          "status": "ok",
+          "signal": "BEARISH",
+          "action": "SELL",
+          "confidence": "HIGH",
+          "horizon": "MEDIUM-TERM",
+          "score": 2.6
+        },
+        {
+          "slug": "competitor-analysis",
+          "label": "競爭護城河分析",
+          "status": "ok",
+          "signal": "BULLISH",
+          "action": "BUY",
+          "confidence": "HIGH",
+          "horizon": "LONG-TERM",
+          "score": 8.8
+        },
+        {
+          "slug": "financial-report-analyst",
+          "label": "財報深度分析",
+          "status": "ok",
+          "signal": "BULLISH",
+          "action": "BUY",
+          "confidence": "HIGH",
+          "horizon": "MEDIUM-TERM",
+          "score": 8.5
+        },
+        {
+          "slug": "earnings-call-analysis",
+          "label": "財報電話會議分析",
+          "status": "ok",
+          "signal": "BULLISH",
+          "action": "BUY",
+          "confidence": "HIGH",
+          "horizon": "MEDIUM-TERM",
+          "score": 8.5
+        },
+        {
+          "slug": "institutional-ownership",
+          "label": "機構持股分析",
+          "status": "ok",
+          "signal": "BULLISH",
+          "action": "BUY",
+          "confidence": "HIGH",
+          "horizon": "LONG-TERM",
+          "score": 8.2
+        },
+        {
+          "slug": "catalyst-calendar",
+          "label": "催化劑日曆",
+          "status": "ok",
+          "signal": "BULLISH",
+          "action": "BUY",
+          "confidence": "HIGH",
+          "horizon": "SHORT-TERM",
+          "score": 8.2
+        }
+      ],
+      "signal": "BULLISH",
+      "action": "BUY",
+      "confidence": "HIGH",
+      "score": 7.7,
+      "mean_score": 7.35,
+      "mean_n": 10
+    },
+    {
       "ticker": "MSFT",
       "name": "Microsoft Corporation",
       "kind": "stock",
