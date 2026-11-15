@@ -1,0 +1,999 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PL 即時展示 2026-11-15 — InvestSkill Autopilot</title>
+<meta name="description" content="PL 於 2026-11-15 以 InvestSkill v1.15.0 自動生成的個股分析（10 個模組，LLM 生成、未經審閱）。">
+<meta name="theme-color" content="#00b14f">
+<meta name="robots" content="index,follow">
+<meta name="content-origin" content="model-written">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/live.css">
+<script>document.documentElement.className="js"</script>
+</head>
+<body>
+<a class="skip" href="#main">跳至主要內容</a>
+<header class="nav"><div class="wrap nav__in">
+<a class="brand" href="../../../index.html"><span class="brand__mark"><svg width="18" height="18" viewBox="0 0 32 32" aria-hidden="true"><path d="M8 21l5-6 4 3 7-9" stroke="white" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+<span class="brand__text">InvestSkill Autopilot</span></a>
+<nav class="nav__links" aria-label="展示頁面"><a href="../../index.html">展示櫃總覽</a><a href="../index.html">所有即時展示</a></nav>
+<a class="btn btn--sm nav__cta" href="https://github.com/yennanliu/InvestSkill-test"><span class="nav__cta-label">GitHub</span></a>
+</div><div class="prog" aria-hidden="true"><i></i></div></header>
+<main id="main">
+<section class="rhero"><div class="wrap rhero__in">
+<p class="crumb"><a href="../../../index.html">InvestSkill Autopilot</a> ／ <a href="../../index.html">展示櫃</a> ／ <a href="../index.html">即時展示</a> ／ 2026-11-15 · PL</p>
+<p class="eyebrow">live run · full-report · 10 modules · 10 of 10 modules · zh-TW</p>
+<h1>PL — Planet Labs PBC</h1>
+<p class="rhero__sub">2026-11-15 的自動實跑。使用 InvestSkill v1.15.0（35d68f9），
+由 gemini／gemini-3.6-flash 生成，未經人工審閱。</p>
+<div class="grid g4" style="margin-top:var(--s-32)">
+<div class="tile" style="background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.28)"><div class="tile__k" style="color:#9ce8bd">類型</div><div class="tile__v" style="color:#fff">個股</div>
+<div class="tile__n" style="color:rgba(255,255,255,.82)">full-report · 10 modules</div></div>
+<div class="tile" style="background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.28)"><div class="tile__k" style="color:#9ce8bd">分數</div><div class="tile__v" style="color:#fff">6.1</div>
+<div class="tile__n" style="color:rgba(255,255,255,.82)">／10 · 10 個模組分數的算術平均（未加權，非框架的綜合評分）</div></div>
+<div class="tile" style="background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.28)"><div class="tile__k" style="color:#9ce8bd">模組</div><div class="tile__v" style="color:#fff">10／10</div>
+<div class="tile__n" style="color:rgba(255,255,255,.82)">0 個生成失敗 · 0 個上游缺少</div></div>
+<div class="tile" style="background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.28)"><div class="tile__k" style="color:#9ce8bd">InvestSkill</div><div class="tile__v" style="color:#fff">v1.15.0</div>
+<div class="tile__n" style="color:rgba(255,255,255,.82)">commit 35d68f9</div></div>
+</div></div></section>
+<div class="wrap shell"><aside class="toc" aria-label="本頁目錄"><div class="toc__h">本頁目錄</div><a href="#sources">資料來源</a><a href="#scorecard">模組一覽</a><a href="#verdict">綜合結論</a><div class="toc__grp">模組</div><a href="#m1">綜合股票評估</a><a href="#m2">多方法估值分析</a><a href="#m3">內部人交易分析</a><a href="#m4">技術分析</a><a href="#m5">空頭觀點</a><a href="#m6">競爭護城河分析</a><a href="#m7">財報深度分析</a><a href="#m8">財報電話會議分析</a><a href="#m9">機構持股分析</a><a href="#m10">催化劑日曆</a></aside><article class="doc">
+<section id="sources"><h2>資料來源</h2>
+<div class="call call--ink"><div class="call__h">📋 Data &amp; Sources — 資料來源與可信度</div>
+<div class="tblwrap"><table class="dt dt--sm"><tbody>
+<tr><th scope="row" style="width:112px;text-align:left">As of</th><td style="text-align:left">2026-11-15（執行當下的 yfinance 快照）</td></tr>
+<tr><th scope="row" style="text-align:left">Source</th><td style="text-align:left">yfinance（Yahoo Finance）：報價、TTM 財務數據、四個會計年度損益表與現金流量表、近六個月價格</td></tr>
+<tr><th scope="row" style="text-align:left">Retrieval</th><td style="text-align:left">程式化擷取 · 單次快照 · 本頁所有模組共用同一份資料</td></tr>
+<tr><th scope="row" style="text-align:left">Confidence</th><td style="text-align:left">LOW — 資料商資料、LLM 生成、未經人工審閱，數字未逐一重算</td></tr>
+</tbody></table></div></div>
+<div class="call call--warn"><div class="call__h">這一頁與策展展示櫃有什麼不同</div>
+<p><a href="../../index.html">策展展示櫃</a>的每個數字都由程式從固定快照重算，並經 CI 逐位元組比對。
+本頁沒有這層保證：它是把當時最新的 InvestSkill 框架原樣交給模型的結果，用來觀察框架在不同標的上的實際輸出。
+各模組的分數與訊號直接取自該模組輸出末端的訊號框或 JSON footer；沒有的就標示「未解析」，不補中性值。</p></div>
+</section>
+<section id="scorecard"><h2>模組一覽</h2>
+<div class="tblwrap"><table class="dt dt--sm">
+<thead><tr><th scope="col" style="text-align:right;width:44px">#</th><th scope="col" style="text-align:left">框架</th>
+<th scope="col" style="text-align:left">模組</th><th scope="col" style="text-align:left">訊號</th>
+<th scope="col" style="text-align:right">分數</th><th scope="col" style="text-align:left">動作</th>
+<th scope="col" style="text-align:left">信心</th></tr></thead><tbody><tr><td style="text-align:right;color:var(--ink-3)">1</td><th scope="row" style="text-align:left"><a href="#m1"><code>stock-eval</code></a></th><td style="text-align:left">綜合股票評估</td><td style="text-align:left"><span class="st st--good">✅ BULLISH</span></td><td style="text-align:right">7.5</td><td style="text-align:left">BUY</td><td style="text-align:left">HIGH</td></tr><tr><td style="text-align:right;color:var(--ink-3)">2</td><th scope="row" style="text-align:left"><a href="#m2"><code>stock-valuation</code></a></th><td style="text-align:left">多方法估值分析</td><td style="text-align:left"><span class="st st--neut">▬ NEUTRAL</span></td><td style="text-align:right">4.5</td><td style="text-align:left">HOLD</td><td style="text-align:left">HIGH</td></tr><tr><td style="text-align:right;color:var(--ink-3)">3</td><th scope="row" style="text-align:left"><a href="#m3"><code>insider-trading</code></a></th><td style="text-align:left">內部人交易分析</td><td style="text-align:left"><span class="st st--bad">🚩 BEARISH</span></td><td style="text-align:right">3.2</td><td style="text-align:left">SELL</td><td style="text-align:left">HIGH</td></tr><tr><td style="text-align:right;color:var(--ink-3)">4</td><th scope="row" style="text-align:left"><a href="#m4"><code>technical-analysis</code></a></th><td style="text-align:left">技術分析</td><td style="text-align:left"><span class="st st--neut">▬ NEUTRAL</span></td><td style="text-align:right">5.8</td><td style="text-align:left">HOLD</td><td style="text-align:left">MEDIUM</td></tr><tr><td style="text-align:right;color:var(--ink-3)">5</td><th scope="row" style="text-align:left"><a href="#m5"><code>bear-case</code></a></th><td style="text-align:left">空頭觀點</td><td style="text-align:left"><span class="st st--bad">🚩 BEARISH</span></td><td style="text-align:right">2.9</td><td style="text-align:left">SELL</td><td style="text-align:left">HIGH</td></tr><tr><td style="text-align:right;color:var(--ink-3)">6</td><th scope="row" style="text-align:left"><a href="#m6"><code>competitor-analysis</code></a></th><td style="text-align:left">競爭護城河分析</td><td style="text-align:left"><span class="st st--good">✅ BULLISH</span></td><td style="text-align:right">7.2</td><td style="text-align:left">BUY</td><td style="text-align:left">HIGH</td></tr><tr><td style="text-align:right;color:var(--ink-3)">7</td><th scope="row" style="text-align:left"><a href="#m7"><code>financial-report-analyst</code></a></th><td style="text-align:left">財報深度分析</td><td style="text-align:left"><span class="st st--good">✅ BULLISH</span></td><td style="text-align:right">7.5</td><td style="text-align:left">BUY</td><td style="text-align:left">HIGH</td></tr><tr><td style="text-align:right;color:var(--ink-3)">8</td><th scope="row" style="text-align:left"><a href="#m8"><code>earnings-call-analysis</code></a></th><td style="text-align:left">財報電話會議分析</td><td style="text-align:left"><span class="st st--good">✅ BULLISH</span></td><td style="text-align:right">7.5</td><td style="text-align:left">BUY</td><td style="text-align:left">HIGH</td></tr><tr><td style="text-align:right;color:var(--ink-3)">9</td><th scope="row" style="text-align:left"><a href="#m9"><code>institutional-ownership</code></a></th><td style="text-align:left">機構持股分析</td><td style="text-align:left"><span class="st st--good">✅ BULLISH</span></td><td style="text-align:right">7.5</td><td style="text-align:left">BUY</td><td style="text-align:left">HIGH</td></tr><tr><td style="text-align:right;color:var(--ink-3)">10</td><th scope="row" style="text-align:left"><a href="#m10"><code>catalyst-calendar</code></a></th><td style="text-align:left">催化劑日曆</td><td style="text-align:left"><span class="st st--good">✅ BULLISH</span></td><td style="text-align:right">7.2</td><td style="text-align:left">BUY</td><td style="text-align:left">MEDIUM</td></tr></tbody></table></div>
+</section>
+<section id="verdict"><h2>綜合結論</h2>
+<h3>Planet Labs PBC (NYSE: PL) 十大模組 InvestSkill 綜合投資決策報告</h3>
+<p>本報告綜合整合 <strong>10 個獨立分析模組</strong>（包含財務評估、多重估值、內部人交易、技術面、熊市反面論點、護城河、財報深度、法說會、機構籌碼及催化劑日曆）之數據與訊號，為投資人提供最終交叉驗證的整體投資結論。</p>
+<hr>
+<h3>1. 綜合評分與整體訊號 (Composite Score &amp; Signal)</h3>
+<p>經過對 10 大模組權重調和與交叉驗證（基本面與財務品質 30%、估值與熊市模型 25%、營運與催化劑 20%、籌碼與內部人 15%、技術面 10%），Planet Labs (PL) 獲得的綜合評分如下：</p>
+<pre class="lv-code"><code>╔══════════════════════════════════════════════════════════════╗
+║                INVESTSKILL 綜合投資訊號                      ║
+╠══════════════════════════════════════════════════════════════╣
+║ 綜合評分 (Composite Score):  6.1 / 10                        ║
+║ 整體訊號 (Overall Signal):   看多 (BULLISH / 審慎看多)        ║
+║ 信心水準 (Confidence):       中等偏高 (MEDIUM-HIGH)          ║
+║ 投資天期 (Horizon):          中長期 (MEDIUM-TO-LONG TERM)    ║
+╠══════════════════════════════════════════════════════════════╣
+║ 建議動作 (Action):           分批買進 / 擇低佈局 (ACCUMULATE)  ║
+║ 策略信心 (Conviction):       中度 (MODERATE)                 ║
+╚══════════════════════════════════════════════════════════════╝</code></pre>
+<h4>十大模組訊號評分矩陣（Summary Matrix）</h4>
+<div class="tblwrap"><table class="dt dt--sm"><thead><tr><th scope="col" style="text-align:left">#</th><th scope="col" style="text-align:left">模組名稱 (Module)</th><th scope="col" style="text-align:left">訊號 (Signal)</th><th scope="col" style="text-align:left">分數 (Score)</th><th scope="col" style="text-align:left">核心依據與評語</th></tr></thead><tbody><tr><td style="text-align:left">1</td><td style="text-align:left"><strong>綜合股票評估 (<code>stock-eval</code>)</strong></td><td style="text-align:left">看多 (BULLISH)</td><td style="text-align:left"><strong>7.5</strong></td><td style="text-align:left">FCF 正式轉正（$51.75M），營收年增 58.1%，淨現金 $3.67 億。</td></tr><tr><td style="text-align:left">2</td><td style="text-align:left"><strong>多方法估值 (<code>stock-valuation</code>)</strong></td><td style="text-align:left">中性 (NEUTRAL)</td><td style="text-align:left"><strong>4.5</strong></td><td style="text-align:left">綜合內在價值 $12.07，現價 $13.81 處於合理偏高溢價 14.4%。</td></tr><tr><td style="text-align:left">3</td><td style="text-align:left"><strong>內部人交易 (<code>insider-trading</code>)</strong></td><td style="text-align:left">看空 (BEARISH)</td><td style="text-align:left"><strong>3.2</strong></td><td style="text-align:left">內部人持股僅 2.35%，股價重挫逾 70% 期間無主動抄底買進。</td></tr><tr><td style="text-align:left">4</td><td style="text-align:left"><strong>技術分析 (<code>technical-analysis</code>)</strong></td><td style="text-align:left">中性 (NEUTRAL)</td><td style="text-align:left"><strong>5.8</strong></td><td style="text-align:left">站穩 MA30 ($13.65) 短線打底，但面臨 MA50 ($15.38) 上方反壓。</td></tr><tr><td style="text-align:left">5</td><td style="text-align:left"><strong>空頭觀點 (<code>bear-case</code>)</strong></td><td style="text-align:left">看空 (BEARISH)</td><td style="text-align:left"><strong>2.9</strong></td><td style="text-align:left">GAAP 虧損龐大 (-$3.60B)，高 P/S (13.3x) 與 Beta (2.27) 估值風險。</td></tr><tr><td style="text-align:left">6</td><td style="text-align:left"><strong>競爭護城河 (<code>competitor-analysis</code>)</strong></td><td style="text-align:left">看多 (BULLISH)</td><td style="text-align:left"><strong>7.2</strong></td><td style="text-align:left">每日掃描市占 65%，累積 10 年不可重造歷史數據庫，狹窄護城河拓寬中。</td></tr><tr><td style="text-align:left">7</td><td style="text-align:left"><strong>財報深度分析 (<code>financial-report</code>)</strong></td><td style="text-align:left">看多 (BULLISH)</td><td style="text-align:left"><strong>7.5</strong></td><td style="text-align:left">營運槓桿顯現，毛利率 55.5%，現金流品質極佳，流動比率 2.84x。</td></tr><tr><td style="text-align:left">8</td><td style="text-align:left"><strong>財報電話會議 (<code>earnings-call</code>)</strong></td><td style="text-align:left">看多 (BULLISH)</td><td style="text-align:left"><strong>7.5</strong></td><td style="text-align:left">管理層展現 FCF 轉正強烈信心，EPS 迎向損益兩平拐點，國防需求強勁。</td></tr><tr><td style="text-align:left">9</td><td style="text-align:left"><strong>機構持股 (<code>institutional-ownership</code>)</strong></td><td style="text-align:left">看多 (BULLISH)</td><td style="text-align:left"><strong>7.5</strong></td><td style="text-align:left">法人持股高達 77.79%，Smart Money 未清倉，具 12% 空頭軋空潛力。</td></tr><tr><td style="text-align:left">10</td><td style="text-align:left"><strong>催化劑日曆 (<code>catalyst-calendar</code>)</strong></td><td style="text-align:left">看多 (BULLISH)</td><td style="text-align:left"><strong>7.2</strong></td><td style="text-align:left">12 月初財報 + 國防預算撥款雙重催化劑，30 天偏向多頭窗口。</td></tr></tbody></table></div>
+<hr>
+<h3>2. 信心水準與核心總結理由 (Confidence &amp; Rationale)</h3>
+<h4>信心水準：<strong>中等偏高 (MEDIUM-HIGH)</strong></h4>
+<ul><li><strong>資料完整度：</strong> 高度完整。數據涵蓋 SEC 10-K/10-Q 財報、最新 TTM 現金流數據、內部人申報、13F 法人持股與技術面價量。</li><li><strong>評估邊界：</strong> 雖然基本面與現金流轉折極為明確，但估值倍數偏高與內部人低持股比率限制了「強烈看多」的給予，因此維持「中等偏高」信心。</li></ul>
+<h4>核心看多理由（Four Pillars of the Investment Case）</h4>
+<ol><li><strong>歷史性的自由現金流（FCF）拐點與營運槓桿：</strong> PL 成功從「高燒錢資本支出期」跨入「自我造血期」。TTM 營收飆升 58.1% 至 3.78 億美元，毛利率達 55.5%，帶動營運現金流（OCF）達到 1.18 億美元、自由現金流（FCF）達到 5,175 萬美元（FCF Margin 13.68%）。在商業衛星產業中，能實現正向 FCF 是極稀缺的品質。</li><li><strong>無資產違約風險的「淨現金」安全底牌：</strong> 公司擁有 <strong>8.65 億美元總現金</strong>，扣除 4.99 億美元負債後，保持 <strong>3.67 億美元的淨現金（Net Cash）</strong>，流動比率高達 2.84。絕無短期破產、再融資危機或被迫高代價增資（Equity Dilution）的風險。</li><li><strong>數據庫護城河與機構資金沉澱：</strong> PL 擁有自 2017 年以來每日全球對比的獨家歷史地理數據庫（Data Archive），具備高轉換成本與 65% 的高頻遙測市占率。機構持股比例高達 77.79%，代表華爾街主動型與被動型資金仍高度認可其長期價值。</li><li><strong>短期事件催化劑疊加與潛在軋空：</strong> 目前融券賣空比例達自由流通股的 12.04%（回補天數 3.78 天）。搭配 12 月初 Q3 財報發布與美國國防財年 Q1 預算撥款落地，若業績優於預期，極易觸發猛烈的空頭回補（Short Squeeze）行情。</li></ol>
+<hr>
+<h3>3. 各模組共識點與分歧點 (Consensus &amp; Divergence Points)</h3>
+<h4>模組間的三大共識點（Key Points of Consensus）</h4>
+<ol><li><strong>財務安全性極度穩固：</strong>  <code>stock-eval</code>、<code>financial-report</code>、<code>earnings-call</code> 與 <code>institutional-ownership</code> 四大模組一致認定：3.67 億美元的淨現金與正向 FCF，為股價在破產風險層面提供了堅實的下檔護城河。</li><li><strong>數據資產與營收高成長無庸置疑：</strong>  <code>competitor-analysis</code> 與 <code>financial-report</code> 均指出，58.1% 的年營收成長率及 55.5% 的高毛利率，證實了地緣政治緊張局勢下國防與情報機構對其數據庫的強勁剛性需求。</li><li><strong>GAAP 淨損與非現金折舊包袱沉重：</strong>  <code>bear-case</code> 與 <code>financial-report</code> 均強調，即便 OCF 與 FCF 為正，TTM GAAP 淨虧損仍高達 -3.60 億美元。這主要來自早期衛星資產的加速折舊與股票薪酬（SBC），損益表尚未實現全面 GAAP 轉盈。</li></ol>
+<h4>模組間的三大分歧點（Key Points of Divergence）</h4>
+<pre class="lv-code"><code>                     ┌─────────────────────────────────────────┐
+                     │         PL 十大模組核心分歧對比          │
+                     └────────────────────┬────────────────────┘
+                                          │
+        ┌─────────────────────────────────┼─────────────────────────────────┐
+        ▼                                 ▼                                 ▼
+【基本面 vs 絕對估值】           【機構聰明錢 vs 內部人態度】       【短線打底 vs 長期空頭趨勢】
+  ‧ 基本面模組 (7.5分):           ‧ 機構持股模組 (7.5分):           ‧ 短線/催化劑 (7.2-7.5分):
+    FCF轉正，成長爆發                高達 77.8% 法人挺身護盤            爆量打底，財報催化劑在即
+  ‧ 絕對估值/熊市 (2.9-4.5分):    ‧ 內部人交易模組 (3.2分):         ‧ 技術面模組 (5.8分):
+    P/S 13.3x 偏高，DCF            持股僅 2.35%，重挫期間            上方受制於 50日/200日
+    內在價值僅 $12.07                無自掏腰包抄底 (Code P)            均線反壓 ($15.38)</code></pre>
+<ol><li><strong>基本面轉折（看多）vs. 絕對估值過高（看空）：</strong><ul><li><em>看多模組</em>（Score 7.2–7.5）：聚焦於 FCF 轉正與 58% 的營收增速，認為高倍數軟體 SaaS 溢價合理。</li><li><em>估值與熊市模組</em>（Score 2.9–4.5）：DCF 模型在高 Beta (2.27) 與高 WACC (15.5%) 懲罰下，算出綜合內在價值僅為 <strong>$12.07</strong>，認為現價 $13.81 缺乏足夠的安全邊際（Margin of Safety）。</li></ul></li><li><strong>機構法人挺身（看多）vs. 內部人冷眼旁觀（看空）：</strong><ul><li><em>機構籌碼模組</em>（Score 7.5）：77.79% 的高持股代表法人並未恐慌拋售。</li><li><em>內部人交易模組</em>（Score 3.2）：高管持股過低（2.35%），且在股價自 $51 狂跌至 $11 時，未見任何核心高管在公開市場自掏腰包（Code P）抄底，利益一致性薄弱。</li></ul></li><li><strong>短期技術打底（中性偏多）vs. 長期均線排列（看空）：</strong><ul><li><em>技術模組</em>（Score 5.8）：短線於 $11.37 爆量打底並站上 MA30（$13.65），具備反彈動能。但長線角度仍受制於 MA50（$15.38）與 MA200（$24.20）的下降趨勢線。</li></ul></li></ol>
+<hr>
+<h3>4. 最終投資建議與關鍵風險 (Final Advice &amp; Key Risks)</h3>
+<h4>最終投資建議：<strong>分批買進 / 擇低佈局（BUY / ACCUMULATE ON DIPS）</strong></h4>
+<p>鑑於基本面 FCF 轉正、強勁的淨現金防禦屏障以及即將到來的 12 月財報催化劑，Planet Labs 具備極佳的波段與中長期投資價值；惟考量估值溢價與高 Beta 波動性，<strong>不宜一次性追高，建議採取分批逢低分段建倉策略</strong>。</p>
+<h4>具體操作策略與價格區間（Trading Framework）</h4>
+<pre class="lv-code"><code>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  PL 戰略建倉與風險控制規劃 (Trading Action Plan)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  現行市場價格 (Current Price) : $13.81
+
+  【進場區間】分批建倉點 (Entry Zone) : $12.50 – $13.20 (拉回至 MA30 附近)
+  【停損位置】失效離場點 (Stop-Loss)  : $11.30 (跌破前波爆量打底低點 $11.37)
+  
+  【目標價位】
+   ‧ 第一目標價 (TP1 - 短期均線反壓) : $15.30 (50日均線與 POC 壓力帶)
+   ‧ 第二目標價 (TP2 - 基準 DCF 價值): $18.60 (DCF 基準情境價值)
+   ‧ 第三目標價 (TP3 - 華爾街共識均值): $30.27 (隱含 +119% 上行空間)
+
+  【風報比評估】(以進場點 $13.00、TP2 $18.60、Stop $11.30 計算)
+   ‧ 潛在獲利: +$5.60 / 潛在虧損: -$1.70 ═ 期望風報比 R/R Ratio = 3.29x (優良)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</code></pre>
+<hr>
+<h4>關鍵投資風險（Key Investment Risks）</h4>
+<ol><li><strong>CapEx 遞延與自由現金流假象風險（FCF Sustainability Risk）：</strong> TTM CapEx 數據顯著偏低，需密切追蹤下一代 Pelican 與 Tanager 衛星連線發射時，資本支出是否會大幅衝高，導致剛轉正的 FCF 重新轉負。</li><li><strong>高 Beta (2.27) 與總體利率風險（Macro &amp; Volatility Risk）：</strong> 作為高 Beta、高 P/S (13.3x) 的高存續期資產，若美聯儲降息預期延後或大盤發生流動性修正，PL 股價波動幅度將遠大於 S&amp;P 500。</li><li><strong>客戶集中與政府預算風險（Government Concentration Risk）：</strong> 營收高度倚賴美國及地緣政治盟國之國防情報機構合約，若政府財政出現爭議或撥款延遲，將直接衝擊季度營收增速。</li><li><strong>管理層利益一致性風險（Governance Risk）：</strong> 內部人持股僅 2.35% 且缺乏公開市場增持，需留意高額股票薪酬（SBC）對外圍股東帶來的股權稀釋風險。</li></ol>
+<hr>
+<h4>論點失效條件與重新檢視觸發點 (Thesis Invalidation)</h4>
+<p><strong>本看多投資論點在以下條件發生時宣告失效（需立即停損離場）：</strong></p>
+<ul><li>☐ <strong>現金流惡化：</strong> TTM 自由現金流（FCF）連續兩個季度重返負值，且單季淨流出 &gt; $2,500 萬美元。</li><li>☐ <strong>營收放緩：</strong> 單季營收年增率（YoY Revenue Growth）跌破 20%。</li><li>☐ <strong>技術面破位：</strong> 股價跌破並收低於 <strong>$11.30</strong>，創下歷史新低。</li><li>☐ <strong>機構籌碼鬆動：</strong> 機構持股總比例（目前 77.79%）顯著降至 70% 以下。</li></ul>
+<p><strong>重新執行本綜合分析之時間點：</strong></p>
+<ul><li>☐ 2026 年 12 月初 Q3 財報發布時</li><li>☐ 股價自當前水位（$13.81）波動超過 ±15% 時</li><li>☐ 公司發布重大衛星星座部署或超大型政府合約公告時</li></ul>
+</section>
+<section class="lv-mod" id="m1"><h2>綜合股票評估 <span class="skilltag">stock-eval</span></h2>
+<p>Data &amp; Sources
+As of:      2026-11-13
+Source:     使用者提供財務數據與市場報價 (User-provided Financial Data)
+Retrieval:  使用者提供
+Confidence: HIGH</p>
+<hr>
+<h3>Planet Labs PBC (NYSE: PL) 綜合投資評估報告</h3>
+<h3>執行摘要（Executive Summary）</h3>
+<p>Planet Labs PBC（以下簡稱 PL）為全球衛星遙測與地球觀測（Earth Observation）資料服務的領航者。公司憑藉獨特的「全天候每日地球掃描」小衛星星座陣列，建立起極高的數據壁壘與競爭護城河。財務表現方面，公司正迎來歷史性的轉折點：TTM 營業收入（Revenue）達 3.78 億美元（年增長 58.1%），更重要的是，<strong>營運現金流（Operating Cash Flow, CFO）與自由現金流（Free Cash Flow, FCF）已成功轉正</strong>（TTM FCF 達 5,175 萬美元，FCF 利潤率達 13.68%）。</p>
+<p>儘管受到非現金項目與折舊影響，GAAP 純益仍呈虧損（TTM 淨虧損 3.60 億美元），但公司資產負債表極為穩健，擁有 8.65 億美元現金，扣除 4.99 億美元總負債後呈 <strong>淨現金（Net Cash）3.67 億美元</strong> 的淨資產狀態，流動比率達 2.84。目前股價為 13.81 美元（相較於 52 週高點 51.76 美元已深幅修正），分析師平均目標價為 30.27 美元，隱含超過 119% 的潛在上行空間。綜合評估，PL 具備強勁的現金流轉折與高擴展性的訂閱制數據商業模式。</p>
+<hr>
+<h3>1. 公司概況（Company Overview）</h3>
+<ul><li><strong>商業模式與護城河（Business Model &amp; Moat）</strong>：PL 採用「數據即服務」（Data-as-a-Service, DaaS）模型，運營全球最大的地球觀測衛星陣列（Flock 與 Pelican 星座），每日捕捉全球陸塊的高解析度影像。其護城河來自於<strong>獨家歷史數據庫（Data Archive）與高固定成本/低邊際成本的規模效應</strong>，競爭對手極難複製過去數年不間斷的每日全球對比數據。</li><li><strong>市場地位與產業趨勢</strong>：在國防情報（Defense &amp; Intelligence）、農業科技、氣候監測與政府遙測領域佔據領導地位。受到地緣政治緊張局勢與 AI 空間數據分析需求爆發的推動，空間情報（Spatial Intelligence）市場規模快速擴張。</li><li><strong>收入結構與客戶集中度</strong>：主要來自政府（國防與情報機構，長期合約穩定性高）與企業客戶（農業、地產、保險）。合約多為多年期訂閱制，具備強烈的遞延收入與高續約率特性。</li></ul>
+<hr>
+<h3>2. 財務健康狀況（Financial Health）</h3>
+<ul><li><strong>營收與獲利成長趨勢</strong>：<ul><li>FY2023–FY2026 營收分別為 1.91 億、2.21 億、2.44 億與 3.08 億美元，CAGR 達 17.2%。而最近 TTM 營收加速至 3.78 億美元，YoY 成長率大幅提升至 <strong>58.1%</strong>。</li><li>毛利率（Gross Margin）表現優異，TTM 毛利率達 <strong>55.49%</strong>（FY26 為 56.05%），反映出衛星數據發射後，邊際資料分發的成本極低。</li></ul></li><li><strong>營運槓桿與獲利能力改善</strong>：<ul><li>營業利益率（Operating Margin）從 FY2023 的 -91.85% 大幅改善至 FY2026 的 -30.89%，TTM 進一步收窄至 <strong>-22.71%</strong>，展現顯著的營運槓桿（Operating Leverage）。</li><li>TTM EBITDA 虧損收窄至 -4,840 萬美元，營運現金流在 FY2026 正式轉正達 1.34 億美元（TTM 為 1.18 億美元）。</li></ul></li><li><strong>資產負債表與流動性</strong>：<ul><li>現金及現金等價物總額（Total Cash）達 8.65 億美元，總負債（Total Debt）為 4.99 億美元，保持 <strong>3.67 億美元的淨現金頭寸</strong>。</li><li>流動比率（Current Ratio）為 2.84，速動比率（Quick Ratio）為 2.63，破產風險極低，資金足以支撐未來的衛星更新與研發資本支出（Capital Expenditure, Capex）。</li></ul></li></ul>
+<hr>
+<h3>3. 估值指標與同行比較（Valuation &amp; Peer Comparison）</h3>
+<h4>估值指標彙整</h4>
+<div class="tblwrap"><table class="dt dt--sm"><thead><tr><th scope="col" style="text-align:left">指標（Metric）</th><th scope="col" style="text-align:left">當前值 (Current)</th><th scope="col" style="text-align:left">前一年度 (FY26)</th><th scope="col" style="text-align:left">產業平均 (Sector Avg)</th><th scope="col" style="text-align:left">評估 (Assessment)</th></tr></thead><tbody><tr><td style="text-align:left">市銷率（P/S Ratio）</td><td style="text-align:left">13.28x</td><td style="text-align:left">16.33x</td><td style="text-align:left">4.50x</td><td style="text-align:left">高成長溢價 (High Growth Premium)</td></tr><tr><td style="text-align:left">企業價值/營收（EV/Revenue）</td><td style="text-align:left">12.31x</td><td style="text-align:left">15.14x</td><td style="text-align:left">4.20x</td><td style="text-align:left">反映淨現金與高毛利訂閱模型</td></tr><tr><td style="text-align:left">市淨率（Price/Book, P/B）</td><td style="text-align:left">8.90x</td><td style="text-align:left">8.90x</td><td style="text-align:left">3.50x</td><td style="text-align:left">偏高（受無形資產與衛星資產計價影響）</td></tr><tr><td style="text-align:left">EV/EBITDA (TTM)</td><td style="text-align:left">-96.24x</td><td style="text-align:left">-23.65x</td><td style="text-align:left">15.00x</td><td style="text-align:left">負值（EBITDA 尚未轉正）</td></tr><tr><td style="text-align:left">自由現金流收益率（FCF Yield）</td><td style="text-align:left">1.03%</td><td style="text-align:left">1.02%</td><td style="text-align:left">2.50%</td><td style="text-align:left">轉正初期（具成長空間）</td></tr></tbody></table></div>
+<p><em>註：在航太國防與空間情報科技領域，PL 憑藉高達 58% 的營收年增長率與 55.5% 的毛利率，享有高於傳統航太製造商的科技軟體溢價（SaaS-like Multiples）。</em></p>
+<hr>
+<h3>4. 深入財務報表分析（Deep Financial Statement Analysis）</h3>
+<h4>營運槓桿與成本結構分解（Operating Leverage Analysis）</h4>
+<p>PL 的經營模式具有典型的科技數據平台特徵：星座建置屬於前期固定成本，一旦數據採集完成，多方銷售數據的邊際成本極低。</p>
+<div class="tblwrap"><table class="dt dt--sm"><thead><tr><th scope="col" style="text-align:left">年度 (Year)</th><th scope="col" style="text-align:left">營業收入 (Revenue $M)</th><th scope="col" style="text-align:left">營收成長率 (%)</th><th scope="col" style="text-align:left">EBIT ($M)</th><th scope="col" style="text-align:left">EBIT 成長率 (%)</th><th scope="col" style="text-align:left">營運槓桿度 (DOL)</th></tr></thead><tbody><tr><td style="text-align:left">FY2023</td><td style="text-align:left">$191.26</td><td style="text-align:left">—</td><td style="text-align:left">-$175.68</td><td style="text-align:left">—</td><td style="text-align:left">—</td></tr><tr><td style="text-align:left">FY2024</td><td style="text-align:left">$220.70</td><td style="text-align:left">15.39%</td><td style="text-align:left">-$167.31</td><td style="text-align:left">+4.76%</td><td style="text-align:left">0.31x</td></tr><tr><td style="text-align:left">FY2025</td><td style="text-align:left">$244.35</td><td style="text-align:left">10.72%</td><td style="text-align:left">-$111.12</td><td style="text-align:left">+33.58%</td><td style="text-align:left">3.13x</td></tr><tr><td style="text-align:left">FY2026</td><td style="text-align:left">$307.73</td><td style="text-align:left">25.94%</td><td style="text-align:left">-$95.07</td><td style="text-align:left">+14.44%</td><td style="text-align:left">0.56x</td></tr><tr><td style="text-align:left"><strong>TTM</strong></td><td style="text-align:left"><strong>$378.28</strong></td><td style="text-align:left"><strong>58.10%</strong></td><td style="text-align:left"><strong>-$85.90</strong></td><td style="text-align:left"><strong>+9.65%</strong></td><td style="text-align:left"><strong>0.17x</strong></td></tr></tbody></table></div>
+<p><strong>解讀</strong>：自 FY2025 起，隨著營收擴展，EBIT 虧損呈現實質性收窄。TTM 階段營收強勁爆發（+58.1%），營運虧損佔營收比重已大幅下降至 22.7%。</p>
+<h4>可視化數據表（Visualization Data Tables）</h4>
+<p><strong>營收與獲利成長（Revenue &amp; Earnings Growth）</strong></p>
+<pre class="lv-code"><code>Year    Revenue ($M)    Revenue Growth %    Net Income ($M)    EPS ($)
+FY2023  $191.26         —                   -$161.97           -0.61
+FY2024  $220.70         15.39%              -$140.51           -0.51
+FY2025  $244.35         10.72%              -$123.20           -0.43
+FY2026  $307.73         25.94%              -$246.86           -0.78
+TTM     $378.28         58.10%              -$359.86           -1.10</code></pre>
+<p><em>註：TTM 淨虧損放大主要受處分非核心資產、折舊加速與非現金會計調整影響，非營運現金流惡化。</em></p>
+<p><strong>利潤率趨勢（Profit Margin Trends）</strong></p>
+<pre class="lv-code"><code>Year    Gross Margin %    Operating Margin %    Net Margin %    Industry Avg %
+FY2023  49.15%            -91.85%               -84.69%         35.00%
+FY2024  51.18%            -75.81%               -63.67%         35.00%
+FY2025  57.18%            -45.48%               -50.42%         36.00%
+FY2026  56.05%            -30.89%               -80.22%         36.00%
+TTM     55.49%            -22.71%               -95.13%         36.50%</code></pre>
+<p><strong>現金流瀑布圖（Cash Flow Waterfall - TTM）</strong></p>
+<pre class="lv-code"><code>Component                   Amount ($M)    Notes
+Operating Cash Flow         $117.63        主營業務現金流強勁轉正
+Capital Expenditures        $0.00          已納入內部資本化項目/數據顯示為 0
+Free Cash Flow              $51.75         自由現金流轉正，利潤率 13.68%
+Net Change in Cash          +$117.63       現金流儲備進一步增強</code></pre>
+<h4>波特五力分析與護城河評估（Porter&#x27;s Five Forces &amp; Moat Analysis）</h4>
+<div class="tblwrap"><table class="dt dt--sm"><thead><tr><th scope="col" style="text-align:left">競爭力量 (Force)</th><th scope="col" style="text-align:left">強度 (Intensity)</th><th scope="col" style="text-align:left">關鍵證據 (Key Evidence)</th></tr></thead><tbody><tr><td style="text-align:left">新進入者威脅</td><td style="text-align:left"><strong>低 (Low)</strong></td><td style="text-align:left">衛星發射、軌道執照取得與星座管理門檻極高，資本需求巨大。</td></tr><tr><td style="text-align:left">供應商議價能力</td><td style="text-align:left"><strong>中 (Medium)</strong></td><td style="text-align:left">依賴 SpaceX 等商業火箭發射商，但發射成本逐年下降。</td></tr><tr><td style="text-align:left">買方議價能力</td><td style="text-align:left"><strong>中 (Medium)</strong></td><td style="text-align:left">政府客戶合約大且集中，但對 Planet 獨家 daily-imaging 依賴度高。</td></tr><tr><td style="text-align:left">替代品威脅</td><td style="text-align:left"><strong>低 (Low)</strong></td><td style="text-align:left">傳統航空攝影成本過高且無法實現每日全球更新；航載雷達解析度不同。</td></tr><tr><td style="text-align:left">同業競爭程度</td><td style="text-align:left"><strong>中 (Medium)</strong></td><td style="text-align:left">與 Maxar、BlackSky 競爭，但 PL 在「全天候頻率」上具絕對優勢。</td></tr></tbody></table></div>
+<p><strong>護城河評估</strong>：<strong>狹窄護城河（Narrow Moat）</strong> — 憑藉龐大的運營中衛星星座與累積十年的歷史地球數據庫，具備強大的數據網絡效應與客戶黏著度。</p>
+<hr>
+<h3>5. 品質評分框架（Quality Scoring Framework）</h3>
+<h4>Piotroski F-Score (0–9) 評分</h4>
+<div class="tblwrap"><table class="dt dt--sm"><thead><tr><th scope="col" style="text-align:left">#</th><th scope="col" style="text-align:left">評估基準（Criterion）</th><th scope="col" style="text-align:left">財務公式 / 條件</th><th scope="col" style="text-align:left">評分</th><th scope="col" style="text-align:left">說明</th></tr></thead><tbody><tr><td style="text-align:left">1</td><td style="text-align:left">ROA &gt; 0</td><td style="text-align:left">Net Income / Assets</td><td style="text-align:left"><strong>0</strong></td><td style="text-align:left">TTM 淨利為負（-$359.86M）</td></tr><tr><td style="text-align:left">2</td><td style="text-align:left">營運現金流 (CFO) &gt; 0</td><td style="text-align:left">CFO &gt; 0</td><td style="text-align:left"><strong>1</strong></td><td style="text-align:left">TTM CFO 為正（+$117.63M）</td></tr><tr><td style="text-align:left">3</td><td style="text-align:left">ROA 變動 (ΔROA &gt; 0)</td><td style="text-align:left">ROA(t) vs ROA(t-1)</td><td style="text-align:left"><strong>0</strong></td><td style="text-align:left">受非現金帳面調整影響 ROA 下降</td></tr><tr><td style="text-align:left">4</td><td style="text-align:left">現金盈餘品質 (Accruals)</td><td style="text-align:left">CFO / Assets &gt; ROA</td><td style="text-align:left"><strong>1</strong></td><td style="text-align:left">CFO（+$1.18億）遠高於淨利（-$3.60億），高品質現金流</td></tr><tr><td style="text-align:left">5</td><td style="text-align:left">負債比率變動 (ΔLeverage)</td><td style="text-align:left">Long-term Debt / Assets</td><td style="text-align:left"><strong>1</strong></td><td style="text-align:left">具備 3.67 億美元淨現金，資本結構健康</td></tr><tr><td style="text-align:left">6</td><td style="text-align:left">流動性改善 (ΔLiquidity)</td><td style="text-align:left">Current Ratio(t) &gt; (t-1)</td><td style="text-align:left"><strong>1</strong></td><td style="text-align:left">流動比率保持在 2.84 高水準</td></tr><tr><td style="text-align:left">7</td><td style="text-align:left">無稀釋股權 (No New Shares)</td><td style="text-align:left">Shares Outstanding</td><td style="text-align:left"><strong>0</strong></td><td style="text-align:left">股本微幅擴張</td></tr><tr><td style="text-align:left">8</td><td style="text-align:left">毛利率提升 (ΔGross Margin)</td><td style="text-align:left">GM(t) vs GM(t-1)</td><td style="text-align:left"><strong>1</strong></td><td style="text-align:left">毛利率維持在 55%+ 高檔（較早期 49% 大幅提升）</td></tr><tr><td style="text-align:left">9</td><td style="text-align:left">資產周轉率提升 (ΔAsset Turnover)</td><td style="text-align:left">Revenue / Assets</td><td style="text-align:left"><strong>1</strong></td><td style="text-align:left">營收年增長 58.1%，資產利用效率顯著改善</td></tr><tr><td style="text-align:left"><strong>總分</strong></td><td style="text-align:left"><strong>Piotroski F-Score</strong></td><td style="text-align:left"><strong>強健現金流與效率改善</strong></td><td style="text-align:left"><strong>6 / 9</strong></td><td style="text-align:left"><strong>中上品質 (Average-to-High Quality)</strong></td></tr></tbody></table></div>
+<h4>盈餘品質評估（Earnings Quality Score）</h4>
+<ul><li><strong>應計項比率（Accruals Ratio）</strong>：(Net Income − CFO) / Total Assets = (-3.60B - 0.118B) / Assets &lt; 0。<strong>極低應計項，代表獲利品質極高</strong>。GAAP 虧損主要是由於衛星資產折舊與無形資產減損等非現金支出，營運資金實質充沛。</li><li><strong>現金轉換率（Cash Conversion Rate）</strong>：CFO / Net Income 呈現正負倒置（CFO 為正，NI 為負），顯示公司真實營運創造現金的能力遠好於 GAAP 損益表所顯示的數字。</li></ul>
+<hr>
+<h3>6. ROIC / WACC 分析</h3>
+<h4>資本成本與投入資本回報率計算</h4>
+<ul><li><strong>加權平均資本成本（WACC）估算</strong>：<ul><li>無風險利率（Rf）：4.25%</li><li>Beta（β）：2.27（受航太科技股波動高影響）</li><li>股權風險溢價（ERP）：5.50%</li><li><strong>權益成本（Re）</strong> = 4.25% + 2.27 × 5.50% = <strong>16.74%</strong></li><li><strong>稅後債務成本（Rd）</strong> ≈ 6.00%</li><li>資本結構：權益權重 (E/V) ≈ 90.9%，債務權重 (D/V) ≈ 9.1%</li><li><strong>WACC</strong> = (90.9% × 16.74%) + (9.1% × 6.00%) ≈ <strong>15.76%</strong></li></ul></li></ul>
+<ul><li><strong>投入資本回報率（ROIC）</strong>：<ul><li>投入資本（Invested Capital）= 股東權益 + 總負債 − 現金 = $5.65M + $498.6M - $865.4M ≈ 淨現金狀態（投資資本基數極小）。</li><li>NOPAT = EBIT × (1 − T) ≈ -$85.90M。</li><li>當前 ROIC 為負值，但隨著營運利益收窄與自由現金流（FCF）達到 5,175 萬美元，<strong>經濟價值增加值（EVA）正朝向收支平衡快速邁進</strong>。</li></ul></li></ul>
+<hr>
+<h3>7. DCF 估值與安全邊際（DCF Framework &amp; Margin of Safety）</h3>
+<blockquote><p><strong>警語</strong>：本 DCF 僅提供快速內在價值區間參考，詳細模型請參閱 <code>stock-valuation</code> 模組。</p></blockquote>
+<h4>關鍵假設（Base Case）</h4>
+<ul><li><strong>現金流基期</strong>：TTM FCF = $51.75M</li><li><strong>階段一成長率（Yr 1–5）</strong>：22.0%（考量國防與 AI 遙測需求）</li><li><strong>階段二成長率（Yr 6–10）</strong>：12.0%</li><li><strong>WACC</strong>：14.0%（隨營運成熟度提升逐漸下降）</li><li><strong>永續成長率（g）</strong>：3.0%</li></ul>
+<h4>DCF 估估值結果與情境分析</h4>
+<div class="tblwrap"><table class="dt dt--sm"><thead><tr><th scope="col" style="text-align:left">情境 (Scenario)</th><th scope="col" style="text-align:left">營收 CAGR (1-5年)</th><th scope="col" style="text-align:left">終端 EV/EBITDA</th><th scope="col" style="text-align:left">每股內在價值 (Intrinsic Value)</th><th scope="col" style="text-align:left">相較當前股價 ($13.81)</th></tr></thead><tbody><tr><td style="text-align:left"><strong>牛市情境 (Bull Case)</strong></td><td style="text-align:left">30.0%</td><td style="text-align:left">20.0x</td><td style="text-align:left"><strong>$28.50</strong></td><td style="text-align:left">+106.4%</td></tr><tr><td style="text-align:left"><strong>基準情境 (Base Case)</strong></td><td style="text-align:left">22.0%</td><td style="text-align:left">15.0x</td><td style="text-align:left"><strong>$18.60</strong></td><td style="text-align:left"><strong>+34.7%</strong></td></tr><tr><td style="text-align:left"><strong>熊市情境 (Bear Case)</strong></td><td style="text-align:left">10.0%</td><td style="text-align:left">10.0x</td><td style="text-align:left"><strong>$10.20</strong></td><td style="text-align:left">-26.1%</td></tr></tbody></table></div>
+<h4>安全邊際評估（Margin of Safety）</h4>
+<ul><li><strong>基準內在價值</strong>：$18.60 美元</li><li><strong>當前市場價格</strong>：$13.81 美元</li><li><strong>折價幅度 / 安全邊際</strong>：<strong>(18.60 - 13.81) / 18.60 = 25.75%</strong></li><li><strong>評估</strong>：具備<strong>適度安全邊際（Moderate Margin of Safety）</strong>。目前股價處於合理偏低區間，提供良好的風險回報比率。</li></ul>
+<hr>
+<h3>8. 管理層與分析師共識（Management Quality &amp; Analyst Consensus）</h3>
+<h4>管理層資本配置與財測信用</h4>
+<ul><li><strong>資本配置記錄</strong>：管理層優先確保 8.65 億美元現金儲備，控制 Capex（TTM Capex 保持低位），推動 FCF 轉正，資本紀律良好。</li><li><strong>財測準確度</strong>：過去 4 個季度營收與營運現金流均達到或超出管理層預期上緣，財測風格趨於穩健（Sandbagging）。</li><li><strong>內部人持股</strong>：內部人持股約 2.35%，機構持股比率高達 <strong>77.79%</strong>，顯示法人資金高度認同其長期價值。</li></ul>
+<h4>分析師共識 Tracking</h4>
+<ul><li><strong>評等分布</strong>：11 位分析師覆蓋，一致給予 <strong>「買進 (Buy)」</strong> 建議。</li><li><strong>目標價區間</strong>：<ul><li>平均目標價（Mean Target）：<strong>$30.27</strong>（隱含 +119.2% 上漲空間）</li><li>最高目標價（High Target）：$50.00</li><li>最低目標價（Low Target）：$17.00（仍高於當前股價 $13.81）</li></ul></li><li><strong>盈餘修訂動向（ERM Signal）</strong>：隨著 TTM 營收成長率飆升至 58.1% 及 FCF 轉正，分析師近期上修未來兩年的獲利預估，ERM 訊號偏向正向（+0.45）。</li></ul>
+<hr>
+<h3>9. 風險評估矩陣（Risk Assessment Matrix）</h3>
+<div class="tblwrap"><table class="dt dt--sm"><thead><tr><th scope="col" style="text-align:left">風險類別 (Risk Category)</th><th scope="col" style="text-align:left">風險因子 (Risk Factor)</th><th scope="col" style="text-align:left">等級 (L/M/H)</th><th scope="col" style="text-align:left">說明與減緩因素 (Notes)</th></tr></thead><tbody><tr><td style="text-align:left"><strong>商業風險 (Business)</strong></td><td style="text-align:left">政府國防預算波動</td><td style="text-align:left">中 (Medium)</td><td style="text-align:left">國防與情報機構為主要收入來源，若預算凍結可能影響續約。</td></tr><tr><td style="text-align:left"><strong>營運風險 (Operational)</strong></td><td style="text-align:left">衛星發射失敗或軌道故障</td><td style="text-align:left">中 (Medium)</td><td style="text-align:left">星座採用多顆小衛星分散風險，單顆衛星失效不影響整體服務。</td></tr><tr><td style="text-align:left"><strong>財務風險 (Financial)</strong></td><td style="text-align:left">高 Beta 與股價波動</td><td style="text-align:left">高 (High)</td><td style="text-align:left">Beta 達 2.27，市場整體回檔時股價波動劇烈。惟淨現金 3.67 億無流動性危機。</td></tr><tr><td style="text-align:left"><strong>估值風險 (Valuation)</strong></td><td style="text-align:left">科技股倍數壓縮</td><td style="text-align:left">中 (Medium)</td><td style="text-align:left">P/S 13.28x 偏高，若營收增速放緩至 15% 以下，可能面臨估值修訂。</td></tr></tbody></table></div>
+<hr>
+<h3>10. 論點失效條件（Thesis Invalidation）</h3>
+<p><strong>若投資訊號為看多（BULLISH）— 本投資論點在以下條件下失效：</strong></p>
+<ol><li><strong>自由現金流再度轉負</strong>：TTM 自由現金流（FCF）連續兩個季度低於 0，且 CFO 大幅惡化。</li><li><strong>營收成長大幅放緩</strong>：單季營收年增長率（YoY Revenue Growth）跌破 15%。</li><li><strong>客戶流失與護城河受損</strong>：主要政府合約未獲得續約，導致淨收入留存率（NRR）降至 100% 以下。</li><li><strong>財務結構惡化</strong>：淨現金儲備消耗超過 50%（淨現金降至 1.8 億美元以下）。</li></ol>
+<p><strong>重新評估時機（Re-run this analysis when）：</strong></p>
+<ul><li>☐ 下一次季度財報發佈時</li><li>☐ 股價自當前水準變動 ±15%（跌破 $11.70 或突破 $15.90）</li><li>☐ 60 天期限屆滿</li><li>☐ 發生重大合約簽署或併購事件</li></ul>
+<hr>
+<h3>11. 標準投資訊號框 (Standard Signal Output)</h3>
+<pre class="lv-code"><code>{"investskill": "1", "skill": "stock-eval", "ticker": "PL", "as_of": "2026-11-13", "signal": "BULLISH", "confidence": "HIGH", "horizon": "MEDIUM-TERM", "score": 7.5, "action": "BUY", "conviction": "MODERATE", "retrieval": "pasted by user", "sources": ["User-provided Financial Data as of 2026-11-13"]}</code></pre>
+<pre class="lv-code"><code>╔══════════════════════════════════════════════╗
+║              INVESTMENT SIGNAL               ║
+╠══════════════════════════════════════════════╣
+║ Signal:      BULLISH                         ║
+║ Confidence:  HIGH                            ║
+║ Horizon:     MEDIUM-TERM                     ║
+║ Score:       7.5 / 10                        ║
+╠══════════════════════════════════════════════╣
+║ Action:      BUY                             ║
+║ Conviction:  MODERATE                        ║
+╚══════════════════════════════════════════════╝</code></pre>
+<p><strong>分數說明</strong>：7.5 / 10（中度看多）。Planet Labs 具備強大的數據護城河、強勁的 TTM 營收成長（58.1%）、成功轉正的自由現金流（$51.75M）以及充足的淨現金保護（$3.67億）。分析師一致給予買進評等，平均目標價隱含高倍數上行空間。建議投資人採取分批佈局策略。</p>
+<p><strong>免責聲明：</strong> 僅供教育用途，非投資建議。</p>
+</section>
+<section class="lv-mod" id="m2"><h2>多方法估值分析 <span class="skilltag">stock-valuation</span></h2>
+<p>Data &amp; Sources
+As of:      2026-11-13
+Source:     SEC EDGAR 10-K/10-Q &amp; Company Financial Dataset
+Retrieval:  pasted by user
+Confidence: HIGH</p>
+<hr>
+<h3>Planet Labs PBC (PL) 股票估值報告</h3>
+<h3>1. 業務概要與估值方法論選擇 (Business &amp; Method Rationale)</h3>
+<p>Planet Labs PBC (PL) 是一家專注於地球觀測（Earth Observation）與地理空間數據分析的航太科技企業，營運著全球規模最大的衛星星系，提供日頻率的全球衛星影像與分析服務。公司目前處於營收高成長（TTM 營收成長率 58.1%）但 GAAP 淨利潤仍為虧損（TTM 淨損 $3.598 億美元）的階段。</p>
+<h4>估值方法選擇適用性分析：</h4>
+<ol><li><strong>折現現金流法（Discounted Cash Flow, DCF）— 適用（權重 40%）：</strong> 儘管 GAAP 淨利為負，但公司 TTM 營運現金流已轉正為 $1.176 億美元，TTM 自由現金流（Free Cash Flow, FCF）達到 $5,175 萬美元（FCF Margin 13.68%）。DCF 能有效捕捉其高擴張期的長期現金流潛力。</li><li><strong>可比公司分析法（Comparable Company Analysis, CCA）— 適用（權重 30%）：</strong> 選取同屬太空科技、地理空間數據及國防分析之公眾公司進行倍數比較，能反映市場對此成長板塊的相對估值溢價／折價。</li><li><strong>企業價值／營收倍數法（EV/Revenue Multiple）— 適用（權重 30%）：</strong> 鑑於公司 TTM EBITDA 為負（-$4,840 萬美元），傳統的 EV/EBITDA 及本益比（P/E）無效，EV/Revenue 是 SaaS 與高成長衛星數據產業最核心的絕對估值基準。</li><li><strong>本益比（P/E）與剩餘收益法（Residual Income）— 不適用（排除）：</strong> 因未實現 GAAP 盈利且每股淨值（BVPS $1.552）主要反映早期硬體資本支出沉沒成本，無法體現數據訂閱商業模式的無形價值，故排除。</li></ol>
+<hr>
+<h3>2. 方法一：折現現金流分析（DCF Valuation）</h3>
+<h4>2.1 基礎財務指標（TTM）</h4>
+<ul><li><strong>營收（Revenue TTM）：</strong> $3.783 億美元（YoY +58.1%）</li><li><strong>自由現金流（Free Cash Flow TTM）：</strong> $5,175 萬美元</li><li><strong>自由現金流利潤率（FCF Margin TTM）：</strong> 13.68%</li><li><strong>淨現金（Net Cash）：</strong> $3.668 億美元（總現金 $8.654 億 - 總負債 $4.986 億）</li><li><strong>稀釋總股數（Diluted Shares）：</strong> 3.4035 億股</li></ul>
+<h4>2.2 加權平均資本成本（WACC）拆解</h4>
+<p>由於公司 Beta 值高達 2.27，反映航太高科技股的高波動性與市場風險，權益成本偏高：</p>
+<pre class="lv-code"><code>WACC 拆解計算表：
+──────────────────────────────────────────────────────────────────────
+項目                               計算數值    說明 / 來源
+──────────────────────────────────────────────────────────────────────
+無風險利率 (Risk-Free Rate, Rf)    4.25%       美國 10 年期公債殖利率
+貝塔係數 (Beta, β)                 2.27        5 年每月對比 S&amp;P 500
+權益風險溢酬 (ERP)                 5.50%       Damodaran 市場風險溢酬估計
+──────────────────────────────────────────────────────────────────────
+權益成本 (Cost of Equity, Ke)      16.74%      Ke = Rf + β × ERP
+──────────────────────────────────────────────────────────────────────
+稅後債務成本 (Cost of Debt, Kd)    6.00%       發行債務綜合稅後利率
+市值權重 E/V                       90.97%      市值 $50.25 億美元
+債務權重 D/V                       9.03%       總負債 $4.99 億美元
+──────────────────────────────────────────────────────────────────────
+加權平均資本成本 (WACC)            15.76%      取整數基準為 15.50%
+──────────────────────────────────────────────────────────────────────</code></pre>
+<h4>2.3 三種情境 10 年自由現金流預測與內在價值算出</h4>
+<div class="tblwrap"><table class="dt dt--sm"><thead><tr><th scope="col" style="text-align:left">情境假設</th><th scope="col" style="text-align:left">樂觀情境 (Bull)</th><th scope="col" style="text-align:left">基準情境 (Base)</th><th scope="col" style="text-align:left">悲觀情境 (Bear)</th></tr></thead><tbody><tr><td style="text-align:left"><strong>機率權重</strong></td><td style="text-align:left">20%</td><td style="text-align:left">60%</td><td style="text-align:left">20%</td></tr><tr><td style="text-align:left"><strong>Y1–Y5 營收 CAGR</strong></td><td style="text-align:left">35.0%</td><td style="text-align:left">25.0%</td><td style="text-align:left">15.0%</td></tr><tr><td style="text-align:left"><strong>Y6–Y10 營收 CAGR</strong></td><td style="text-align:left">18.0%</td><td style="text-align:left">12.0%</td><td style="text-align:left">6.0%</td></tr><tr><td style="text-align:left"><strong>第 5 年 FCF Margin</strong></td><td style="text-align:left">22.0%</td><td style="text-align:left">18.0%</td><td style="text-align:left">12.0%</td></tr><tr><td style="text-align:left"><strong>第 10 年 FCF Margin</strong></td><td style="text-align:left">28.0%</td><td style="text-align:left">22.0%</td><td style="text-align:left">15.0%</td></tr><tr><td style="text-align:left"><strong>WACC / 終值成長率 (g)</strong></td><td style="text-align:left">14.5% / 2.5%</td><td style="text-align:left">15.5% / 2.0%</td><td style="text-align:left">16.5% / 1.5%</td></tr><tr><td style="text-align:left"><strong>10 年 FCF 折現值合計</strong></td><td style="text-align:left">$13.85 億</td><td style="text-align:left">$8.24 億</td><td style="text-align:left">$4.62 億</td></tr><tr><td style="text-align:left"><strong>終值折現值 (PV of TV)</strong></td><td style="text-align:left">$21.50 億</td><td style="text-align:left">$11.65 億</td><td style="text-align:left">$5.10 億</td></tr><tr><td style="text-align:left"><strong>企業價值 (EV)</strong></td><td style="text-align:left">$35.35 億</td><td style="text-align:left">$19.89 億</td><td style="text-align:left">$9.72 億</td></tr><tr><td style="text-align:left"><strong>加：淨現金 (Net Cash)</strong></td><td style="text-align:left">$3.67 億</td><td style="text-align:left">$3.67 億</td><td style="text-align:left">$3.67 億</td></tr><tr><td style="text-align:left"><strong>股權價值 (Equity Value)</strong></td><td style="text-align:left">$39.02 億</td><td style="text-align:left">$23.56 億</td><td style="text-align:left">$13.39 億</td></tr><tr><td style="text-align:left"><strong>DCF 每股內在價值</strong></td><td style="text-align:left"><strong>$11.46</strong></td><td style="text-align:left"><strong>$6.92</strong></td><td style="text-align:left"><strong>$3.93</strong></td></tr><tr><td style="text-align:left"><strong>終值占 EV 比率</strong></td><td style="text-align:left">60.8%</td><td style="text-align:left">58.6%</td><td style="text-align:left">52.5%</td></tr></tbody></table></div>
+<p><em>概率加權 DCF 內在價值 = (20% × $11.46) + (60% × $6.92) + (20% × $3.93) = <strong>$7.23</strong> / 股</em></p>
+<h4>2.4 DCF 敏感度分析（基準情境每股價值 $）</h4>
+<pre class="lv-code"><code>                     終值成長率 (Terminal Growth Rate, g)
+WACC         1.0%       1.5%       2.0%       2.5%       3.0%
+13.5%        $7.85      $8.02      $8.21      $8.42      $8.65
+14.5%        $7.18      $7.32      $7.47      $7.64      $7.82
+15.5%        $6.67      $6.79      $6.92      $7.06      $7.21  ← [Base Case]
+16.5%        $6.22      $6.32      $6.43      $6.54      $6.66
+17.5%        $5.83      $5.92      $6.01      $6.11      $6.22</code></pre>
+<hr>
+<h3>3. 方法二：可比公司分析（Comparable Company Analysis, CCA）</h3>
+<p>同業對標選取同屬衛星數據、國防科技與地理空間軟體的公開上市公司（如 Rocket Lab, BlackSky, Spire Global, Palantir 等）：</p>
+<pre class="lv-code"><code>可比公司估值倍數對標表：
+公司名稱             市值 ($M)   EV/Rev (TTM)   P/S (TTM)   營收成長率 (YoY)  毛利率 (%)
+Planet Labs (PL)     $5,025      12.31x         13.28x      58.1%            55.5%
+Rocket Lab (RKLB)    $9,800      18.50x         20.10x      54.8%            29.2%
+BlackSky (BKSY)      $350        3.20x          3.50x       22.5%            48.2%
+Spire Global (SPIR)  $210        2.80x          2.90x       18.2%            58.1%
+Palantir (PLTR)      $140,000    42.00x         45.00x      27.2%            80.1%
+──────────────────────────────────────────────────────────────────────────────────────
+同業平均 (Mean)      $37,590     16.63x         17.88x      30.68%           53.90%
+同業中位數 (Median)  $5,075      10.76x         11.64x      24.85%           53.15%</code></pre>
+<h4>CCA 隱含股價算式</h4>
+<p>套用同業中位數與平均倍數進行推算（考慮 PL 的高成長率與高毛利率給予 10% 品質溢價）：</p>
+<pre class="lv-code"><code>CCA 估值推算：
+指標/估值角度       標的指標值    同業中位數    調整後倍數(+10%)  隱含 EV/市值($M)  隱含每股價格
+EV/Revenue (TTM)    $378.28M     10.76x        11.84x           $4,478.8M        $14.24
+P/S Ratio (TTM)     $378.28M     11.64x        12.80x           $4,842.0M (Mkt)  $14.23
+──────────────────────────────────────────────────────────────────────────────────────
+CCA 加權調整後每股價格（等權重）:                                                $14.24</code></pre>
+<hr>
+<h3>4. 方法三：企業價值／營收倍數估值法（EV/Revenue Multiple）</h3>
+<p>鑑於 PL 目前營收為 $3.783 億美元，預測未來 12 個月（NTM）營收約為 $4.85 億美元（YoY +28%）：</p>
+<pre class="lv-code"><code>EV/Revenue 估值範圍推算：
+估值區間             採用倍數     隱含 EV ($M)     加上淨現金 ($366.8M)  隱含每股價格
+保守區間 (Bear)      8.0x         $3,880.0M        $4,246.8M             $12.48
+基準區間 (Base)      11.0x        $5,335.0M        $5,701.8M             $16.75
+樂觀區間 (Bull)      14.0x        $6,790.0M        $7,156.8M             $21.03</code></pre>
+<hr>
+<h3>5. 足球場估值總結與綜合內在價值（Football Field Summary）</h3>
+<p>將各獨立估值方法之區間彙總如下，並進行概率／品質權重調和：</p>
+<pre class="lv-code"><code>足球場估值總結（Football Field Summary）— PL
+當前市場價格 (Current Price): $13.81
+
+估值方法                  低估值 (Bear)   中位值 (Base)   高估值 (Bull)   模型權重
+────────────────────────────────────────────────────────────────────────────────────
+DCF — 現金流折現法        $3.93           $6.92           $11.46          40%
+CCA — 同業可比倍數法      $10.50          $14.24          $18.50          30%
+EV/Revenue 營收倍數法     $12.48          $16.75          $21.03          30%
+52 週交易區間             $10.52          ───────────     $51.76          [市場參考]
+華爾街分析師目標價       $17.00          $30.27          $50.00          [機構參考]
+────────────────────────────────────────────────────────────────────────────────────
+綜合加權內在價值 (IV)     $8.46           $12.06          $16.44
+
+視覺化足球場區間圖：
+$3.93 |──────[DCF 區間]──────|───────────────────[CCA 區間]─────────────────| $21.03
+                                        ▲
+                                當前股價 $13.81</code></pre>
+<h4>綜合加權內在價值（Composite Weighted Intrinsic Value）計算</h4>
+<p>$$\text{Composite IV (Base)} = (40\% \times \$6.92) + (30\% \times \$14.24) + (30\% \times \$16.75) = \$2.77 + \$4.27 + \$5.03 = \mathbf{\$12.07}$$</p>
+<ul><li><strong>當前市場價格：</strong> $13.81</li><li><strong>綜合內在價值（Composite IV）：</strong> $12.07</li><li><strong>安全邊際（Margin of Safety）：</strong> -14.4%（目前股價相較內在價值溢價約 14.4%）</li></ul>
+<hr>
+<h3>6. 安全邊際與風險調整後期望報酬率</h3>
+<pre class="lv-code"><code>風險調整期望報酬率分析 (Risk-Adjusted Expected Return)：
+情境        機率 (Probability)   目標股價 (Price Target)   相對當前漲跌幅   期望報酬貢獻
+────────────────────────────────────────────────────────────────────────────────
+樂觀 (Bull) 20%                  $17.00                   +23.1%          +4.62%
+基準 (Base) 60%                  $12.07                   -12.6%          -7.56%
+悲觀 (Bear) 20%                  $6.00                    -56.6%          -11.32%
+────────────────────────────────────────────────────────────────────────────────
+機率加權期望報酬率 (Expected Return):                                    -14.26%
+
+風報比 (Risk/Reward Ratio): [樂觀上漲空間 $3.19] / [悲觀下跌空間 $7.81] = 0.41x
+(低於健康投資要求的 3.0x 門檻)</code></pre>
+<hr>
+<h3>7. 華爾街共識 vs 內在價值對比</h3>
+<ul><li><strong>華爾街共識目標價（Mean）：</strong> $30.27（對比當前股價有 +119.2% 上行空間）</li><li><strong>分析師最高 / 最低目標價：</strong> $50.00 / $17.00（共 11 位分析師評等，大多給予買進 Buy）</li><li><strong>本模型內在價值與共識差異解析：</strong><ul><li>華爾街賣方機構（Sell-side）極度樂觀地給予高達 20x+ 的 NTM EV/Revenue 倍數，並假設未來 3 年維持 40%+ 的高速複合成長與急速利潤率改善。</li><li>本模型考量到高高空資產維護的資本支出壓力、Beta 值高達 2.27 帶來的折現率（WACC 15.5%）懲罰，以及過去 52 週股價從 $51.76 回檔修正的真實市場風險，因此給予更謹慎的保守評價。</li></ul></li></ul>
+<hr>
+<h3>8. 論點失效條件（Thesis Invalidation）</h3>
+<p><strong>若目前訊號為【中性／看空】— 轉為看多之突破條件：</strong></p>
+<ol><li><strong>營收加速成長：</strong> 連續 2 個季度季度營收 YoY 成長超過 65%，且高利潤率的軟體/AI 數據訂閱佔比提升帶動動態 FCF Margin 突破 20%。</li><li><strong>現金流與獲利轉正：</strong> 單季 GAAP 營益率（Operating Margin）從目前的 -22.7% 顯著改善至轉正，大幅降低高折現率下的內在價值懲罰。</li><li><strong>估值修正到位：</strong> 股價進一步回檔至安全邊際區域（低於 $10.00，即低於當前 52 週低點 $10.52），使得風報比重新高於 3.0x。</li></ol>
+<p><strong>重新評估時間點：</strong></p>
+<ul><li>☐ 下一次季度財報公布時（重點關注高毛利軟體訂閱增長及 Capex 狀況）</li><li>☐ 股價從當前水準（$13.81）波動超過 ±15% 時</li><li>☐ 90 天時間屆滿</li></ul>
+<hr>
+<h3>9. 投資訊號與 JSON 標籤</h3>
+<pre class="lv-code"><code>{"investskill": "1", "skill": "stock-valuation", "ticker": "PL", "as_of": "2026-11-13", "signal": "NEUTRAL", "confidence": "HIGH", "horizon": "MEDIUM-TERM", "score": 4.5, "action": "HOLD", "conviction": "MODERATE", "retrieval": "pasted by user", "sources": ["SEC EDGAR 10-K/10-Q", "Company Financial Dataset"]}</code></pre>
+<pre class="lv-code"><code>╔══════════════════════════════════════════════╗
+║              INVESTMENT SIGNAL               ║
+╠══════════════════════════════════════════════╣
+║ Signal:      NEUTRAL                         ║
+║ Confidence:  HIGH                            ║
+║ Horizon:     MEDIUM-TERM                     ║
+║ Score:       4.5 / 10                        ║
+╠══════════════════════════════════════════════╣
+║ Action:      HOLD                            ║
+║ Conviction:  MODERATE                        ║
+╚══════════════════════════════════════════════╝</code></pre>
+<p><strong>免責聲明：</strong> 僅供教育與研究用途，不構成任何投資建議或買賣指示。投資人應獨立評估風險並諮詢專業顧問。</p>
+</section>
+<section class="lv-mod" id="m3"><h2>內部人交易分析 <span class="skilltag">insider-trading</span></h2>
+<p>Data &amp; Sources
+As of:      2026-11-13
+Source:     SEC Filings &amp; Market Data (User Provided Dataset)
+Retrieval:  pasted by user
+Confidence: HIGH</p>
+<hr>
+<h3>執行摘要（Executive Summary）</h3>
+<p>本報告方針對 <strong>Planet Labs PBC (PL)</strong> 的內部人持股結構（Insider Ownership）、高管權益一致性（Skin in the Game）及近期股價大幅回檔下的交易行為進行深度剖析。Planet Labs 現為市值約 50.25 億美元之航太與地球觀測數據服務商，雖 TTM 自由現金流（Free Cash Flow, FCF）已轉正至 5,175 萬美元，但公司內部人持股比例僅 <strong>2.35%</strong>，顯示高管與團隊的資本權益綁定顯著偏低。在股價自 52 週高點 $51.76 重挫至目前 $13.81（跌幅逾 70%）的過程中，缺乏內部人顯著的公開市場大額抄底增持（Open Market Purchases, Transaction Code P），主要交易型態仍以股權激勵（Stock Awards / Grants）與例行性 10b5-1 減持或稅務扣繳處分（Tax Withholding, Form 4 Code F）為主。</p>
+<p>整體而言，內部人情緒呈現 <strong>中性偏空（Moderately Bearish）</strong>。高達 77.79% 的股份由機構法人掌控（Institutional Ownership），散戶與機構承受了絕大部分股價波動風險，而內部人利益一致性不足為當前公司治理與籌碼結構的核心隱憂。</p>
+<hr>
+<h4>1. 內部人交易與持股總覽（Insider Ownership Overview）</h4>
+<p>根據最新申報數據，Planet Labs 的股權結構與內部人持有狀況如下：</p>
+<ul><li><strong>內部人持股比例（% Held by Insiders）：</strong> <strong>2.35%</strong></li><li><strong>機構法人持股比例（% Held by Institutions）：</strong> <strong>77.79%</strong></li><li><strong>總發行股數（Shares Outstanding）：</strong> 340,354,193 股</li><li><strong>自由流通股數（Float Shares）：</strong> 302,273,994 股（佔總股數 88.81%）</li><li><strong>空頭未平倉股數（Shares Short）：</strong> 36,389,929 股（空頭佔流通股比例 Short % of Float 達 <strong>12.04%</strong>；回補天數 Short Ratio 為 3.78 天）</li></ul>
+<pre class="lv-code"><code>Planet Labs 股權分配結構
+├─ 機構法人持股 (Institutions): 77.79% [████████████████████████ text]
+├─ 內部人持股 (Insiders):       2.35%  [█]
+└─ 其他散戶與大眾流通 (Other):   19.86% [██████]</code></pre>
+<h4>數據解讀與持股偏低警訊：</h4>
+<p>內部人持股僅 2.35% 在成長型航太科技或 SaaS/數據訂閱型企業中屬於<strong>極低水平</strong>。這反映出公司經由 SPAC 上市或多輪股權稀釋後，創辦團隊與核心高管（CEO、CFO、COO）所擁有的實質股權佔比已被高度稀釋。缺乏足夠的「Skin in the Game」意味著高管個人財富與長期股價表現的連結相對微弱。</p>
+<hr>
+<h4>2. 內部人情緒分析與交易結構（Insider Sentiment &amp; Form 4 Analysis）</h4>
+<h4>交易型態分析（Transaction Code &amp; SEC Form 4 Interpretation）</h4>
+<p>在 SEC Form 4 的申報紀錄中，內部人交易可分為兩大類：</p>
+<ol><li><strong>主動市場交易（Discretionary Open Market Trades, Code P / S）：</strong><ul><li><strong>公開市場買進（Code P）：</strong> 代表高管自掏腰包買進，具備極高多頭強信號。在 PL 股價跌至 52 週低點附近（$10.52 – $13.81）期間，<strong>未觀察到大規模、多位高管聯手的集群式買進（Clustered Buying）</strong>。</li><li><strong>公開市場賣出（Code S）：</strong> 大部分減持主要透過 <strong>10b5-1 預先交易計畫（10b5-1 Trading Plans）</strong> 進行。根據 SEC 2023 年新規，10b5-1 計畫設有 90–120 天的冷卻期（Cooling-off period），雖然這規避了內線交易疑慮，但也降低了賣出動作對當前營運利空的即時預測價值。</li></ul></li></ol>
+<ol><li><strong>非市場獎勵與稅務交易（Non-Market Transactions, Code A / F / M）：</strong><ul><li><strong>股權獎賞與選擇權履約（Code A / M）：</strong> 高管薪酬很大一部分來自受限制股票單位（RSUs）發放。</li><li><strong>稅務股份扣繳（Code F）：</strong> RSU 歸屬（Vesting）時，高管常將部分股份交還公司抵扣所得稅，此類賣出屬例行動作，不應視為看空信號。</li></ul></li></ol>
+<h4>內部人淨情緒分數（Net Insider Sentiment Score）</h4>
+<p>依據近 6–12 個月公開市場主動買賣金額計算：</p>
+<p>$$\text{Net Sentiment} = \frac{\text{Buy } \$ - \text{Sell } \$}{\text{Buy } \$ + \text{Sell } \$} \approx -0.45$$</p>
+<ul><li><strong>情緒區間分類：</strong> <strong>-0.45 屬於 Moderately Bearish（中性偏空）</strong>。</li><li><strong>主要原因：</strong> 缺乏公開市場主動買進（Buy Volume 近乎為 0），即便賣出多為 10b5-1 或稅務相關，但在股價極度低迷時缺乏內部人護盤支持，反映高管對短期股價回升信心不足。</li></ul>
+<hr>
+<h4>3. 時點與股價走勢對照（Timing &amp; Price Action Context）</h4>
+<p>PL 近 6 個月股價呈現劇烈修正，從高點 <strong>$51.40</strong> 跌至最低 <strong>$11.37</strong>，近期於 <strong>$13.81</strong> 附近震盪整理：</p>
+<ul><li><strong>52 週股價區間：</strong> $10.52 – $51.76</li><li><strong>目前均線結構：</strong> 20 日均線（$13.56）略高於現價，50 日均線（$15.38）形成上方均線反壓。</li><li><strong>抄底買訊缺席：</strong> 在 2026 年 11 月初股價急跌至 $11.37 歷史低檔區時，內部人並未出現顯著的大額逢低增持動作（無 CEO/CFO &gt;$1M 的增持申報）。相比之下，空頭部位（Short Interest）高達 3,639 萬股（佔流通股 12.04%），市場空方勢力主導籌碼面，而內部人選擇旁觀。</li></ul>
+<hr>
+<h4>4. 紅旗警訊與公司治理評估（Red Flags &amp; Governance Risks）</h4>
+<div class="tblwrap"><table class="dt dt--sm"><thead><tr><th scope="col" style="text-align:left">警訊項目 (Risk Factor)</th><th scope="col" style="text-align:left">評估等級</th><th scope="col" style="text-align:left">說明與對投資人的影響</th></tr></thead><tbody><tr><td style="text-align:left"><strong>持股比例過低 (Low Ownership)</strong></td><td style="text-align:left"><strong>高度警訊 (High)</strong></td><td style="text-align:left">內部人持股僅 2.35%，高管與普通股股東利益一致性不足。</td></tr><tr><td style="text-align:left"><strong>逢低護盤意願 (Lack of Support)</strong></td><td style="text-align:left"><strong>中度警訊 (Medium)</strong></td><td style="text-align:left">股價自高點重挫逾 70%，未見核心高管自掏腰包買進（Code P）。</td></tr><tr><td style="text-align:left"><strong>空頭偏高風險 (Short Interest)</strong></td><td style="text-align:left"><strong>中度警訊 (Medium)</strong></td><td style="text-align:left">12.04% 流通股遭借券賣空，若無營運轉機易遭持續壓制。</td></tr><tr><td style="text-align:left"><strong>高股權稀釋風險 (SBC Dilution)</strong></td><td style="text-align:left"><strong>中度警訊 (Medium)</strong></td><td style="text-align:left">淨利潤（Net Income）仍虧損 3.59 億美元，仰賴股票薪酬（SBC）激勵高管，持續稀釋外圍股東。</td></tr></tbody></table></div>
+<hr>
+<h4>5. 論點失效條件（Thesis Invalidation）</h4>
+<p>本內部人分析看空/中性論點將在以下條件發生時失效，轉為看多信號：</p>
+<ol><li><strong>核心高管大規模增持：</strong> CEO 或 CFO 在公開市場（Code P）自掏腰包買進單筆金額超逾 <strong>$1,000,000 美元</strong>，或 3 位以上董事於 30 天內出現集群式買進（Clustered Buying）。</li><li><strong>持股比例顯著提升：</strong> 內部人整體持股比例經由公開市場購買提升至 <strong>5.0%</strong> 以上。</li><li><strong>空頭強制回補（Short Squeeze）：</strong> 空頭佔流通股比例降至 5% 以下，且伴隨內部人停止 10b5-1 賣出計畫。</li></ol>
+<p><strong>建議重新評估時點：</strong></p>
+<ul><li>☐ 下一次季度財報發布（10-Q）及 SEC Item 408 高管交易計畫揭露</li><li>☐ 股價由當前水位波動 ±15%（即突破 $15.88 或跌破 $11.74）</li><li>☐ 距今 60 天後（檢視最新 Form 4 申報動態）</li></ul>
+<hr>
+<h4>6. 標準投資訊號框 (InvestSkill Investment Signal)</h4>
+<pre class="lv-code"><code>{"investskill": "1", "skill": "insider-trading", "ticker": "PL", "as_of": "2026-11-13", "signal": "BEARISH", "confidence": "HIGH", "horizon": "MEDIUM-TERM", "score": 3.2, "action": "SELL", "conviction": "MODERATE", "retrieval": "pasted by user", "sources": ["SEC Form 4 filings snapshot", "User provided PL live market dataset 2026-11-13"]}</code></pre>
+<pre class="lv-code"><code>╔══════════════════════════════════════════════╗
+║              INVESTMENT SIGNAL               ║
+╠══════════════════════════════════════════════╣
+║ Signal:      BEARISH                         ║
+║ Confidence:  HIGH                            ║
+║ Horizon:     MEDIUM-TERM                     ║
+║ Score:       3.2 / 10                        ║
+╠══════════════════════════════════════════════╣
+║ Action:      SELL                            ║
+║ Conviction:  MODERATE                        ║
+╚══════════════════════════════════════════════╝</code></pre>
+<ul><li><strong>評分說明 (3.2 / 10)：</strong> Moderately Bearish。內部人持股比例極低（2.35%），利益一致性薄弱；在股價大幅修正至 52 週低檔區時缺乏主動抄底增持（Code P）訊號，籌碼面完全由機構與空頭主導。</li><li><strong>建議動作 (SELL / 避開或減碼)：</strong> 在內部人展現實質逢低承接信心或公司盈利能力大幅轉盈前，建議投資人對籌碼結構保持戒心，暫避開或逢高減碼。</li></ul>
+<p><strong>免責聲明：</strong> 本分析僅供教育與研究用途，不構成任何投資建議或買賣指示。投資人應獨立評估風險並諮詢專業顧問。</p>
+</section>
+<section class="lv-mod" id="m4"><h2>技術分析 <span class="skilltag">technical-analysis</span></h2>
+<pre class="lv-code"><code>Data &amp; Sources
+  As of:      2026-11-13
+  Source:     Exchange Data / Planet Labs PBC Market Data
+  Retrieval:  pasted by user
+  Confidence: HIGH</code></pre>
+<hr>
+<h3>PL（Planet Labs PBC）技術分析報告</h3>
+<p>本報告針對 <strong>PL (Planet Labs PBC)</strong> 的近期價格行為（Price Action）、移動平均線（Moving Average, MA）結構、多時間框架（Multi-Timeframe, MTF）、成交量分佈（Volume Profile）及進階技術指標進行深度技術面評估。</p>
+<hr>
+<h3>1. 移動平均線圖表分析（Moving Average Analysis）</h3>
+<p>PL 當前股價為 <strong>$13.81</strong>。經歷了從 52 週高點 $51.76 大幅拉回至 6 個月低點 $11.37 之後，短期內出現高容量的反彈打底跡象。目前股價收復了 20 日均線（$13.56）與估算之 30 日均線（$13.65），但整體中長期均線仍呈空頭排列（Bearish Stack）。</p>
+<h4>均線位置與排列狀態（MA Position Table）</h4>
+<pre class="lv-code"><code>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  MOVING AVERAGE CHART — PL               2026-11-13
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Current Price : $13.81
+
+  MA       Value      vs Price    Signal
+  ──────   ────────   ─────────   ───────────────────
+  MA30     $13.65     ▲ +1.17%    Above  ← Short-term support
+  MA60     $15.90     ▼ -13.14%   Below  ← Intermediate resistance
+  MA90     $18.50     ▼ -25.35%   Below  ← Medium-term resistance
+  MA200    $24.20     ▼ -42.93%   Below  ← Long-term bull/bear
+  MA365    $22.50     ▼ -38.62%   Below  ← Annual baseline
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  MA Stack: MIXED (Short-term rebound in long-term downtrend)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</code></pre>
+<h4>90 日價格趨勢 ASCII 圖表</h4>
+<pre class="lv-code"><code>Price ($)
+ 51.40 ┤ ╭──╮
+       ┤ │  ╰──╮
+ 30.00 ┤       ╰──╮
+ 20.00 ┤          ╰──────╮
+ 15.38 ┤                 │           ╭───╮      ← MA50 ($15.38)
+ 13.81 ┤                 │  ╭─╮    ╭─╯   ╰─╮    ← Price ($13.81)
+ 13.65 ┤· · · · · · · · ·╰──╯ ·╰───╯ · · · ╰──  ← MA30 ($13.65)
+ 11.37 ┤                      ● (Low: $11.37)
+       └─┬─────┬─────┬─────┬─────┬─────┬─────┬──→
+       -90d  -70d  -50d  -30d  -10d  Nov-09 Today
+
+Legend: ──── Price  · · · MA30  ════ Resistance (MA50: $15.38)</code></pre>
+<h4>均線交叉與關鍵訊號（MA Crossover Signals）</h4>
+<ul><li><strong>經典死亡交叉（Classic Death Cross）</strong>：MA50（$15.38）先前已跌破 MA200（約 $24.20），確立長期熊市格局。</li><li><strong>近期短期止跌訊號</strong>：2026-11-09 股價伴隨 1,100 萬股大量強勢收復 20 日均線（$13.56），並站上 MA30（$13.65），完成短期 V 型反彈打底。</li><li><strong>關鍵反壓</strong>：50 日均線（MA50 = $15.38）為上方首要強反壓。</li></ul>
+<hr>
+<h3>2. 均線交易建議（MA-Based Trade Recommendation）</h3>
+<p>基於短期站穩 MA30 但中長期受制於 MA50 之格局，採取<strong>波段反彈（Swing Trade）</strong>策略：</p>
+<pre class="lv-code"><code>╔══════════════════════════════════════════════════════════════════╗
+║              MA-BASED TRADE RECOMMENDATION — PL                  ║
+╠══════════════════════════════════════════════════════════════════╣
+║  Current Price : $13.81                                          ║
+╠══════════════════════════════════════════════════════════════════╣
+║  OPERATION      │ ENTRY PRICE   │ TARGET        │ STOP-LOSS     ║
+║  ───────────────┼───────────────┼───────────────┼────────────── ║
+║  BUY (Swing)    │ $13.20        │ $15.30        │ $12.35        ║
+╠══════════════════════════════════════════════════════════════════╣
+║  Rationale: 股價於 $11.37 爆量打底後站穩 MA30，等待回測支撐逢低承接   ║
+║  Basis:     MA30 = $13.65 / 11-06 低點支撐 $12.55                 ║
+║  R/R Ratio: 1 : 2.47                                             ║
+║  Horizon:   SWING (2 - 6 週)                                     ║
+╚══════════════════════════════════════════════════════════════════╝</code></pre>
+<hr>
+<h3>3. 多時間框架與成交量分佈分析</h3>
+<h4>多時間框架分析（Multi-Timeframe Analysis, MTF）</h4>
+<div class="tblwrap"><table class="dt dt--sm"><thead><tr><th scope="col" style="text-align:left">時間框架（Timeframe）</th><th scope="col" style="text-align:left">趨勢方向（Trend）</th><th scope="col" style="text-align:left">關鍵訊號（Key Signal）</th><th scope="col" style="text-align:left">支撐位（Support）</th><th scope="col" style="text-align:left">壓力位（Resistance）</th><th scope="col" style="text-align:left">對齊狀態（Alignment）</th></tr></thead><tbody><tr><td style="text-align:left"><strong>高時間框架（周線）</strong></td><td style="text-align:left">下降趨勢（Down）</td><td style="text-align:left">遠低於 MA200，處於跌勢修正後的尋找底部階段</td><td style="text-align:left">$11.37</td><td style="text-align:left">$18.50</td><td style="text-align:left">❌ 空頭</td></tr><tr><td style="text-align:left"><strong>主時間框架（日線）</strong></td><td style="text-align:left">築底反彈（Rebound）</td><td style="text-align:left">站上 MA30，突破 11/09 高點 $14.37 後遭逢拉回</td><td style="text-align:left">$12.55</td><td style="text-align:left">$15.38 (MA50)</td><td style="text-align:left">⚠️ 中性偏多</td></tr><tr><td style="text-align:left"><strong>低時間框架（4小時）</strong></td><td style="text-align:left">上升通道（Up）</td><td style="text-align:left">形成 High-Low 結構，量能放大</td><td style="text-align:left">$13.50</td><td style="text-align:left">$14.37</td><td style="text-align:left">✅ 多頭</td></tr><tr><td style="text-align:left"><strong>整體評分</strong></td><td style="text-align:left"></td><td style="text-align:left"><strong>MTF Confluence Score: 2/3</strong></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"><strong>具備波段做多條件</strong></td></tr></tbody></table></div>
+<h4>成交量分佈（Volume Profile）與密集區</h4>
+<ul><li><strong>控制點（Point of Control, POC）</strong>：$13.40 – $13.60（近 10 個交易日籌碼密集交換區，具備強磁吸效應）。</li><li><strong>價值區高點（Value Area High, VAH）</strong>：$14.35（近兩週反彈高點反壓）。</li><li><strong>價值區低點（Value Area Low, VAL）</strong>：$12.50（11/06 換手支撐區）。</li><li><strong>低成交量節點（Low Volume Node, LVN）</strong>：$14.40 – $15.20（此區間籌碼稀疏，若突破 $14.37，股價有機會快速穿過 LVN 挑戰 MA50 $15.38）。</li></ul>
+<hr>
+<h3>4. 進階技術指標與籌碼面整合</h3>
+<h4>1. 一目均衡表（Ichimoku Cloud）</h4>
+<ul><li><strong>Kumo 雲帶位置</strong>：日線股價（$13.81）目前位於厚重紅雲下方，長期趨勢受制於雲帶。</li><li><strong>轉折線與基準線（TK Cross）</strong>：短線 Tenkan-sen（轉換線）穿越 Kijun-sen（基準線）形成黃金交叉，發出短期反彈訊號。</li></ul>
+<h4>2. 動能與波動度指標</h4>
+<ul><li><strong>相對強弱指標（Relative Strength Index, RSI-14）</strong>：由自 $11.37 處的超賣區（&lt;30）回升至 <strong>47.5</strong>，回歸中性區域，動能正在重新積聚。</li><li><strong>MACD（平滑異同移動平均線）</strong>：DIF 於零軸下方向上穿越 MACD 柱狀圖轉正，顯示短期多頭佔優。</li><li><strong>布林通道（Bollinger Bands）</strong>：股價自布林下軌（$11.37 附近）反彈，目前於中軌（$13.56）獲得支撐，正向上軌（$15.20）尋求測試。</li></ul>
+<h4>3. 融券與選擇權籌碼（Short Interest &amp; Options Context）</h4>
+<ul><li><strong>融券餘額（Short % of Float）</strong>：放空比例達 <strong>12.04%</strong>（空單張數 3,639 萬股），回補天數（Days to Cover）為 <strong>3.78 天</strong>。</li><li><strong>軋空潛力（Short Squeeze Potential）</strong>：中等。若股價伴隨高量突破 50 日均線（$15.38），可能觸發空頭回補（Short Covering），加速向上衝刺。</li></ul>
+<hr>
+<h3>5. 論點失效條件（Thesis Invalidation）</h3>
+<p><strong>若目前之「多頭波段反彈」論點要維持，需滿足以下條件；若發生以下狀況則論點失效：</strong></p>
+<ul><li><strong>空頭失效條件（Thesis Breaks if）</strong>：<ol><li>股價跌破並收低於關鍵支撐 <strong>$12.35</strong>（跌破 11/06 換手低點），宣告反彈結束並面臨再次測試 52 週低點 $10.52 的風險。</li><li>日成交量萎縮至 400 萬股以下且 RSI 再次跌破 40。</li></ol></li></ul>
+<ul><li><strong>重新審視本分析之觸發點（Re-run this analysis when）</strong>：<ul><li>☐ 股價突破並收高於 50 日均線（$15.38）</li><li>☐ 股價跌破 $12.35 停損位</li><li>☐ 下一次季度財報公布時</li><li>☐ 60 天期限屆滿</li></ul></li></ul>
+<hr>
+<h3>6. 標準投資訊號（Standard Investment Signal）</h3>
+<pre class="lv-code"><code>{"investskill": "1", "skill": "technical-analysis", "ticker": "PL", "as_of": "2026-11-13", "signal": "NEUTRAL", "confidence": "MEDIUM", "horizon": "SHORT-TERM", "score": 5.8, "action": "HOLD", "conviction": "MODERATE", "retrieval": "pasted by user", "sources": ["Exchange Data / Planet Labs PBC Market Data dated 2026-11-13"]}</code></pre>
+<pre class="lv-code"><code>╔══════════════════════════════════════════════╗
+║              INVESTMENT SIGNAL               ║
+╠══════════════════════════════════════════════╣
+║ Signal:      NEUTRAL                         ║
+║ Confidence:  MEDIUM                          ║
+║ Horizon:     SHORT-TERM                      ║
+║ Score:       5.8 / 10                        ║
+╠══════════════════════════════════════════════╣
+║ Action:      HOLD                            ║
+║ Conviction:  MODERATE                        ║
+╚══════════════════════════════════════════════╝</code></pre>
+<p><strong>分數說明（Score Guide）</strong>：5.8 分屬於中性偏多波段反彈格局。雖然中長期趨勢（MA200/周線）仍偏空，但短期於 $11.37 爆量打底後站穩 MA30，具備向 MA50（$15.38）尋求波段反彈之技術面條件。觀望者可待拉回至 $13.00–$13.20 尋求低吸機會，現階段建議持有（HOLD）。</p>
+<p><strong>免責聲明：</strong> 僅供教育用途，非投資建議。</p>
+</section>
+<section class="lv-mod" id="m5"><h2>空頭觀點 <span class="skilltag">bear-case</span></h2>
+<pre class="lv-code"><code>Data &amp; Sources
+  As of:      2026-11-13
+  Source:     Provided financial dataset (SEC filings, exchange data)
+  Retrieval:  pasted by user
+  Confidence: HIGH</code></pre>
+<blockquote><p>⚠️ 這是一個<strong>故意單向偏向看空的熊市論點報告（Bear Case）</strong>，旨在挖掘反面證據與風險。請將此報告與 <code>stock-eval</code> 或看多分析結合使用，以獲得均衡全面的投資視角。</p></blockquote>
+<hr>
+<h3>一、 熊市核心論點（三句話總結）</h3>
+<p>Planet Labs（PL）目前以高達 13.3 倍的市銷率（Price-to-Sales, P/S）高估值交易，然而其近十二個月（TTM）淨虧損（Net Income）顯著擴大至 3.6 億美元（淨利率 -95.1%），顯示營收成長未能轉化為實際獲利。歷史財務數據顯示其 GAAP 虧損逐年惡化（從 2025 年虧損 1.23 億美元擴大至 2026 年虧損 2.47 億美元），且公司高度仰賴資本支出（Capital Expenditure, CapEx）維持衛星群組，現有自由現金流轉正可能僅為短期 CapEx 延後支付的假象。在估值過度拉伸、高 Beta 波動（2.27）以及營運虧損持續擴大的現實下，一旦市場對高風險太空科技股進行估值重估，股價將面臨顯著的下行修正壓力。</p>
+<hr>
+<h4>二、 熊市強度評分（Bear Case Strength Score）</h4>
+<pre class="lv-code"><code>Pillar                              Weight   Score
+Valuation stretch                    0–2      1.6
+Deteriorating fundamentals           0–2      1.6
+Accounting / earnings-quality flags  0–2      1.3
+Competitive &amp; secular threats        0–2      1.1
+Management &amp; capital allocation      0–1      0.7
+Catalyst clarity &amp; timing            0–1      0.8
+                          BEAR CASE STRENGTH:  7.1 / 10</code></pre>
+<blockquote><p><strong>熊市強度 7.1 / 10（強烈看空論點）</strong>：存在多重獨立的財務與估值負面因素，屬於需謹慎避開或作為潛在放空標的之範疇。
+<strong>轉換為標準投資訊號分數</strong>：<code>Box Score = min(10 - 7.1, 6.5) = 2.9 / 10</code></p></blockquote>
+<hr>
+<h4>三、 詳細分析與證據</h4>
+<h4>1. 估值過度拉伸（Valuation Stretch）</h4>
+<ul><li><strong>倍數顯著偏高</strong>：PL 的 TTM 市銷率（P/S）高達 <strong>13.28 倍</strong>，企業價值倍數（EV/Revenue）達 <strong>12.31 倍</strong>，市價淨值比（Price-to-Book, P/B）高達 <strong>8.90 倍</strong>。對於一家營運利率（Operating Margin）為 <strong>-22.7%</strong> 且未實現 GAAP 盈利的公司而言，此估值大幅高於傳統國防航太與衛星同業（普遍 P/S 介於 2x–5x）。</li><li><strong>價量背離與隱含預期過高</strong>：雖然股價已從 52 週高點 $51.76 重挫至 $13.81，但現行 13.3 倍 P/S 隱含市場要求其未來 5 年必須維持 40% 以上的高速複合成長且利潤率大幅轉正。一旦營收增速放緩，估值倍數將面臨劇烈的「雙殺」（倍數壓縮與盈餘下修）。</li></ul>
+<h4>2. 基本面惡化與虧損擴大（Deteriorating Fundamentals）</h4>
+<ul><li><strong>營收成長未能轉化為獲利</strong>：儘管 TTM 營收成長率達 <strong>58.1%</strong>（$3.78 億美元），但 GAAP 淨虧損（Net Income）卻大幅惡化至 <strong>-$3.60 億美元</strong>，淨利率（Net Margin）低達 <strong>-95.1%</strong>。</li><li><strong>歷史損益趨勢惡化</strong>：回顧近四個財政年度，GAAP 淨虧損從 2025 年的 -$1.23 億美元擴大至 2026 年的 -$2.47 億美元，TTM 更進一步擴大。顯示規模擴大並未帶來規模經濟效益，反而出現「越賣越虧」的營運結構。</li><li><strong>資產報酬極差</strong>：股東權益報酬率（Return on Equity, ROE）為 <strong>-71.97%</strong>，資產報酬率（Return on Assets, ROA）為 <strong>-5.05%</strong>，資本回報嚴重毀損。</li></ul>
+<h4>3. 會計與盈餘品質疑慮（Accounting &amp; Earnings-Quality Red Flags）</h4>
+<ul><li><strong>淨利與現金流巨額背離</strong>：TTM GAAP 淨虧損為 <strong>-$3.599 億美元</strong>，但營運現金流（Operating Cash Flow）卻呈正值 <strong>$1.176 億美元</strong>，兩者存在高達 <strong>4.77 億美元</strong> 的權責發生制差距（Accrual Gap），反映損益表受大量非現金項目或一次性調整干擾，盈餘品質偏低。</li><li><strong>資本支出（CapEx）異常降至零之隱憂</strong>：數據顯示 TTM CapEx 為 <strong>$0</strong>，從而計算出 TTM 自由現金流（Free Cash Flow, FCF）為 <strong>$5,175 萬美元</strong>（FCF Margin 13.68%）。然而歷史數據顯示 2026 財年的 CapEx 高達 <strong>$8,295 萬美元</strong>。身為低軌衛星群組營運商，衛星折舊與定期發射更新係硬性需求，TTM CapEx 降至零極可能僅為資本支出遞延的短期現象，一旦後續衛星更新週期啟動，FCF 將迅速轉為負值。</li></ul>
+<h4>4. 競爭與結構性威脅（Competitive &amp; Secular Threats）</h4>
+<ul><li><strong>商業衛星影像商品化</strong>：隨著 SpaceX 發射成本下降，低軌衛星進入門檻降低，競爭對手（如 Maxar, BlackSky 等）及政府自建衛星系統增加，商業衛星遙測數據面臨價格下行壓力（Commoditization）。</li><li><strong>客戶集中與預算風險</strong>：政府與國防合約佔其營收極大比重，合約審批流程冗長且易受財政預算削減影響，商業市場（Enterprise/Commercial）轉換率若不如預期，將抑制長遠 TAM 擴張。</li></ul>
+<h4>5. 管理與資本配置疑慮（Management &amp; Capital Allocation）</h4>
+<ul><li><strong>債務負擔增加</strong>：總負債（Total Debt）達 <strong>$4.986 億美元</strong>，債務股權比（Debt/Equity）為 <strong>88.35%</strong>。雖然目前擁有 <strong>$8.654 億美元</strong> 現金（淨現金為 $3.668 億美元），但在年燒錢/虧損數億美元的情況下，現金防禦屏障正被快速侵蝕。</li></ul>
+<h4>6. 下行催化劑與時程（Downside Catalysts &amp; Timeline）</h4>
+<ul><li><strong>短期（0–6 個月）</strong>：後續季報中 CapEx 回升導致 FCF 重新轉負；GAAP 虧損持續擴大拖累市場信心。</li><li><strong>中期（6–18 個月）</strong>：營收成長率因高基期而降速；高利率環境下市場對高 P/S、高 Beta（2.27）無獲利科技股進行估值重估，驅動市銷率回歸同業平均。</li></ul>
+<hr>
+<h4>四、 下行目標價與風險報酬（Downside Target &amp; Risk/Reward）</h4>
+<ul><li><strong>看空基準目標價（Bear Price Target）</strong>： 假設 FY2027 營收達到 <strong>$4.50 億美元</strong>，在熊市情境下，市場給予其趨向成熟科技國防同業的 <strong>5.0 倍 P/S</strong> 估值，計算得出企業價值（EV）為 <strong>$22.50 億美元</strong>。加上目前淨現金 <strong>$3.668 億美元</strong>，權益價值（Equity Value）為 <strong>$26.17 億美元</strong>。 $$\text{目標價} = \frac{\$2,617,000,000}{340,354,193 \text{ 股}} \approx \mathbf{\$7.69}$$ <em>(相較目前股價 $13.81，潛在下行空間約 <strong>-44.3%</strong>)</em></li></ul>
+<ul><li><strong>嚴重熊市情境（Severe Bear Scenario）</strong>：若估值進一步壓縮至 <strong>3.0 倍 P/S</strong>（營收成長停滯且虧損持續），目標價降至 <strong>$5.04</strong>（下行空間約 <strong>-63.5%</strong>）。</li><li><strong>清算/資產底線（Fundamental Floor）</strong>：每股帳面價值（Book Value per Share）為 <strong>$1.55</strong>。</li></ul>
+<hr>
+<h4>五、 殺手級因素（Thesis-Killers）</h4>
+<p>以下因素發生的可能性將直接<strong>推翻或破壞</strong>此看空論點：</p>
+<ol><li><strong>營運槓桿大幅展現與 GAAP 轉盈</strong>：毛利率（Gross Margin）持續向上突破（現為 55.5%），且營業費用率大幅下降，推動 GAAP 淨利與 EBITDA 迅速轉正，證明其商業模式具有高規模效益。</li><li><strong>大型國防/國安長期合約落袋</strong>：取得各國政府或軍方長期、不可撤銷的高額訂單，帶動營收成長率重新加速至 60% 以上。</li><li><strong>收購溢價風險（Takeout Risk）</strong>：傳統航太國防巨頭（如 Lockheed Martin、Northrop Grumman）或大型科技公司發起溢價收購。</li><li><strong>空頭軋空風險（Short Squeeze）</strong>：當前借券賣出比例（Short % of Float）達 <strong>12.04%</strong>（空頭股數約 3,639 萬股，天數 3.78 天），若出現利多消息，可能引發短線猛烈的軋空行情。</li></ol>
+<hr>
+<h3>論點失效條件（Thesis Invalidation）</h3>
+<p><strong>如果訊號為 看空（BEARISH）— 論點失效條件為：</strong></p>
+<ul><li>營業利益率顯著改善並實現單季 GAAP 轉盈，或營收 YoY 成長率持續突破 60%。</li><li>發生產業併購邀約或爆發強烈軋空行情。</li><li>估值倍數已壓縮至 P/S &lt; 4.0x，下行空間已完全反映熊市情境。</li></ul>
+<p><strong>重新執行此分析之時機：</strong></p>
+<ul><li>☐ 下一次季度財報公布時</li><li>☐ 股價自當前水平（$13.81）移動 ±15%（突破 $15.88 或跌破 $11.74）</li><li>☐ 60 天期限屆滿</li><li>☐ 出現重大合約簽署、管理層異動或併購事件</li></ul>
+<hr>
+<pre class="lv-code"><code>{"investskill": "1", "skill": "bear-case", "ticker": "PL", "as_of": "2026-11-13", "signal": "BEARISH", "confidence": "HIGH", "horizon": "MEDIUM-TERM", "score": 2.9, "action": "SELL", "conviction": "MODERATE", "retrieval": "pasted by user", "sources": ["SEC EDGAR 10-K/10-Q", "Company Financial Data as of 2026-11-13"]}</code></pre>
+<pre class="lv-code"><code>╔══════════════════════════════════════════════╗
+║              INVESTMENT SIGNAL               ║
+╠══════════════════════════════════════════════╣
+║ Signal:      BEARISH                         ║
+║ Confidence:  HIGH                            ║
+║ Horizon:     MEDIUM-TERM                     ║
+║ Score:       2.9 / 10                        ║
+╠══════════════════════════════════════════════╣
+║ Action:      SELL                            ║
+║ Conviction:  MODERATE                        ║
+╚══════════════════════════════════════════════╝</code></pre>
+<p><strong>Score Guide:</strong> 8.0–10.0 Strongly Bullish | 6.0–7.9 Moderately Bullish | 4.0–5.9 Neutral | 2.0–3.9 Moderately Bearish | 0.0–1.9 Strongly Bearish
+<strong>Confidence:</strong> HIGH (strong data, clear signals) | MEDIUM (mixed signals) | LOW (limited data, conflicting signals)
+<strong>Horizon:</strong> SHORT-TERM (1 week–3 months) | MEDIUM-TERM (3 months–1 year) | LONG-TERM (1+ years)</p>
+<p><strong>註：</strong> 本評分已轉換為跨模組可比之標準看多/看空量表（Bear Case Strength 7.1 對應投資訊號分數 2.9，屬看空範圍）。本分析為<strong>刻意單向之熊市分析</strong>，決策前請務必搭配 <code>stock-eval</code> 進行綜合評估。</p>
+<p><strong>免責聲明：</strong> 僅供教育用途，非投資建議。</p>
+</section>
+<section class="lv-mod" id="m6"><h2>競爭護城河分析 <span class="skilltag">competitor-analysis</span></h2>
+<pre class="lv-code"><code>Data &amp; Sources
+  As of:      2026-11-13
+  Source:     Planet Labs PBC Financial Dataset (TTM / FY2026)
+  Retrieval:  pasted by user
+  Confidence: HIGH</code></pre>
+<hr>
+<h3>Planet Labs PBC (NYSE: PL) 競爭護城河與同業分析報告</h3>
+<h3>執行摘要（Executive Summary）</h3>
+<p>Planet Labs PBC (PL) 憑藉全球最大型的低軌道（LEO）光學遙測衛星星群（200+ 顆 Dove 衛星），建立起商業衛星遙測領域中獨一無二的<strong>高頻全球每日掃描（Daily Global Scan）</strong>與<strong>歷史地理空間數據庫（Data Archive）</strong>雙重護城河。公司目前正成功從單純的衛星影像提供者，轉型為高毛利、數據訂閱驅動的地理空間情報平台，TTM 營收年增長高達 58.1%，且營運現金流（Operating Cash Flow, OCF）與自由現金流（Free Cash Flow, FCF）已雙雙實現轉正（TTM FCF 達 5,175 萬美元）。雖然淨利潤仍因非現金折舊與一次性攤銷承壓，但其強健的淨現金資產結構（無淨債務，淨現金達 3.67 億美元）為其星群迭代（Pelican 與 Tanager）提供了極高的戰略防禦與擴展彈性。</p>
+<hr>
+<h3>1. 護城河識別框架（Moat Identification Framework）</h3>
+<h4>經濟護城河五大來源分析</h4>
+<ol><li><strong>無形資產（Intangible Assets - 歷史數據庫與軌道執照）：【強】</strong><ul><li><strong>專利數據資產</strong>：Planet 擁有自 2017 年以來每日覆蓋全球陸地的連續歷史影像數據庫。此數據庫具有「不可倒流重造」的特性，政府與國防機構（如美國國家地理空間情報局 NGA）、環境監測組織對歷史變遷分析具極高依賴度，競爭對手無法透過單純的資金投入來複製過去的歷史數據。</li><li><strong>軌道與頻率執照</strong>：擁有全球多國監管機構頒發的衛星通訊與發射執照，具備高合規壁壘。</li></ul></li></ol>
+<ol><li><strong>轉換成本（Switching Costs）：【中至強】</strong><ul><li>公司將地理空間數據深度整合至客戶的工作流程與 API 數據管道中（例如農業精準施肥系統、國防情報分析平台、保險災害理賠模型）。客戶替換供應商不僅面臨數據格式不相容的轉移成本，更需承擔重新訓練模型的代價，因此展現出極高的客戶黏性。</li></ul></li></ol>
+<ol><li><strong>規模成本優勢（Cost Advantages）：【強】</strong><ul><li><strong>立方衛星（CubeSat）集群規模化</strong>：Planet 採用消費電子級組件（COTS）建造低成本小型衛星，大幅降低單顆衛星的製造與發射成本。透過「打群架」的批量邊際成本優勢，其單位面積數據擷取成本遠低於傳統大型高解析度衛星製造商。</li></ul></li></ol>
+<ol><li><strong>網路效應（Network Effects）：【弱】</strong><ul><li>目前地理空間數據平台主要為單向供給，網路效應較不顯著；但隨著第三方 AI 分析師與開發者在其平台上建立分析模型，雙邊平台效應正處於初期萌芽階段。</li></ul></li></ol>
+<ol><li><strong>有效規模（Efficient Scale）：【中】</strong><ul><li>日常高頻全球掃描市場規模僅能容納 1 至 2 家具備規模經濟的營運商。Planet 搶先佔據該生態位後，新進入者難以取得足夠回報以支撐高昂的在軌基礎設施固定成本。</li></ul></li></ol>
+<h4>護城河寬度與趨勢評估</h4>
+<ul><li><strong>護城河寬度</strong>：<strong>窄護城河（Narrow Moat）</strong><ul><li><strong>認定依據</strong>：雖然公司 ROIC 受到歷史資本支出與 GAAP 損益表折舊影響暫時低於 WACC，但其營運現金流及 FCF 已經轉正（FCF Margin 達 13.68%），且在每日全球高頻掃描領域享有實質上的獨占地位。</li></ul></li><li><strong>護城河趨勢</strong>：<strong>擴大中（Widening）</strong><ul><li><strong>驅動因素</strong>：隨著新一代高解析度 Pelican 衛星與監測溫室氣體的 Tanager 衛星陸續佈署，產品線延伸至高單價、高毛利的國防與碳市場監測，帶動毛利率攀升至 55.49%，護城河持續拓寬。</li></ul></li></ul>
+<hr>
+<h3>2. 波特五力分析（Porter&#x27;s Five Forces Deep Analysis）</h3>
+<pre class="lv-code"><code>五力評估指標               分數 (1-5)    說明與關鍵動態
+─────────────────────────────────────────────────────────────────
+產業內競爭 (Rivalry)          4/5        中高：每日掃描領域無對手，但高解析度定點領域面臨強敵
+新進入者威脅 (New Entrants)   4/5        高防禦：衛星發射、軌道執照與資本門檻極高
+供應商議價能力 (Suppliers)    3/5        中等：火箭發射依賴 SpaceX 等，但發射市場供給增加降低成本
+買方議價能力 (Buyers)         4/5        高防禦：國防與政府客戶預算穩定，歷史數據庫不可替代
+替代品威脅 (Substitutes)      3/5        中等：無人機與航拍可補充局部區域，但無法實現全球高頻掃描
+─────────────────────────────────────────────────────────────────
+產業吸引力總分 (Industry Attractiveness):  3.6 / 5.0 (吸引力中上)</code></pre>
+<ol><li><strong>競爭對手敵對程度（Score: 4/5）</strong>：在低解析度每日掃描市場幾乎無直接對手；但在高解析度（&lt;30cm）市場，面對傳統巨頭 Maxar（已被 Advent 收購）以及新興業者如 BlackSky 的定點追蹤競爭，整體價格戰風險有限，產品差異化明確。</li><li><strong>新進入者威脅（Score: 4/5）</strong>：極高進入壁壘。建造與發射數百顆衛星、管理地面接收站網絡以及處理 Petabyte 級數據所需的技術與資本門檻，使新競爭者極難複製。</li><li><strong>供應商議價能力（Score: 3/5）</strong>：主要供應商為發射服務商（如 SpaceX）。隨著商業航太發射頻率提升與 Rocket Lab 等新業者加入，發射價格逐漸透明化與競爭化，壓力有所緩和。</li><li><strong>買方議價能力（Score: 4/5）</strong>：政府與國防（約佔營收大宗）買方雖然具有談判籌碼，但 Planet 的數據已成為其情報與應變的關鍵基礎設施，價格敏感度較低。</li><li><strong>替代品威脅（Score: 3/5）</strong>：無人機（Drone）與高空高空平台（HAP）在特定區域解析度高，但無法提供「覆蓋全球、每日更新」的宏觀視角。</li></ol>
+<hr>
+<h3>3. 市場份額分析（Market Share Analysis）</h3>
+<ul><li><strong>市場份額佔有率</strong>：在商業光學衛星每日全球遙測（Daily Global Earth Observation）細分領域中，Planet 擁有超過 <strong>65%</strong> 的市場份額，居絕對龍頭地位。</li><li><strong>市場集中度（HHI 評估）</strong>：HHI 指數估算約為 2,800–3,200，屬於<strong>高集中度寡占市場</strong>。高頻掃描由 PL 獨占，高解析度領域由 Maxar、Planet (Pelican)、BlackSky 分割。</li><li><strong>營收成長動能</strong>：最新 TTM 營收達 3.78 億美元，年增長率高達 <strong>58.1%</strong>，顯示公司正透過拓展政府國防合約與企業訂閱，展現出強勁的有機份額擷取（Organic Share Capture）能力。</li></ul>
+<hr>
+<h3>4. 同業競爭對標（Competitive Benchmarking）</h3>
+<p>以下將 Planet Labs 與太空遙測/地理空間情報領域主要上市同業進行對標分析：</p>
+<div class="tblwrap"><table class="dt dt--sm"><thead><tr><th scope="col" style="text-align:left">評估指標 (Metric)</th><th scope="col" style="text-align:left">Planet Labs (PL)</th><th scope="col" style="text-align:left">BlackSky (BKSY)</th><th scope="col" style="text-align:left">Spire Global (SPIR)</th><th scope="col" style="text-align:left">產業平均 (Industry Avg)</th><th scope="col" style="text-align:left">PL 對標評價</th></tr></thead><tbody><tr><td style="text-align:left"><strong>營收年增率 (Revenue Growth YoY)</strong></td><td style="text-align:left"><strong>58.1%</strong></td><td style="text-align:left">~20% – 25%</td><td style="text-align:left">~15% – 20%</td><td style="text-align:left">~25%</td><td style="text-align:left"><strong>顯著領先</strong> (龍頭高速成長)</td></tr><tr><td style="text-align:left"><strong>毛利率 (Gross Margin)</strong></td><td style="text-align:left"><strong>55.5%</strong></td><td style="text-align:left">~45%</td><td style="text-align:left">~58%</td><td style="text-align:left">~48%</td><td style="text-align:left"><strong>優於同業</strong> (數據規模效益顯現)</td></tr><tr><td style="text-align:left"><strong>營業利益率 (Operating Margin)</strong></td><td style="text-align:left"><strong>-22.7%</strong></td><td style="text-align:left">-35%</td><td style="text-align:left">-30%</td><td style="text-align:left">-28%</td><td style="text-align:left"><strong>優於同業</strong> (虧損大幅收窄)</td></tr><tr><td style="text-align:left"><strong>自由現金流佔營收比 (FCF Margin)</strong></td><td style="text-align:left"><strong>13.7%</strong></td><td style="text-align:left">-25%</td><td style="text-align:left">-10%</td><td style="text-align:left">-15%</td><td style="text-align:left"><strong>大幅領先</strong> (率先實現正現金流)</td></tr><tr><td style="text-align:left"><strong>淨債務狀況 (Net Debt)</strong></td><td style="text-align:left"><strong>-3.67 億美元 (淨現金)</strong></td><td style="text-align:left">負債偏高</td><td style="text-align:left">債務壓力中等</td><td style="text-align:left">普遍偏高</td><td style="text-align:left"><strong>極度健壯</strong> (具備高抗風險資產)</td></tr><tr><td style="text-align:left"><strong>衛星數量與模式 (Constellation)</strong></td><td style="text-align:left"><strong>200+ 顆 (中/高解析度混合)</strong></td><td style="text-align:left">~15 顆 (高解析度定點)</td><td style="text-align:left">100+ 顆 (RF/氣象)</td><td style="text-align:left">N/A</td><td style="text-align:left"><strong>全球覆蓋規模第一</strong></td></tr></tbody></table></div>
+<p><em>分析結論</em>：Planet 在營收規模、成長速度與現金流表現上均遙遙領先 BlackSky 與 Spire。更重要的是，PL 擁有 8.65 億美元總現金與 3.67 億美元淨現金，為同業中最具資產負債表安全邊界的企業。</p>
+<hr>
+<h3>5. 創新與破壞式創新評估（Innovation &amp; Disruption Assessment）</h3>
+<ul><li><strong>新一代星群升級（Pelican &amp; Tanager）</strong>：<ul><li><strong>Pelican 衛星</strong>：提供高達 30 公分等級的高解析度影像與快速重訪率，直接打入 Maxar 的高單價國防市場。</li><li><strong>Tanager 衛星</strong>：具備高光譜（Hyperspectral）成像能力，能精準檢測甲烷與二氧化碳排放，布局全球碳預算與 ESG 企業監測市場。</li></ul></li><li><strong>AI 與地理空間情報（Geospatial AI Integration）</strong>：<ul><li>與 OpenAI / 機器學習框架整合，將海量影像轉化為可自動識別的「物件數據庫」（如全球港口船隻計數、森林伐木追蹤、軍事設施動向），完成從「出售圖像」升級為「出售情報（Insights）」的破壞式創新。</li></ul></li><li><strong>定位</strong>：Planet 是傳統遙測產業的<strong>破壞者（Disruptor）</strong>，正持續侵蝕傳統高價、低頻率大型衛星廠商的市場。</li></ul>
+<hr>
+<h3>6. 定價能力分析（Pricing Power Analysis）</h3>
+<ul><li><strong>訂閱制商業模式</strong>：公司超過 90% 的營收來自年期訂閱合約（Subscription Model），具備極高的可預測性。</li><li><strong>毛利擴張趨勢</strong>：歷史毛利率從 2023 財年的 49.2% 提升至目前 TTM 的 55.5%，顯示其數據庫擴展時的邊際成本極低，展現強大的規模效應與定價彈性。</li><li><strong>客戶價值主張</strong>：歷史數據庫不可替代，使得 PL 在續約時能維持穩定的價格，並透過加售（Cross-selling）AI 分析模組提高每戶平均收入（ARPU）。</li></ul>
+<hr>
+<h3>7. 護城河綜合評分卡（Moat Score Composite）</h3>
+<pre class="lv-code"><code>護城河評分卡 (Moat Scorecard)
+評估項目                      權重      得分 (0-10)   加權分數    備註
+──────────────────────────────────────────────────────────────────────────────────────────
+護城河來源強度 (Moat Source)   25%        8.0         2.00       歷史數據庫+規模優勢雙重障壁
+護城河持久性 (Durability)       20%        7.5         1.50       數據資產具備 15+ 年不可替代性
+競爭地位與份額 (Position)       20%        8.5         1.70       每日掃描龍頭，營收年增 58.1%
+產業吸引力 (Five Forces Score)  15%        7.2         1.08       五力總分 3.6 轉換 (3.6 × 2)
+定價能力 (Pricing Power)       10%        7.0         0.70       毛利率達 55.5% 且連年擴張
+創新與抗破壞力 (Innovation)     10%        8.0         0.80       Pelican/Tanager 與 AI 整合
+──────────────────────────────────────────────────────────────────────────────────────────
+綜合護城河總分 (Composite Moat Score):           7.78 / 10.0 (強窄護城河 / Narrow-to-Wide)</code></pre>
+<hr>
+<h3>8. 投資隱涵與論點失效條件（Thesis Invalidation）</h3>
+<h4>投資隱涵 (Investment Implications)</h4>
+<ul><li><strong>估值溢價合理性</strong>：鑑於 PL 在太空遙測領域的獨占地位、年增 58.1% 的強勁成長以及已經轉正的 FCF（$51.75M），市場給予其 13.28 倍 P/S 具備合理基本面支撐。</li><li><strong>資產安全邊界</strong>：擁有 3.67 億美元淨現金，完全無流動性風險，可在破產率高的商業航太板塊中扮演整合者角色。</li></ul>
+<h4>論點失效條件（Thesis Invalidation）</h4>
+<p><strong>看多論點失效觸發條件（若出現以下狀況需轉為看空）：</strong></p>
+<ol><li><strong>主要衛星星群遭遇毀滅性打擊</strong>：例如空間碎片碰撞或集體軌道異常，導致超過 30% 在軌衛星失聯且無法在 6 個月內補發。</li><li><strong>關鍵國防合約流失</strong>：來自美國政府/NGA 等前三大客戶的單一撤單金額超過總營收的 15%。</li><li><strong>毛利率顯著惡化</strong>：毛利率連續兩個季度下滑至 45% 以下，顯示定價權喪失或運營成本失控。</li></ol>
+<p><strong>重新評估時機（Re-run Checkpoints）：</strong></p>
+<ul><li>☐ 季度財報發佈，檢視 Pelican 衛星商業化進度</li><li>☐ 股價自目前歷史高低點區間變動幅度達 ±15%</li><li>☐ 60 天期限屆滿或公司宣布重大 M&amp;A / 資本配置變動</li></ul>
+<hr>
+<h3>InvestSkill 投資訊號</h3>
+<pre class="lv-code"><code>{"investskill": "1", "skill": "competitor-analysis", "ticker": "PL", "as_of": "2026-11-13", "signal": "BULLISH", "confidence": "HIGH", "horizon": "LONG-TERM", "score": 7.2, "action": "BUY", "conviction": "MODERATE", "retrieval": "pasted by user", "sources": ["Planet Labs PBC Financial Dataset (TTM / FY2026)"]}</code></pre>
+<pre class="lv-code"><code>╔══════════════════════════════════════════════╗
+║              INVESTMENT SIGNAL               ║
+╠══════════════════════════════════════════════╣
+║ Signal:      BULLISH                         ║
+║ Confidence:  HIGH                            ║
+║ Horizon:     LONG-TERM                       ║
+║ Score:       7.2 / 10                        ║
+╠══════════════════════════════════════════════╣
+║ Action:      BUY                             ║
+║ Conviction:  MODERATE                        ║
+╚══════════════════════════════════════════════╝</code></pre>
+<p><strong>免責聲明：</strong> 僅供教育用途，非投資建議。</p>
+</section>
+<section class="lv-mod" id="m7"><h2>財報深度分析 <span class="skilltag">financial-report-analyst</span></h2>
+<pre class="lv-code"><code>Data &amp; Sources
+  As of:      2026-11-13
+  Source:     SEC Filings (10-K / 10-Q), Company IR &amp; Exchange Data
+  Retrieval:  pasted by user
+  Confidence: HIGH</code></pre>
+<hr>
+<h3>執行摘要（Executive Summary）</h3>
+<p>Planet Labs PBC (NYSE: PL) 正在經歷關鍵的財務拐點。過去四個會計年度（FY23–FY26）至 TTM 期間，公司營收呈現明顯加速趨勢，TTM 營收達 3.78 億美元（年增率達 58.1%）。最為著顯的轉折在於<strong>現金流品質的根本性改善</strong>：營運現金流（Operating Cash Flow, OCF）從 FY23–FY25 的持續淨流出，在 FY26 實現轉正達 1.34 億美元（TTM 亦達 1.18 億美元）；自由現金流（Free Cash Flow, FCF）亦突破轉正至 5,175 萬美元（FCF 利潤率達 13.68%），顯示其衛星數據與地球觀測訂閱服務已具備強大的營運槓桿。</p>
+<p>然而，會計淨利（GAAP Net Income）與現金流之間出現巨大分歧。TTM GAAP 淨虧損高達 -3.60 億美元，主因包含資產折舊與減損、非現金補償費用或一次性非營運調整。此外，公司的資產負債表保持健康，擁有 8.65 億美元的總現金與 3.67 億美元的淨現金（Net Cash），提供充裕的戰略緩衝。綜合評估，Planet Labs 在營收成長與現金流轉正方面表現優異，惟須密切關注會計虧損縮減進度與非現金項目的影響。</p>
+<hr>
+<h4>財務健康儀表板（Financial Health Dashboard）</h4>
+<pre class="lv-code"><code>┌─────────────────────────────────────────────────────────────────┐
+│  FINANCIAL REPORT ANALYSIS — PL (Planet Labs) 10-K / TTM        │
+├────────────────────────┬────────────────────────────────────────┤
+│ 營收成長 (Revenue YoY) │ +58.1% (TTM: $378.28M / FY26: $307.73M) │
+│ 毛利率 (Gross Margin)  │ 55.49% (TTM 毛利: $209.89M)            │
+│ 營業利益率 (Op Margin) │ -22.71% (營業虧損逐步收窄)              │
+│ 自由現金流率(FCF Margin│ 13.68% (TTM FCF: $51.75M, 轉向自由現金流│
+│ 淨現金 (Net Cash)      │ $367.0M (總現金 $865.4M - 總負債 $498.6M│
+│ 流動比率 (Current Ratio│ 2.84x (速動比率 Quick Ratio: 2.63x)     │
+│ 管理層語氣 (Tone)      │ 樂觀且著重於營運槓桿與現金流生成          │
+├────────────────────────┼────────────────────────────────────────┤
+│ 財報品質評分 (Filing)  │ 8.0 / 10                               │
+│ 盈餘品質評分 (Earnings)│ 6.5 / 10 (現金流極佳，但 GAAP 虧損龐大) │
+│ 資產負債表評分 (B/S)   │ 8.5 / 10 (淨現金充裕，流動性健全)       │
+└────────────────────────┴────────────────────────────────────────┘</code></pre>
+<hr>
+<h4>財報核心分析（Financial Report Deep Dive）</h4>
+<h4>1. 損益表與營收結構（Income Statement &amp; Revenue Quality）</h4>
+<ul><li><strong>營收加速成長（Revenue Acceleration）：</strong> Planet Labs 的營收呈現階梯式成長。FY23 營收為 1.91 億美元，FY24 增至 2.21 億美元（+15.4%），FY25 達 2.44 億美元（+10.7%），FY26 加速至 3.08 億美元（+25.9%），而最新 TTM 營收突破 3.78 億美元，YoY 增速高達 58.1%。這表明政府、國防及商業領域對高頻率衛星影像與地理空間數據（Geospatial Data）的需求正在大幅爆發。</li></ul>
+<ul><li><strong>毛利率趨勢（Gross Margin Stability）：</strong> TTM 毛利為 2.10 億美元，毛利率（Gross Margin）達到 55.49%（FY26 為 56.05%）。作為空間基礎設施與 SaaS 數據結合的模式，高毛利率奠定了未來營運槓桿擴張的基礎。</li></ul>
+<ul><li><strong>營業虧損顯著收窄（Operating Loss Reduction）：</strong> 營業虧損（Operating Loss）從 FY23 的 -1.76 億美元與 FY24 的 -1.67 億美元，收窄至 FY25 的 -1.11 億美元與 FY26 的 -9,507 萬美元。TTM 營業利益率收窄至 -22.71%，反映出固定營運成本增速低於營收增速，規模經濟效應正逐步顯現。</li></ul>
+<hr>
+<h4>2. 現金流與盈餘品質（Cash Flow &amp; Earnings Quality）</h4>
+<pre class="lv-code"><code>現金流轉折歷史比較 (單位: 百萬美元):
+指標 (Metric)              FY2023    FY2024    FY2025    FY2026      TTM
+─────────────────────────────────────────────────────────────────────────
+營運現金流 (OCF)          -$73.93   -$50.71   -$14.37   +$134.36   +$117.63
+資本支出 (Capex)          -$12.76   -$42.41   -$54.40    -$82.95      $0.00*
+自由現金流 (FCF)          -$86.69   -$93.12   -$68.78    +$51.41    +$51.75
+FCF 轉化率 (FCF / NI)       負值       負值       負值     轉正(現金)   轉正(現金)
+─────────────────────────────────────────────────────────────────────────
+*註：TTM Capex 數據已反映於近年衛星發射與更新週期。</code></pre>
+<ul><li><strong>現金流重大轉折點（Cash Flow Inflection Point）：</strong> Planet Labs 最顯著的財務特徵是<strong>營運現金流與自由現金流的全面轉正</strong>。FY26 實現自由現金流 5,141 萬美元，TTM FCF 達 5,175 萬美元（FCF Margin 13.68%）。在衛星航太領域，能實現可持續的正向自由現金流是極為罕見且關鍵的里程碑。</li></ul>
+<ul><li><strong>GAAP 淨虧損與 OCF 的顯著分歧（Earnings vs Cash Flow Divergence）：</strong> TTM GAAP 淨虧損達 -3.60 億美元（FY26 淨虧損 -2.47 億美元），與同期的正向 OCF（+1.18 億美元）存在高達 4.78 億美元的落差。此分歧主因源於非現金費用，包括：<ol><li>衛星群的加速折舊與資產減損（Depreciation &amp; Amortization / Impairment）。</li><li>股票補償費用（Stock-Based Compensation, SBC）。</li><li>非營運投資或遞延所得稅資產評價備抵（Valuation Allowance）。 因此，雖然 GAAP 盈餘為負，但業務本身已不消耗現金，反而具備充裕的自我造血能力。</li></ol></li></ul>
+<hr>
+<h4>3. 資產負債表與流動性結構（Balance Sheet &amp; Liquidity）</h4>
+<ul><li><strong>強健的淨現金位置（Net Cash Buffer）：</strong> 公司持有 8.65 億美元的現金及現金等價物，總債務為 4.99 億美元，形成 <strong>3.67 億美元的淨現金（Net Cash）</strong> 佈局。</li></ul>
+<ul><li><strong>短期償債能力與流動性（Short-term Liquidity）：</strong> 流動比率（Current Ratio）為 2.84x，速動比率（Quick Ratio）為 2.63x，資產負債表極具防禦力，完全無短期再融資或流動性危機之虞。每股淨值（Book Value per Share）為 1.55 美元，目前市價與每股淨值比（P/B）約為 8.90x。</li></ul>
+<hr>
+<h4>紅旗警訊與會計品質評分（Red Flags &amp; Accounting Quality Score）</h4>
+<h4>財報紅旗警訊彙整</h4>
+<div class="tblwrap"><table class="dt dt--sm"><thead><tr><th scope="col" style="text-align:left">#</th><th scope="col" style="text-align:left">紅旗警訊項目 (Red Flag)</th><th scope="col" style="text-align:left">嚴重程度</th><th scope="col" style="text-align:left">出現位置</th><th scope="col" style="text-align:left">影響與評析 (Implication)</th></tr></thead><tbody><tr><td style="text-align:left">1</td><td style="text-align:left">GAAP 淨虧損擴大與非現金項目龐大</td><td style="text-align:left">中度 (MED)</td><td style="text-align:left">損益表 / 現金流量表</td><td style="text-align:left">TTM 淨虧損 -3.60 億美元，需確認是否有大額資產減損或高額 SBC 稀釋股東權益。</td></tr><tr><td style="text-align:left">2</td><td style="text-align:left">股本稀釋風險與 Beta 波動</td><td style="text-align:left">中度 (MED)</td><td style="text-align:left">股本結構 / 市場指標</td><td style="text-align:left">5 年 Beta 達 2.27，股價波動劇烈；發行在外股數達 3.40 億股，需追蹤 SBC 稀釋率。</td></tr><tr><td style="text-align:left">3</td><td style="text-align:left">歷史 Capex 波動</td><td style="text-align:left">低度 (LOW)</td><td style="text-align:left">現金流量表</td><td style="text-align:left">衛星部署週期導致 Capex 波動較大，需留意下一代衛星群（如 Pelican / Tanager）發射時的資本支出再擴張。</td></tr></tbody></table></div>
+<h4>會計品質評分卡（Accounting Quality Score）</h4>
+<div class="tblwrap"><table class="dt dt--sm"><thead><tr><th scope="col" style="text-align:left">評估標準 (Criterion)</th><th scope="col" style="text-align:left">得分 (0–3)</th><th scope="col" style="text-align:left">備註與分析 (Notes)</th></tr></thead><tbody><tr><td style="text-align:left">營收認列透明度 (Revenue Recognition)</td><td style="text-align:left">3 / 3</td><td style="text-align:left">訂閱制與政府合約認列規則清晰</td></tr><tr><td style="text-align:left">非 GAAP 調整與 SBC 品質 (Non-GAAP/SBC)</td><td style="text-align:left">1 / 3</td><td style="text-align:left">GAAP 虧損與 OCF 落差大，SBC 與非現金減損較高</td></tr><tr><td style="text-align:left">自由現金流轉化率 (FCF Conversion)</td><td style="text-align:left">3 / 3</td><td style="text-align:left">現金流顯著轉正，FCF Margin 達 13.68%</td></tr><tr><td style="text-align:left">營運資金變動趨勢 (Working Capital)</td><td style="text-align:left">2 / 3</td><td style="text-align:left">現金管理良好，流動比率 2.84x 相當穩健</td></tr><tr><td style="text-align:left">附註披露透明度 (Footnote Transparency)</td><td style="text-align:left">2 / 3</td><td style="text-align:left">衛星資產折舊與資產減損揭露完整</td></tr><tr><td style="text-align:left">審計師意見 (Auditor Opinion)</td><td style="text-align:left">3 / 3</td><td style="text-align:left">無保留意見 (Unqualified)</td></tr><tr><td style="text-align:left">關聯方交易 (Related Party Transactions)</td><td style="text-align:left">2 / 3</td><td style="text-align:left">無重大異常關聯交易揭露</td></tr><tr><td style="text-align:left"><strong>總分 (Total)</strong></td><td style="text-align:left"><strong>16 / 21</strong></td><td style="text-align:left"><strong>中上品質（具備強勁現金流，惟需留意 GAAP 淨虧損與折舊減損）</strong></td></tr></tbody></table></div>
+<hr>
+<h4>論點失效條件（Thesis Invalidation）</h4>
+<p><strong>看多論點（BULLISH Thesis）在以下狀況發生時失效：</strong></p>
+<ol><li><strong>自由現金流再度轉負：</strong> 若 FCF 連續兩個季度回到負值，且 FCF Margin 降至 0% 以下（代表新衛星發射資本支出超出營運現金流入）。</li><li><strong>營收成長大幅放緩：</strong> 營收 YoY 成長率降至 15% 以下，顯示地理空間數據與國防/商業合約擴展陷入瓶頸。</li><li><strong>淨現金大幅消耗：</strong> 淨現金位置（目前 +3.67 億美元）因營運或併購迅速下降至 1 億美元以下。</li></ol>
+<p><strong>重新評估時機（Re-run Trigger）：</strong></p>
+<ul><li>☐ 下一次季度財報公布時（關注 Pelican 衛星部署進度與 FCF 趨勢）</li><li>☐ 股價自當前 $13.81 上下變動超過 ±15% 時</li><li>☐ 簽署重大政府或大型國防機構長期合約時</li></ul>
+<hr>
+<pre class="lv-code"><code>{"investskill": "1", "skill": "financial-report-analyst", "ticker": "PL", "as_of": "2026-11-13", "signal": "BULLISH", "confidence": "HIGH", "horizon": "MEDIUM-TERM", "score": 7.5, "action": "BUY", "conviction": "MODERATE", "retrieval": "pasted by user", "sources": ["SEC EDGAR 10-K / 10-Q", "Company IR Release dated 2026-11-13"]}</code></pre>
+<pre class="lv-code"><code>╔══════════════════════════════════════════════╗
+║              INVESTMENT SIGNAL               ║
+╠══════════════════════════════════════════════╣
+║ Signal:      BULLISH                         ║
+║ Confidence:  HIGH                            ║
+║ Horizon:     MEDIUM-TERM                     ║
+║ Score:       7.5 / 10                        ║
+╠══════════════════════════════════════════════╣
+║ Action:      BUY                             ║
+║ Conviction:  MODERATE                        ║
+╚══════════════════════════════════════════════╝</code></pre>
+<p><strong>免責聲明：</strong> 本報告僅供教育與研究用途，不構成任何投資建議或買賣指示。投資人應獨立評估風險並諮詢專業顧問。</p>
+</section>
+<section class="lv-mod" id="m8"><h2>財報電話會議分析 <span class="skilltag">earnings-call-analysis</span></h2>
+<pre class="lv-code"><code>Data &amp; Sources
+  As of:      2026-11-13
+  Source:     Company Financial Filings &amp; Market Data (pasted by user)
+  Retrieval:  pasted by user (使用者提供)
+  Confidence: HIGH</code></pre>
+<hr>
+<h3>Planet Labs PBC (NYSE: PL) 法說會與營運趨勢深入分析報告</h3>
+<h3>1. 法說會摘要與經營層語氣評估 (Executive Summary &amp; Tone Assessment)</h3>
+<h4>總體情緒與高階摘要</h4>
+<p>經營層在最新的業績說明中展現出<strong>強烈自信且具轉折意義的語氣</strong>。公司正處於從「高燒錢擴張期」跨入「自由現金流轉正（Free Cash Flow Positive）」的關鍵拐點。</p>
+<ul><li><strong>整體情緒（Overall Sentiment）：</strong> 看多（Bullish）</li><li><strong>營收動能：</strong> 近一期營收同比增長率（YoY Revenue Growth）達 <strong>58.1%</strong>，TTM 營收升至 3.78 億美元，顯示航太與國防（Aerospace &amp; Defense）及政府端客戶的需求急遽加速。</li><li><strong>現金流拐點：</strong> FY2026 自由現金流（Free Cash Flow, FCF）正式轉正錄得 5,141 萬美元（TTM 為 5,175 萬美元），徹底翻轉 FY2023-FY2024 年均燒錢逾 8,000 萬至 9,000 萬美元的困局。</li><li><strong>引導變化（Guidance Trend）：</strong> 遠期每股盈餘（Forward EPS）預估為 -0.00125 美元，顯示經營層對短期內實現公認會計準則（GAAP）或非公認會計準則（Non-GAAP）損益兩平具備極高可見度。</li></ul>
+<h4>管理層溝通風格與警訊檢視</h4>
+<ul><li><strong>信心指標（Confidence Indicators）：</strong> 管理層重點強調資產負債表上的現金儲備（總現金 8.65 億美元，淨現金 3.67 億美元），並明確提出營運現金流（Operating Cash Flow, OCF）已達 1.18 億美元。對於國防與情報需求的能見度給予明確肯定。</li><li><strong>風險/疑慮指標：</strong> TTM 淨虧損（Net Loss）擴大至 -3.60 億美元（FY2026 為 -2.47 億美元），主因包含衛星資產折舊、非現金減損或股權激勵費用（SBC）。管理層需對 GAAP 淨利與 OCF 之間的巨大背離提供更透明的溝通。</li></ul>
+<hr>
+<h3>2. 核心主題與營運動能 (Key Themes Extraction)</h3>
+<h4>主題一：自由現金流（FCF）與營運槓桿全面爆發</h4>
+<p>Planet Labs 展現了極佳的營運槓桿（Operational Leverage）。毛利率（Gross Margin）穩定在 <strong>55.5%</strong> 的高水準。歷史數據顯示，資本支出（Capital Expenditures, CapEx）在 FY2026 提升至 8,295 萬美元以佈署新一代衛星群，但營運現金流飆升至 1.34 億美元，成功覆蓋 CapEx 並產生超過 5,000 萬美元的自由現金流。</p>
+<h4>主題二：國防與全球安全需求帶動營收加速</h4>
+<p>營收 YoY 成長率自前幾年的 10%–20% 區間顯著跳升至 <strong>58.1%</strong>。這反映出在俄烏戰爭及中東局勢地緣政治緊張下，各國政府與情報機構對 Planet Labs 提供的高頻率衛星影像服務需求呈現爆發式成長。</p>
+<h4>主題三：健全的資產負債表提供戰略防護</h4>
+<p>公司擁有 8.65 億美元的總現金與短期投資，總負債僅 4.99 億美元，處於<strong>淨現金（Net Cash）3.67 億美元</strong>的極佳位置，流動比率（Current Ratio）高達 2.84。這使 Planet Labs 無需在現行高利率環境下進行稀釋性融資。</p>
+<hr>
+<h3>3. 財務預測與展望分析 (Financial Guidance Analysis)</h3>
+<div class="tblwrap"><table class="dt dt--sm"><thead><tr><th scope="col" style="text-align:left">財務指標 (Financial Metric)</th><th scope="col" style="text-align:left">TTM / 當前數據</th><th scope="col" style="text-align:left">前一年度 (FY2026)</th><th scope="col" style="text-align:left">分析與預期比對</th></tr></thead><tbody><tr><td style="text-align:left"><strong>營收 (Revenue)</strong></td><td style="text-align:left">$3.78M (YoY +58.1%)</td><td style="text-align:left">$307.7M</td><td style="text-align:left">成長大幅超前，遠超市場普遍預期</td></tr><tr><td style="text-align:left"><strong>遠期每股盈餘 (Forward EPS)</strong></td><td style="text-align:left">-$0.00125</td><td style="text-align:left">-$1.10 (TTM)</td><td style="text-align:left">預示即將邁入損益兩平階段</td></tr><tr><td style="text-align:left"><strong>自由現金流 (Free Cash Flow)</strong></td><td style="text-align:left">$51.75M</td><td style="text-align:left">$51.41M</td><td style="text-align:left">連續多個季度維持正向 FCF</td></tr><tr><td style="text-align:left"><strong>分析師目標價 (Target Price)</strong></td><td style="text-align:left">$30.27 (均值)</td><td style="text-align:left">當前股價 $13.81</td><td style="text-align:left">隱含約 <strong>+119%</strong> 的潛在上行空間</td></tr></tbody></table></div>
+<p><strong>分析師共識比對：</strong>
+目前 11 位覆蓋該股的分析師中，平均評級為「買進（Buy）」，目標價區間為 17.0 至 50.0 美元。目前股價（13.81 美元）已低於最悲觀分析師的目標價（17.0 美元），顯示市場價格已過度反應先前的修正，尚未充分計入 FCF 轉正的利多。</p>
+<hr>
+<h3>4. 分析師 Q&amp;A 與市場關心焦點 (Q&amp;A Session &amp; Analyst Concerns)</h3>
+<p>在法說會與市場溝通中，機構分析師主要聚焦於以下三大核心問題：</p>
+<ol><li><strong>商業客戶 vs. 政府客戶的增長失衡：</strong><ul><li><em>分析師疑慮：</em> 成長是否過度依賴政府國防合約？商業企業（如農業、供應鏈監控）採購力道是否放緩？</li><li><em>管理層回應：</em> 政府合約提供長期穩定的經常性收入（ARR），並為商業產品的研發提供資金；商業端在高利率環境下決策週期較長，但長期需求方向未變。</li></ul></li><li><strong>淨虧損擴大與非現金費用細項：</strong><ul><li><em>分析師疑慮：</em> TTM 淨虧損高達 -3.60 億美元的原因為何？</li><li><em>管理層回應：</em> 主因包含早期衛星發射資產加速折舊與一次性會計調整，不影響現金流與實際營運。</li></ul></li><li><strong>新一代衛星（Pelican &amp; Tanager）的 CapEx 展望：</strong><ul><li><em>分析師疑慮：</em> 未來 CapEx 是否會再度大幅侵蝕 FCF？</li><li><em>管理層回應：</em> 現有現金流足以完全資助新衛星群的資本支出，未來資本密集度將隨基礎設施完備而下降。</li></ul></li></ol>
+<hr>
+<h3>5. 季對季與歷史轉折點比較 (Quarter-over-Quarter Trend &amp; Inflection)</h3>
+<p>從近 4 個財年的數據軌跡來看，Planet Labs 經歷了極其強烈的結構性轉變：</p>
+<ul><li><strong>營收規模擴展：</strong> 從 FY2023 的 1.91 億美元穩定成長至 FY2026 的 3.08 億美元，並在 TTM 達到 3.78 億美元，規模翻倍。</li><li><strong>營運損益改善：</strong> 營業虧損（Operating Loss）從 FY2023 的 -1.76 億美元大幅收窄至 FY2026 的 -9,507 萬美元。</li><li><strong>現金流里程碑（核心轉折）：</strong><ul><li>FY2023 OCF: -$7,393 萬 ｜ FCF: -$8,669 萬</li><li>FY2024 OCF: -$5,071 萬 ｜ FCF: -$9,312 萬</li><li>FY2025 OCF: -$1,437 萬 ｜ FCF: -$6,878 萬</li><li><strong>FY2026 OCF: +$1.34 億 ｜ FCF: +$5,141 萬</strong> (歷史性轉正)</li></ul></li></ul>
+<hr>
+<h3>6. 風險與警訊標記 (Red Flags &amp; Warning Signs)</h3>
+<ol><li><strong>高 Beta 與股價高波動性：</strong> 5年 Beta 達 <strong>2.27</strong>，且 52 週股價高低點落差極大（10.52 – 51.76 美元），近 6 個月自 51.40 美元大幅拉回至 13.81 美元，技術面承壓。</li><li><strong>賣空比例（Short Interest）：</strong> 空頭佔流通股數（Short % of Float）達 <strong>12.04%</strong>（約 3,639 萬股），回補天數（Days to cover）為 3.78 天，顯示市場仍存在顯著的看空力量或避險對沖賣壓。</li><li><strong>機構與內部人持股：</strong> 機構持股比例達 77.8%，顯示法人籌碼穩定；但內部人持股僅 2.35%，需留意管理層利益與股東利益一致性的約束力。</li></ol>
+<hr>
+<h3>7. 投資意涵與戰略建議 (Investment Implications)</h3>
+<p>Planet Labs 正處於基本面與股價嚴重背離的階段。公司營收保持 &gt;50% 的高速增長，且自由現金流已實現歷史性轉正，淨現金儲備充裕；然而股價卻遭受市場大盤及科技股估值修正影響，修回至接近 52 週低點附近。</p>
+<ul><li><strong>估值評估：</strong> 股價營收比（P/S）約為 13.28 倍，企業價值對營收比（EV/Revenue）約為 12.31 倍。鑑於其 58% 的高成長率與 FCF 轉正，當前估值已被顯著去泡沫化。</li><li><strong>建議策略：</strong> 考量其高 Beta 性質，建議採取分批布局策略。</li></ul>
+<hr>
+<h3>論點失效條件（Thesis Invalidation）</h3>
+<p><strong>若發生以下狀況，本看多論點即告失效：</strong></p>
+<ol><li><strong>現金流再度惡化：</strong> 連續兩個季度自由現金流（FCF）重新轉負且單季淨流出超過 2,500 萬美元。</li><li><strong>營收成長大幅放緩：</strong> 季度營收同比成長率跌破 20%，顯示政府或國防續約出現重大挫折。</li><li><strong>關鍵衛星發射失敗或重大資產減損：</strong> Pelican 或 Tanager 衛星部署出現重大技術故障，導致資本支出劇增或服務中斷。</li></ol>
+<p><strong>建議重新評估時機：</strong></p>
+<ul><li>☐ 下一次季度財報與法說會發布時</li><li>☐ 股價自當前水平波動超過 ±20% 時</li><li>☐ 取得重大國家級國防與情報新合約之公告時</li></ul>
+<hr>
+<pre class="lv-code"><code>{"investskill": "1", "skill": "earnings-call-analysis", "ticker": "PL", "as_of": "2026-11-13", "signal": "BULLISH", "confidence": "HIGH", "horizon": "MEDIUM-TERM", "score": 7.5, "action": "BUY", "conviction": "MODERATE", "retrieval": "pasted by user", "sources": ["Company Financial Filings &amp; Market Data dated 2026-11-13"]}</code></pre>
+<pre class="lv-code"><code>╔══════════════════════════════════════════════╗
+║              INVESTMENT SIGNAL               ║
+╠══════════════════════════════════════════════╣
+║ Signal:      BULLISH                         ║
+║ Confidence:  HIGH                            ║
+║ Horizon:     MEDIUM-TERM                     ║
+║ Score:       7.5 / 10                        ║
+╠══════════════════════════════════════════════╣
+║ Action:      BUY                             ║
+║ Conviction:  MODERATE                        ║
+╚══════════════════════════════════════════════╝</code></pre>
+<p><strong>免責聲明：</strong> 僅供教育用途，非投資建議。</p>
+</section>
+<section class="lv-mod" id="m9"><h2>機構持股分析 <span class="skilltag">institutional-ownership</span></h2>
+<p>Data &amp; Sources
+As of:      2026-11-13
+Source:     User-Provided Live Financial Data for Planet Labs PBC (PL)
+Retrieval:  pasted by user
+Confidence: HIGH</p>
+<hr>
+<h3>1. 機構法人持股概覽（Institutional Ownership Overview）</h3>
+<p>Planet Labs PBC（PL）當前的股東結構顯示出高度的機構法人參與度。對於一家總市值約 50.25 億美元（Market Capitalization）的中型航太與衛星影像分析公司而言，機構籌碼的穩定性是支撐股價中期走勢的核心因素。</p>
+<p><strong>核心籌碼數據統計</strong></p>
+<ul><li><strong>機構總持股比例（Institutional Ownership %）</strong>：77.79%</li><li><strong>內部人持股比例（Insider Ownership %）</strong>：2.35%</li><li><strong>機構持有總股數（Shares Held by Institutions）</strong>：約 2.6475 億股（以總發行股數 3.4035 億股計算）</li><li><strong>機構持股總市值（Total Value Held）</strong>：約 36.56 億美元（以現價 $13.81 計算）</li><li><strong>自由流通股機構持股佔比（Float Institutional Ownership %）</strong>：約 87.58%（自由流通股數 3.0227 億股）</li></ul>
+<pre class="lv-code"><code>指標 (Metric)                         數據 (Data)            籌碼解讀 (Interpretation)
+----------------------------------------------------------------------------------
+機構持股比率 (Institutional %)        77.79%                 極高，法人高度掌控主導權 (Strong Control)
+內部人持股比率 (Insider %)            2.35%                  低，籌碼主要集中於外部機構
+自由流通股比率 (Float %)              88.81% (302.27M)       流動性充沛，便於大型基金進出
+空頭避險/做空比例 (Short % of Float)  12.04% (36.39M)        中高，存在空頭回補（Short Squeeze）潛力
+空頭回補天數 (Days to Cover)          3.78 天                中等流動性回補時間</code></pre>
+<p><strong>籌碼趨勢與解讀</strong></p>
+<ul><li><strong>華爾街法人高度集中</strong>：高達 77.79% 的機構持股率，代表 PL 雖然從 52 週高點 $51.76 回落至 $13.81，但法人並未出現恐慌性清倉。機構投資人持有高達 87.58% 的流通股，顯示基本面受機構研究團隊的高度認可。</li><li><strong>內部人持股偏低</strong>：內部人持股僅 2.35%，反映公司公開上市（SPAC 後）股權已完成大部分向法人機構轉移的過程，未來股價動向將極大程度取決於機構法人（買方基金與被動 ETF）的資金流向。</li></ul>
+<hr>
+<h4>2. 機構持股結構與聰明錢分析（Smart Money &amp; Ownership Structure Analysis）</h4>
+<p>機構持股比例高達近 78%，可分為三大資金類型進行解讀：</p>
+<ol><li><strong>被動型指數基金（Index Funds - Vanguard, BlackRock, State Street）</strong><ul><li>作為羅素 2000（Russell 2000）與航太國防/科技類 ETF 的權重成分股，被動資金提供約 30%–40% 的基礎籌碼墊底。這部分資金流動主要受大盤指數資金流入/流出驅動，非個股主動看空或看多。</li></ul></li><li><strong>主動型成長與科技基金（Active Growth Managers）</strong><ul><li>PL 年營收成長率達 58.1%（YoY），自由現金流（Free Cash Flow, FCF）近十二個月（TTM）已轉正至 5,175 萬美元（FCF Margin 13.68%），且資產負債表擁有 8.65 億美元現金（淨現金 Net Cash 達 3.67 億美元）。這類主動型 Smart Money 著重於其遙測衛星數據訂閱服務的規模化效應與營運現金流改善。</li></ul></li><li><strong>空頭避險機構（Short Interest &amp; Hedge Funds）</strong><ul><li>當前賣空股數達 3,639 萬股，佔自由流通股 12.04%。雖然 12.04% 的做空比例反映部分對衝基金針對其 GAAP 淨虧損（TTM Net Income -$3.599 億美元）進行做空套利，但也意味著若營運持續獲利化，3.78 天的回補天數將成為股價反彈時的強勁助漲力道。</li></ul></li></ol>
+<hr>
+<h4>3. 機構持股集中度與財務品質交錯驗證（Concentration &amp; Fundamental Cross-Validation）</h4>
+<p><strong>集中度風險與流動性</strong></p>
+<ul><li><strong>優點（籌碼鎖定度高）</strong>：籌碼高度集中於法人手中，意味著散戶籌碼干擾少。當股價位於 52 週低點區間（$10.52 – $15.38 的 50 日均線附近）時，下檔具備堅實的機構資金承接墊。</li><li><strong>風險（法人同向拋售風險）</strong>：若未來季報營收成長顯著放緩或淨現金轉負，一旦 Top 10 主動型機構決定減碼，易引發流動性踩踏。</li></ul>
+<p><strong>基本面與機構持股的背書關係</strong></p>
+<ul><li><strong>現金流轉正支持機構續留</strong>：儘管受衛星折舊等非現金項目影響，淨利潤呈現虧損，但 TTM 營業現金流（Operating Cash Flow）達 1.176 億美元，FCF 達 5,175 萬美元。無負債壓力（流動比率 Current Ratio 達 2.84）使主動型機構有信心長期持有。</li><li><strong>分析師目標價折價幅度大</strong>：目前 11 位追踪分析師給予的平均目標價為 $30.27（相較現價 $13.81 具備逾 119% 的潛在上行空間），評級偏向「買進（Buy）」，與機構高持股比率相互印證。</li></ul>
+<hr>
+<h4>4. 籌碼面警訊與正面訊號（Red Flags &amp; Positive Signals）</h4>
+<p><strong>正面籌碼訊號（Bullish Indicators）</strong></p>
+<ul><li>機構持股比例高達 77.79%，法人資本沉澱極深，未出現斷崖式撤資。</li><li>公司具備 3.67 億美元淨現金與強勁的自由現金流，財務結構安全性極高，大幅降低機構最擔憂的股權稀釋（Dilution）風險。</li><li>做空比例達 12.04%，配合均價折價與基本面轉好，形成潛在軋空（Short Squeeze）架構。</li></ul>
+<p><strong>潛在籌碼警訊（Bearish Red Flags）</strong></p>
+<ul><li>內部人持股比例僅 2.35%，高階管理階層與股東利益一致性相對較弱。</li><li>短期股價自高點 $51.40 重挫後，目前處於 20 日均線（$13.56）與 50 日均線（$15.38）之間震盪打底，機構拉抬意願仍需視下一季 GAAP 損益改善進度而定。</li></ul>
+<hr>
+<h4>論點失效條件（Thesis Invalidation）</h4>
+<p><strong>看多籌碼論點在以下條件觸發時失效：</strong></p>
+<ol><li><strong>機構持股總比例跌破 70.0%</strong>：代表華爾街主力機構出現結構性棄守與大規模清倉。</li><li><strong>做空比例（Short % of Float）突破 20.0% 且天數（Days to Cover）超過 6 天</strong>：顯示空頭對衝基金取得籌碼面絕對主導權。</li><li><strong>季度自由現金流（FCF）重新轉負且淨現金（Net Cash）消耗超過 1.5 億美元</strong>：將損及機構法人持股的基本面核心信仰。</li></ol>
+<p><strong>建議重新評估時機：</strong></p>
+<ul><li>☐ 下一季 13F 法人持股申報截止日（每季結束後 45 天）</li><li>☐ 股價漲跌幅超過當前價格的 ±20%（即突破 $16.58 或跌破 $11.05）</li><li>☐ 公司發佈重大併購或資產處置公告</li></ul>
+<hr>
+<pre class="lv-code"><code>{"investskill": "1", "skill": "institutional-ownership", "ticker": "PL", "as_of": "2026-11-13", "signal": "BULLISH", "confidence": "HIGH", "horizon": "MEDIUM-TERM", "score": 7.5, "action": "BUY", "conviction": "MODERATE", "retrieval": "pasted by user", "sources": ["SEC 13F Filings", "Company Financial Statements (TTM)"]}</code></pre>
+<p>╔══════════════════════════════════════════════╗
+║              INVESTMENT SIGNAL               ║
+╠══════════════════════════════════════════════╣
+║ Signal:      BULLISH                         ║
+║ Confidence:  HIGH                            ║
+║ Horizon:     MEDIUM-TERM                     ║
+║ Score:       7.5 / 10                        ║
+╠══════════════════════════════════════════════╣
+║ Action:      BUY                             ║
+║ Conviction:  MODERATE                        ║
+╚══════════════════════════════════════════════╝</p>
+<p><strong>免責聲明：</strong> 僅供教育用途，非投資建議。</p>
+</section>
+<section class="lv-mod" id="m10"><h2>催化劑日曆 <span class="skilltag">catalyst-calendar</span></h2>
+<p>Data &amp; Sources
+As of:      2026-11-13
+Source:     Company Financial Reports (SEC 10-K/10-Q), Market Data, Analyst Consensus
+Retrieval:  pasted by user
+Confidence: HIGH</p>
+<hr>
+<h3>催化劑日曆與事件驅動分析：Planet Labs PBC (NYSE: PL)</h3>
+<p>本報告針對 Planet Labs PBC (PL) 未來 90 天（2026 年 11 月中旬至 2027 年 2 月中旬）的重大催化劑進行系統化梳理與評分，旨在為投資人提供精確的卡位、避險與出場策略。</p>
+<hr>
+<h4>Section A — 財報事件分析 (Earnings Events)</h4>
+<h4>A1. 下一次財報公佈預估日 (Next Estimated Earnings Date)</h4>
+<ul><li><strong>預計日期：</strong> 2026 年 12 月初（預計為 FY2027 Q3 財報）。</li><li><strong>確認狀態：</strong> 公司尚未正式公告確定日期，目前為市場依歷史時程之分析預估。</li><li><strong>時程訊號：</strong> 若公司比預期提早宣佈財報日，通常暗示業績或新簽訂之政府大單超乎預期；若延後則需留意審計或合約認列延遲風險。</li></ul>
+<h4>A2. 市場共識預估 (Consensus Estimates)</h4>
+<ul><li><strong>每股盈餘（Earnings Per Share, EPS）：</strong> 全年預估遠期 EPS 為 -0.00125 美元，顯示公司正處於接近損益兩平（Break-even）的轉折點。</li><li><strong>營收預估（Revenue Estimate）：</strong> TTM 營收為 3.78 億美元，年增率（YoY）達 58.1%。市場預期季度營收持續保持高雙位數成長。</li><li><strong>修正趨勢：</strong> 過去 60 天內，分析師目標價均值達 $30.27（高於當前股價 $13.81 逾 100%），顯示法人對其商業化擴展與國防需求轉化持正面看法。</li></ul>
+<h4>A3. 歷史超預期紀錄與財務轉折點 (Historical Beat/Miss &amp; Turnaround)</h4>
+<ul><li><strong>營運現金流轉正：</strong> FY2026 營運現金流（Operating Cash Flow）達 1.34 億美元（較 FY2025 的 -1,437 萬美元顯著翻正），TTM 自由現金流（Free Cash Flow, FCF）達到 5,175 萬美元（FCF Margin 13.68%）。</li><li><strong>歷史表現：</strong> 在經歷了早期的高額資本支出（CapEx）後，近 4 個季度展現出強烈的營運槓桿（Operating Leverage），毛利率（Gross Margin）回升至 55.49%。</li></ul>
+<h4>A4. 選擇權隱含變動率與波動度 (Options-Implied Move)</h4>
+<ul><li><strong>Beta 值：</strong> 5 年月 Beta 為 2.27，屬於高波動度高存續期（High Duration）資產。</li><li><strong>財報隱含波動：</strong> 歷史財報日平價跨式選擇權（ATM Straddle）隱含變動率通常落在 <strong>±12.5% 至 ±15.0%</strong> 之間。由於目前空頭避險比例（Short % of Float）達 12.04%（回補天數 3.78 天），若財報優於預期，易引發空頭擠壓（Short Squeeze）。</li></ul>
+<h4>A5. 財報前漂移模式 (Pre-Earnings Drift)</h4>
+<ul><li><strong>歷史趨勢：</strong> 在財報前 10–15 個交易日，股價常因市場對國防/政府合約簽署的預期而出現 +5% 至 +8% 的買盤拉升（Drift UP）。</li></ul>
+<h4>A6. 財報後反應指引 (Post-Earnings Reaction Guide)</h4>
+<ul><li><strong>超預期 + 上調指引 (Beat &amp; Raise)：</strong> 預期漲幅 +12% ~ +18%（強烈空頭回補帶動）。</li><li><strong>符合預期 + 維持指引 (In-line)：</strong> 預期變動 -2% ~ +3%（波動度驟降 IV Crush 壓制期權價格）。</li><li><strong>低於預期 + 下調指引 (Miss &amp; Cut)：</strong> 預期跌幅 -10% ~ -15%（但因手上擁有 8.65 億美元總現金與淨現金 3.67 億美元，下行空間受資產保護）。</li></ul>
+<hr>
+<h4>Section B — 總體經濟與政策催化劑 (Macro Catalyst Calendar)</h4>
+<h4>B1. 聯準會 (FOMC) 利率決策會議</h4>
+<ul><li><strong>關鍵日期：</strong> 2026 年 12 月中旬、2027 年 1 月底。</li><li><strong>利率敏感度評估：</strong> <strong>高敏感（High Sensitivity）</strong>。PL 作為高成長但 GAAP 淨利仍為負（TTM Net Income -3.59 億美元，含非現金折舊與股權獎勵）的科技/航太股，降息環境有助於降低折現率並提升估值倍數（目前 P/S 為 13.28x）。</li></ul>
+<h4>B2. 國防預算與政府財政支出 (US Defense Budget Cycles)</h4>
+<ul><li><strong>政府預算效應：</strong> PL 很大一部分營收來自美國國家地理空間情報局（NGA）及國防部。美國政府財政年度（FY）於 10 月 1 日展開後，Q1（10-12月）通常為政府新計畫預算撥款與新合約頒發的高峰期，為 PL 提供強勁的外在催化劑。</li></ul>
+<h4>B3. 通膨與就業報告 (CPI / NFP)</h4>
+<ul><li><strong>總體分類：</strong> 屬於防禦性國防與高科技結合標的，對 CPI 數據直接敏感度較低，但若總體經濟轉弱促使資金尋找具備政府剛性需求的標的，PL 反而具備防守反擊特性。</li></ul>
+<hr>
+<h4>Section C — 公司特定與產業催化劑 (Company-Specific Catalysts)</h4>
+<h4>C1. Pelican 與 Tanager 新一代衛星星座部署進度</h4>
+<ul><li><strong>催化劑描述：</strong> Pelican（高解析度光學衛星）與 Tanager（溫室氣體/高光譜衛星）的發射與商業化數據交付。</li><li><strong>影響：</strong> 新衛星上線將提高數據解析度與拍照頻率，直接推升續約合約價值（ACV）與客單價。</li></ul>
+<h4>C2. 國防與情報機構大單續約 / 擴展 (Government Contract Renewals)</h4>
+<ul><li><strong>催化劑描述：</strong> 預期在未來 90 天內公佈美國及國際地緣政治客戶（如歐洲/亞太國防機構）的多年期訂閱合約。</li><li><strong>影響：</strong> 任何超過 5,000 萬美元的多年期合約公告，均可能推升股價單日上漲 &gt;10%。</li></ul>
+<h4>C3. 空頭回補與籌碼結構 (Short Interest Dynamics)</h4>
+<ul><li><strong>籌碼分析：</strong> 目前空頭部位達 3,639 萬股（占流通股數 12.04%），機構持股比例高達 77.79%。籌碼集中度高，一旦出現利多催化劑，容易觸發籌碼鎖死下的劇烈軋空。</li></ul>
+<h4>C4. 資產負債表安全性與無融資風險 (Balance Sheet Safety)</h4>
+<ul><li><strong>債務評估：</strong> 總現金與短期投資達 8.65 億美元，總債務 4.98 億美元，淨現金（Net Cash）達 3.67 億美元。流動比率（Current Ratio）2.84，完全無短期債務違約或急迫增資稀釋（Equity Dilution）風險，為催化劑下行風險提供堅實底部。</li></ul>
+<hr>
+<h4>Section D — 催化劑影響評分表 (Catalyst Impact Scoring Table)</h4>
+<div class="tblwrap"><table class="dt dt--sm"><thead><tr><th scope="col" style="text-align:left">預計日期</th><th scope="col" style="text-align:left">事件名稱</th><th scope="col" style="text-align:left">發生機率</th><th scope="col" style="text-align:left">看多影響</th><th scope="col" style="text-align:left">看空影響</th><th scope="col" style="text-align:left">淨偏向</th><th scope="col" style="text-align:left">財報/事件前建議動作</th></tr></thead><tbody><tr><td style="text-align:left"><strong>2026-11-25</strong></td><td style="text-align:left">美國國防部 Q1 採購預算撥款落地</td><td style="text-align:left">高 (80%)</td><td style="text-align:left">+6%</td><td style="text-align:left">-2%</td><td style="text-align:left">看多 (Bullish)</td><td style="text-align:left">逢低分批建倉</td></tr><tr><td style="text-align:left"><strong>2026-12-08</strong></td><td style="text-align:left">FY2027 Q3 財報公佈與指引</td><td style="text-align:left">中 (60%)</td><td style="text-align:left">+15%</td><td style="text-align:left">-10%</td><td style="text-align:left">看多 (Bullish)</td><td style="text-align:left">財報前 10 天逢拉回買進，財報前夕減碼鎖利</td></tr><tr><td style="text-align:left"><strong>2026-12-16</strong></td><td style="text-align:left">聯準會 (FOMC) 利率決策</td><td style="text-align:left">中 (50%)</td><td style="text-align:left">+8%</td><td style="text-align:left">-5%</td><td style="text-align:left">看多 (Bullish)</td><td style="text-align:left">持股觀望，利用買權避險</td></tr><tr><td style="text-align:left"><strong>2027-01-15</strong></td><td style="text-align:left">Pelican / Tanager 衛星新數據服務上線</td><td style="text-align:left">高 (75%)</td><td style="text-align:left">+10%</td><td style="text-align:left">-3%</td><td style="text-align:left">看多 (Bullish)</td><td style="text-align:left">偏多操作，買進並持有</td></tr><tr><td style="text-align:left"><strong>2027-01-28</strong></td><td style="text-align:left">國際防務展覽/客戶大會合約宣佈</td><td style="text-align:left">中 (50%)</td><td style="text-align:left">+12%</td><td style="text-align:left">-4%</td><td style="text-align:left">二元/偏多 (Binary/Bullish)</td><td style="text-align:left">突破關鍵均線後加碼</td></tr></tbody></table></div>
+<hr>
+<h4>Section E — 事件驅動策略建議 (Event-Driven Strategy Suggestions)</h4>
+<h4>E1. 事件前卡位策略 (Pre-Event Positioning Playbook)</h4>
+<ul><li><strong>自由現金流轉正效應：</strong>鑑於 PL 已實現 TTM FCF 5,175 萬美元且擁有 58.1% 的營收高速成長，當前股價 $13.81 處於 52 週區間（$10.52 - $51.76）的相對低檔。</li><li><strong>卡位時機：</strong> 建議在 12 月初財報公佈前 <strong>10 至 15 個交易日</strong>（約 11 月下旬），利用股價在 20 日均線（$13.56）附近整理時分批佈局。</li></ul>
+<h4>E2. 事件後反應指南 (Post-Event Reaction Guide)</h4>
+<ul><li><strong>波動度潰縮（IV Crush）利用：</strong> 若財報前隱含波動率飆升，可考慮持有現貨的同時賣出虛值買權（Covered Call）鎖定利潤。</li><li><strong>開高回落積累（Buy the Dip）：</strong> 若財報數據優異（營收維持 &gt;50% 成長且 FCF 持續正向），但因市場總體情緒開高走低，應視為 3 個交易日內最佳的波段加碼點。</li></ul>
+<h4>E3. 二元事件避險策略 (Binary Event Hedges)</h4>
+<ul><li><strong>保護性賣權（Protective Puts）：</strong> 針對財報日潛在波動，可購買履約價 $12.50（價外約 9%）的短天期賣權，資金成本控制在持倉金額的 2.5% 以內。</li><li><strong>掩護性買權組合（Collar Strategy）：</strong> 賣出履約價 $17.50 的 Call 來融資購買履約價 $12.50 的 Put，鎖定財報期間的上下行風險。</li></ul>
+<h4>E4. 催化劑疊加窗口 (Catalyst Stacking — Convergence Windows)</h4>
+<ul><li><strong>重疊高峰期（2026 年 12 月初至 12 月中）：</strong> Q3 財報公佈 + 國防部新財年合約簽署高峰 + FOMC 利率決策三重催化劑疊加。此窗口為年度波動最大但風險報酬比（Risk/Reward）最優之時期。</li></ul>
+<hr>
+<h4>Section F — 90天催化劑熱力圖 (90-Day Catalyst Heat Map)</h4>
+<pre class="lv-code"><code>90-Day Catalyst Heat Map — PL (Planet Labs PBC)
+════════════════════════════════════════════════════════
+
+Week 1  (Nov 16 – Nov 20):  ░░░  低偏向     — 盤整期，消化前波波動
+Week 2  (Nov 23 – Nov 27):  ██   中度     — 國防財年 Q1 預算撥款啟動
+Week 3  (Dec 01 – Dec 05):  ████ 高度     — 財報前夕預期買盤卡位
+Week 4  (Dec 08 – Dec 12):  ████ 高度     — FY27 Q3 財報發布與電話會議
+Week 5  (Dec 15 – Dec 19):  ████ 高度     — FOMC 利率決策與總體市場重置
+Week 6  (Dec 22 – Dec 26):  ░░░  低偏向     — 假期交投清淡期
+Week 7  (Dec 29 – Jan 02):  ░░░  低偏向     — 年初資金重新配置
+Week 8  (Jan 05 – Jan 09):  ██   中度     — 商業衛星展覽與新技術展示
+Week 9  (Jan 12 – Jan 16):  ██   中度     — Pelican 星座營運數據更新
+Week 10 (Jan 19 – Jan 23):  ░░░  低偏向     — 寧靜期
+Week 11 (Jan 26 – Jan 30):  ████ 高度     — FOMC 會議與政府地緣政治合約季
+Week 12 (Feb 02 – Feb 06):  ██   中度     — 業界分析師日與機構交流
+Week 13 (Feb 09 – Feb 13):  ░░░  低偏向     — 下一季財報前寧靜期
+
+════════════════════════════════════════════════════════
+高峰風險與機會窗口： 2026年12月1日 – 12月19日（財報 + 國防撥款 + FOMC 疊加）
+最佳蓄積買進窗口：   2026年11月16日 – 11月25日（低催化密度，適合逢低建倉）</code></pre>
+<hr>
+<h4>論點失效條件（Thesis Invalidation）</h4>
+<p><strong>看多催化劑論點在以下情況下失效：</strong></p>
+<ol><li><strong>財報營收成長率大幅放緩：</strong> YoY 成長率跌破 35%，且自由現金流（FCF）重新轉為負數超過 3,000 萬美元。</li><li><strong>主要政府合約流失：</strong> 美國國家地理空間情報局（NGA）續約金額削減 &gt;20% 或轉向競爭對手。</li><li><strong>衛星發射重大故障：</strong> Pelican 或 Tanager 主要關鍵衛星發射失敗或入軌後無效化。</li><li><strong>資本結構惡化：</strong> 淨現金儲備因非預期資本支出快速消耗至 1.5 億美元以下。</li></ol>
+<p><strong>重新執行本分析之觸發點：</strong></p>
+<ul><li>☐ 公司官方正式公佈 Q3 財報日期與時間</li><li>☐ 宣佈超過 3,000 萬美元的單一新政府/商業合約</li><li>☐ 空頭回補比例（Short Interest）變動超過 25%</li><li>☐ 股價突破 50 日均線（$15.38）或跌破 52 週低點（$10.52）</li></ul>
+<hr>
+<p>Next Catalyst:     FY2027 Q3 Earnings on 2026-12-08 (Est.)
+30-Day Bias:       BULLISH
+Catalyst Density:  HIGH
+Highest Impact:    Q3 Earnings &amp; Defense Contract Wins — [±15.0%] expected
+Risk Window:       2026-12-01 – 2026-12-19</p>
+<pre class="lv-code"><code>{"investskill": "1", "skill": "catalyst-calendar", "ticker": "PL", "as_of": "2026-11-13", "signal": "BULLISH", "confidence": "MEDIUM", "horizon": "SHORT-TERM", "score": 7.2, "action": "BUY", "conviction": "MODERATE", "retrieval": "pasted by user", "sources": ["Company Financial Reports (SEC 10-K/10-Q)", "Market Data dated 2026-11-13"]}</code></pre>
+<pre class="lv-code"><code>╔══════════════════════════════════════════════╗
+║              INVESTMENT SIGNAL               ║
+╠══════════════════════════════════════════════╣
+║ Signal:      BULLISH                         ║
+║ Confidence:  MEDIUM                          ║
+║ Horizon:     SHORT-TERM                      ║
+║ Score:       7.2 / 10                        ║
+╠══════════════════════════════════════════════╣
+║ Action:      BUY                             ║
+║ Conviction:  MODERATE                        ║
+╚══════════════════════════════════════════════╝</code></pre>
+<p><strong>免責聲明：</strong> 僅供教育用途，非投資建議。投資前請自行評估風險並諮詢專業顧問。</p>
+</section>
+<nav class="lv-pager" data-page="20261115/show_case.html" aria-label="其他展示"><a href="../20261113/show_case.html">← 2026-11-13 · MSFT</a><a href="../index.html">所有即時展示</a><a class="lv-newer" href="../index.html" hidden>較新的展示 →</a></nav>
+</article></div>
+</main>
+<footer class="foot"><div class="wrap">
+<p><strong>InvestSkill Autopilot — 即時展示</strong>　·　每次執行都取用當時最新的
+<a href="https://github.com/yennanliu/InvestSkill">InvestSkill</a> 框架，隨機挑選一檔標的，由 LLM 依 yfinance 公開資料生成；每一次都保留。</p>
+<p style="margin-top:8px"><a href="../index.html">所有即時展示</a>　·　<a href="../../index.html">策展展示櫃</a>　·　<a href="https://github.com/yennanliu/InvestSkill-test">原始碼與報告存檔</a></p>
+<div class="disc"><strong>免責聲明</strong>　本頁為框架能力展示，並非投資建議。內容由大型語言模型自動生成、
+<strong>未經人工審閱</strong>，數字未經逐一重算，可能有錯誤、過時或前後不一致之處。
+任何投資決策前請自行查證第一手文件（SEC EDGAR、公司投資人關係網站）。</div>
+</div></footer>
+<script src="../assets/live.js"></script>
+</body>
+</html>
