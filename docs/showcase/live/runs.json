@@ -1,6 +1,128 @@
 {
   "runs": [
     {
+      "ticker": "ONDS",
+      "name": "Ondas Inc.",
+      "kind": "stock",
+      "mode": "full-report · depth standard",
+      "date": "2026-11-17",
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "skill_version": "1.15.0",
+      "skill_commit": "4d61af4ae5545a8fae8a78642c4f1a56ea3a20ec",
+      "page": "20261117/show_case.html",
+      "source_md": "output/showcase_live/onds/full_report_2026-11-17_gemini-3.6-flash.md",
+      "modules": [
+        {
+          "slug": "stock-eval",
+          "label": "綜合股票評估",
+          "status": "ok",
+          "signal": "NEUTRAL",
+          "action": "HOLD",
+          "confidence": "MEDIUM",
+          "horizon": "MEDIUM-TERM",
+          "score": 5.2
+        },
+        {
+          "slug": "stock-valuation",
+          "label": "多方法估值分析",
+          "status": "ok",
+          "signal": "NEUTRAL",
+          "action": "HOLD",
+          "confidence": "MEDIUM",
+          "horizon": "MEDIUM-TERM",
+          "score": 5.8
+        },
+        {
+          "slug": "insider-trading",
+          "label": "內部人交易分析",
+          "status": "ok",
+          "signal": "BEARISH",
+          "action": "SELL",
+          "confidence": "HIGH",
+          "horizon": "MEDIUM-TERM",
+          "score": 2.5
+        },
+        {
+          "slug": "technical-analysis",
+          "label": "技術分析",
+          "status": "ok",
+          "signal": "BEARISH",
+          "action": "HOLD",
+          "confidence": "HIGH",
+          "horizon": "SHORT-TERM",
+          "score": 3.2
+        },
+        {
+          "slug": "bear-case",
+          "label": "空頭觀點",
+          "status": "ok",
+          "signal": "BEARISH",
+          "action": "SELL",
+          "confidence": "HIGH",
+          "horizon": "MEDIUM-TERM",
+          "score": 1.9
+        },
+        {
+          "slug": "competitor-analysis",
+          "label": "競爭護城河分析",
+          "status": "ok",
+          "signal": "NEUTRAL",
+          "action": "HOLD",
+          "confidence": "HIGH",
+          "horizon": "MEDIUM-TERM",
+          "score": 5.5
+        },
+        {
+          "slug": "financial-report-analyst",
+          "label": "財報深度分析",
+          "status": "ok",
+          "signal": "NEUTRAL",
+          "action": "HOLD",
+          "confidence": "HIGH",
+          "horizon": "MEDIUM-TERM",
+          "score": 5.2
+        },
+        {
+          "slug": "earnings-call-analysis",
+          "label": "財報電話會議分析",
+          "status": "ok",
+          "signal": "NEUTRAL",
+          "action": "HOLD",
+          "confidence": "MEDIUM",
+          "horizon": "MEDIUM-TERM",
+          "score": 4.8
+        },
+        {
+          "slug": "institutional-ownership",
+          "label": "機構持股分析",
+          "status": "ok",
+          "signal": "NEUTRAL",
+          "action": "HOLD",
+          "confidence": "HIGH",
+          "horizon": "MEDIUM-TERM",
+          "score": 4.2
+        },
+        {
+          "slug": "catalyst-calendar",
+          "label": "催化劑日曆",
+          "status": "ok",
+          "signal": "BULLISH",
+          "action": "BUY",
+          "confidence": "HIGH",
+          "horizon": "SHORT-TERM",
+          "score": 7.5
+        }
+      ],
+      "signal": "NEUTRAL",
+      "action": "HOLD",
+      "confidence": "HIGH",
+      "horizon": "MEDIUM-TERM",
+      "score": 4.6,
+      "mean_score": 4.58,
+      "mean_n": 10
+    },
+    {
       "ticker": "VST",
       "name": "Vistra Corp.",
       "kind": "stock",
