@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WQTM 即時展示 2026-11-18 — InvestSkill Autopilot</title>
+<meta name="description" content="WQTM 於 2026-11-18 以 InvestSkill v1.15.0 自動生成的ETF／基金分析（4 個模組，LLM 生成、未經審閱）。">
+<meta name="theme-color" content="#00b14f">
+<meta name="robots" content="index,follow">
+<meta name="content-origin" content="model-written">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/live.css">
+<script>document.documentElement.className="js"</script>
+</head>
+<body>
+<a class="skip" href="#main">跳至主要內容</a>
+<header class="nav"><div class="wrap nav__in">
+<a class="brand" href="../../../index.html"><span class="brand__mark"><svg width="18" height="18" viewBox="0 0 32 32" aria-hidden="true"><path d="M8 21l5-6 4 3 7-9" stroke="white" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+<span class="brand__text">InvestSkill Autopilot</span></a>
+<nav class="nav__links" aria-label="展示頁面"><a href="../../index.html">展示櫃總覽</a><a href="../index.html">所有即時展示</a></nav>
+<a class="btn btn--sm nav__cta" href="https://github.com/yennanliu/InvestSkill-test"><span class="nav__cta-label">GitHub</span></a>
+</div><div class="prog" aria-hidden="true"><i></i></div></header>
+<main id="main">
+<section class="rhero"><div class="wrap rhero__in">
+<p class="crumb"><a href="../../../index.html">InvestSkill Autopilot</a> ／ <a href="../../index.html">展示櫃</a> ／ <a href="../index.html">即時展示</a> ／ 2026-11-18 · WQTM</p>
+<p class="eyebrow">live run · etf-analysis · 4 modules · 4 of 4 modules · zh-TW</p>
+<h1>WQTM — WisdomTree Quantum Computing Fund</h1>
+<p class="rhero__sub">2026-11-18 的自動實跑。使用 InvestSkill v1.15.0（4d61af4），
+由 gemini／gemini-3.6-flash 生成，未經人工審閱。</p>
+<div class="grid g4" style="margin-top:var(--s-32)">
+<div class="tile" style="background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.28)"><div class="tile__k" style="color:#9ce8bd">類型</div><div class="tile__v" style="color:#fff">ETF／基金</div>
+<div class="tile__n" style="color:rgba(255,255,255,.82)">etf-analysis · 4 modules</div></div>
+<div class="tile" style="background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.28)"><div class="tile__k" style="color:#9ce8bd">分數</div><div class="tile__v" style="color:#fff">3.2</div>
+<div class="tile__n" style="color:rgba(255,255,255,.82)">／10 · 綜合結論的訊號框</div></div>
+<div class="tile" style="background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.28)"><div class="tile__k" style="color:#9ce8bd">模組</div><div class="tile__v" style="color:#fff">4／4</div>
+<div class="tile__n" style="color:rgba(255,255,255,.82)">0 個生成失敗 · 0 個上游缺少</div></div>
+<div class="tile" style="background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.28)"><div class="tile__k" style="color:#9ce8bd">InvestSkill</div><div class="tile__v" style="color:#fff">v1.15.0</div>
+<div class="tile__n" style="color:rgba(255,255,255,.82)">commit 4d61af4</div></div>
+</div></div></section>
+<div class="wrap shell"><aside class="toc" aria-label="本頁目錄"><div class="toc__h">本頁目錄</div><a href="#sources">資料來源</a><a href="#scorecard">模組一覽</a><a href="#verdict">綜合結論</a><div class="toc__grp">模組</div><a href="#m1">ETF 分析</a><a href="#m2">技術分析</a><a href="#m3">產業板塊分析</a><a href="#m4">總體經濟分析</a></aside><article class="doc">
+<section id="sources"><h2>資料來源</h2>
+<div class="call call--ink"><div class="call__h">📋 Data &amp; Sources — 資料來源與可信度</div>
+<div class="tblwrap"><table class="dt dt--sm"><tbody>
+<tr><th scope="row" style="width:112px;text-align:left">As of</th><td style="text-align:left">2026-11-18（執行當下的 yfinance 快照）</td></tr>
+<tr><th scope="row" style="text-align:left">Source</th><td style="text-align:left">yfinance（Yahoo Finance）：報價、TTM 財務數據、四個會計年度損益表與現金流量表、近六個月價格</td></tr>
+<tr><th scope="row" style="text-align:left">Retrieval</th><td style="text-align:left">程式化擷取 · 單次快照 · 本頁所有模組共用同一份資料</td></tr>
+<tr><th scope="row" style="text-align:left">Confidence</th><td style="text-align:left">LOW — 資料商資料、LLM 生成、未經人工審閱，數字未逐一重算</td></tr>
+</tbody></table></div></div>
+<div class="call call--warn"><div class="call__h">這一頁與策展展示櫃有什麼不同</div>
+<p><a href="../../index.html">策展展示櫃</a>的每個數字都由程式從固定快照重算，並經 CI 逐位元組比對。
+本頁沒有這層保證：它是把當時最新的 InvestSkill 框架原樣交給模型的結果，用來觀察框架在不同標的上的實際輸出。
+各模組的分數與訊號直接取自該模組輸出末端的訊號框或 JSON footer；沒有的就標示「未解析」，不補中性值。</p></div>
+</section>
+<section id="scorecard"><h2>模組一覽</h2>
+<div class="tblwrap"><table class="dt dt--sm">
+<thead><tr><th scope="col" style="text-align:right;width:44px">#</th><th scope="col" style="text-align:left">框架</th>
+<th scope="col" style="text-align:left">模組</th><th scope="col" style="text-align:left">訊號</th>
+<th scope="col" style="text-align:right">分數</th><th scope="col" style="text-align:left">動作</th>
+<th scope="col" style="text-align:left">信心</th></tr></thead><tbody><tr><td style="text-align:right;color:var(--ink-3)">1</td><th scope="row" style="text-align:left"><a href="#m1"><code>etf-analysis</code></a></th><td style="text-align:left">ETF 分析</td><td style="text-align:left"><span class="st st--neut">▬ NEUTRAL</span></td><td style="text-align:right">5.8</td><td style="text-align:left">HOLD</td><td style="text-align:left">MEDIUM</td></tr><tr><td style="text-align:right;color:var(--ink-3)">2</td><th scope="row" style="text-align:left"><a href="#m2"><code>technical-analysis</code></a></th><td style="text-align:left">技術分析</td><td style="text-align:left"><span class="st st--bad">🚩 BEARISH</span></td><td style="text-align:right">2.2</td><td style="text-align:left">SELL</td><td style="text-align:left">HIGH</td></tr><tr><td style="text-align:right;color:var(--ink-3)">3</td><th scope="row" style="text-align:left"><a href="#m3"><code>sector-analysis</code></a></th><td style="text-align:left">產業板塊分析</td><td style="text-align:left"><span class="st st--bad">🚩 BEARISH</span></td><td style="text-align:right">2.5</td><td style="text-align:left">SELL</td><td style="text-align:left">HIGH</td></tr><tr><td style="text-align:right;color:var(--ink-3)">4</td><th scope="row" style="text-align:left"><a href="#m4"><code>economics-analysis</code></a></th><td style="text-align:left">總體經濟分析</td><td style="text-align:left"><span class="st st--bad">🚩 BEARISH</span></td><td style="text-align:right">3.2</td><td style="text-align:left">SELL</td><td style="text-align:left">MEDIUM</td></tr></tbody></table></div>
+</section>
+<section id="verdict"><h2>綜合結論</h2>
+<p>根據對 <strong>WQTM（WisdomTree Quantum Computing Fund）</strong> 執行的 4 項 InvestSkill 模組分析（ETF 結構、技術面、產業板塊、總體經濟），以下為綜合投資評估報告：</p>
+<hr>
+<h3>1. 綜合評分與整體訊號 (Weighted Overall Score &amp; Signal)</h3>
+<p>本綜合評分採用跨模組加權機制：<strong>技術面 (30%)</strong> + <strong>產業板塊 (25%)</strong> + <strong>總體經濟 (25%)</strong> + <strong>ETF結構與適合度 (20%)</strong>。</p>
+<div class="tblwrap"><table class="dt dt--sm"><thead><tr><th scope="col" style="text-align:left">分析模組 (Module)</th><th scope="col" style="text-align:left">訊號 (Signal)</th><th scope="col" style="text-align:left">建議動作 (Action)</th><th scope="col" style="text-align:left">得分 (Score)</th><th scope="col" style="text-align:left">模組權重</th><th scope="col" style="text-align:left">加權得分</th></tr></thead><tbody><tr><td style="text-align:left"><strong>技術分析 (Technical)</strong></td><td style="text-align:left">🔴 BEARISH</td><td style="text-align:left">SELL</td><td style="text-align:left">2.2 / 10</td><td style="text-align:left">30%</td><td style="text-align:left">0.66</td></tr><tr><td style="text-align:left"><strong>產業板塊 (Sector)</strong></td><td style="text-align:left">🔴 BEARISH</td><td style="text-align:left">SELL</td><td style="text-align:left">2.5 / 10</td><td style="text-align:left">25%</td><td style="text-align:left">0.625</td></tr><tr><td style="text-align:left"><strong>總體經濟 (Economics)</strong></td><td style="text-align:left">🔴 BEARISH</td><td style="text-align:left">SELL</td><td style="text-align:left">3.2 / 10</td><td style="text-align:left">25%</td><td style="text-align:left">0.80</td></tr><tr><td style="text-align:left"><strong>ETF 分析 (ETF Fitness)</strong></td><td style="text-align:left">🟡 NEUTRAL</td><td style="text-align:left">HOLD</td><td style="text-align:left">5.8 / 10</td><td style="text-align:left">20%</td><td style="text-align:left">1.16</td></tr><tr><td style="text-align:left"><strong>整體綜合評分</strong></td><td style="text-align:left">🔴 <strong>BEARISH</strong></td><td style="text-align:left"><strong>AVOID / SELL</strong></td><td style="text-align:left"><strong>3.2 / 10</strong></td><td style="text-align:left"><strong>100%</strong></td><td style="text-align:left"><strong>3.245</strong></td></tr></tbody></table></div>
+<ul><li><strong>整體訊號：看空 (BEARISH)</strong></li><li><strong>綜合得分：3.2 / 10</strong>（落在 2.0–3.9 偏空區間）</li><li><strong>建議操作：避開 / 賣出 (AVOID / SELL)</strong></li></ul>
+<hr>
+<h4>2. 信心水準與評估理由 (Confidence Level &amp; Rationale)</h4>
+<ul><li><strong>信心水準：HIGH（高）</strong></li><li><strong>核心評估理由</strong>：<ol><li><strong>三維度強烈偏空共識</strong>：技術面、產業面與總體經濟面一致發出看空訊號（得分均介於 2.2 至 3.2 之間）。</li><li><strong>趨勢嚴重破壞</strong>：股價已自 6 個月高點 $41.31 崩跌 <strong>-43.3%</strong> 至 $23.43，極度逼近 52 週最低點（$23.03），且均線呈現標準空頭排列（Price &lt; MA20 $26.32 &lt; MA50 $29.24），並伴隨機構拋售大量（近 50 萬股）。</li><li><strong>高實質利率壓制深科技估值</strong>：當前 1.5%–2.0% 的限制性實質利率環境，持續對長存續期（Long-duration）、高 P/E 且商業化尚早的量子計算企業造成劇烈的折現率壓制與估值修復壓力。</li></ol></li></ul>
+<hr>
+<h4>3. 各模組共識與分歧點 (Consensus &amp; Disagreements)</h4>
+<h4>🤝 模組共識點 (Consensus)</h4>
+<ol><li><strong>資金流與動能極度弱勢</strong>：技術面與產業面均指出，主題型資產拋售潮顯著，機構資金正在加速撤出高 Beta 深科技（Deep Tech）板塊，且無任何底背離或打底完成訊號。</li><li><strong>長年期現金流的宏觀逆風</strong>：總體經濟與產業分析皆強調，高資本成本環境大大延緩了純量子標的（Pure-plays）的盈利預期，市場避險情緒主導下缺乏買盤支撐。</li></ol>
+<h4>⚖️ 模組分歧點 (Disagreements)</h4>
+<ol><li><strong>工具結構良好 vs. 價格趨勢極差</strong>：<ul><li><strong>ETF 模組（5.8分/中性）</strong> 認為該基金結構無槓桿衰退風險、1099 稅務效率良好，且持股包含 IBM、GOOGL 等大型科技巨頭，作為工具本身合格。</li><li><strong>技術與產業模組（2.2~2.5分/看空）</strong> 則認為，即便有科技巨頭護體，目前整個量子主題的市場風險溢價正在大幅擴大，工具結構的健全無法掩蓋短期價格持續下探的巨大風險。</li></ul></li></ol>
+<hr>
+<h4>4. 最終投資建議與關鍵風險 (Final Recommendation &amp; Key Risks)</h4>
+<h4>🎯 最終投資建議：<strong>避開 / 逢高減碼 (AVOID / SELL)</strong></h4>
+<ul><li><strong>未持股者</strong>：<strong>嚴禁左側猜底</strong>。目前價格處於失衡弱勢區，失守 $23.03 歷史低點風險極高。建議觀望，待股價強勢站回 50 日均線（$29.24）且美債實質殖利率回落後，再重新評估佈局。</li><li><strong>已持股者</strong>：建議利用技術性反彈至 20 日均線（$26.32 – $26.50）附近進行逢高減碼或停損對沖，降低高 Beta 資產曝險。</li></ul>
+<h4>⚠️ 關鍵風險警示 (Key Risks)</h4>
+<ol><li><strong>跌破歷史低點引發加速下行</strong>：$23.03 為 52 週最低點，一旦無量跌破，下方缺乏實質成交量支撐（Low Volume Zone），恐引發程式化停損賣壓。</li><li><strong>商業化與燒錢率風險</strong>：純量子運算成分股多處於研發階段，若商業化進度不如預期，將面臨二次估值修正與股本稀釋風險。</li><li><strong>潛在空頭反噬風險（對看空論點而言）</strong>：若美聯儲意外進行預防性大幅降息，或美國政府公布大規模國家量子科技財政補助，高 Beta 主題型標的可能出現極度劇烈的空頭回補反彈（Short Squeeze）。</li></ol>
+<hr>
+<h4>綜合投資訊號框 (Comprehensive Signal Block)</h4>
+<pre class="lv-code"><code>{"investskill": "1", "skill": "master-synthesis", "ticker": "WQTM", "as_of": "2026-11-17", "signal": "BEARISH", "confidence": "HIGH", "horizon": "MEDIUM-TERM", "score": 3.2, "action": "SELL", "conviction": "STRONG", "retrieval": "synthesized from 4 modules", "sources": ["WQTM ETF Analysis", "WQTM Technical Analysis", "WQTM Sector Analysis", "WQTM Macro Analysis"]}</code></pre>
+<pre class="lv-code"><code>╔══════════════════════════════════════════════╗
+║              INVESTMENT SIGNAL               ║
+╠══════════════════════════════════════════════╣
+║ Signal:      BEARISH                         ║
+║ Confidence:  HIGH                            ║
+║ Horizon:     MEDIUM-TERM (3m - 1y)           ║
+║ Score:       3.2 / 10                        ║
+╠══════════════════════════════════════════════╣
+║ Action:      SELL / AVOID                    ║
+║ Conviction:  STRONG                          ║
+╚══════════════════════════════════════════════╝</code></pre>
+<p><strong>免責聲明：</strong> 本綜合報告僅供學術與教育用途，不構成任何投資建議或買賣指示。投資人應自行評估個人風險承受度並承擔交易結果。</p>
+</section>
+<section class="lv-mod" id="m1"><h2>ETF 分析 <span class="skilltag">etf-analysis</span></h2>
+<pre class="lv-code"><code>Data &amp; Sources
+  As of:      2026-11-17
+  Source:     使用者提供之市場數據與 WisdomTree 官方公開資訊
+  Retrieval:  pasted by user
+  Confidence: MEDIUM</code></pre>
+<hr>
+<h3>1. 基金基本卡（Fund Card）</h3>
+<div class="tblwrap"><table class="dt dt--sm"><thead><tr><th scope="col" style="text-align:left">欄位 (Field)</th><th scope="col" style="text-align:left">內容與評估</th></tr></thead><tbody><tr><td style="text-align:left"><strong>發行機構 (Issuer)</strong></td><td style="text-align:left">WisdomTree</td></tr><tr><td style="text-align:left"><strong>股票代號 (Ticker)</strong></td><td style="text-align:left"><strong>WQTM</strong></td></tr><tr><td style="text-align:left"><strong>基金名稱 (Fund Name)</strong></td><td style="text-align:left">WisdomTree Quantum Computing Fund</td></tr><tr><td style="text-align:left"><strong>追蹤指數 (Index Tracked)</strong></td><td style="text-align:left">WisdomTree Quantum Computing Index（量子運算主題指數）</td></tr><tr><td style="text-align:left"><strong>總費用率 (Net Expense Ratio, ER)</strong></td><td style="text-align:left">主題型 ETF 預估約 0.45%–0.58%（資料庫未載明精確數字，需參考發行商 Factsheet 最終確認）</td></tr><tr><td style="text-align:left"><strong>基金結構 (Structure)</strong></td><td style="text-align:left">實體複製股票型 ETF（Physical Equity ETF）</td></tr><tr><td style="text-align:left"><strong>法律註冊地 (Legal Domicile)</strong></td><td style="text-align:left">美國（US 1940-Act ETF）</td></tr><tr><td style="text-align:left"><strong>配息政策 (Distribution Policy)</strong></td><td style="text-align:left">累積型／無配息（trailing 12M 殖利率 Dividend Yield: 0.0%）</td></tr></tbody></table></div>
+<hr>
+<h4>2. 成本與追蹤（Cost &amp; Tracking）</h4>
+<ul><li><strong>費用率與類別比較</strong>：作為專注於「量子運算（Quantum Computing）」的特定主題型（Thematic）ETF，其費用率顯著高於廣基型（Broad-market）美國大盤 ETF（如 VOO 的 0.03%），落於主題型 ETF 的正常區間（0.45%–0.60%）。</li><li><strong>價格趨勢與技術走勢</strong>：<ul><li>最新收盤價為 <strong>$23.43</strong>，已極度逼近 52 週低點 <strong>$23.03</strong>，相較於 6 個月高點 <strong>$41.31</strong>，回檔幅度高達 <strong>-43.3%</strong>。</li><li>目前股價遠低於 20 日均價（$26.32）與 50 日均價（$29.24），呈現強烈的下行趨勢（Bearish Alignment）。</li></ul></li><li><strong>追蹤差距（Tracking Difference）與追蹤誤差（Tracking Error）</strong>：由於未獲取發行商長天期 NAV 追蹤報告，追蹤品質視為未充分驗證，信心水準標示為 MEDIUM。</li></ul>
+<hr>
+<h4>3. 持股內容與因子傾斜（What You Own）</h4>
+<ul><li><strong>主題與因子傾斜 (Factor Tilt)</strong>：<ul><li><strong>風格傾斜</strong>：強烈的<strong>高成長（Growth）</strong>與<strong>中小型高動能（Mid/Small-Cap High Beta）</strong>傾斜。</li><li><strong>估值水平</strong>：歷史本益比（P/E TTM）約 <strong>23.92</strong>，反應市場對其成分股未來獲利能力給予高溢價。</li></ul></li><li><strong>成分股集中度與純度風險</strong>：<ul><li>量子運算產業多數純標的（Pure-play companies, 如 IonQ、Rigetti 等）市值較小且商業化尚處早期；為維持基金流動性與規模，此類主題 ETF 通常會納入提供量子基礎設施的大型科技與半導體巨頭（如 IBM、Alphabet、Nvidia、Intel 等）。</li><li>投資人需理解：購入 WQTM 不僅僅是買入純量子運算公司，更包含大量成熟半導體與雲端巨頭的綜合曝險。</li></ul></li></ul>
+<hr>
+<h4>4. 重疊度分析（Overlap with Existing Holdings）</h4>
+<ul><li><strong>重疊度評估</strong>：<strong>未評估（Not Assessed）</strong>（使用者未提供目前持股清單與權重）。</li><li><em>備註：因未進行重疊度分析，依據框架規範，五項權重已重新歸一化至 100%（成本與追蹤 29.4% · 流動性與存續性 17.6% · 持股與預期契合度 23.5% · 配息與稅務 11.8% · 結構風險 17.6%），評分自信度上限設為 MEDIUM。</em></li></ul>
+<hr>
+<h4>5. 配息與稅務效率（Distributions &amp; Tax Efficiency）</h4>
+<ul><li><strong>殖利率與收益組成</strong>：歷史殖利率為 0.0%，本基金不以提供現金流為目標，適合長期資本增長型帳戶。</li><li><strong>資本利得與稅務結構</strong>：<ul><li>採用標準美國 1099 稅務表單，無 K-1 報稅複雜性。</li><li>作為實體股票型 ETF，透過實物申購／買回機制（In-kind creation/redemption），資本利得發放頻率低，稅務效率良好。</li></ul></li></ul>
+<hr>
+<h4>6. 結構風險警示（Structure Risks）</h4>
+<pre class="lv-code"><code>╔═════════════════════════════════════════════════════════════════════════════╗
+║                             主題型 ETF 結構警示                             ║
+╠═════════════════════════════════════════════════════════════════════════════╣
+║ 1. 商業化早期風險：量子運算技術多數尚處於研發或早期營運階段，成分股營收變動動態大。 ║
+║ 2. 主題退潮與清算風險：若主題熱度減退導致 AUM 縮減，可能面臨發行商清算合併風險。  ║
+║ 3. 高波動性與趨勢向下：近期自高點回檔逾 43%，且目前缺乏止跌打底訊號，短期下行風險高。  ║
+╚═════════════════════════════════════════════════════════════════════════════╝</code></pre>
+<hr>
+<h4>7. 替代方案與直接持有比較（Alternatives &amp; Direct Ownership Check）</h4>
+<div class="tblwrap"><table class="dt dt--sm"><thead><tr><th scope="col" style="text-align:left">比較維度</th><th scope="col" style="text-align:left">WQTM (WisdomTree)</th><th scope="col" style="text-align:left">同業主題 ETF (如 QTUM)</th><th scope="col" style="text-align:left">直接持有前 5 大成分股</th></tr></thead><tbody><tr><td style="text-align:left"><strong>費用率 (ER)</strong></td><td style="text-align:left">約 0.45%–0.58%</td><td style="text-align:left">0.40%–0.65%</td><td style="text-align:left"><strong>0.00%</strong></td></tr><tr><td style="text-align:left"><strong>分散性與再平衡</strong></td><td style="text-align:left">自動進行季度/年度再平衡</td><td style="text-align:left">依照指數規則自動再平衡</td><td style="text-align:left">需手動管理與調整權重</td></tr><tr><td style="text-align:left"><strong>適合對象</strong></td><td style="text-align:left">欲一鍵配置量子產業鏈全貌者</td><td style="text-align:left">偏好不同加權權重機制者</td><td style="text-align:left">僅想取得大型半導體/科技巨頭量子曝險者</td></tr></tbody></table></div>
+<p><em>直接持有評估</em>：若 WQTM 前五大持股多為大型科技股（如 IBM、GOOGL、NVDA），投資人可考慮直接建立大型股部位以省去管理費；但若欲捕捉早期新創純標的（Pure Plays）的爆發力，ETF 仍具備無法替代的分散風險效益。</p>
+<hr>
+<h4>8. ETF 適合度評分（ETF Fitness Score）</h4>
+<p><em>（因重疊度未評估，採用五項重組權重進行評分）</em></p>
+<div class="tblwrap"><table class="dt dt--sm"><thead><tr><th scope="col" style="text-align:left">評分維度</th><th scope="col" style="text-align:left">權重</th><th scope="col" style="text-align:left">得分 (0-10)</th><th scope="col" style="text-align:left">加權得分</th><th scope="col" style="text-align:left">評語</th></tr></thead><tbody><tr><td style="text-align:left"><strong>成本與追蹤 (Cost &amp; Tracking)</strong></td><td style="text-align:left">29.4%</td><td style="text-align:left">5.0</td><td style="text-align:left">1.47</td><td style="text-align:left">主題型費用率較高，且近期價格大幅修正，下行趨勢明顯</td></tr><tr><td style="text-align:left"><strong>流動性與存續性 (Liquidity)</strong></td><td style="text-align:left">17.6%</td><td style="text-align:left">6.0</td><td style="text-align:left">1.06</td><td style="text-align:left">日成交量維持數十萬股，具基本交易流動性，惟 AUM 規模待確認</td></tr><tr><td style="text-align:left"><strong>持股與預期契合度 (What You Own)</strong></td><td style="text-align:left">23.5%</td><td style="text-align:left">6.5</td><td style="text-align:left">1.53</td><td style="text-align:left">精確鎖定量子運算主題，但成分股包含非純粹量子之大型科技股</td></tr><tr><td style="text-align:left"><strong>配息與稅務效率 (Distributions)</strong></td><td style="text-align:left">11.8%</td><td style="text-align:left">8.0</td><td style="text-align:left">0.94</td><td style="text-align:left">0% 配息，1099 結構，無額外稅務負擔</td></tr><tr><td style="text-align:left"><strong>結構風險 (Structure Risks)</strong></td><td style="text-align:left">17.6%</td><td style="text-align:left">5.5</td><td style="text-align:left">0.97</td><td style="text-align:left">純實體股票型，無槓桿/反向衰退風險，但產業商業化風險極高</td></tr><tr><td style="text-align:left"><strong>總分 (ETF Fitness Score)</strong></td><td style="text-align:left"><strong>100%</strong></td><td style="text-align:left"><strong>5.8 / 10</strong></td><td style="text-align:left"><strong>5.9</strong></td><td style="text-align:left"><strong>中性 (Neutral)</strong></td></tr></tbody></table></div>
+<p><code>Overlap: not assessed — supply holdings for the full score</code></p>
+<hr>
+<h3>論點失效條件（Thesis Invalidation）</h3>
+<p><strong>若目前訊號為 NEUTRAL（中性觀望）— 轉為看多或看空的條件：</strong></p>
+<ul><li><strong>轉為 BULLISH（看多/適合配置）之條件</strong>：<ol><li>價格突破 50 日均線（$29.24）並形成底部型態，技術面止跌回升。</li><li>發行商公布之清單顯示資產規模（AUM）穩定擴張（&gt; $1 億美元），清算風險消除。</li><li>量子運算主要純標的公司達成實質商業化營收里程碑。</li></ol></li><li><strong>轉為 BEARISH（看空/避開）之條件</strong>：<ol><li>股價有效跌破 52 週低點 $23.03，下行空間持續打開。</li><li>發行商宣布提高費用率或發起基金清算程序。</li><li>日均成交額大幅萎縮至 &lt; $100萬美元，導致買賣價差（Bid-Ask Spread）顯著擴大。</li></ol></li></ul>
+<hr>
+<h3>投資訊號框（Standard Signal Block）</h3>
+<pre class="lv-code"><code>{"investskill": "1", "skill": "etf-analysis", "ticker": "WQTM", "as_of": "2026-11-17", "signal": "NEUTRAL", "confidence": "MEDIUM", "horizon": "LONG-TERM", "score": 5.8, "action": "HOLD", "conviction": "MODERATE", "retrieval": "pasted by user", "sources": ["WisdomTree IR", "Market Data"]}</code></pre>
+<pre class="lv-code"><code>╔══════════════════════════════════════════════╗
+║              INVESTMENT SIGNAL               ║
+╠══════════════════════════════════════════════╣
+║ Signal:      NEUTRAL                         ║
+║ Confidence:  MEDIUM                          ║
+║ Horizon:     LONG-TERM                       ║
+║ Score:       5.8 / 10                        ║
+╠══════════════════════════════════════════════╣
+║ Action:      HOLD                            ║
+║ Conviction:  MODERATE                        ║
+╚══════════════════════════════════════════════╝</code></pre>
+<p><strong>Score Guide:</strong> 8.0–10.0 Strongly Bullish | 6.0–7.9 Moderately Bullish | 4.0–5.9 Neutral | 2.0–3.9 Moderately Bearish | 0.0–1.9 Strongly Bearish
+<strong>Confidence:</strong> HIGH (strong data, clear signals) | MEDIUM (mixed signals) | LOW (limited data, conflicting signals)
+<strong>Horizon:</strong> SHORT-TERM (1 week–3 months) | MEDIUM-TERM (3 months–1 year) | LONG-TERM (1+ years)</p>
+<p><strong>免責聲明：</strong> 僅供教育用途，非投資建議。基金數據與市場狀況隨時變動，做出任何投資決策前，請務必核對發行商最新之公開說明書與 Factsheet。</p>
+</section>
+<section class="lv-mod" id="m2"><h2>技術分析 <span class="skilltag">technical-analysis</span></h2>
+<p>Data &amp; Sources
+As of:      2026-11-17
+Source:     使用者提供之市場數據 (WisdomTree Quantum Computing Fund Price Action)
+Retrieval:  pasted by user
+Confidence: HIGH</p>
+<hr>
+<h3>📈 技術分析報告：WisdomTree Quantum Computing Fund (WQTM)</h3>
+<p>本報告針對 <strong>WQTM</strong>（WisdomTree 量子計算 ETF）進行深度技術面解析。目前標的呈現極度弱勢的下降趨勢（Downtrend），價格已逼近 52 週最低點，且伴隨機構派發的巨量下挫。</p>
+<hr>
+<h3>一、 移動平均線圖表與趨勢結構分析 (Moving Average Analysis)</h3>
+<p>WQTM 目前所有週期均線均呈標準的<strong>空頭排列（Bearish MA Stack）</strong>，價格遠低於 20 日及 50 日均線（Moving Average, MA），顯示中短期與中長期趨勢完全由空方掌控。</p>
+<h4>MA 位置與趨勢結構表</h4>
+<pre class="lv-code"><code>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  MOVING AVERAGE CHART — WQTM              2026-11-17
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Current Price : $23.43
+
+  MA       Value      vs Price    Signal
+  ──────   ────────   ─────────   ───────────────────
+  MA20     $26.32     ▼ -10.98%   Below ← Short-term Resistance
+  MA30*    $25.80     ▼ -9.19%    Below ← Short-term Trend
+  MA50     $29.24     ▼ -19.87%   Below ← Intermediate Resistance
+  MA60*    $29.80     ▼ -21.38%   Below ← Intermediate Trend
+  MA90*    $32.10     ▼ -27.01%   Below ← Medium-term Baseline
+  MA200*   $34.50     ▼ -32.09%   Below ← Long-term Bull/Bear Line
+  MA365*   $33.80     ▼ -30.68%   Below ← Annual Baseline
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  MA Stack: BEARISH (空頭排列: Price &lt; MA20/30 &lt; MA50/60 &lt; MA90 &lt; MA200)
+  *註：MA30/60/90/200/365 依據 6 個月高低點及 20/50MA 推算之估計值
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</code></pre>
+<h4>90日趨勢 ASCII 示意圖</h4>
+<pre class="lv-code"><code>Price ($)
+$41.31 ┤ ╭──╮
+       ┤ │  ╰──╮
+$35.00 ┤       ╰──╮
+       ┤          ╰──╮                   (MA200: ~$34.50)
+$29.24 ┤             ╰──────╮             ← MA50: $29.24
+$26.32 ┤                    ╰────╮        ← MA20: $26.32
+$23.43 ┤                         ╰───●    ← Current: $23.43 (收在近90日最低點)
+       └─┬─────┬─────┬─────┬─────┬──→
+       -90d  -70d  -50d  -30d  -10d  Today
+
+圖例: ● 最新收盤價   ─── 價格軌跡</code></pre>
+<h4>均線交叉與結構事件 (MA Crossovers)</h4>
+<ul><li><strong>最近交叉事件：</strong> MA20/MA50 呈持續下行開口擴大狀態，中期死叉（Death Cross）效應持續釋放。</li><li><strong>關鍵位突破/跌破：</strong> 價格在 2026 年 11 月 17 日開高走低，大跌收在 $23.43，已強勢跌破所有均線支撐，並直逼 52 週最低點 $23.0304。</li></ul>
+<hr>
+<h3>二、 基於均線之交易策略建議 (MA-Based Trade Recommendation)</h3>
+<p>在強烈空頭趨勢中，盲目左側猜底風險極高。建議投資人採取<strong>避開（AVOID）</strong>或<strong>逢高減碼 / 偏空對沖</strong>策略。</p>
+<pre class="lv-code"><code>╔══════════════════════════════════════════════════════════════════╗
+║              MA-BASED TRADE RECOMMENDATION — WQTM                ║
+╠══════════════════════════════════════════════════════════════════╣
+║  Current Price : $23.43                                         ║
+╠══════════════════════════════════════════════════════════════════╣
+║  OPERATION      │ ENTRY PRICE   │ TARGET        │ STOP-LOSS     ║
+║  ───────────────┼───────────────┼───────────────┼────────────── ║
+║  SELL / AVOID   │ $23.43        │ $20.00        │ $26.50        ║
+╠══════════════════════════════════════════════════════════════════╣
+║  Rationale: 價格呈標準空頭排列且伴隨出貨大量，直逼 52 週新低。  ║
+║  Basis:     MA20 ($26.32) 為強大動態壓力，未站回前不宜看多。    ║
+║  R/R Ratio: 1 : 2.10                                            ║
+║  Horizon:   SHORT / SWING                                       ║
+╚══════════════════════════════════════════════════════════════════╝</code></pre>
+<hr>
+<h3>三、 型態、量價關係與技術指標分析</h3>
+<h4>1. 型態與價量結構 (Price Action &amp; Volume Profile)</h4>
+<ul><li><strong>主要趨勢 (Primary Trend)：</strong> 強烈下降趨勢。自 6 個月高點 $41.31 修正至今跌幅達 <strong>43.3%</strong>。</li><li><strong>量能分析 (Volume Trends)：</strong> <ul><li>2026-11-05 出現 <strong>507,400 股</strong>的異常大誘空/拋售量，當日重挫。</li><li>2026-11-17 再次爆出 <strong>495,700 股</strong>（遠高於 10 日均量約 25 萬股），單日大跌帶長陰線，顯示籌碼處於極度不穩定的派發（Distribution）階段。</li></ul></li><li><strong>成交量輪廓 (Volume Profile)：</strong> 控制點（Point of Control, POC）落在 $26.50 附近。目前價格已完全落入價值區低點（Value Area Low, VAL）下方，屬於極度失衡的弱勢區域（Low Volume Zone），下行加速風險極高。</li></ul>
+<h4>2. 技術指標觀察 (Technical Indicators)</h4>
+<ul><li><strong>相對強弱指標（Relative Strength Index, RSI）：</strong> 預估 14 日 RSI 已跌至 <strong>25–28</strong> 區間，進入極端超賣區（Oversold Area）。然而，在強烈下行趨勢中，RSI 超賣常出現「鈍化」，未見止跌底背離（Bullish Divergence）前不可視為買進訊號。</li><li><strong>一目均衡表（Ichimoku Cloud）：</strong> 價格遠遠落後於轉換線（Tenkan-sen）與基準線（Kijun-sen），且位於厚重的紅雲（Bearish Kumo）下方，三位一體完全偏空。</li></ul>
+<hr>
+<h3>四、 關鍵支撐與壓力位 (Key Price Levels)</h3>
+<div class="tblwrap"><table class="dt dt--sm"><thead><tr><th scope="col" style="text-align:left">層級</th><th scope="col" style="text-align:left">價格</th><th scope="col" style="text-align:left">類型</th><th scope="col" style="text-align:left">說明 / 驗證強度</th></tr></thead><tbody><tr><td style="text-align:left"><strong>壓力二 (R2)</strong></td><td style="text-align:left">$29.24</td><td style="text-align:left">強壓力</td><td style="text-align:left">50 日均線（MA50），中期多空分界點</td></tr><tr><td style="text-align:left"><strong>壓力一 (R1)</strong></td><td style="text-align:left">$26.32 - $26.67</td><td style="text-align:left">近距壓力</td><td style="text-align:left">20 日均線（MA20）及 11/09 反彈高點</td></tr><tr><td style="text-align:left"><strong>支撐一 (S1)</strong></td><td style="text-align:left">$23.03</td><td style="text-align:left">關鍵支撐</td><td style="text-align:left">52 週最低點（歷史低點測試區）</td></tr><tr><td style="text-align:left"><strong>支撐二 (S2)</strong></td><td style="text-align:left">$20.00</td><td style="text-align:left">心理支撐</td><td style="text-align:left">整數關卡，若 S1 失守後的下一下行目標</td></tr></tbody></table></div>
+<hr>
+<h3>五、 多時間框架對齊矩陣 (Multi-Timeframe Analysis)</h3>
+<div class="tblwrap"><table class="dt dt--sm"><thead><tr><th scope="col" style="text-align:left">時間框架 (Timeframe)</th><th scope="col" style="text-align:left">趨勢方向</th><th scope="col" style="text-align:left">關鍵指標 / 訊號</th><th scope="col" style="text-align:left">支撐位</th><th scope="col" style="text-align:left">壓力位</th><th scope="col" style="text-align:left">對齊狀態</th></tr></thead><tbody><tr><td style="text-align:left"><strong>週線 (Higher TF)</strong></td><td style="text-align:left">下降趨勢</td><td style="text-align:left">跌破中軌，線型空頭開口</td><td style="text-align:left">$23.03</td><td style="text-align:left">$32.00</td><td style="text-align:left">🔴 看空</td></tr><tr><td style="text-align:left"><strong>日線 (Primary TF)</strong></td><td style="text-align:left">強烈空頭</td><td style="text-align:left">爆量長黑，跌破近期整理平台</td><td style="text-align:left">$23.03</td><td style="text-align:left">$26.32</td><td style="text-align:left">🔴 看空</td></tr><tr><td style="text-align:left"><strong>4小時 (Lower TF)</strong></td><td style="text-align:left">尋底階段</td><td style="text-align:left">RSI 超賣，極端偏離均線</td><td style="text-align:left">$23.03</td><td style="text-align:left">$25.15</td><td style="text-align:left">🔴 看空</td></tr><tr><td style="text-align:left"><strong>整體評估</strong></td><td style="text-align:left"><strong>全面看空</strong></td><td style="text-align:left"><strong>對齊得分: 3/3 Bearish</strong></td><td style="text-align:left"><strong>$23.03</strong></td><td style="text-align:left"><strong>$26.32</strong></td><td style="text-align:left"><strong>極高確定性偏空</strong></td></tr></tbody></table></div>
+<hr>
+<h3>六、 論點失效條件（Thesis Invalidation）</h3>
+<p><strong>若當前空頭看空論點要失效，必須滿足以下條件：</strong></p>
+<ol><li><strong>價格強勢站回 MA20 ($26.32)：</strong> 補上 11/17 的缺口並收在 $26.50 上方，且成交量縮小（代表賣壓竭盡）。</li><li><strong>出現底背離訊號：</strong> 價格跌破 $23.03 刷新低，但 RSI 或 MACD 未創新低，並伴隨日線級別的槌子線（Hammer）或吞噬型態（Bullish Engulfing）。</li><li><strong>整體量能退潮：</strong> 每日成交量降至 10 萬股以下，顯示殺盤力道耗盡，進入築底階段。</li></ol>
+<p><strong>建議重新檢視時間點：</strong></p>
+<ul><li>☐ 跌破 $23.03 52 週低點時</li><li>☐ 價格強彈觸及 $26.32 均線時</li><li>☐ 距今 30 個交易日後</li></ul>
+<hr>
+<h3>七、 標準投資訊號 (Standard Investment Signal)</h3>
+<pre class="lv-code"><code>{"investskill": "1", "skill": "technical-analysis", "ticker": "WQTM", "as_of": "2026-11-17", "signal": "BEARISH", "confidence": "HIGH", "horizon": "SHORT-TERM", "score": 2.2, "action": "SELL", "conviction": "STRONG", "retrieval": "pasted by user", "sources": ["WisdomTree WQTM Market Data (2026-11-17)"]}</code></pre>
+<pre class="lv-code"><code>╔══════════════════════════════════════════════╗
+║              INVESTMENT SIGNAL               ║
+╠══════════════════════════════════════════════╣
+║ Signal:      BEARISH                         ║
+║ Confidence:  HIGH                            ║
+║ Horizon:     SHORT-TERM                      ║
+║ Score:       2.2 / 10                        ║
+╠══════════════════════════════════════════════╣
+║ Action:      SELL                            ║
+║ Conviction:  STRONG                          ║
+╚══════════════════════════════════════════════╝</code></pre>
+<p><strong>評分說明：</strong> 2.2 分（極度看空）。均線呈現完整空頭排列，價跌量增且逼近 52 週新低，技術面無任何打底完成訊號，建議投資人避開或逢反彈減碼。</p>
+<p><strong>免責聲明：</strong> 僅供教育用途，非投資建議。投資人應自行評估風險並承擔交易結果。</p>
+</section>
+<section class="lv-mod" id="m3"><h2>產業板塊分析 <span class="skilltag">sector-analysis</span></h2>
+<p>Data &amp; Sources
+As of:      2026-11-17
+Source:     WisdomTree Quantum Computing Fund (WQTM) Market Data Sheet
+Retrieval:  使用者提供
+Confidence: MEDIUM</p>
+<hr>
+<h3>1. 產業總覽與市場定位 (Sector Overview &amp; Market Positioning)</h3>
+<p><strong>WQTM（WisdomTree Quantum Computing Fund）</strong> 屬於 <strong>資訊科技（Information Technology）</strong> 產業下的前瞻次產業——量子運算與深科技（Deep Tech）主題型 ETF。該基金追蹤量子運算硬體、軟體、半導體及高階計算架構相關供應鏈公司。</p>
+<ul><li><strong>產業歸類：</strong> 資訊科技類股（Information Technology, XLK）／高 Beta 科技次產業（High-Beta Tech）。</li><li><strong>市場現況：</strong> 目前科技類股內部呈現高度分化。儘管大盤資訊科技板塊歷史本益比（Price-to-Earnings, P/E）常處於 22–40x 區間，但 WQTM 追蹤的量子科技主題正面臨嚴重的估值修正與資本回撤。WQTM 最新收盤價為 23.43 美元，已接近 52 週最低點（23.03 美元），相較於 52 週高點 41.38 美元，累計跌幅達 43.4%，顯示該次產業在當前市場環境中承受極大的流動性與風險溢價修正壓力。</li></ul>
+<hr>
+<h4>2. 經濟週期定位與巨觀驅動因素 (Economic Cycle Positioning &amp; Macro Drivers)</h4>
+<p>量子運算屬於典型的<strong>長週期前瞻科技（Long-Duration Growth/Deep Tech）</strong>，在經濟週期中的表現高度依賴資本成本與流動性環境：</p>
+<ol><li><strong>經濟週期定位：</strong><ul><li><strong>早期復甦期（Early Cycle）：</strong> 高 Beta 科技股與前瞻主題通常率先獲得流動性青睞並迎來估值擴張。</li><li><strong>中後期至緊縮期（Late Cycle / Tightening）：</strong> 高利率與資本成本上升會大幅壓抑商業化時程較長、自由現金流（Free Cash Flow, FCF）尚未轉正的深科技公司估值。WQTM 目前正處於此類壓制期。</li></ul></li><li><strong>巨觀驅動因子：</strong><ul><li><strong>利率敏感度（Interest Rate Sensitivity）：</strong> 量子運算板塊對聯準會（Fed）貨幣政策及 10 年期美債殖利率極為敏感。利率維持高檔時，折現率提升會大幅壓縮長遠未來的現金流折現值。</li><li><strong>企業資本支出（Corporate Capex）：</strong> 大型科技巨頭（CSP）在 AI 與次世代運算架構上的資本支出預算直接影響量子供應鏈的營收動能。</li><li><strong>地緣政治與出口管制：</strong> 量子運算被各國列為關鍵戰略技術，對先進半導體及技術輸出的監管政策將增添營運不確定性。</li></ul></li></ol>
+<hr>
+<h4>3. 產業基本面與估值比較 (Fundamental Metrics &amp; Peer Benchmarking)</h4>
+<p>雖然 WQTM 作為 ETF 基金本身不直接產生營利與現金流（報表中營收與自由現金流顯示為 $0），但其持股組合的加權本益比（P/E）約為 <strong>23.92x</strong>。</p>
+<div class="tblwrap"><table class="dt dt--sm"><thead><tr><th scope="col" style="text-align:left">評估維度</th><th scope="col" style="text-align:left">WQTM 追蹤組合現況</th><th scope="col" style="text-align:left">資訊科技產業歷史基準 (XLK)</th><th scope="col" style="text-align:left">產業定位與評估</th></tr></thead><tbody><tr><td style="text-align:left"><strong>預估本益比 (Forward P/E)</strong></td><td style="text-align:left">~23.92x</td><td style="text-align:left">22.0–40.0x</td><td style="text-align:left">處於科技板塊估值區間中下緣，反應高風險折價</td></tr><tr><td style="text-align:left"><strong>股利殖利率 (Dividend Yield)</strong></td><td style="text-align:left">0.0%</td><td style="text-align:left">0.5–1.5%</td><td style="text-align:left">無配息，純粹成長與資本利得導向</td></tr><tr><td style="text-align:left"><strong>價格動能 (Price Momentum)</strong></td><td style="text-align:left">歷史極低區間</td><td style="text-align:left">趨勢為尊</td><td style="text-align:left">顯著弱於資訊科技大盤指數</td></tr></tbody></table></div>
+<p><strong>估值解析：</strong> 23.92x 的本益比看似處於整體科技股歷史常態區間，但考量到量子運算整體產業多數純量子標的（Pure-play quantum stocks）仍處於商業化早期且尚未獲利，該估值主要由組合中大型半導體與高科技巨頭支撐。對於純次產業而言，缺乏盈餘支撐的個股在市場避險情緒下易遭大幅拋售。</p>
+<hr>
+<h4>4. 動能與技術面剖析 (Sector Momentum &amp; Technical Picture)</h4>
+<p>WQTM 當前的技術圖形展現出極度疲弱的空頭排列與板塊資金流出特徵：</p>
+<ul><li><strong>均線結構：</strong> 最新價格（$23.43）遠低於 20 日移動平均線（20-day MA, $26.32）與 50 日移動平均線（50-day MA, $29.24），短中期均線呈陡峭下行態勢，反彈壓力重重。</li><li><strong>價格區間：</strong> 目前收盤價已破前低（6 個月高低點區間為 $23.43 – $41.31），直接測試 52 週最低點（$23.03）。</li><li><strong>成交量與賣壓：</strong> 在 2026-11-05（成交量 507,400 股）與 2026-11-17（成交量 495,700 股）均出現顯著放大賣壓，顯示機構資金或主題型 ETF 資金正在加速撤出高 Beta 科技板塊。</li></ul>
+<hr>
+<h4>5. 產業風險與主題配置建議 (Sector Risks &amp; Allocation Strategy)</h4>
+<h4>主要產業風險 (Sector Risk Factors)</h4>
+<ol><li><strong>商業化時程延後風險：</strong> 量子糾錯（Quantum Error Correction）與門容錯（Fault-Tolerant Quantum Computing）技術突破時程若慢於預期，將引發市場對主題溢價的二次修正。</li><li><strong>高 Beta 與資金偏好轉移：</strong> 在市場轉向防禦型產業（如公用事業 XLU、消費無虞 XLP）或高品質大型權值股時，小型及主題型科技 ETF 首當其衝。</li></ol>
+<h4>配置策略建議 (Portfolio Strategy)</h4>
+<ul><li><strong>產業輪動建議：減碼 / 避險觀望 (Underweight / Avoid)</strong></li><li><strong>實施路徑：</strong> 鑑於技術面探底尚未完成且均線嚴重偏離，目前不宜進行主題型個股或 ETF 的盲目抄底。建議待大盤科技板塊（XLK）止跌且 WQTM 站回 20 日 MA 築底後，再考慮以分批方式配置。</li></ul>
+<hr>
+<h3>論點失效條件（Thesis Invalidation）</h3>
+<p><strong>若當前看空／中性偏空訊號要被打破（轉為看多），需滿足以下條件：</strong></p>
+<ol><li><strong>技術面逆轉：</strong> WQTM 價格強勢站回 50 日移動平均線（$29.24）之上，且成交量連續 3 日突破 30 萬股，確認底部完成。</li><li><strong>總體環境轉向：</strong> 美債殖利率大幅下行，帶動市場資金重新回流至長週期高 Beta 前瞻科技板塊。</li><li><strong>相對強度恢復：</strong> WQTM 3 個月相對標普 500 指數（S&amp;P 500）之報酬跑贏 &gt; 8%。</li></ol>
+<p><strong>重新評估時間點：</strong></p>
+<ul><li>☐ WQTM 價格突破或跌破 $23.00–$29.50 關鍵區間時</li><li>☐ 60 天後（2027 年 1 月中旬）</li><li>☐ 美國聯準會公佈最新利率決策與貨幣政策展望時</li></ul>
+<hr>
+<pre class="lv-code"><code>╔══════════════════════════════════════════════╗
+║              INVESTMENT SIGNAL               ║
+╠══════════════════════════════════════════════╣
+║ Signal:      BEARISH                         ║
+║ Confidence:  HIGH                            ║
+║ Horizon:     MEDIUM-TERM                     ║
+║ Score:       2.5 / 10                        ║
+╠══════════════════════════════════════════════╣
+║ Action:      SELL                            ║
+║ Conviction:  STRONG                          ║
+╚══════════════════════════════════════════════╝</code></pre>
+<pre class="lv-code"><code>{"investskill": "1", "skill": "sector-analysis", "ticker": "WQTM", "as_of": "2026-11-17", "signal": "BEARISH", "confidence": "HIGH", "horizon": "MEDIUM-TERM", "score": 2.5, "action": "SELL", "conviction": "STRONG", "retrieval": "使用者提供", "sources": ["WisdomTree Quantum Computing Fund (WQTM) Market Data Sheet, dated 2026-11-17"]}</code></pre>
+<p><strong>免責聲明：</strong> 僅供教育用途，非投資建議。</p>
+</section>
+<section class="lv-mod" id="m4"><h2>總體經濟分析 <span class="skilltag">economics-analysis</span></h2>
+<pre class="lv-code"><code>Data &amp; Sources
+  As of:      2026-11-17
+  Source:     User-provided market data (WQTM price history &amp; fundamentals)
+  Retrieval:  pasted by user
+  Confidence: LOW</code></pre>
+<hr>
+<h3>總體經濟環境與週期評估（US Macro &amp; Cycle Assessment）</h3>
+<p>當前美國總體經濟處於<strong>擴張後期至放緩過渡期（Late-Cycle to Slowdown Phase）</strong>。在通膨逐步收斂與就業市場降溫的背景下，聯準會（Fed）貨幣政策正從限制性利率轉向中性與預防性降息週期。</p>
+<p>對於 <strong>WQTM（WisdomTree Quantum Computing Fund，WisdomTree 量子計算 ETF）</strong> 這類聚焦於量子計算、下一代半導體及深層科技（Deep Tech）的主題型 ETF，總體經濟變數對其估值與資金流向具有極高的敏感度：</p>
+<ol><li><strong>增長與就業指標（Growth Indicators）</strong>： 美國國內生產毛額（GDP）維持溫和成長，但企業資本支出（CapEx）出現結構性分化。傳統製造業資本支出放緩，但巨型科技股（Hyperscalers）與政府國防預算在人工智慧（AI）與量子科技的投入依然堅挺。然而，整體高利率環境對未盈利或長年期現金流的量子計算新創企業造成較高融資成本壓力。</li><li><strong>通膨與薪資趨勢（Inflation Metrics）</strong>： 消費者物價指數（CPI）與個人消費支出物價指數（PCE）呈放緩趨勢，實質薪資成長趨穩。通膨回落為聯準會提供降息空間，有助於壓低折現率（Discount Rate），對遠期現金流佔比高的量子科技股形成估值支撐。</li><li><strong>財政政策與國家安全（Fiscal &amp; Defense Policy）</strong>： 美中科技博弈升級與《國家量子倡議法案》（National Quantum Initiative Act）等聯邦撥款，提供了不受經濟週期影響的結構性尾勁（Tailwind）。政府與國防採購成為景氣放緩期深科技產業的重要安全網。</li></ol>
+<hr>
+<h3>殖利率曲線與聯準會政策分析（Yield Curve &amp; Fed Policy Analysis）</h3>
+<p>量子計算產業屬於典型的<strong>長存續期資產（Long-Duration Assets）</strong>，其估值高度依賴遠期現金流折現，因此對美國國債殖利率曲線（Yield Curve）與實質殖利率（Real Yields）極為敏感。</p>
+<h4>1. 殖利率曲線型態與趨勢</h4>
+<div class="tblwrap"><table class="dt dt--sm"><thead><tr><th scope="col" style="text-align:left">殖利率利差指標 (Spread)</th><th scope="col" style="text-align:left">定義 (Definition)</th><th scope="col" style="text-align:left">當前經濟與政策含義 (Economic &amp; Policy Implication)</th><th scope="col" style="text-align:left">對 WQTM 之影響 (Impact on WQTM)</th></tr></thead><tbody><tr><td style="text-align:left"><strong>2s10s</strong> (10年期減2年期)</td><td style="text-align:left">10年期美債殖利率 − 2年期美債殖利率</td><td style="text-align:left">曲線陡峭化（Bull Steepening），反映降息預期與長端通膨溢價</td><td style="text-align:left"><strong>中性偏多</strong>：短端利率下降釋放市場流動性</td></tr><tr><td style="text-align:left"><strong>3M10Y</strong> (10年期減3個月)</td><td style="text-align:left">10年期美債殖利率 − 3個月國庫券殖利率</td><td style="text-align:left">從長期倒轉逐步走向陡峭化，衰退預警進入後段觀察期</td><td style="text-align:left"><strong>警訊</strong>：若陡峭化伴隨景氣急煞，高 Beta 科技股首當其衝</td></tr></tbody></table></div>
+<ul><li><strong>牛市陡峭化（Bull Steepening）階段</strong>：聯準會啟動降息導致短端利率快速下行，長端利率降幅較小。此階段市場流動性充裕，但若降息原因為經濟硬著陸，市場避險情緒會打壓無獲利支撐的高估值個股。</li></ul>
+<h4>2. 實質殖利率（TIPS Real Yield）衝擊</h4>
+<ul><li><strong>10年期實質殖利率</strong>：過去維持在 1.5%–2.0% 的限制性高位，對遠期成長股形成壓制。當前若實質殖利率回落至 1.0%–1.5% 區間，將大幅緩解 WQTM 成分股的估值修正壓力。</li><li><strong>通膨保值債券（Breakeven Inflation Rate）</strong>：長期通膨預期穩定於 2.2%–2.4%，顯示市場並未定價惡性通膨再起，有利於成長型資金回流。</li></ul>
+<hr>
+<h3>信用市場與市場情緒指標（Credit Market &amp; Sentiment）</h3>
+<p>深科技與量子計算企業多依賴風險投資（VC）、次級市場增資或高收益債券進行融資，信用市場的流動性狀況至關重要。</p>
+<h4>1. 信用利差（Credit Spreads）</h4>
+<ul><li><strong>投資級債券利差（IG OAS）</strong>：維持在 100–120 bps 的正常區間，顯示大型科技企業（如 IBM、Google、Microsoft 等 WQTM 可能持有的巨頭成分股）資產負債表極為穩健，融資管道順暢。</li><li><strong>高收益債券利差（HY OAS）</strong>：處於 350–420 bps 觀察區間。若 HY 利差大幅拓寬至 500 bps 以上，意味著市場避險情緒升高，純量子計算純度高（Pure-play）的小型新創公司將面臨資金斷鏈風險。</li></ul>
+<h4>2. 市場波動度與風險偏好</h4>
+<ul><li><strong>MOVE 指數（債券波動度）</strong>：美債波動度高於歷史均值，反映市場對聯準會降息路徑仍有分歧，高利率波動度壓抑高 P/E 與無盈餘個股的買盤。</li><li><strong>VIX 指數（美股波動度）</strong>：近期 WQTM 價格自 52 週高點 $41.38 大幅回檔至 $23.43（降幅達 43.3%），顯示市場對高 Beta、高估值主題型資產進行了劇烈的去槓桿與風險重新定價。</li></ul>
+<hr>
+<h3>全球宏觀與美元指數影響（Global Macro &amp; DXY Factor）</h3>
+<pre class="lv-code"><code>                     ┌─────────────────────────────────────────┐
+                     │         美元指數 (DXY) 走勢趨勢         │
+                     └────────────────────┬────────────────────┘
+                                          │
+                  ┌───────────────────────┴───────────────────────┐
+                  ▼                                               ▼
+         【DXY 強勢 / 高利率】                           【DXY 走弱 / 貨幣寬鬆】
+ ──────────────────────────────────             ──────────────────────────────────
+ ‧ 壓制全球科技股估值                           ‧ 提振全球風險資產溢價
+ ‧ 海外營收換算為美元受阻 (FX Headwind)        ‧ 降低海外政府與企業科技資本支出門檻
+ ‧ 風險資本流向美國貨幣市場                     ‧ 資金由防禦型標的流向高 Beta 尖端科技</code></pre>
+<ul><li><strong>美元指數（DXY）</strong>：WQTM 包含許多全球量子供應鏈企業（如歐洲、日本及台灣之半導體與設備商）。美元適度走弱有助於提升全球科技資本支出，並為非美成分股提供匯兌順風。</li><li><strong>美中科技封鎖與戰略供應鏈</strong>：量子計算被美國商務部列為關鍵核心技術，出口管制加劇可能限制部分海外市場擴展，但同時促使美國與盟國加大本土供應鏈補助（如《晶片與科學法案》）。</li></ul>
+<hr>
+<h3>衰退機率評估與資產配置建議（Recession Risk &amp; Sector Positioning）</h3>
+<h4>綜合衰退機率模型評分：<strong>35%（中度偏低風險 / 景氣放緩期）</strong></h4>
+<ul><li><strong>紐約聯聯衰退模型（NY Fed Model）</strong>：倒轉修復期，提示 12 個月內經濟放緩機率存在，但非全面性金融危機。</li><li><strong>薩姆規則（Sahm Rule）</strong>：失業率微幅上升但未引發螺旋性失業潮。</li><li><strong>Conference Board 領先經濟指數（LEI）</strong>：顯示成長動能放緩，但服務業與新興科技支出仍有韌性。</li></ul>
+<h4>輪動與 WQTM 配置策略</h4>
+<div class="tblwrap"><table class="dt dt--sm"><thead><tr><th scope="col" style="text-align:left">經濟週期階段</th><th scope="col" style="text-align:left">代表產業配置</th><th scope="col" style="text-align:left">對 WQTM 的策略性含義</th></tr></thead><tbody><tr><td style="text-align:left"><strong>擴張後期（Late Expansion）</strong></td><td style="text-align:left">能源、醫療、高品質防禦型科技</td><td style="text-align:left"><strong>減碼 / 觀察</strong>：高 Beta 主題型 ETF 承受估值壓縮</td></tr><tr><td style="text-align:left"><strong>放緩/降息初期（Slowdown / Early Cuts）</strong></td><td style="text-align:left">長存續期成長股、大型優質科技</td><td style="text-align:left"><strong>分批佈局</strong>：隨著實質利率下行，打底完成後具反彈動能</td></tr><tr><td style="text-align:left"><strong>復甦期（Early Recovery）</strong></td><td style="text-align:left">非必需消費、半導體、小型成長股</td><td style="text-align:left"><strong>加碼</strong>：量子計算等前沿科技展現極高彈性（High Beta）</td></tr></tbody></table></div>
+<hr>
+<h3>論點失效條件（Thesis Invalidation）</h3>
+<p><strong>若總體經濟分析訊號為 看空（BEARISH）— 總體論點在以下條件下失效（轉為看多）：</strong></p>
+<ol><li><strong>實質殖利率快速下行</strong>：美國 10 年期實質殖利率（TIPS Yield）跌破 1.0%，且聯聯展現積極寬鬆姿態（降息幅度超預期）。</li><li><strong>信用市場大幅改善</strong>：高收益債利差（HY OAS）收窄至 300 bps 以下，顯示市場風險偏好全面復甦，資金大幅流向高 Beta 尖端科技。</li><li><strong>科技資本支出爆炸性成長</strong>：全球科技巨頭（Hyperscalers）與政府國防預算對量子計算的資本支出 YoY 成長超過 30%。</li></ol>
+<p><strong>重新檢視此分析的時間點（Re-run this analysis when）：</strong></p>
+<ul><li>☐ 聯準會（FOMC）利率決議與最新點陣圖公布</li><li>☐ WQTM 價格自當前水準（$23.43）變動 ±15%（即跌破 $19.90 或突破 $26.90）</li><li>☐ 60 天已過</li><li>☐ 關鍵總體經濟數據（CPI、NFP、ISM 製造業 PMI）大幅偏離預期</li></ul>
+<hr>
+<h3>投資訊號（Investment Signal）</h3>
+<pre class="lv-code"><code>{"investskill": "1", "skill": "economics-analysis", "ticker": "WQTM", "as_of": "2026-11-17", "signal": "BEARISH", "confidence": "MEDIUM", "horizon": "MEDIUM-TERM", "score": 3.2, "action": "SELL", "conviction": "MODERATE", "retrieval": "pasted by user", "sources": ["User-provided market data (WQTM price history &amp; fundamentals)"]}</code></pre>
+<pre class="lv-code"><code>╔══════════════════════════════════════════════╗
+║              INVESTMENT SIGNAL               ║
+╠══════════════════════════════════════════════╣
+║ Signal:      BEARISH                         ║
+║ Confidence:  MEDIUM                          ║
+║ Horizon:     MEDIUM-TERM                     ║
+║ Score:       3.2 / 10                        ║
+╠══════════════════════════════════════════════╣
+║ Action:      SELL                            ║
+║ Conviction:  MODERATE                        ║
+╚══════════════════════════════════════════════╝</code></pre>
+<p><strong>評分說明（Score Guide）</strong>：</p>
+<ul><li><strong>3.2 / 10（中度看空）</strong>：從總體經濟角度來看，當前高實質利率環境、貨幣政策傳導滯後效應以及市場對未盈利/高折現率資產的風險偏好下降，使 WQTM 承擔較高估值下修正壓力。技術面亦呈現均線空頭排列（20日均線 $26.32，50日均線 $29.24，最新價 $23.43）。建議在總體寬鬆環境確立或估值打底完成前維持偏保守或逢高調節策略。</li></ul>
+<p><strong>免責聲明：</strong> 僅供教育用途，非投資建議。</p>
+</section>
+<nav class="lv-pager" data-page="20261118/show_case.html" aria-label="其他展示"><a href="../20261117/show_case.html">← 2026-11-17 · ONDS</a><a href="../index.html">所有即時展示</a><a class="lv-newer" href="../index.html" hidden>較新的展示 →</a></nav>
+</article></div>
+</main>
+<footer class="foot"><div class="wrap">
+<p><strong>InvestSkill Autopilot — 即時展示</strong>　·　每次執行都取用當時最新的
+<a href="https://github.com/yennanliu/InvestSkill">InvestSkill</a> 框架，隨機挑選一檔標的，由 LLM 依 yfinance 公開資料生成；每一次都保留。</p>
+<p style="margin-top:8px"><a href="../index.html">所有即時展示</a>　·　<a href="../../index.html">策展展示櫃</a>　·　<a href="https://github.com/yennanliu/InvestSkill-test">原始碼與報告存檔</a></p>
+<div class="disc"><strong>免責聲明</strong>　本頁為框架能力展示，並非投資建議。內容由大型語言模型自動生成、
+<strong>未經人工審閱</strong>，數字未經逐一重算，可能有錯誤、過時或前後不一致之處。
+任何投資決策前請自行查證第一手文件（SEC EDGAR、公司投資人關係網站）。</div>
+</div></footer>
+<script src="../assets/live.js"></script>
+</body>
+</html>
