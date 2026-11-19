@@ -1,6 +1,67 @@
 {
   "runs": [
     {
+      "ticker": "VTI",
+      "name": "Vanguard Morningstar Total Stock Market ETF",
+      "kind": "etf",
+      "mode": "etf-analysis · 4 modules",
+      "date": "2026-11-19",
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "skill_version": "1.15.0",
+      "skill_commit": "4d61af4ae5545a8fae8a78642c4f1a56ea3a20ec",
+      "page": "20261119/show_case.html",
+      "source_md": "output/showcase_live/vti/full_report_2026-11-19_gemini-3.6-flash.md",
+      "modules": [
+        {
+          "slug": "etf-analysis",
+          "label": "ETF 分析",
+          "status": "ok",
+          "signal": "BULLISH",
+          "action": "BUY",
+          "confidence": "MEDIUM",
+          "horizon": "LONG-TERM",
+          "score": 9.7
+        },
+        {
+          "slug": "technical-analysis",
+          "label": "技術分析",
+          "status": "ok",
+          "signal": "BULLISH",
+          "action": "BUY",
+          "confidence": "MEDIUM",
+          "horizon": "SHORT-TERM",
+          "score": 6.3
+        },
+        {
+          "slug": "sector-analysis",
+          "label": "產業板塊分析",
+          "status": "ok",
+          "signal": "BULLISH",
+          "action": "BUY",
+          "confidence": "MEDIUM",
+          "horizon": "MEDIUM-TERM",
+          "score": 6.5
+        },
+        {
+          "slug": "economics-analysis",
+          "label": "總體經濟分析",
+          "status": "ok",
+          "signal": "NEUTRAL",
+          "action": "HOLD",
+          "confidence": "MEDIUM",
+          "horizon": "MEDIUM-TERM",
+          "score": 5.5
+        }
+      ],
+      "signal": "BULLISH",
+      "action": "BUY",
+      "confidence": "MEDIUM",
+      "score": 7.0,
+      "mean_score": 7.0,
+      "mean_n": 4
+    },
+    {
       "ticker": "WQTM",
       "name": "WisdomTree Quantum Computing Fund",
       "kind": "etf",
