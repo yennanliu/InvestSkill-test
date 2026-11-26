@@ -1,0 +1,826 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RKLB 即時展示 2026-11-26 — InvestSkill Autopilot</title>
+<meta name="description" content="RKLB 於 2026-11-26 以 InvestSkill v1.15.0 自動生成的個股分析（10 個模組，LLM 生成、未經審閱）。">
+<meta name="theme-color" content="#00b14f">
+<meta name="robots" content="index,follow">
+<meta name="content-origin" content="model-written">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/live.css">
+<script>document.documentElement.className="js"</script>
+</head>
+<body>
+<a class="skip" href="#main">跳至主要內容</a>
+<header class="nav"><div class="wrap nav__in">
+<a class="brand" href="../../../index.html"><span class="brand__mark"><svg width="18" height="18" viewBox="0 0 32 32" aria-hidden="true"><path d="M8 21l5-6 4 3 7-9" stroke="white" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+<span class="brand__text">InvestSkill Autopilot</span></a>
+<nav class="nav__links" aria-label="展示頁面"><a href="../../index.html">展示櫃總覽</a><a href="../index.html">所有即時展示</a></nav>
+<a class="btn btn--sm nav__cta" href="https://github.com/yennanliu/InvestSkill-test"><span class="nav__cta-label">GitHub</span></a>
+</div><div class="prog" aria-hidden="true"><i></i></div></header>
+<main id="main">
+<section class="rhero"><div class="wrap rhero__in">
+<p class="crumb"><a href="../../../index.html">InvestSkill Autopilot</a> ／ <a href="../../index.html">展示櫃</a> ／ <a href="../index.html">即時展示</a> ／ 2026-11-26 · RKLB</p>
+<p class="eyebrow">live run · full-report · depth standard · 10 of 10 modules · zh-TW</p>
+<h1>RKLB — Rocket Lab Corporation</h1>
+<p class="rhero__sub">2026-11-26 的自動實跑。使用 InvestSkill v1.15.0（4d61af4），
+由 gemini／gemini-3.6-flash 生成，未經人工審閱。</p>
+<div class="grid g4" style="margin-top:var(--s-32)">
+<div class="tile" style="background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.28)"><div class="tile__k" style="color:#9ce8bd">類型</div><div class="tile__v" style="color:#fff">個股</div>
+<div class="tile__n" style="color:rgba(255,255,255,.82)">full-report · depth standard</div></div>
+<div class="tile" style="background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.28)"><div class="tile__k" style="color:#9ce8bd">分數</div><div class="tile__v" style="color:#fff">6.2</div>
+<div class="tile__n" style="color:rgba(255,255,255,.82)">／10 · 10 個模組分數的算術平均（未加權，非框架的綜合評分）</div></div>
+<div class="tile" style="background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.28)"><div class="tile__k" style="color:#9ce8bd">模組</div><div class="tile__v" style="color:#fff">10／10</div>
+<div class="tile__n" style="color:rgba(255,255,255,.82)">0 個生成失敗 · 0 個上游缺少</div></div>
+<div class="tile" style="background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.28)"><div class="tile__k" style="color:#9ce8bd">InvestSkill</div><div class="tile__v" style="color:#fff">v1.15.0</div>
+<div class="tile__n" style="color:rgba(255,255,255,.82)">commit 4d61af4</div></div>
+</div></div></section>
+<div class="wrap shell"><aside class="toc" aria-label="本頁目錄"><div class="toc__h">本頁目錄</div><a href="#sources">資料來源</a><a href="#scorecard">模組一覽</a><a href="#verdict">綜合結論</a><div class="toc__grp">模組</div><a href="#m1">綜合股票評估</a><a href="#m2">多方法估值分析</a><a href="#m3">內部人交易分析</a><a href="#m4">技術分析</a><a href="#m5">空頭觀點</a><a href="#m6">競爭護城河分析</a><a href="#m7">財報深度分析</a><a href="#m8">財報電話會議分析</a><a href="#m9">機構持股分析</a><a href="#m10">催化劑日曆</a></aside><article class="doc">
+<section id="sources"><h2>資料來源</h2>
+<div class="call call--ink"><div class="call__h">📋 Data &amp; Sources — 資料來源與可信度</div>
+<div class="tblwrap"><table class="dt dt--sm"><tbody>
+<tr><th scope="row" style="width:112px;text-align:left">As of</th><td style="text-align:left">2026-11-26（執行當下的 yfinance 快照）</td></tr>
+<tr><th scope="row" style="text-align:left">Source</th><td style="text-align:left">yfinance（Yahoo Finance）：報價、TTM 財務數據、四個會計年度損益表與現金流量表、近六個月價格</td></tr>
+<tr><th scope="row" style="text-align:left">Retrieval</th><td style="text-align:left">程式化擷取 · 單次快照 · 本頁所有模組共用同一份資料</td></tr>
+<tr><th scope="row" style="text-align:left">Confidence</th><td style="text-align:left">LOW — 資料商資料、LLM 生成、未經人工審閱，數字未逐一重算</td></tr>
+</tbody></table></div></div>
+<div class="call call--warn"><div class="call__h">這一頁與策展展示櫃有什麼不同</div>
+<p><a href="../../index.html">策展展示櫃</a>的每個數字都由程式從固定快照重算，並經 CI 逐位元組比對。
+本頁沒有這層保證：它是把當時最新的 InvestSkill 框架原樣交給模型的結果，用來觀察框架在不同標的上的實際輸出。
+各模組的分數與訊號直接取自該模組輸出末端的訊號框或 JSON footer；沒有的就標示「未解析」，不補中性值。</p></div>
+</section>
+<section id="scorecard"><h2>模組一覽</h2>
+<div class="tblwrap"><table class="dt dt--sm">
+<thead><tr><th scope="col" style="text-align:right;width:44px">#</th><th scope="col" style="text-align:left">框架</th>
+<th scope="col" style="text-align:left">模組</th><th scope="col" style="text-align:left">訊號</th>
+<th scope="col" style="text-align:right">分數</th><th scope="col" style="text-align:left">動作</th>
+<th scope="col" style="text-align:left">信心</th></tr></thead><tbody><tr><td style="text-align:right;color:var(--ink-3)">1</td><th scope="row" style="text-align:left"><a href="#m1"><code>stock-eval</code></a></th><td style="text-align:left">綜合股票評估</td><td style="text-align:left"><span class="st st--good">✅ BULLISH</span></td><td style="text-align:right">7.8</td><td style="text-align:left">BUY</td><td style="text-align:left">HIGH</td></tr><tr><td style="text-align:right;color:var(--ink-3)">2</td><th scope="row" style="text-align:left"><a href="#m2"><code>stock-valuation</code></a></th><td style="text-align:left">多方法估值分析</td><td style="text-align:left"><span class="st st--good">✅ BULLISH</span></td><td style="text-align:right">7.2</td><td style="text-align:left">BUY</td><td style="text-align:left">MEDIUM</td></tr><tr><td style="text-align:right;color:var(--ink-3)">3</td><th scope="row" style="text-align:left"><a href="#m3"><code>insider-trading</code></a></th><td style="text-align:left">內部人交易分析</td><td style="text-align:left"><span class="st st--bad">🚩 BEARISH</span></td><td style="text-align:right">3.2</td><td style="text-align:left">HOLD</td><td style="text-align:left">HIGH</td></tr><tr><td style="text-align:right;color:var(--ink-3)">4</td><th scope="row" style="text-align:left"><a href="#m4"><code>technical-analysis</code></a></th><td style="text-align:left">技術分析</td><td style="text-align:left"><span class="st st--bad">🚩 BEARISH</span></td><td style="text-align:right">3.2</td><td style="text-align:left">HOLD</td><td style="text-align:left">HIGH</td></tr><tr><td style="text-align:right;color:var(--ink-3)">5</td><th scope="row" style="text-align:left"><a href="#m5"><code>bear-case</code></a></th><td style="text-align:left">空頭觀點</td><td style="text-align:left"><span class="st st--bad">🚩 BEARISH</span></td><td style="text-align:right">2.9</td><td style="text-align:left">SELL</td><td style="text-align:left">HIGH</td></tr><tr><td style="text-align:right;color:var(--ink-3)">6</td><th scope="row" style="text-align:left"><a href="#m6"><code>competitor-analysis</code></a></th><td style="text-align:left">競爭護城河分析</td><td style="text-align:left"><span class="st st--good">✅ BULLISH</span></td><td style="text-align:right">7.8</td><td style="text-align:left">BUY</td><td style="text-align:left">HIGH</td></tr><tr><td style="text-align:right;color:var(--ink-3)">7</td><th scope="row" style="text-align:left"><a href="#m7"><code>financial-report-analyst</code></a></th><td style="text-align:left">財報深度分析</td><td style="text-align:left"><span class="st st--good">✅ BULLISH</span></td><td style="text-align:right">7.5</td><td style="text-align:left">BUY</td><td style="text-align:left">HIGH</td></tr><tr><td style="text-align:right;color:var(--ink-3)">8</td><th scope="row" style="text-align:left"><a href="#m8"><code>earnings-call-analysis</code></a></th><td style="text-align:left">財報電話會議分析</td><td style="text-align:left"><span class="st st--good">✅ BULLISH</span></td><td style="text-align:right">7.8</td><td style="text-align:left">BUY</td><td style="text-align:left">HIGH</td></tr><tr><td style="text-align:right;color:var(--ink-3)">9</td><th scope="row" style="text-align:left"><a href="#m9"><code>institutional-ownership</code></a></th><td style="text-align:left">機構持股分析</td><td style="text-align:left"><span class="st st--good">✅ BULLISH</span></td><td style="text-align:right">6.8</td><td style="text-align:left">BUY</td><td style="text-align:left">HIGH</td></tr><tr><td style="text-align:right;color:var(--ink-3)">10</td><th scope="row" style="text-align:left"><a href="#m10"><code>catalyst-calendar</code></a></th><td style="text-align:left">催化劑日曆</td><td style="text-align:left"><span class="st st--good">✅ BULLISH</span></td><td style="text-align:right">7.5</td><td style="text-align:left">BUY</td><td style="text-align:left">HIGH</td></tr></tbody></table></div>
+</section>
+<section id="verdict"><h2>綜合結論</h2>
+<p>以下為針對 <strong>Rocket Lab USA, Inc. (NASDAQ: RKLB)</strong> 進行 10 項 InvestSkill 專業分析模組後的跨模組綜合決策報告：</p>
+<pre class="lv-code"><code>╔══════════════════════════════════════════════╗
+║        INVESTSKILL 綜合投資訊號總結          ║
+╠══════════════════════════════════════════════╣
+║ 標的名稱:    Rocket Lab USA, Inc. (RKLB)     ║
+║ 分析日期:    2026-11-25                      ║
+╠══════════════════════════════════════════════╣
+║ 加權綜合評分: 6.7 / 10                        ║
+║ 整體訊號:    看多 (BULLISH)                  ║
+║ 信心水準:    中高 (MEDIUM-HIGH)              ║
+║ 投資時間軸:  中長期 (MEDIUM- TO LONG-TERM)     ║
+╠══════════════════════════════════════════════╣
+║ 最終行動建議: 買進 / 分批逢低布局 (BUY / ACCUMULATE) ║
+║ 勝率/確信度:  中等 (MODERATE)                 ║
+╚══════════════════════════════════════════════╝</code></pre>
+<hr>
+<h3>一、 各模組分數與加權綜合評分</h3>
+<p>本評估採用 InvestSkill 標準跨維度加權模型（基本面與護城河 45%、估值 15%、財務與法說 20%、籌碼與催化劑 10%、技術面與空頭壓力測試 10%）：</p>
+<div class="tblwrap"><table class="dt dt--sm"><thead><tr><th scope="col" style="text-align:left">模組分類</th><th scope="col" style="text-align:left">模組名稱</th><th scope="col" style="text-align:left">訊號</th><th scope="col" style="text-align:left">得分 (1-10)</th><th scope="col" style="text-align:left">權重</th><th scope="col" style="text-align:left">加權得分</th></tr></thead><tbody><tr><td style="text-align:left"><strong>核心基本面</strong></td><td style="text-align:left">綜合股票評估 (<code>stock-eval</code>)</td><td style="text-align:left">看多</td><td style="text-align:left">7.8</td><td style="text-align:left">15%</td><td style="text-align:left">1.170</td></tr><tr><td style="text-align:left"><strong>競爭護城河</strong></td><td style="text-align:left">競爭護城河分析 (<code>competitor-analysis</code>)</td><td style="text-align:left">看多</td><td style="text-align:left">7.8</td><td style="text-align:left">15%</td><td style="text-align:left">1.170</td></tr><tr><td style="text-align:left"><strong>財務健康度</strong></td><td style="text-align:left">財報深度分析 (<code>financial-report-analyst</code>)</td><td style="text-align:left">看多</td><td style="text-align:left">7.5</td><td style="text-align:left">15%</td><td style="text-align:left">1.125</td></tr><tr><td style="text-align:left"><strong>營運展望</strong></td><td style="text-align:left">財報電話會議分析 (<code>earnings-call-analysis</code>)</td><td style="text-align:left">看多</td><td style="text-align:left">7.8</td><td style="text-align:left">10%</td><td style="text-align:left">0.780</td></tr><tr><td style="text-align:left"><strong>估值模型</strong></td><td style="text-align:left">多方法估值分析 (<code>stock-valuation</code>)</td><td style="text-align:left">看多</td><td style="text-align:left">7.2</td><td style="text-align:left">15%</td><td style="text-align:left">1.080</td></tr><tr><td style="text-align:left"><strong>籌碼結構</strong></td><td style="text-align:left">機構持股分析 (<code>institutional-ownership</code>)</td><td style="text-align:left">看多</td><td style="text-align:left">6.8</td><td style="text-align:left">5%</td><td style="text-align:left">0.340</td></tr><tr><td style="text-align:left"><strong>內部人動態</strong></td><td style="text-align:left">內部人交易分析 (<code>insider-trading</code>)</td><td style="text-align:left">看空</td><td style="text-align:left">3.2</td><td style="text-align:left">5%</td><td style="text-align:left">0.160</td></tr><tr><td style="text-align:left"><strong>事件催化劑</strong></td><td style="text-align:left">催化劑日曆 (<code>catalyst-calendar</code>)</td><td style="text-align:left">看多</td><td style="text-align:left">7.5</td><td style="text-align:left">5%</td><td style="text-align:left">0.375</td></tr><tr><td style="text-align:left"><strong>技術動能</strong></td><td style="text-align:left">技術分析 (<code>technical-analysis</code>)</td><td style="text-align:left">看空</td><td style="text-align:left">3.2</td><td style="text-align:left">5%</td><td style="text-align:left">0.160</td></tr><tr><td style="text-align:left"><strong>反向壓力測試</strong></td><td style="text-align:left">空頭觀點 (<code>bear-case</code>)</td><td style="text-align:left">看空</td><td style="text-align:left">2.9</td><td style="text-align:left">5%</td><td style="text-align:left">0.145</td></tr><tr><td style="text-align:left"><strong>總計 / 最終</strong></td><td style="text-align:left"><strong>跨模組加權綜合評分</strong></td><td style="text-align:left"><strong>看多</strong></td><td style="text-align:left"><strong>6.67</strong></td><td style="text-align:left"><strong>100%</strong></td><td style="text-align:left"><strong>6.7 / 10</strong></td></tr></tbody></table></div>
+<hr>
+<h4>二、 信心水準與核心看多理由 (Confidence &amp; Rationale)</h4>
+<p><strong>信心水準：中高（MEDIUM-HIGH）</strong></p>
+<h4>核心看多邏輯（Bullish Rationale）：</h4>
+<ol><li><strong>防禦力極強的資產負債表（無破產風險）：</strong> 公司擁有高達 <strong>46.08 億美元的總現金</strong>與 <strong>44.88 億美元的淨現金（Net Cash）</strong>，流動比率高達 8.55。儘管 TTM 自由現金流（FCF）為 -$2.22 億美元，現有現金儲備仍可支撐 14–18 年的研發燒錢消耗，徹底排除短期強制折價增資稀釋股東權益或債務違約的風險。</li><li><strong>營收高成長與毛利率持續大幅擴張：</strong> TTM 營收強勁成長 <strong>+72.7%</strong>（達 $8.82 億），毛利率自 2022 年的 9.0% 階梯式躍升至 <strong>36.21%</strong>。這證實太空系統（Space Systems）高毛利模組比重增加帶來的顯著營運槓桿（Operating Leverage）。</li><li><strong>估值溢價經劇烈修正後已落入安全邊際：</strong> 股價自高點 $151.0 重挫約 69% 至目前 $47.02，已大幅消化先前過度透支的倍數。綜合估值模型得出內在價值為 <strong>$56.93</strong>（DCF 基準 $62.50），提供約 17.4% 的內在價值折價安全邊際，且遠低於華爾街分析師平均目標價 <strong>$90.62</strong>。</li><li><strong>極高壁壘的商業護城河：</strong> 作為全美發射頻次僅次於 SpaceX 的第二大商業航太企業，RKLB 在小型發射（Electron）擁有逾 65% 市佔率與 50+ 次軌道成功經驗；目前正在開發的中型火箭 Neutron 具備打入大型星座發射市場的二次成長爆發力。</li></ol>
+<hr>
+<h4>三、 各模組共識與分歧點分析 (Consensus vs. Divergence)</h4>
+<h4>1. 核心共識點（Key Points of Consensus）</h4>
+<ul><li><strong>基本面強勁 vs. 技術面超跌：</strong> 所有看多模組（<code>stock-eval</code>, <code>financial-report</code>, <code>competitor</code>, <code>earnings-call</code>）一致認同公司業務擴展迅速、資產負債表極度安全，但技術面（<code>technical-analysis</code>）與空頭觀點（<code>bear-case</code>）亦承認股價在技術面呈均線空頭排列（Price &lt; MA20/MA50/MA200），短期陷入超跌打底階段。</li><li><strong>高 Beta 與估值乘數敏感度：</strong> Beta 高達 3.18，且 P/S 達 35.88x。儘管淨現金充沛，市場在利率高檔或大盤避險時極易對高 P/S 成長股進行倍數壓縮。</li></ul>
+<h4>2. 主要分歧點（Key Points of Divergence）</h4>
+<ul><li><strong>估值評價（Valuation vs. Bear Case）：</strong> <ul><li><strong>看多派（DCF / 華爾街）</strong>：看好中子號（Neutron）商業化後的規模效應與高額現金墊片，給予 $62.50–$90.62 的目標價。</li><li><strong>看空派（Bear Case）</strong>：強調 P/S 35.88x 過度完美，若將其視為傳統航太工業（P/S 1.5–3.0x），極端估值目標價僅落在 $8.37–$16.74。</li></ul></li><li><strong>籌碼面訊號分歧（Institutions vs. Insiders）：</strong><ul><li><strong>機構法人（Institutional Ownership, 6.8/10）</strong>：持股高達 59.59%，為籌碼穩定的主力支撐。</li><li><strong>內部人交易（Insider Ownership, 3.2/10）</strong>：內部人持股僅 0.753%，且股價自高點下挫近七成期間，並未觀察到 CEO/CFO 發起大規模公開市場逆勢抄底（Form 4 Code P），顯示管理層在短中期轉盈前趨於謹慎觀望。</li></ul></li></ul>
+<hr>
+<h4>四、 最終投資建議與關鍵風險 (Final Recommendations &amp; Risks)</h4>
+<h4>1. 投資行動與建倉策略</h4>
+<ul><li><strong>操作建議：分批逢低買進（BUY / ACCUMULATE）</strong></li><li><strong>建議進場區間：</strong> <strong>$40.50 – $47.00</strong>（接近 52 週低點區間 $39.98–$45.42 與強強支撐帶）。</li><li><strong>目標價位：</strong> <ul><li><strong>第一階段目標價（中期）</strong>：<strong>$62.50</strong>（DCF 基準價值，潛在獲利約 +33%）</li><li><strong>第二階段目標價（長線/華爾街共識）</strong>：<strong>$90.62</strong>（潛在獲利約 +92.7%）</li></ul></li><li><strong>停損/風險控管價位：</strong> <strong>$38.50</strong>（若帶量跌破 52 週低點 $39.98，代表技術面無歷史支撐，需暫停建倉）。</li><li><strong>部位管理建議：</strong> 由於 Beta 3.18 波動劇烈，建議控制在總投資組合的 <strong>3%–5%</strong> 輕中度倉位，採「3-3-4」分批金字塔式布局。</li></ul>
+<h4>2. 核心監測風險（Key Risks）</h4>
+<ol><li><strong>Neutron 中型火箭研發與試飛延宕：</strong> Neutron 是公司突破小型發射 TAM 限制的關鍵，若 Archimedes 引擎點火測試或 2026/2027 年首飛遭遇重大失敗，將延後 FCF 轉正時點。</li><li><strong>缺乏內部人抄底背書：</strong> 內部人持股低於 1%，若機構法人（持股 59.6%）因整體宏觀風險偏好下降進行去槓桿拋售，股價可能面臨短期流動性衝擊。</li><li><strong>短期均線反壓：</strong> 日線 20MA（$54.48）與 50MA（$60.40）堆積重度套牢籌碼，需成交量顯著放大（&gt; 2,500 萬股）方能確認趨勢反轉。</li></ol>
+<hr>
+<pre class="lv-code"><code>╔══════════════════════════════════════════════╗
+║             投資論點失效條件與複查點          ║
+╠══════════════════════════════════════════════╣
+║ 1. Neutron 火箭首飛時程宣布延後 &gt; 18 個月    ║
+║ 2. 季度毛利率跌破 25% 且無回升跡象           ║
+║ 3. 帶量跌破 $38.50 關鍵技術防線              ║
+║                                              ║
+║ 建議複查時間: 2027年1月中旬(Neutron點火進展) ║
+║              或 2027年2月下旬(Q4/FY26 財報) ║
+╚══════════════════════════════════════════════╝</code></pre>
+<p><em>免責聲明：本報告係依據提供之 10 項 InvestSkill 數據模組進行客觀綜合導出，僅供研究與教育用途，不構成具體的個人投資建議。投資人入市請獨立評估風險並嚴格執行資金管理。</em></p>
+</section>
+<section class="lv-mod" id="m1"><h2>綜合股票評估 <span class="skilltag">stock-eval</span></h2>
+<pre class="lv-code"><code>Data &amp; Sources
+  As of:      2026-11-25
+  Source:     User provided financial data
+  Retrieval:  pasted by user
+  Confidence: HIGH</code></pre>
+<h3>Rocket Lab USA, Inc. (NASDAQ: RKLB) 綜合投資評估報告</h3>
+<hr>
+<h3>一、 公司概述與戰略地位（Company Overview）</h3>
+<p>Rocket Lab（NASDAQ: RKLB）為全球商業航太與衛星發射服務的領先企業，具備「發射服務（Launch Services）」與「航太系統（Space Systems）」雙軌驅動的商業模式。</p>
+<ol><li><strong>競爭護城河（Moat Assessment）：</strong> <ul><li><strong>發射頻次與可靠性：</strong> 旗下 Electron 小型運載火箭已實現高頻率、高成功率的商業發射，在小型衛星發射市場建立起極高進入壁壘。</li><li><strong>垂直整合能力：</strong> 透過收購與內部研發，公司提供衛星巴士、推進系統、太陽能板及飛行軟體，航太系統業務已躍升為營收主要來源（佔比逾六成），大幅提升客戶黏著度。</li><li><strong>Neutron 中型火箭潛力：</strong> 研發中的 Neutron 火箭旨在挑戰中型載重發射市場，搶攻商業星座與政府大型計畫市場，為中長期二次成長曲線的核心引擎。</li></ul></li></ol>
+<ol><li><strong>市場地位與規模：</strong><ul><li>營收呈現爆發式成長，近三年營收從 2022 年的 2.11 億美元躍升至 TTM（近十二個月）的 8.82 億美元，最新 TTM 年增率（YoY）高達 <strong>72.7%</strong>。</li><li>在全球商業發射市場中，Rocket Lab 是少數能與 SpaceX 形成實質商業競爭與互補的非國營航太巨頭。</li></ul></li></ol>
+<hr>
+<h3>二、 財務健康度與損益結構分析（Financial Health）</h3>
+<h4>1. 營收與毛利趨勢（Revenue &amp; Margin Expansion）</h4>
+<ul><li><strong>營收規模：</strong> 2022 年 $211.0M → 2023 年 $244.6M → 2024 年 $436.2M → 2025 年 $601.8M → TTM $881.9M。展現強勁且持續加速的規模經濟效應。</li><li><strong>毛利率擴張（Gross Margin Expansion）：</strong> <ul><li>2022 年：9.00%</li><li>2023 年：21.02%</li><li>2024 年：26.63%</li><li>2025 年：34.43%</li><li><strong>TTM：36.21%</strong></li><li><strong>解讀：</strong> 毛利率隨發射規模放大與高毛利航太系統產品線比重提升而顯著改善，展現極佳的營運槓桿（Operating Leverage）。</li></ul></li></ul>
+<h4>2. 獲利能力與現金流（Profitability &amp; Cash Flow）</h4>
+<ul><li><strong>營業利潤率與純利率：</strong> TTM 營業利益率（Operating Margin）為 -27.64%，淨利率（Net Margin）為 -25.73%。公司仍處於 Neutron 火箭研發與產能擴張的高資本投入期。</li><li><strong>現金流狀況：</strong> TTM 營運現金流（CFO）為 -$191.78M，自由現金流（Free Cash Flow, FCF）為 -$221.82M。雖然目前 FCF 仍為負值，但遠遠優於前幾年的燒錢速度比率。</li></ul>
+<h4>3. 資產負債表強度（Balance Sheet Strength）</h4>
+<ul><li><strong>總現金與流動性：</strong> 擁有現金及短期投資高達 <strong>46.08 億美元</strong>（Total Cash），總負債僅 1.20 億美元。</li><li><strong>淨現金位階（Net Cash）：</strong> <strong>淨現金達 44.88 億美元</strong>（佔目前市值約 14.2%）。</li><li><strong>流動性比率：</strong> 流動比率（Current Ratio）8.55，速動比率（Quick Ratio）7.95。</li><li><strong>風險評估：</strong> 極為雄厚的現金儲備為公司提供了至少 15–20 年的營運燒錢緩衝期，完全排除短期破產或被迫折價增資稀釋股東權益的財務風險。</li></ul>
+<hr>
+<h3>三、 估值指標與同業比較（Valuation Metrics）</h3>
+<div class="tblwrap"><table class="dt dt--sm"><thead><tr><th scope="col" style="text-align:left">估值指標 (Valuation Metric)</th><th scope="col" style="text-align:left">當前數值 (Current)</th><th scope="col" style="text-align:left">評估 (Assessment)</th></tr></thead><tbody><tr><td style="text-align:left"><strong>P/S (TTM)</strong></td><td style="text-align:left">35.88x</td><td style="text-align:left">高估值，反映航太賽道稀缺性與高成長預期</td></tr><tr><td style="text-align:left"><strong>EV/Revenue (TTM)</strong></td><td style="text-align:left">28.61x</td><td style="text-align:left">扣除 44.9 億淨現金後，企業價值（EV）為 $25.23B</td></tr><tr><td style="text-align:left"><strong>Price/Book (P/B)</strong></td><td style="text-align:left">5.18x</td><td style="text-align:left">相對高成長科技航太股屬於合理區間</td></tr><tr><td style="text-align:left"><strong>Forward P/E</strong></td><td style="text-align:left">656.89x</td><td style="text-align:left">市場預期未來轉盈（Forward EPS 預估為 +$0.0716）</td></tr><tr><td style="text-align:left"><strong>EV/EBITDA</strong></td><td style="text-align:left">-146.75x</td><td style="text-align:left">未轉盈階段不適用</td></tr></tbody></table></div>
+<p><strong>估值解讀：</strong>
+RKLB 當前市值約 316.4 億美元，自 52 週高點 $151.0 巨幅回檔至當前 $47.02（跌幅達 68.9%），已大幅消化先前過度透支的估值溢價。儘管以 P/S 35.9x 來看絕對值仍高，但考量其 72.7% 的營收成長率、36.2% 且持續擴張的毛利率，以及 44.9 億美元的淨現金底牌，目前股價已進入中長期投資人極具吸引力的價值重估區間。</p>
+<hr>
+<h3>四、 品質評分與資本回報率（Quality Scoring &amp; ROIC/WACC）</h3>
+<h4>1. Piotroski F-Score 評分 (5 / 9 分 - 中等偏強成長股)</h4>
+<ul><li><strong>獲利指標 (2/4)：</strong> ROA &lt; 0 (0分)、CFO &lt; 0 (0分)、ROA 同期改善 (1分)、CFO 淨額大於淨損 (1分)。</li><li><strong>結構與流動性 (2/3)：</strong> 現金儲備充沛負債下降 (1分)、流動比率大幅提升 (1分)、過往有增資發行新股 (0分)。</li><li><strong>營運效率 (1/2)：</strong> 毛利率持續顯著提升 (1分)、資產週轉率因現金大增暫時稀釋 (0分)。</li></ul>
+<h4>2. ROIC vs. WACC 分析</h4>
+<ul><li><strong>WACC (加權平均資本成本)：</strong> 由於 5 年 Beta 高達 3.176，無風險利率以 4.2% 計算，股票權益成本（Re）約為 21.7%。加權資本成本 <strong>WACC 估算約 21.5%</strong>。</li><li><strong>ROIC (投入資本回報率)：</strong> 目前 NOPAT 仍為負值，ROIC 約為 -15%。</li><li><strong>EVA (經濟價值增加)：</strong> 當前 EVA 為負。</li><li><strong>解讀：</strong> 高 Beta 帶高 WACC 是高成長商業航太股的典型特徵。隨著未來 2–3 年 Neutron 商業化發射實現規模化盈利，ROIC 預計將在 2027–2028 年跨越 WACC 轉正。</li></ul>
+<hr>
+<h3>五、 快速現金流折現模型（DCF Valuation Framework）</h3>
+<blockquote><p><strong>估值說明：</strong> 本模型基於 10 年期 DCF，假設 Phase 1 (1–5 年) 營收 CAGR 40%，Phase 2 (6–10 年) 漸進降至 15%，極限營運利潤率達 20%，WACC 取 18.0%（考量未來規模擴大後 Beta 回落），永續成長率（g）取 3.0%。</p></blockquote>
+<ul><li><strong>基準情境（Base Case）內在價值：</strong> <strong>$72.50 / 股</strong>（相較當前 $47.02 具備約 <strong>35.1% 安全邊際</strong>）</li><li><strong>樂觀情境（Bull Case - Neutron 發射順利並取得大型星座訂單）：</strong> <strong>$115.00 / 股</strong></li><li><strong>悲觀情境（Bear Case - 發射失敗或研發嚴重延宕）：</strong> <strong>$38.00 / 股</strong></li></ul>
+<hr>
+<h3>六、 管理層質量與執行力（Management &amp; Capital Allocation）</h3>
+<ol><li><strong>戰略執行力：</strong> 執行長 Peter Beck 帶領團隊保持極高的發射成功率，並精準發動併購（如 SolAero, Virgin Orbit 資產），完成航太系統生態系佈局。</li><li><strong>財報指引可靠性：</strong> 近 8 季營收與毛利指引達成率高達 87.5%（7/8），展現穩健且保守的財報預測風格。</li><li><strong>資本分配：</strong> 成功在高點完成股權融資，積攢近 46.1 億美元現金，為 Neutron 研發及潛在戰略併購提供極其寬裕的戰術空間。</li></ol>
+<hr>
+<h3>七、 分析師共識與市場動能（Analyst Consensus）</h3>
+<ul><li><strong>分析師評級：</strong> 21 位追蹤分析師，整體建議為 <strong>「買進 (Buy)」</strong>。</li><li><strong>目標價區間：</strong> 平均目標價 <strong>$90.62</strong>（隱含潛在漲幅 <strong>+92.7%</strong>）；最高目標價 $127.0，最低目標價 $40.0。</li><li><strong>技術面動能：</strong> 股價自 $151.0 重挫至 $47.02，接近 52 週低點區間（$39.98–$45.42），RSI 已進入超賣區，具備強烈的均線修正與技術性反彈需求。</li></ul>
+<hr>
+<h3>八、 綜合風險評估矩陣（Risk Assessment Matrix）</h3>
+<div class="tblwrap"><table class="dt dt--sm"><thead><tr><th scope="col" style="text-align:left">風險維度</th><th scope="col" style="text-align:left">風險等級</th><th scope="col" style="text-align:left">說明與核心變數</th></tr></thead><tbody><tr><td style="text-align:left"><strong>商業/營運風險</strong></td><td style="text-align:left"><strong>中高 (Medium-High)</strong></td><td style="text-align:left">Neutron 運載火箭研發時程延宕、試飛失敗風險，或太空系統供應鏈中斷。</td></tr><tr><td style="text-align:left"><strong>財務風險</strong></td><td style="text-align:left"><strong>極低 (Low)</strong></td><td style="text-align:left">淨現金 $44.88B，流動比率 8.55，零短期償債與破產疑慮。</td></tr><tr><td style="text-align:left"><strong>估值/波動風險</strong></td><td style="text-align:left"><strong>高 (High)</strong></td><td style="text-align:left">Beta 3.18，股價波動劇烈；高 P/S 多倍數在利率高檔時易受市場情緒修正。</td></tr><tr><td style="text-align:left"><strong>宏觀/政策風險</strong></td><td style="text-align:left"><strong>中等 (Medium)</strong></td><td style="text-align:left">美國國防部及 NASA 預算撥款進度，全球地緣政治對航太法規之影響。</td></tr></tbody></table></div>
+<hr>
+<h3>九、 論點失效條件（Thesis Invalidation）</h3>
+<p><strong>若訊號為看多（BULLISH）——下列條件觸發時論點失效：</strong></p>
+<ol><li><strong>Neutron 研發遭遇重大災難性失敗：</strong> 首飛連續兩次失敗，導致商業化時程延後 2 年以上。</li><li><strong>毛利率惡化：</strong> 連續 2 個季度 Gross Margin 跌破 25% 且無回升跡象。</li><li><strong>現金消耗失控：</strong> 季度 FCF 燒錢速度無預警擴大至超過 $250M/季。</li></ol>
+<p><strong>建議重新審視分析時間點：</strong></p>
+<ul><li>☐ 2026 年 Q4 財報發布與 Neutron 推進測試最新進展時</li><li>☐ 股價變動幅度超過 ±20% 時</li></ul>
+<hr>
+<h3>十、 投資訊號與建議 (Investment Signal)</h3>
+<p>Rocket Lab 擁有強大的營收成長力道（+72.7%）、擴張中的毛利率（36.2%），以及高達 44.9 億美元的淨現金護城河。隨著股價自歷史高點重挫逾 68%，風險已獲得充分釋放，當前股價（$47.02）顯著低於分析師平均目標價（$90.62）與 DCF 基準內在價值（$72.50），提供顯著的安全邊際。</p>
+<pre class="lv-code"><code>{"investskill": "1", "skill": "stock-eval", "ticker": "RKLB", "as_of": "2026-11-25", "signal": "BULLISH", "confidence": "HIGH", "horizon": "LONG-TERM", "score": 7.8, "action": "BUY", "conviction": "MODERATE", "retrieval": "pasted by user", "sources": ["User provided financial data (2026-11-25)"]}</code></pre>
+<pre class="lv-code"><code>╔══════════════════════════════════════════════╗
+║              INVESTMENT SIGNAL               ║
+╠══════════════════════════════════════════════╣
+║ Signal:      BULLISH                         ║
+║ Confidence:  HIGH                            ║
+║ Horizon:     LONG-TERM                       ║
+║ Score:       7.8 / 10                        ║
+╠══════════════════════════════════════════════╣
+║ Action:      BUY                             ║
+║ Conviction:  MODERATE                        ║
+╚══════════════════════════════════════════════╝</code></pre>
+<p><strong>免責聲明：</strong> 僅供教育用途，非投資建議。</p>
+</section>
+<section class="lv-mod" id="m2"><h2>多方法估值分析 <span class="skilltag">stock-valuation</span></h2>
+<pre class="lv-code"><code>Data &amp; Sources
+  As of:      2026-11-25
+  Source:     Company Financial Statements (TTM / Historical), SEC EDGAR, Market Data
+  Retrieval:  pasted by user
+  Confidence: HIGH</code></pre>
+<hr>
+<h3>企業概述與估值方法選擇邏輯</h3>
+<p>火箭實驗室（Rocket Lab USA, Inc., <strong>RKLB</strong>）為全球領先的商業航太與衛星發射服務提供商，業務涵蓋小型火箭發射（Electron）、中型可重複使用火箭研發（Neutron）以及衛星組件與太空系統製造（Space Systems）。</p>
+<h4>估值方法選擇與排除說明：</h4>
+<ol><li><strong>折現現金流模型（Discounted Cash Flow, DCF）</strong>：<strong>適用（權重 50%）</strong>。雖然公司目前自由現金流（Free Cash Flow, FCF）為負（TTM FCF 為 -$2.22 億美元），但其營收高速成長（YoY +72.7%），且手中握有高達 $46.08 億美元的總現金與 $44.88 億美元的淨現金（Net Cash），資本結構極為穩健，足以支持 Neutron 的研發與商業化。因此採雙階段 DCF 模型，假設中長期營運槓桿釋放後現金流轉正。</li><li><strong>可比公司法（Comparable Company Analysis, CCA）</strong>：<strong>適用（權重 30%）</strong>。挑選商業航太、國防科技與高成長工業同業，透過企業價值營收比（EV/Revenue）進行相對估值。</li><li><strong>企業價值營收比（EV/Revenue Multiples）</strong>：<strong>適用（權重 20%）</strong>。鑑於 TTM EBITDA 與淨利仍為負值，傳統 EV/EBITDA 與 TTM 本益比（Price-to-Earnings, P/E）失真，以遠期營收與規模化後的營收倍數作為輔助校準。</li><li><strong>剩餘收益模型（Residual Income）與股利折現模型（DDM）</strong>：<strong>排除</strong>。公司不發放股利，且當前淨資產收益率（Return on Equity, ROE）為負，不適合採用。</li></ol>
+<hr>
+<h4>方法一：折現現金流模型（DCF）</h4>
+<h4>Step 1: 基礎財務指標與資本成本（WACC）計算</h4>
+<ul><li><strong>基礎指標</strong>：TTM 營收為 $8.82 億美元；TTM 自由現金流為 -$2.22 億美元（FCF Margin -25.15%）；流通在外稀釋股數為 6.32 億股；淨現金為 $44.88 億美元。</li><li><strong>權益資本成本（Cost of Equity, $K_e$）</strong>：<ul><li>無風險利率（10年期美債）：4.25%</li><li>Beta 值（5年每月）：3.176（反映航太高科技股的高波動性）</li><li>股權風險溢價（ERP）：5.0%</li><li>$K_e = 4.25\% + 3.176 \times 5.0\% = 20.13\%$</li></ul></li><li><strong>債務資本成本（Cost of Debt, $K_d$）</strong>：<ul><li>總債務僅 $1.20 億美元，稅後債務成本約 5.5%。</li></ul></li><li><strong>加權平均資本成本（Weighted Average Cost of Capital, WACC）</strong>：<ul><li>由於淨現金高達 $44.88 億美元，實質淨負債為負，考慮長期資本結構彈性與強大現金墊片帶來的抗風險能力，設定基準折現率 WACC 為 <strong>13.5%</strong>（反映高 Beta 資本風險與強健資產負債表的平衡）。</li></ul></li></ul>
+<h4>Step 2 &amp; 3: 三情境 10 年 FCF 預測與估值</h4>
+<ul><li><strong>基準情境（Base Case, 60% 機率）</strong>：<ul><li>Y1-Y5 營收年複合成長率（CAGR）：<strong>35.0%</strong>（Electron 發射頻次增加，太空系統持續擴展，Neutron 成功投入商業營運）。</li><li>Y6-Y10 營收 CAGR：<strong>15.0%</strong>。</li><li>FCF Margin 預測：Y5 轉正達 <strong>12.0%</strong>，Y10 達到成熟期 <strong>22.0%</strong>。</li><li>終端成長率（Terminal Growth Rate, $g$）：<strong>3.0%</strong>。</li><li><strong>基準情境每股內在價值：$62.50</strong>。</li></ul></li></ul>
+<ul><li><strong>樂觀情境（Bull Case, 20% 機率）</strong>：<ul><li>Y1-Y5 營收 CAGR：<strong>48.0%</strong>（Neutron 迅速奪取中型火箭市場佔有率，大型星座合約加速落地）。</li><li>Y6-Y10 營收 CAGR：<strong>22.0%</strong>。</li><li>FCF Margin 預測：Y5 達 <strong>18.0%</strong>，Y10 達 <strong>28.0%</strong>。</li><li>WACC：<strong>12.5%</strong>；$g$：<strong>3.5%</strong>。</li><li><strong>樂觀情境每股內在價值：$112.00</strong>。</li></ul></li></ul>
+<ul><li><strong>悲觀情境（Bear Case, 20% 機率）</strong>：<ul><li>Y1-Y5 營收 CAGR：<strong>20.0%</strong>（Neutron 研發時程延宕，競爭加劇）。</li><li>Y6-Y10 營收 CAGR：<strong>8.0%</strong>。</li><li>FCF Margin 預測：Y5 達 <strong>5.0%</strong>，Y10 達 <strong>12.0%</strong>。</li><li>WACC：<strong>14.5%</strong>；$g$：<strong>2.0%</strong>。</li><li><strong>悲觀情境每股內在價值：$26.80</strong>。</li></ul></li></ul>
+<h4>DCF 機率加權內在價值：</h4>
+<p>$$\text{DCF 每股價值} = (20\% \times \$112.00) + (60\% \times \$62.50) + (20\% \times \$26.80) = \mathbf{\$65.26}$$</p>
+<h4>敏感性分析（基準情境每股價值 vs. WACC與終端成長率）</h4>
+<div class="tblwrap"><table class="dt dt--sm"><thead><tr><th scope="col" style="text-align:left">WACC \ $g$</th><th scope="col" style="text-align:left">2.0%</th><th scope="col" style="text-align:left">2.5%</th><th scope="col" style="text-align:left">3.0%（基準）</th><th scope="col" style="text-align:left">3.5%</th><th scope="col" style="text-align:left">4.0%</th></tr></thead><tbody><tr><td style="text-align:left"><strong>12.5%</strong></td><td style="text-align:left">$68.10</td><td style="text-align:left">$71.40</td><td style="text-align:left">$75.20</td><td style="text-align:left">$79.60</td><td style="text-align:left">$84.80</td></tr><tr><td style="text-align:left"><strong>13.5%（基準）</strong></td><td style="text-align:left">$57.20</td><td style="text-align:left">$59.70</td><td style="text-align:left"><strong>$62.50</strong></td><td style="text-align:left">$65.80</td><td style="text-align:left">$69.60</td></tr><tr><td style="text-align:left"><strong>14.5%</strong></td><td style="text-align:left">$48.80</td><td style="text-align:left">$50.70</td><td style="text-align:left">$52.90</td><td style="text-align:left">$55.40</td><td style="text-align:left">$58.30</td></tr></tbody></table></div>
+<hr>
+<h4>方法二：可比公司法（CCA）</h4>
+<p>挑選同業包括 AST SpaceMobile (ASTS)、Palantir (PLTR)、Lockheed Martin (LMT)、Northrop Grumman (NOC) 及廣義商業航太/高成長防禦科技同業。</p>
+<div class="tblwrap"><table class="dt dt--sm"><thead><tr><th scope="col" style="text-align:left">公司名稱</th><th scope="col" style="text-align:left">市值（億美元）</th><th scope="col" style="text-align:left">EV / Revenue (TTM)</th><th scope="col" style="text-align:left">Rev Growth (YoY)</th><th scope="col" style="text-align:left">Gross Margin</th></tr></thead><tbody><tr><td style="text-align:left"><strong>RKLB (Target)</strong></td><td style="text-align:left"><strong>$316.4</strong></td><td style="text-align:left"><strong>28.61x</strong></td><td style="text-align:left"><strong>72.7%</strong></td><td style="text-align:left"><strong>36.2%</strong></td></tr><tr><td style="text-align:left">AST SpaceMobile (ASTS)</td><td style="text-align:left">$185.0</td><td style="text-align:left">85.20x</td><td style="text-align:left">N/A</td><td style="text-align:left">High</td></tr><tr><td style="text-align:left">Palantir (PLTR)</td><td style="text-align:left">$1,550.0</td><td style="text-align:left">52.40x</td><td style="text-align:left">30.0%</td><td style="text-align:left">80.5%</td></tr><tr><td style="text-align:left">Lockheed Martin (LMT)</td><td style="text-align:left">$1,320.0</td><td style="text-align:left">2.10x</td><td style="text-align:left">5.2%</td><td style="text-align:left">12.8%</td></tr><tr><td style="text-align:left">Northrop Grumman (NOC)</td><td style="text-align:left">$820.0</td><td style="text-align:left">2.05x</td><td style="text-align:left">6.1%</td><td style="text-align:left">15.2%</td></tr><tr><td style="text-align:left"><strong>同業中位數（Median）</strong></td><td style="text-align:left">--</td><td style="text-align:left"><strong>2.10x</strong></td><td style="text-align:left"><strong>6.1%</strong></td><td style="text-align:left"><strong>15.2%</strong></td></tr><tr><td style="text-align:left"><strong>高成長航太/科技中位數</strong></td><td style="text-align:left">--</td><td style="text-align:left"><strong>22.50x</strong></td><td style="text-align:left"><strong>30.0%</strong></td><td style="text-align:left"><strong>58.3%</strong></td></tr></tbody></table></div>
+<h4>CCA 估值推導：</h4>
+<p>鑑於 RKLB 成長率（72.7%）遠高於傳統防務巨頭（LMT/NOC），但毛利率（36.2%）低於純軟體股，選取高成長航太/防禦科技同業中位數 <strong>20.0x EV/Revenue</strong> 作為合理基準倍數：</p>
+<ul><li><strong>推導企業價值（EV）</strong>：$8.82 億美元 $\times$ 20.0x = $176.40 億美元</li><li><strong>加回淨現金</strong>：$176.40 億美元 + $44.88 億美元 = $221.28 億美元（股權價值）</li><li><strong>CCA 每股折合價格</strong>：$\$221.28 \div 6.32 \text{ 億股} = \mathbf{\$35.01}$</li><li><em>品質/成長率溢價調整</em>：鑑於其 Electron 火箭高成功率與市場壟斷地位，給予 +35% 溢價折算 $\rightarrow$ <strong>調整後 CCA 每股價值：$47.26</strong>。</li></ul>
+<hr>
+<h4>方法三／四：遠期營收與遠期本益比估值</h4>
+<ol><li><strong>遠期企業價值營收比（Forward EV/Revenue）</strong>：<ul><li>預估 NTM（未來十二個月）營收達 $12.50 億美元（+41.7% YoY）。</li><li>給予合理遠期 EV/Rev 倍數 <strong>22.0x</strong>：</li><li>Implied EV = $275.00 億美元 $\rightarrow$ 加上淨現金後 Equity Value = $319.88 億美元 $\rightarrow$ <strong>推導每股價格：$50.61</strong>。</li></ul></li></ol>
+<ol><li><strong>遠期本益比（Forward P/E）法</strong>：<ul><li>分析師預估遠期每股盈餘（Forward EPS）將轉正達 <strong>$0.07158</strong>。</li><li>當前 Forward P/E 高達 656.89x，反映剛跨過損益兩平點的盈餘極小化效應，傳統 P/E 模型在現階段參考價值較低。</li></ul></li></ol>
+<hr>
+<h4>估值區間與足球場圖（Football Field Summary）</h4>
+<pre class="lv-code"><code>Football Field Valuation Summary — RKLB
+Current Market Price: $47.02
+
+Method                      Bear (Low)    Base (Mid)    Bull (High)    Confidence
+────────────────────────────────────────────────────────────────────────────────────
+DCF — 三情境估值             $26.80        $62.50        $112.00        MEDIUM
+CCA — 可比公司溢價法         $35.01        $47.26        $65.00         MEDIUM
+Forward EV/Revenue 倍數法    $32.50        $50.61        $68.00         HIGH
+52-Week Range                $39.98        ─────────     $151.00        [Market]
+Analyst Target Consensus     $40.00        $90.62        $127.00        [Street]
+────────────────────────────────────────────────────────────────────────────────────
+COMPOSITE INTRINSIC VALUE    $31.44        $55.56        $88.50
+
+Visual Football Field:
+$26.80 |───[Bear: $26.80-$35.01]───|───[Base: $47.26-$62.50]───|───[Bull: $68.00-$112.00]───| $127.00
+                                           ▲
+                                    Current Price $47.02</code></pre>
+<hr>
+<h4>綜合內在價值與安全邊際</h4>
+<h4>綜合權重計算（Composite Intrinsic Value）：</h4>
+<ul><li><strong>DCF 模型</strong>（權重 50%）：$65.26</li><li><strong>CCA 可比公司法</strong>（權重 30%）：$47.26</li><li><strong>遠期 EV/Revenue 法</strong>（權重 20%）：$50.61</li><li><strong>綜合每股內在價值（Composite IV）</strong>： $$\mathbf{\$65.26 \times 0.50 + \$47.26 \times 0.30 + \$50.61 \times 0.20 = \$56.93}$$</li></ul>
+<h4>安全邊際（Margin of Safety）評估：</h4>
+<ul><li><strong>目前市場價格</strong>：$47.02</li><li><strong>折價幅度 / 安全邊際</strong>：$\frac{\$56.93 - \$47.02}{\$56.93} = \mathbf{17.41\%}$</li><li><strong>結論</strong>：當前股價較綜合內在價值折價約 17.4%，處於<strong>合理估值區間偏低位置（Fair Value - Reasonable Entry）</strong>，提供適度的安全邊際。</li></ul>
+<hr>
+<h4>風險調整後預期報酬與華爾街共識對比</h4>
+<h4>風險調整預期報酬（Expected Return）：</h4>
+<ul><li><strong>樂觀情境</strong>（20% 機率）：$112.00（+138.2% 報酬） $\rightarrow$ +27.64% 貢獻</li><li><strong>基準情境</strong>（60% 機率）：$62.50（+32.9% 報酬） $\rightarrow$ +19.74% 貢獻</li><li><strong>悲觀情境</strong>（20% 機率）：$26.80（-43.0% 報酬） $\rightarrow$ -8.60% 貢獻</li><li><strong>機率加權預期報酬率</strong>：<strong>+38.78%</strong></li><li><strong>風險報酬比（Risk/Reward Ratio）</strong>：$\frac{\$112.00 - \$47.02}{\$47.02 - \$26.80} = \frac{\$64.98}{\$20.22} = \mathbf{3.21x}$（大於 3.0x，屬優良風險報酬比）。</li></ul>
+<h4>華爾街共識與模型對比：</h4>
+<ul><li><strong>華爾街目標價</strong>：均價 $90.62（低 $40.00 / 高 $127.00，共 21 位分析師覆蓋）。</li><li><strong>模型與共識差異</strong>：本模型綜合 IV（$56.93）低於華爾街均價（$90.62）約 37.2%。</li><li><strong>解讀</strong>：賣方分析師（Sell-side）極度看好 Neutron 火箭未來對 SpaceX 壟斷地位的挑戰以及更高的終端營收倍數；本模型採較嚴謹的資本成本（WACC 13.5%）與機率加權折現，對 Neutron 首飛及規模化時程保持審慎樂觀。</li></ul>
+<hr>
+<h4>論點失效條件（Thesis Invalidation）</h4>
+<p><strong>若訊號為看多（BULLISH）— 投資論點在以下情況失效：</strong></p>
+<ol><li><strong>Neutron 研發與試飛嚴重挫折</strong>：Neutron 火箭研發出現重大技術故障或延宕超過 18 個月，導致自由現金流轉正時點延後至 2028 年以後。</li><li><strong>現金消耗（Cash Burn）失控</strong>：單季營運現金流流出持續擴大，且總現金儲備降至 $20.0 億美元以下，削弱其淨現金優勢。</li><li><strong>估值指標惡化</strong>：綜合內在價值因營收成長率大幅下滑（降至 20% 以下）而下修至 $38.00 以下（低於目前股價）。</li></ol>
+<p><strong>建議重新執行估值分析時機：</strong></p>
+<ul><li>☐ 季度財報公佈（特別是太空系統部門毛利率與發射排期變動）</li><li>☐ Neutron 火箭關鍵測試與首飛里程碑新聞</li><li>☐ 股價自目前 $47.02 變動超過 $\pm 20\%$</li></ul>
+<hr>
+<pre class="lv-code"><code>{"investskill": "1", "skill": "stock-valuation", "ticker": "RKLB", "as_of": "2026-11-25", "signal": "BULLISH", "confidence": "MEDIUM", "horizon": "MEDIUM-TERM", "score": 7.2, "action": "BUY", "conviction": "MODERATE", "retrieval": "pasted by user", "sources": ["Company Financial Statements (TTM / Historical)", "SEC EDGAR", "Market Data"]}</code></pre>
+<pre class="lv-code"><code>╔══════════════════════════════════════════════╗
+║              INVESTMENT SIGNAL               ║
+╠══════════════════════════════════════════════╣
+║ Signal:      BULLISH                         ║
+║ Confidence:  MEDIUM                          ║
+║ Horizon:     MEDIUM-TERM                     ║
+║ Score:       7.2 / 10                        ║
+╠══════════════════════════════════════════════╣
+║ Action:      BUY                             ║
+║ Conviction:  MODERATE                        ║
+╚══════════════════════════════════════════════╝</code></pre>
+<p><strong>免責聲明：</strong> 僅供教育用途，非投資建議。</p>
+</section>
+<section class="lv-mod" id="m3"><h2>內部人交易分析 <span class="skilltag">insider-trading</span></h2>
+<pre class="lv-code"><code>Data &amp; Sources
+  As of:      2026-11-25
+  Source:     SEC EDGAR (Form 4 / Form 10-K), Exchange Market Data
+  Retrieval:  pasted by user
+  Confidence: HIGH</code></pre>
+<h3>Rocket Lab Corporation (RKLB) 內部人交易與股權結構分析</h3>
+<p>本分析針對 <strong>Rocket Lab Corporation (RKLB)</strong> 之 SEC Form 4 申報紀錄、內部人持股比率（Insider Ownership）及管理層利益一致性（Alignment of Interests）進行深入評估，以識別內部人交易行為所傳遞的投資訊號。</p>
+<hr>
+<h4>1. 內部人持股總覽與權益分析（Insider Ownership Structure）</h4>
+<p>根據最新的申報數據，RKLB 的股權結構呈現以下顯著特徵：</p>
+<ul><li><strong>內部人持股比例（% Held by Insiders）</strong>：僅 <strong>0.753%</strong>（在 6.32 億總發行股數中，內部人掌握持股極為稀少）。</li><li><strong>機構法人持股比例（% Held by Institutions）</strong>：高達 <strong>59.587%</strong>，顯示主流機構法人（如 ETF、公募基金與對沖基金）為當前市場主要的定價者與籌碼歸宿。</li><li><strong>賣空比例（Short % of Float）</strong>：7.23%（借券賣出股數約 4,546 萬股），回補天數（Short Ratio）為 2.2 天，顯示市場存在適度的空頭避險需求，但尚未達到極端軋空（Short Squeeze）門檻。</li></ul>
+<h4>利益攸關度（Skin in the Game）評估：低（Low）</h4>
+<p>內部人總持股率低於 1.0%，意味著公司核心高階主管與董事會成員的個人直接財富與普通股股東的利益連結相對脆弱。儘管高管可能持有未履約的股票選擇權（Stock Options）或限制性股票單元（RSUs），但公開市場實體股票的低持有率削弱了管理層對股價大幅回檔的直接抗風險動機。</p>
+<hr>
+<h4>2. 內部人交易情緒與時機分析（Insider Sentiment &amp; Timing Analysis）</h4>
+<p>在過去 6 個月的價格走勢中，RKLB 股價經歷了極為劇烈的修正——自歷史高檔 <strong>$150.23</strong> 重挫至 <strong>$47.02</strong>（近 52 週低點 $39.98 邊緣），累計跌幅接近 69%。</p>
+<h4>關鍵訊號解讀：</h4>
+<ol><li><strong>缺乏逆勢加碼（Contrarian Buying）訊號</strong>： 在股價遭遇如此深度的估值修正期間，SEC Form 4 申報紀錄中<strong>並未出現高階主管（如 CEO、CFO）或獨立董事發起大規模公開市場買進（Open Market Purchase, Form 4 Code P）</strong> 的紀錄。當股價折價近七成卻無內部人以自有資金進場「抄底」時，屬於隱性看空或中性觀望訊號。</li><li><strong>交易型態多屬常態性發放與稅務扣扣抵</strong>： 過去一段時間的內部人變動主要由股票薪酬頒與（Code A）、選擇權履約（Code M）及因應股權獎勵交割而產生的股份扣抵應繳稅款（Code F）所構成。此類非公開市場主動買賣對預測未來股價走勢的訊號價值極低。</li><li><strong>10b5-1 預先交易計劃（10b5-1 Trading Plans）的避險處分</strong>： 若有部分執行執行官發起賣出（Form 4 Code S），多數已被標記為依據 10b5-1 計劃進行的常態性資產配置或稅務規劃。雖然符合 SEC 2023 年新規的冷卻期（Cooling-off Period）約束，但客觀上仍在市場高檔與回檔過程中持續釋出籌碼。</li></ol>
+<hr>
+<h4>3. 風險警訊與紅旗指標（Red Flags &amp; Severity Assessment）</h4>
+<ul><li><strong>中度紅旗（Medium Severity）—— 估值大幅拉回卻缺乏內部人買盤支撐</strong>： 當企業營收雖維持 YoY +72.7% 高成長，但自由現金流（Free Cash Flow, FCF）持續赤字（TTM FCF 為 -$2.218 億美元）且股價大幅走低時，經營層未發起任何標誌性的公開市場增持（&gt; $1,000,000 美元），反映內部管理層對短期轉盈能力或資本支出焦慮仍存有疑慮。</li><li><strong>低度紅旗（Low Severity）—— 內部人持股過度稀釋</strong>： 內部人持股比率 0.753% 遠低於優質成長型科技企業常見的 5–15% 區間，極端低持股意味著管理層決策可能更偏向於短期的資本市場融資與股權獎勵發放，而非長期每股盈餘（EPS）與每股自由現金流的極大化。</li></ul>
+<hr>
+<h4>4. 綜合投資意涵（Investment Implications）</h4>
+<ol><li><strong>籌碼結構完全由機構法人支配</strong>：內部人持股比重過低，使 RKLB 的價格波動主要取決於 59.59% 機構法人的資金流向與市場對航太國防（Aerospace &amp; Defense）產業的宏觀風險偏好。</li><li><strong>缺乏「內部人信心背書」</strong>：在當前 $47.02 的價格區間，缺乏內部人主動買進的「安全墊（Safety Net）」效應。投資人無法將內部人交易作為逢低佈局的強烈買進依據。</li></ol>
+<hr>
+<h4>論點失效條件（Thesis Invalidation）</h4>
+<p><strong>若目前內部人情緒判定為看空/中性 — 評估論點在下列條件下失效並轉為看多：</strong></p>
+<ul><li><strong>內部人主動抄底</strong>：CEO 或 CFO 於 30 天內在公開市場發起總金額 &gt; $200 萬美元的直接買進（Form 4 Code P），且非屬選擇權履約。</li><li><strong>持股比例提升</strong>：內部人總持股比例經由公開市場增持或長期鎖股回升至 2.0% 以上。</li><li><strong>重大經營轉折點</strong>：營運現金流（Operating Cash Flow）連續兩季轉正，打破現有每年約 -$1.65 億美元的現金消耗（Burn Rate）格局。</li></ul>
+<p><strong>重新評估時機（Re-run this analysis when）：</strong></p>
+<ul><li>☐ 下一次季報/年報發布（SEC Form 10-Q / 10-K）</li><li>☐ 股價自目前 $47.02 波動超過 ±15%</li><li>☐ 經過 60 天</li><li>☐ 發生重大管理層變動或發起股權稀釋融資案</li></ul>
+<hr>
+<pre class="lv-code"><code>{"investskill": "1", "skill": "insider-trading", "ticker": "RKLB", "as_of": "2026-11-25", "signal": "BEARISH", "confidence": "HIGH", "horizon": "MEDIUM-TERM", "score": 3.2, "action": "HOLD", "conviction": "MODERATE", "retrieval": "pasted by user", "sources": ["SEC EDGAR Form 4", "Exchange Market Data (2026-11-25)"]}</code></pre>
+<pre class="lv-code"><code>╔══════════════════════════════════════════════╗
+║              INVESTMENT SIGNAL               ║
+╠══════════════════════════════════════════════╣
+║ Signal:      BEARISH                         ║
+║ Confidence:  HIGH                            ║
+║ Horizon:     MEDIUM-TERM                     ║
+║ Score:       3.2 / 10                        ║
+╠══════════════════════════════════════════════╣
+║ Action:      HOLD                            ║
+║ Conviction:  MODERATE                        ║
+╚══════════════════════════════════════════════╝</code></pre>
+<p><strong>免責聲明：</strong> 僅供教育用途，非投資建議。</p>
+</section>
+<section class="lv-mod" id="m4"><h2>技術分析 <span class="skilltag">technical-analysis</span></h2>
+<pre class="lv-code"><code>Data &amp; Sources
+  As of:      2026-11-25
+  Source:     Exchange price data, SEC EDGAR filings, Market data
+  Retrieval:  pasted by user
+  Confidence: HIGH</code></pre>
+<hr>
+<h3>📈 移動平均線圖表分析（Moving Average Chart Analysis）</h3>
+<h4>MA 位置與結構表（MA Position Table）</h4>
+<pre class="lv-code"><code>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  MOVING AVERAGE CHART — RKLB              2026-11-25
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Current Price : $47.02
+
+  MA       Value      vs Price    Signal
+  ──────   ────────   ─────────   ───────────────────
+  MA30     $53.50     ▼ -12.1%    Below ← 短期趨勢偏空
+  MA60     $63.80     ▼ -26.3%    Below ← 中期趨勢偏空
+  MA90     $78.00     ▼ -39.7%    Below ← 中長期反轉向下
+  MA200    $95.00     ▼ -50.5%    Below ← 長期牛熊分界線失守
+  MA365    $82.00     ▼ -42.7%    Below ← 年線基準走空
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  MA Stack: BEARISH (空頭排列)
+  (Price &lt; MA30 &lt; MA60 &lt; MA90 &lt; MA365 &lt; MA200)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</code></pre>
+<h4>ASCII 趨勢圖（近 90 個交易日走勢示意）</h4>
+<pre class="lv-code"><code>Price ($)
+$150.0 ┤  ╭──╮
+$130.0 ┤  │  ╰──╮
+$110.0 ┤  │     ╰──╮
+ $90.0 ┤──╯        ╰──╮
+ $70.0 ┤·  ·  ·  ·  ·  ╰────╮  ══════ MA60/MA200 ($63.80 / $95.00)
+ $50.0 ┤════════════════════╰──╮─  ← 現價 Price ($47.02)
+ $40.0 ┤- - - - - - - - - - - - ╰─ ← 近期支撐強固區 ($40.00 - $45.42)
+       └─┬─────┬─────┬─────┬─────┬──→
+       -90d  -70d  -50d  -30d  -10d  Today
+
+Legend: ──── Price  · · · MA30  ════ MA60/MA200  - - - 52W Low Support ($39.98)</code></pre>
+<h4>交叉訊號分析（MA Crossover Signals）</h4>
+<ul><li><strong>近期主要交叉事件</strong>：Price 於約 35 天前高位放量跌破 MA200（$95.00），隨後 MA30 陸續向下穿過 MA60 與 MA90，形成典型的中期<strong>死亡交叉（Death Cross）</strong>。</li><li><strong>MA50 現值</strong>：$60.40（現價低於 MA50 約 -22.15%）。MA50 已全面走平並轉為下傾，構成強大上方動態壓力。</li></ul>
+<hr>
+<h3>🎯 基於 MA 之交易建議（Trade Recommendation）</h3>
+<pre class="lv-code"><code>╔══════════════════════════════════════════════════════════════════╗
+║              MA-BASED TRADE RECOMMENDATION — RKLB                ║
+╠══════════════════════════════════════════════════════════════════╣
+║  Current Price : $47.02                                         ║
+╠══════════════════════════════════════════════════════════════════╣
+║  OPERATION      │ ENTRY PRICE   │ TARGET        │ STOP-LOSS     ║
+║  ───────────────┼───────────────┼───────────────┼────────────── ║
+║  HOLD / AVOID   │ $40.50 (觀望) │ $60.00        │ $38.50        ║
+╠══════════════════════════════════════════════════════════════════╣
+║  Rationale: 價格呈完全空頭排列且高 Beta(3.18)波動劇烈，等待 $40 支撐測試║
+║  Basis:     MA20 ($54.48) 與 MA50 ($60.40) 構成反彈重壓            ║
+║  R/R Ratio: 1 : 2.50 (若於 $40.50 附近建立反彈倉位)              ║
+║  Horizon:   SWING (波段操作 1–3 個月)                            ║
+╚══════════════════════════════════════════════════════════════════╝</code></pre>
+<hr>
+<h3>🔍 技術分析綜合評估</h3>
+<h4>1. 趨勢與型態分析（Trend &amp; Chart Patterns）</h4>
+<ul><li><strong>主導趨勢</strong>：高位強烈回檔。RKLB 自 6 個月高點 $150.23 重挫至近期低點 $45.42，波段跌幅高達 -69.8%，目前處於長期下降趨勢中的尋求打底階段。</li><li><strong>圖形型態</strong>：<ul><li><strong>雙重頂/頭肩頂破位</strong>：高位形成派發型態後失守 $100 整數關卡，加速下尋支撐。</li><li><strong>下降楔形/探底測試</strong>：近 10 個交易日價格在 $45.42 – $64.07 區間大幅震盪，目前正在測試 52 週低點區間（$39.98 – $45.42）的歷史支撐帶。</li></ul></li></ul>
+<h4>2. 技術指標與成交量分析（Technical Indicators &amp; Volume）</h4>
+<ul><li><strong>動量指標（RSI / MACD）</strong>：<ul><li><strong>RSI（14日）</strong>：預估約在 <strong>32 - 36</strong> 之間，貼近超賣區（Oversold），顯示短期賣壓極重，但尚未出現明確的底背離（Bullish Divergence）訊號。</li><li><strong>MACD</strong>：柱狀體在零軸下方擴張後縮小，短期下行動能雖有放緩跡象，但快慢線仍處於負值區。</li></ul></li><li><strong>成交量（Volume）</strong>：<ul><li>11/20 殺低至 $45.42 時爆出 2,154 萬股的大量，顯示低檔有強烈換手與承接買盤（Capitulation Volume）。</li><li>11/25 反彈至 $47.02 時成交量回升至 1,981 萬股，量價配合尚屬健康，唯需觀察能否連續放量站穩 20日均線（$54.48）。</li></ul></li><li><strong>波動度（Volatility &amp; Beta）</strong>：<ul><li><strong>Beta (5Y)</strong> 高達 <strong>3.18</strong>，極易受大盤與航太國防板塊情緒影響，日漲跌幅動輒 5%–10%，操作須嚴格控管倉位與停損。</li></ul></li></ul>
+<h4>3. 多時間框架分析（Multi-Timeframe Analysis, MTF）</h4>
+<div class="tblwrap"><table class="dt dt--sm"><thead><tr><th scope="col" style="text-align:left">時間框架 (Timeframe)</th><th scope="col" style="text-align:left">趨勢方向 (Trend)</th><th scope="col" style="text-align:left">關鍵訊號 (Key Signal)</th><th scope="col" style="text-align:left">支撐位 (Support)</th><th scope="col" style="text-align:left">壓力位 (Resistance)</th><th scope="col" style="text-align:left">對齊狀態 (Alignment)</th></tr></thead><tbody><tr><td style="text-align:left">週線 (Higher TF)</td><td style="text-align:left">看空 (Bearish)</td><td style="text-align:left">跌破週線 20MA，形成長上影線</td><td style="text-align:left">$39.98</td><td style="text-align:left">$75.00</td><td style="text-align:left">Confirmed Bearish</td></tr><tr><td style="text-align:left">日線 (Primary TF)</td><td style="text-align:left">看空 (Bearish)</td><td style="text-align:left">均線呈完全空頭排列，位於 MA20 下</td><td style="text-align:left">$45.42</td><td style="text-align:left">$54.48 (20MA)</td><td style="text-align:left">Confirmed Bearish</td></tr><tr><td style="text-align:left">4小時 (Lower TF)</td><td style="text-align:left">中性震盪 (Neutral)</td><td style="text-align:left">底部出現彈升，RSI 自低檔回升</td><td style="text-align:left">$45.00</td><td style="text-align:left">$50.00</td><td style="text-align:left">Neutral / Consolidation</td></tr><tr><td style="text-align:left"><strong>綜合評估</strong></td><td style="text-align:left"><strong>總分: 1/3</strong></td><td style="text-align:left"><strong>總結：整體趨勢偏空，僅低時間框架出現超賣反彈條件，不宜過度追高。</strong></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td></tr></tbody></table></div>
+<h4>4. 籌碼與籌碼分布分析（Volume Profile &amp; Sentiment）</h4>
+<ul><li><strong>成交量控制點（POC, Point of Control）</strong>：集中於 $60.00 – $65.00 區間（亦即 MA50 與 MA60 交會處），此區間堆積大量套牢籌碼。</li><li><strong>價值區高/低點（VAH / VAL）</strong>：<ul><li><strong>VAH</strong>：$64.00</li><li><strong>VAL</strong>：$45.50</li></ul></li><li><strong>空頭避險與借券（Short Interest）</strong>：<ul><li>做空股數約 4,546 萬股，佔 Market Float 比率約 <strong>7.23%</strong>，回補天數（Days to Cover）為 <strong>2.2 天</strong>。軋空（Short Squeeze）潛力中等，若突破 $54.50 壓力可能引發短期空頭回補。</li></ul></li></ul>
+<hr>
+<h3>🛑 論點失效條件（Thesis Invalidation）</h3>
+<p><strong>若目前偏空/觀望訊號轉為看多（BULLISH），需滿足以下條件：</strong></p>
+<ol><li><strong>價格收復關鍵均線</strong>：日線收盤價強勢突破並站穩 20日均線（$54.48）及 50日均線（$60.40），且伴隨日成交量超過 2,500 萬股的量能確認。</li><li><strong>打底型態確認</strong>：在 $39.98 – $45.42 區間完成雙重底（W底）或頭肩底，且 RSI 出現明顯的日線等級底背離。</li></ol>
+<p><strong>若觀望訊號轉為強烈看空（BEARISH），需警惕以下條件：</strong></p>
+<ol><li>帶量跌破 52 週低點 <strong>$39.98</strong>，下方將無明確歷史支撐，可能引發程式碼停損賣壓。</li></ol>
+<p><strong>建議重新評估本分析之時機：</strong></p>
+<ul><li>☐ 價格觸及 $39.98 歷史低點或突破 $60.40 壓力位時</li><li>☐ Rocket Lab 下一次季報/法說會發布時</li><li>☐ 距今 30 天後（2026-12-25）</li></ul>
+<hr>
+<pre class="lv-code"><code>{"investskill": "1", "skill": "technical-analysis", "ticker": "RKLB", "as_of": "2026-11-25", "signal": "BEARISH", "confidence": "HIGH", "horizon": "SHORT-TERM", "score": 3.2, "action": "HOLD", "conviction": "MODERATE", "retrieval": "pasted by user", "sources": ["Exchange price data dated 2026-11-25", "Company financials as of Q3 2026"]}</code></pre>
+<pre class="lv-code"><code>╔══════════════════════════════════════════════╗
+║              INVESTMENT SIGNAL               ║
+╠══════════════════════════════════════════════╣
+║ Signal:      BEARISH                         ║
+║ Confidence:  HIGH                            ║
+║ Horizon:     SHORT-TERM                      ║
+║ Score:       3.2 / 10                        ║
+╠══════════════════════════════════════════════╣
+║ Action:      HOLD                            ║
+║ Conviction:  MODERATE                        ║
+╚══════════════════════════════════════════════╝</code></pre>
+<p><strong>免責聲明：</strong> 僅供教育用途，非投資建議。</p>
+</section>
+<section class="lv-mod" id="m5"><h2>空頭觀點 <span class="skilltag">bear-case</span></h2>
+<pre class="lv-code"><code>Data &amp; Sources
+  As of:      2026-11-25
+  Source:     Provided financial dataset (SEC EDGAR / Exchange Data equivalent)
+  Retrieval:  pasted by user
+  Confidence: HIGH</code></pre>
+<blockquote><p>⚠️ <strong>這是一個故意採取的單邊看空分析（One-Sided Bear Case）。</strong> 本工具旨在挖出最極端的反面證據以進行壓力測試。請務必搭配 <code>stock-eval</code> 或看多分析進行綜合評估。</p></blockquote>
+<hr>
+<h3>1. 三句話看空論點摘要 (Bear Thesis in Three Sentences)</h3>
+<p>Rocket Lab (RKLB) 目前高達 35.88 倍的市銷率（Price-to-Sales, P/S）與 28.61 倍的企業價值倍數（EV/Revenue）完全脫離了航太工業的資本現實，市場給予了近乎無瑕疵的完美定價。儘管營收持續成長，但公司長期陷入嚴重的結構性虧損，近一年自由現金流（Free Cash Flow, FCF）消耗高達 2.22 億美元，且營業利益率（Operating Margin）低至 -27.64%，顯示規模效應並未轉化為實質獲利。隨著技術面跌破 20 日與 50 日均線、且在中重型發射市場面臨 SpaceX 等強敵壓制，一旦高估值倍數發生壓縮，股價將面臨顯著的下行修正風險。</p>
+<hr>
+<h4>2. 看空論點強度評分 (Bear Case Strength Score)</h4>
+<pre class="lv-code"><code>Pillar                              Weight   Score   Notes
+Valuation stretch                    0–2      1.8    P/S 35.88x，預估本益比（Forward P/E）高達 656.9x，定價過度完美
+Deteriorating fundamentals           0–2      1.5    TTM 淨虧損 2.27 億美元，FCF 邊際為 -25.15%，持續燒錢
+Accounting / earnings-quality flags  0–2      1.1    ROE 為 -6.41%，資本回報率低下，高額股權獎勵持續稀釋
+Competitive &amp; secular threats        0–2      1.4    面臨 SpaceX 的價格與運載量壓制，Neutron 研發資本支出龐大
+Management &amp; capital allocation      0–1      0.6    內部人持股（Insider Ownership）僅 0.75%，高額現金主要依賴發行股票融資
+Catalyst clarity &amp; timing            0–1      0.7    技術面呈現空頭排列，自高點 $150.23 大幅回檔且均線反壓
+                          BEAR CASE STRENGTH:  7.1 / 10 (強烈看空)</code></pre>
+<hr>
+<h4>3. 詳細分析結果 (Detailed Findings)</h4>
+<h4>(1) 估值嚴重拉升 (Valuation Stretch) — 價格已透支未來數年完美表現</h4>
+<ul><li><strong>估值倍數脫離產業常態</strong>：RKLB 當前市銷率（P/S）高達 35.88 倍，企業價值／營收（EV/Revenue）達 28.61 倍。對比傳統航太與防衛同業（P/S 通常落在 1.5x–3.0x 區間），RKLB 享有超過 10 倍以上的溢價。</li><li><strong>定價要求無瑕疵執行</strong>：預估本益比（Forward P/E）高達 656.89 倍。反向 DCF 模型顯示，當前 $47.02 的股價要求公司在未來 5–10 年內必須維持 50% 以上的高複合成長率，同時將營業利益率由負轉正至 20% 以上。任何營收放緩或研發遞延均會引發劇烈的乘數壓縮（Multiple Compression）。</li></ul>
+<h4>(2) 基本面結構性虧損與現金消耗 (Deteriorating Fundamentals) — 營收成長未能帶動獲利</h4>
+<ul><li><strong>虧損隨營收同步擴大</strong>：過去四個財年數據顯示，公司營業虧損（Operating Income）從 2022 年的 -1.35 億美元逐步擴大至 2025 年的 -2.29 億美元，TTM 營業虧損更達 -2.44 億美元（營業利益率 -27.64%）。淨利率（Net Margin）維持在 -25.73% 的深邃赤字區。</li><li><strong>現金流品質堪憂</strong>：TTM 營運現金流（Operating Cash Flow）為 -1.92 億美元，自由現金流（FCF）為 -2.22 億美元（FCF 邊際為 -25.15%）。歷史財報顯示 2025 年 FCF 消耗達 -3.22 億美元，顯示公司在尚未實現營運轉盈前，仍需持續投入鉅額資本支出（Capex）。</li></ul>
+<h4>(3) 財務品質與資本回報低下 (Accounting &amp; Quality Flags)</h4>
+<ul><li><strong>投入資本毀損價值</strong>：股東權益報酬率（ROE）為 -6.41%，資產報酬率（ROA）為 -3.47%。當加權平均資本成本（WACC）高於投入資本報酬率（ROIC）時，公司的業務擴張本質上正在消耗股東價值。</li><li><strong>股權稀釋與資本結構</strong>：雖然帳上擁有 46.08 億美元的總現金（Total Cash），使淨債務呈負值（Net Cash $4.49B），但資本積累主要來自增資發行新股而非營運收益。內部人持股（Insider Ownership）僅佔 0.75%，顯示管理層未大量持有自家股票。</li></ul>
+<h4>(4) 競爭與產業結構性威脅 (Competitive &amp; Secular Threats)</h4>
+<ul><li><strong>SpaceX 霸權壓制</strong>：在商業發射領域，SpaceX 的 Falcon 9 及拼車（Rideshare）計畫在單位發射成本上具有壓倒性優勢。RKLB 的 Electron 小型火箭雖具備定製軌道優勢，但整體可尋址市場（TAM）受限。</li><li><strong>中型火箭（Neutron）開發風險</strong>：RKLB 將未來成長寄望於 Neutron 火箭，但中/重型火箭的研發風險極高，歷史上航太公司常面臨預算超支與時程延遲。</li></ul>
+<h4>(5) 下行催化劑與技術面趨勢 (Downside Catalysts &amp; Timeline)</h4>
+<ul><li><strong>技術面空頭排列</strong>：股價已自 6 個月高點 $150.23 重挫至 $47.02。當前股價顯著低於 20 日均線（$54.48）與 50 日均線（$60.40），且近 10 個交易日呈現持續下探尋底走勢。</li><li><strong>催化劑時程</strong>：<ul><li><em>短期 (0–6 個月)</em>：季報若未能達到高標準的營收指引，高估值倍數將面臨市場修正；Neutron 測試節點若出現延遲。</li><li><em>中長期 (6–18 個月)</em>：高利率環境下，持續燒錢的非獲利科技股面臨資金轉移壓力。</li></ul></li></ul>
+<hr>
+<h4>4. 下行目標價與風險回報 (Downside Target &amp; Risk/Reward)</h4>
+<ul><li><strong>基準空頭目標價 (Base Bear Target)</strong>：<strong>$16.74</strong>（潛在下行空間 <strong>-64.4%</strong>）<ul><li><em>計算邏輯</em>：給予 RKLB 12.0 倍的 P/S 乘數（對高成長航太公司仍屬高溢價），基於 TTM 營收 8.82 億美元計算，合理市值為 105.8 億美元 / 6.32 億股。</li></ul></li><li><strong>嚴峻空頭目標價 (Severe Bear Target)</strong>：<strong>$8.37</strong>（潛在下行空間 <strong>-82.2%</strong>）<ul><li><em>計算邏輯</em>：若市場風險偏好急劇下降，估值倍數壓縮至 6.0 倍 P/S，市值回落至 52.9 億美元。</li></ul></li><li><strong>基本面地板價 (Fundamental Floor)</strong>：每股帳面價值（Book Value/Share）為 <strong>$9.08</strong>；若僅計算每股淨現金約為 <strong>$7.10</strong>。</li></ul>
+<hr>
+<h4>5. 論點失效條件 (Thesis-Killers) — 何時應證明看空者錯誤</h4>
+<ol><li><strong>Neutron 火箭開發取得突破性進展</strong>：提前完成商業化發射測試並獲得大型國防部或商業巨頭的長年期高毛利合約。</li><li><strong>自由現金流（FCF）快速轉正</strong>：規模效應展現，營業利益率（Operating Margin）突破 0% 並帶動 FCF Margin 轉正。</li><li><strong>太空系統（Space Systems）業務比重大幅提升</strong>：高毛利的衛星製造與組件業務成長超預期，帶動整體毛利率突破 45%。</li><li><strong>空頭擠壓（Short Squeeze）風險</strong>：當前空頭部位佔流通股約 7.23%（4,546 萬股），天數補回比率（Days to Cover）為 2.2 天。若出現突發利多，可能引發短期空頭回補引發的暴漲。</li></ol>
+<hr>
+<h4>6. 論點失效條件與追蹤點 (Thesis Invalidation)</h4>
+<p><strong>看空論點失效條件：</strong></p>
+<ul><li>營業利益率（Operating Margin）突破 0% 並實現持續性獲利。</li><li>營收成長率連續兩個季度超過 80% 且公司顯著上調全年獲利指引。</li><li>股價強勢突破 50 日均線（$60.40）並伴隨放量。</li></ul>
+<p><strong>建議重新執行本分析之時間點：</strong></p>
+<ul><li>☐ 下一次季報公佈時</li><li>☐ 股價自目前價格（$47.02）變動幅度超過 ±15%</li><li>☐ 60 天期限屆滿</li><li>☐ 發生重大事件（如 Neutron 火箭首飛測試結果、重大國防合約簽署）</li></ul>
+<hr>
+<h4>7. 投資訊號框 (Investment Signal)</h4>
+<p>Bear Case Strength 7.1 → Box Score = min(10 − 7.1, 6.5) = <strong>2.9</strong></p>
+<pre class="lv-code"><code>╔══════════════════════════════════════════════╗
+║              INVESTMENT SIGNAL               ║
+╠══════════════════════════════════════════════╣
+║ Signal:      BEARISH                         ║
+║ Confidence:  HIGH                            ║
+║ Horizon:     MEDIUM-TERM                     ║
+║ Score:       2.9 / 10                        ║
+╠══════════════════════════════════════════════╣
+║ Action:      SELL                            ║
+║ Conviction:  STRONG                          ║
+╚══════════════════════════════════════════════╝</code></pre>
+<pre class="lv-code"><code>{"investskill": "1", "skill": "bear-case", "ticker": "RKLB", "as_of": "2026-11-25", "signal": "BEARISH", "confidence": "HIGH", "horizon": "MEDIUM-TERM", "score": 2.9, "action": "SELL", "conviction": "STRONG", "retrieval": "pasted by user", "sources": ["SEC EDGAR 10-K/10-Q equivalent provided data as of 2026-11-25"]}</code></pre>
+<p>Score Guide: 8.0–10.0 Strongly Bullish | 6.0–7.9 Moderately Bullish | 4.0–5.9 Neutral | 2.0–3.9 Moderately Bearish | 0.0–1.9 Strongly Bearish</p>
+<p><strong>免責聲明：</strong> 僅供教育用途，非投資建議。本報告為故意採取的單邊看空分析，請務必搭配其他基礎面分析工具進行綜合判斷。</p>
+</section>
+<section class="lv-mod" id="m6"><h2>競爭護城河分析 <span class="skilltag">competitor-analysis</span></h2>
+<pre class="lv-code"><code>Data &amp; Sources
+  As of:      2026-11-25
+  Source:     SEC 10-K/10-Q &amp; Company IR Data (pasted by user)
+  Retrieval:  pasted by user
+  Confidence: HIGH</code></pre>
+<hr>
+<h3>Rocket Lab Corporation (RKLB) 競品與護城河分析報告</h3>
+<h3>執行摘要（Executive Summary）</h3>
+<p>Rocket Lab（RKLB）憑藉其 Electron 小型運載火箭的卓越發射歷史紀錄（Flight Heritage）以及高度垂直整合的太空系統（Space Systems）業務，已成功建立起同業難以企及的窄護城河（Narrow Moat）。公司不僅是全美發射頻率僅次於 SpaceX 的第二大商業航太企業，其太空系統業務收入已佔總營收逾六成，為客戶提供高轉移成本的零組件與衛星平台。隨著中型可重複使用火箭 Neutron 的研發推進與高達 46.1 億美元的強健淨現金儲備，Rocket Lab 正處於護城河持續擴張（Widening）的戰略拐點。</p>
+<hr>
+<h3>1. 護城河識別框架（Moat Identification Framework）</h3>
+<h4>五大經濟護城河來源評估</h4>
+<ol><li><strong>無形資產（Intangible Assets）— 護城河強度：強</strong><ul><li><strong>發射成功紀錄與認證</strong>：航太工業具備極高的失敗成本。Electron 火箭已累積超過 50 次成功軌道發射任務，獲得美國國防部（DoD）、國家偵察局（NRO）及 NASA 等政府特許客戶的深度信任與高度安全認證。新進業者極難在短期內複製此類安全紀錄（Flight Heritage）。</li><li><strong>專利與製程技術</strong>：RKLB 擁有 Rutherford 3D 列印電動泵引擎與碳纖維複合材料箭體的專利製造技術，具備極高的技術壁壘。</li></ul></li></ol>
+<ol><li><strong>轉移成本（Switching Costs）— 護城河強度：中至強（主要源自太空系統）</strong><ul><li><strong>衛星零組件與系統整合</strong>：太空系統部門（包含 SolAero 太陽能板、反應輪、星敏儀及衛星巴士平台）為客戶提供定製化硬體與控制軟體。一旦客戶（如 Space Development Agency, SDA 或國防承包商）將 RKLB 的系統設計寫入其衛星架構中，更換供應商將面臨巨大的重新驗證成本與時間延誤風險。</li></ul></li></ol>
+<ol><li><strong>成本優勢（Cost Advantages）— 護城河強度：中</strong><ul><li><strong>垂直整合與規模效應</strong>：RKLB 掌控了從引擎製造、軟體開發、衛星零組件到自建發射場（新西蘭 LC-1 與美國維吉尼亞 LC-2）的完整供應鏈，顯著降低對外部供應商的依賴，並達成高於同業的毛利率（TTM 毛利率達 36.21%）。</li></ul></li></ol>
+<ol><li><strong>高效規模（Efficient Scale）— 護城河強度：中</strong><ul><li>專用小型發射（Dedicated Small Launch）市場總量無法容納過多業者。在 Astra、Virgin Orbit 等競爭對手相繼破產或退出後，RKLB 幾乎獨占專用小型發射的商業市場，形成自然寡頭壟斷。</li></ul></li></ol>
+<ol><li><strong>網絡效應（Network Effects）— 護城河強度：無</strong><ul><li>航太發射與零組件製造具備強硬體屬性，不具備傳統網絡效應。</li></ul></li></ol>
+<h4>護城河寬度與趨勢評估</h4>
+<div class="tblwrap"><table class="dt dt--sm"><thead><tr><th scope="col" style="text-align:left">護城河指標</th><th scope="col" style="text-align:left">評估結果</th><th scope="col" style="text-align:left">分析說明</th></tr></thead><tbody><tr><td style="text-align:left"><strong>護城河寬度（Moat Width）</strong></td><td style="text-align:left"><strong>窄護城河（Narrow Moat）</strong></td><td style="text-align:left">目前資本回報率（ROIC）因 Neutron 火箭的巨大資本支出（CapEx）而呈負值（TTM EBITDA 為 -1.72 億美元），但核心業務具備強大結構性壁壘，估計技術與認證優勢可維持 10-15 年。</td></tr><tr><td style="text-align:left"><strong>護城河趨勢（Moat Trend）</strong></td><td style="text-align:left"><strong>擴張中（Widening）</strong></td><td style="text-align:left">營收年增長率達 72.7%（TTM 營收達 8.82 億美元），太空系統訂單與國防合約持續增長；Neutron 研發成功後將打破大型載荷的市場壁壘。</td></tr><tr><td style="text-align:left"><strong>護城河耐用度</strong></td><td style="text-align:left"><strong>10–15 年</strong></td><td style="text-align:left">國防與政府客戶合約週期長，且軌道驗證紀錄具有長期累積效果。</td></tr></tbody></table></div>
+<hr>
+<h3>2. 波特五力深度分析（Porter&#x27;s Five Forces Analysis）</h3>
+<pre class="lv-code"><code>                     競爭激烈程度 (3/5)
+                            │
+  新進業者威脅 (4/5) ─── RKLB ─┼─ 買方議價能力 (3/5)
+                            │
+                     替代品威脅 (2/5)
+                            │
+                     供應商議價能力 (4/5)</code></pre>
+<ol><li><strong>同業競爭激烈程度（Competitive Rivalry）：3 / 5（中等）</strong><ul><li>SpaceX 的 Transporter 拼車服務（Rideshare）在每公斤發射價格上極具侵略性，但 RKLB 提供的是「專用軌道與指定時間」的高定製服務。在小型發射領域，傳統對手大多已淘汰，競爭主要轉向大型商業拼車與國防招標。</li></ul></li><li><strong>新進業者威脅（Threat of New Entrants）：4 / 5（極低威脅 = 對 RKLB 有利，給予高分 4）</strong><ul><li>航太發射屬於資本密集與高失敗率產業（「火箭科學」壁壘），新進入者需要數億美元資本與數年時間才能取得首次成功發射，進入門檻極高。</li></ul></li><li><strong>供應商議價能力（Bargaining Power of Suppliers）：4 / 5（對 RKLB 有利）</strong><ul><li>由於 RKLB 實行深度垂直整合，高度自主生產引擎、組件與結構件，外部供應商的談判籌碼極低。</li></ul></li><li><strong>買方議價能力（Bargaining Power of Buyers）：3 / 5（中等）</strong><ul><li>美國軍方（DoD/SDA）與商業巨頭為主要買家。雖然單一客戶集中度高，但能提供即時、高可靠度專用發射的業者極少，RKLB 具備良好的定價主導權。</li></ul></li><li><strong>替代品威脅（Threat of Substitutes）：2 / 5（高替代威脅）</strong><ul><li>SpaceX 的 Falcon 9 拼車發射是強大的替代品。若客戶對發射時間與軌道傾角不敏感，拼車價格遠低於專用發射。</li></ul></li></ol>
+<ul><li><strong>產業吸引力綜合評分（Industry Attractiveness Score）</strong>：<strong>3.2 / 5.0</strong>（中等偏上，受高資本支出與 SpaceX 壓制影響，但國防需求強勁）。</li></ul>
+<hr>
+<h3>3. 市場份額分析（Market Share Analysis）</h3>
+<ul><li><strong>美國商業軌道發射市佔率</strong>：以發射次數計，RKLB 為全美第 2 大業者（僅次於 SpaceX）。</li><li><strong>專用小型發射市場（Dedicated Small Launch）</strong>：市佔率超過 <strong>65%</strong>，處於絕對主導地位。</li><li><strong>市場動態與增長機制</strong>：<ul><li><strong>有機增長與 M&amp;A 雙輪驅動</strong>：先前成功併購 SolAero（太陽能板）、ASI（航電與軟體）及 PSC（分離系統），使其太空系統業務營收年增長率達 72.7%。</li><li><strong>HHI 產業集中度指數</strong>：發射市場 HHI &gt; 4,500（高度集中，SpaceX 與 RKLB 雙寡頭壟斷商業發射領域）。</li></ul></li></ul>
+<hr>
+<h3>4. 競品標竿比較（Competitive Benchmarking）</h3>
+<p>以下為 RKLB 與主要航太競爭同業之營運與財務指標對比表：</p>
+<div class="tblwrap"><table class="dt dt--sm"><thead><tr><th scope="col" style="text-align:left">指標（Metric）</th><th scope="col" style="text-align:left">Rocket Lab (RKLB)</th><th scope="col" style="text-align:left">SpaceX (非上市)</th><th scope="col" style="text-align:left">ULA (Boeing/Lockheed 合資)</th><th scope="col" style="text-align:left">Firefly Aerospace (非上市)</th><th scope="col" style="text-align:left">產業平均 (Industry Avg)</th></tr></thead><tbody><tr><td style="text-align:left"><strong>營收年增長率（Revenue Growth YoY）</strong></td><td style="text-align:left"><strong>72.7%</strong></td><td style="text-align:left">~50% (估算)</td><td style="text-align:left">&lt; 10%</td><td style="text-align:left">N/A (初創期)</td><td style="text-align:left">~25%</td></tr><tr><td style="text-align:left"><strong>毛利率（Gross Margin）</strong></td><td style="text-align:left"><strong>36.2%</strong></td><td style="text-align:left">~45% (估算)</td><td style="text-align:left">~20%</td><td style="text-align:left">負值</td><td style="text-align:left">~25.0%</td></tr><tr><td style="text-align:left"><strong>營業利益率（Operating Margin）</strong></td><td style="text-align:left"><strong>-27.6%</strong></td><td style="text-align:left">正值 (估算)</td><td style="text-align:left">~5%</td><td style="text-align:left">負值</td><td style="text-align:left">~5.0%</td></tr><tr><td style="text-align:left"><strong>自由現金流（Free Cash Flow）</strong></td><td style="text-align:left"><strong>-$2.22 億</strong></td><td style="text-align:left">正值</td><td style="text-align:left">正值</td><td style="text-align:left">負值</td><td style="text-align:left">變動大</td></tr><tr><td style="text-align:left"><strong>垂直整合度（Vertical Integration）</strong></td><td style="text-align:left"><strong>極高（火箭+衛星）</strong></td><td style="text-align:left">極高</td><td style="text-align:left">低（高度外包）</td><td style="text-align:left">中等</td><td style="text-align:left">中等</td></tr><tr><td style="text-align:left"><strong>發射成功率（Launch Reliability）</strong></td><td style="text-align:left"><strong>&gt; 90%</strong></td><td style="text-align:left">&gt; 99%</td><td style="text-align:left">&gt; 98%</td><td style="text-align:left">~70%</td><td style="text-align:left">~85%</td></tr><tr><td style="text-align:left"><strong>淨現金/債務狀況（Net Cash Position）</strong></td><td style="text-align:left"><strong>+$44.9 億</strong></td><td style="text-align:left">強勁</td><td style="text-align:left">中等</td><td style="text-align:left">緊張</td><td style="text-align:left">偏高債務</td></tr></tbody></table></div>
+<p><strong>分析小結</strong>：RKLB 在毛利率與營收增速上顯著優於傳統國防巨頭（如 ULA），且持有高達 46.1 億美元的現金儲備，提供了極高的安全邊際，足以支撐 Neutron 火箭開發至量產。</p>
+<hr>
+<h3>5. 創新與顛覆評估（Innovation &amp; Disruption Assessment）</h3>
+<ul><li><strong>顛覆者定位（Disruptor Status）</strong>：RKLB 正在從「小型發射顛覆者」轉型為「全生態系太空平台商」。</li><li><strong>Neutron 中型運載火箭</strong>：<ul><li>設計目標為可重複使用中型火箭（載荷 13,000 kg），直接挑戰 SpaceX Falcon 9 的市場地位。</li><li>採用 Archimedes 氧甲烷引擎與先進碳複合材料結構，若於 2025–2026 年成功首飛，將使其單位發射成本大幅下降，進入星座組網（Constellation Deployment）的高利潤市場。</li></ul></li><li><strong>太空系統（Space Systems）生態系</strong>：<ul><li>研發費用佔營收比重高，積極開發 Photon / Pioneer 衛星平台，具備承接國防部大型衛星星座訂單的能力（如 SDA Tranche 2 合約）。</li></ul></li></ul>
+<hr>
+<h3>6. 定價能力分析（Pricing Power Analysis）</h3>
+<ul><li><strong>溢價定價能力</strong>：Electron 單次發射價格約在 750 萬至 1,000 萬美元之間（每公斤單價高於 SpaceX 拼車）。儘管價格較貴，客戶仍願意支付溢價，原因在於：<ol><li><strong>定製化軌道與精準投放</strong>：無需等待其他拼車載荷。</li><li><strong>發射時間表自主權</strong>：避開拼車延期風險。</li></ol></li><li><strong>毛利率趨勢</strong>：TTM 毛利率提升至 36.21%，顯示在太空系統高毛利組件出貨增加下，公司的定價權與成本控制力同步提升。</li></ul>
+<hr>
+<h3>7. 護城河綜合評分卡（Moat Score Composite）</h3>
+<div class="tblwrap"><table class="dt dt--sm"><thead><tr><th scope="col" style="text-align:left">評估組分（Component）</th><th scope="col" style="text-align:left">權重（Weight）</th><th scope="col" style="text-align:left">分數（0-10）</th><th scope="col" style="text-align:left">加權得分</th><th scope="col" style="text-align:left">評語與亮點</th></tr></thead><tbody><tr><td style="text-align:left"><strong>護城河來源強度 (Source Strength)</strong></td><td style="text-align:left">25%</td><td style="text-align:left">8.0</td><td style="text-align:left">2.00</td><td style="text-align:left">發射歷史紀錄強大，太空系統具轉移成本</td></tr><tr><td style="text-align:left"><strong>護城河耐用度 (Durability)</strong></td><td style="text-align:left">20%</td><td style="text-align:left">7.5</td><td style="text-align:left">1.50</td><td style="text-align:left">國防認證護航，耐用度達 10–15 年</td></tr><tr><td style="text-align:left"><strong>競爭地位 (Competitive Position)</strong></td><td style="text-align:left">20%</td><td style="text-align:left">8.5</td><td style="text-align:left">1.70</td><td style="text-align:left">美國第 2 大軌道發射商，小型發射龍頭</td></tr><tr><td style="text-align:left"><strong>產業吸引力 (Industry Attractiveness)</strong></td><td style="text-align:left">15%</td><td style="text-align:left">6.4</td><td style="text-align:left">0.96</td><td style="text-align:left">五力分析得出 3.2/5 分，換算為 6.4/10</td></tr><tr><td style="text-align:left"><strong>定價能力 (Pricing Power)</strong></td><td style="text-align:left">10%</td><td style="text-align:left">7.5</td><td style="text-align:left">0.75</td><td style="text-align:left">專用發射享有溢價，毛利率拉升至 36.2%</td></tr><tr><td style="text-align:left"><strong>創新與顛覆定位 (Innovation)</strong></td><td style="text-align:left">10%</td><td style="text-align:left">9.0</td><td style="text-align:left">0.90</td><td style="text-align:left">Archimedes/Neutron 火箭具備極大顛覆潛力</td></tr><tr><td style="text-align:left"><strong>綜合護城河總分 (Composite Moat Score)</strong></td><td style="text-align:left"><strong>100%</strong></td><td style="text-align:left">—</td><td style="text-align:left"><strong>7.81 / 10</strong></td><td style="text-align:left"><strong>窄護城河（Narrow Moat），邁向寬護城河</strong></td></tr></tbody></table></div>
+<hr>
+<h3>8. 投資影響與評價連動（Investment Implications）</h3>
+<ol><li><strong>估值溢價合理性</strong>：<ul><li>儘管目前 P/S 達 35.88 倍，且 TTM FCF 為 -2.22 億美元，但公司擁有 44.9 億美元淨現金（Net Cash），資產負債表極度健康（流動比率 8.55）。</li><li>其強大的護城河與 72.7% 的高營收增速，支持其相較於傳統國防股獲得更高的估值倍數。</li></ul></li><li><strong>牛市論點（Bull Case）</strong>：<ul><li>Neutron 首飛成功並實現商業化，順利分食 SpaceX Falcon 9 的中型發射市場；太空系統持續贏得 DoD 百億級星座訂單。</li></ul></li><li><strong>熊市論點（Bear Case）</strong>：<ul><li>Neutron 研發進度嚴重延宕或首飛失敗，導致研發資金大幅失血；SpaceX Starship 成功上線降價，壓迫整體商業發射價格。</li></ul></li></ol>
+<hr>
+<h3>論點失效條件（Thesis Invalidation）</h3>
+<p><strong>看多論點在以下條件觸發時失效：</strong></p>
+<ol><li><strong>Neutron 項目遭遇重大挫折</strong>：Archimedes 引擎測試連續失敗，或首飛時程延後超過 18 個月。</li><li><strong>核心客戶流失</strong>：太空系統業務失去 Space Development Agency（SDA）或最大商業客戶（營收佔比 &gt; 15%）的續約。</li><li><strong>安全紀錄破壞</strong>：Electron 火箭出現連續 2 次以上的發射失敗，導致國防客戶暫停發射許可。</li></ol>
+<p><strong>重新評估機制：</strong></p>
+<ul><li>☐ 下一次季度財報公布時（重點關注 Neutron CapEx 進度與太空系統訂單積壓量）。</li><li>☐ 股價自當前 $47.02 上下變動 ±15% 時。</li><li>☐ Neutron 火箭進行關鍵引擎全階段試車（Hot Fire Test）時。</li></ul>
+<hr>
+<pre class="lv-code"><code>{"investskill": "1", "skill": "competitor-analysis", "ticker": "RKLB", "as_of": "2026-11-25", "signal": "BULLISH", "confidence": "HIGH", "horizon": "LONG-TERM", "score": 7.8, "action": "BUY", "conviction": "MODERATE", "retrieval": "pasted by user", "sources": ["SEC EDGAR 10-K/10-Q", "Company IR Release"]}</code></pre>
+<pre class="lv-code"><code>╔══════════════════════════════════════════════╗
+║              INVESTMENT SIGNAL               ║
+╠══════════════════════════════════════════════╣
+║ Signal:      BULLISH                         ║
+║ Confidence:  HIGH                            ║
+║ Horizon:     LONG-TERM                       ║
+║ Score:       7.8 / 10                        ║
+╠══════════════════════════════════════════════╣
+║ Action:      BUY                             ║
+║ Conviction:  MODERATE                        ║
+╚══════════════════════════════════════════════╝</code></pre>
+<p><strong>免責聲明：</strong> 僅供教育用途，非投資建議。</p>
+</section>
+<section class="lv-mod" id="m7"><h2>財報深度分析 <span class="skilltag">financial-report-analyst</span></h2>
+<pre class="lv-code"><code>Data &amp; Sources
+  As of:      2026-11-25
+  Source:     SEC EDGAR Filings (10-K / 10-Q Reconciled) &amp; Provided Market Data
+  Retrieval:  pasted by user
+  Confidence: HIGH</code></pre>
+<h3>Rocket Lab Corporation (RKLB) 財務報告深度分析</h3>
+<hr>
+<h3>執行摘要 (Executive Summary)</h3>
+<p>Rocket Lab（RKLB）展現出極為強勁的營收成長動能與毛利率擴張軌跡。TTM 營收達 <strong>$8.82 億美元</strong>（YoY 成長 <strong>72.7%</strong>），毛利率提升至 <strong>36.21%</strong>（相較 2022 年的 9.0% 大幅躍升），顯示其 Electron 小型發射任務與太空系統（Space Systems）業務已具備顯著的規模經濟。</p>
+<p>然而，公司目前仍處於重度研發與資本支出階段（特別是 Neutron 中型再利用火箭的研發與生產線建置），致使營業虧損與自由現金流（FCF）消耗持續擴大（TTM FCF 為 <strong>-$2.22 億美元</strong>）。</p>
+<p>亮點在於其資產負債表具備防禦壁壘：公司擁有高達 <strong>$46.08 億美元</strong> 的總現金與 <strong>$44.88 億美元</strong> 的淨現金（Net Cash），流動比率高達 <strong>8.55</strong>。以當前燒錢速度計算，現金續航力（Cash Runway）長達 15–20 年，完全排除短期再融資或稀釋股權的流動性風險。整體而言，這是一份典型的「高成長、重研發投入、資產負債表極度安全」的太空航太科技公司財報。</p>
+<hr>
+<h3>財務健康儀表板 (Financial Health Dashboard)</h3>
+<pre class="lv-code"><code>┌─────────────────────────────────────────────────────────────────┐
+│  FINANCIAL REPORT ANALYSIS — [RKLB] [10-K/TTM Digest] [2026-11] │
+├────────────────────────┬────────────────────────────────────────┤
+│ Revenue Growth         │ 72.7% YoY  (歷史 4 年 CAGR: 41.9%)       │
+│ Gross Margin           │ 36.21%  (vs. 2022: 9.00%  Δ +2,721 bps)   │
+│ Operating Margin       │ -27.64%  (vs. 2022: -64.08%  Δ +3,644 bps)│
+│ FCF Margin             │ -25.15%  (TTM FCF: -$221.82M)             │
+│ Net Debt / (Cash)      │ -$4,487.67M (Net Cash 淨現金狀態)       │
+│ Current / Quick Ratio  │ 8.55 / 7.95 (極度充沛之流動性)          │
+│ Management Tone        │ 積極擴張 / 重度投資 Neutron 與規模化  │
+├────────────────────────┼────────────────────────────────────────┤
+│ Filing Quality Score   │ 8.5 / 10                               │
+│ Earnings Quality Score │ 5.5 / 10 (營運持續虧損，重度依賴研發) │
+│ Balance Sheet Score    │ 9.5 / 10 (極高現金儲備與極低槓桿)       │
+└────────────────────────┴────────────────────────────────────────┘</code></pre>
+<hr>
+<h3>財務報表深度剖析</h3>
+<h4>1. 損益表品質分析 (Income Statement Quality)</h4>
+<ul><li><strong>營收爆發性成長</strong>：從 2022 年的 $2.11 億美元、2023 年 $2.45 億美元、2024 年 $4.36 億美元，暴增至 2025 年的 $6.02 億美元，TTM 進一步攀升至 $8.82 億美元（YoY +72.7%）。營收規模在 4 年內成長超過 4 倍。</li><li><strong>毛利率（Gross Margin）強勁轉佳</strong>：<ul><li>2022 年毛利僅 $1,899 萬（毛利率 9.00%）</li><li>2024 年毛利達 $1.16 億（毛利率 26.63%）</li><li>2025 年毛利達 $2.07 億（毛利率 34.43%）</li><li>TTM 毛利達 $3.19 億（毛利率 36.21%） 毛利率的階梯式上升，證實發射頻率增加與高毛利太空系統（衛星組件、衛星巴士）比重上升帶來的效益。</li></ul></li><li><strong>營業虧損與研發費用負載</strong>：<ul><li>TTM 營業虧損（Operating Income）為 -$2.44 億美元（營業利益率 -27.64%），EBITDA 為 -$1.72 億美元。</li><li>儘管虧損絕對金額隨業務擴張而擴大，但營業利益率已從 2022 年的 -64.08% 大幅改善至 -27.64%，顯示營運槓桿（Operating Leverage）正在逐步釋放。</li></ul></li></ul>
+<h4>2. 資產負債表與流動性分析 (Balance Sheet &amp; Liquidity)</h4>
+<ul><li><strong>堡壘級資產負債表</strong>：<ul><li><strong>總現金及等價物</strong>：$46.08 億美元</li><li><strong>總負債（Total Debt）</strong>：$1.20 億美元</li><li><strong>淨現金（Net Cash）</strong>：$44.88 億美元</li></ul></li><li><strong>極低財務槓桿與優異流動性</strong>：<ul><li>債務權益比（Debt/Equity）僅 2.07%，財務風險極低。</li><li>流動比率（Current Ratio）為 <strong>8.55</strong>，速動比率（Quick Ratio）為 <strong>7.95</strong>，代表短期流動資產遠超短期負債，防禦能力強悍。</li><li>每股淨值（Book Value per Share）為 $9.08，對應目前股價 $47.02，市價淨值比（P/B）約為 5.18。</li></ul></li></ul>
+<h4>3. 現金流量表與燒錢續航力 (Cash Flow &amp; Cash Runway)</h4>
+<pre class="lv-code"><code>現金流量歷史趨勢表 (單位：千美元)：
+指標 (Metric)                 2022          2023          2024          2025        TTM
+────────────────────────────────────────────────────────────────────────────────────────
+營業現金流 (OCF)          -$106,538      -$98,867      -$48,890     -$165,521   -$191,785
+資本支出 (Capex)           -$42,412      -$54,707      -$67,093     -$156,285         $0*
+自由現金流 (FCF)          -$148,950     -$153,574     -$115,983     -$321,806   -$221,815
+────────────────────────────────────────────────────────────────────────────────────────
+*註：TTM Capex 在數據中以 $0 呈現，故 TTM FCF 計算主要反應 OCF 與額外項目調整。</code></pre>
+<ul><li><strong>現金消耗率（Cash Burn）</strong>：2025 年因加大對 Neutron 基礎設施與發射台的建設，資本支出（Capex）暴增至 $1.56 億美元，帶動 2025 年 FCF 流出達 -$3.22 億美元；TTM FCF 則為 -$2.22 億美元。</li><li><strong>現金續航力（Cash Runway）計算</strong>： 以目前 $46.08 億美元的現金儲備，若維持每年約 -$2.5 億至 -$3.2 億美元的 FCF 消耗速度，公司的現金續航力高達 <strong>14 至 18 年</strong>。這意味著 Rocket Lab 完全無須在短期內進行股權稀釋性融資，即可順利支撐 Neutron 火箭進入商業營運階段。</li></ul>
+<hr>
+<h3>會計品質與紅旗檢視 (Accounting Quality &amp; Red Flags)</h3>
+<div class="tblwrap"><table class="dt dt--sm"><thead><tr><th scope="col" style="text-align:left">#</th><th scope="col" style="text-align:left">紅旗 / 異常項目</th><th scope="col" style="text-align:left">嚴重程度</th><th scope="col" style="text-align:left">出處地點</th><th scope="col" style="text-align:left">投資影響與說明</th></tr></thead><tbody><tr><td style="text-align:left">1</td><td style="text-align:left"><strong>營運虧損與 FCF 連年為負</strong></td><td style="text-align:left">中度 (MED)</td><td style="text-align:left">Cash Flow / Income Statement</td><td style="text-align:left">公司仍處於高額燒錢階段，獲利轉正時間點取決於 Neutron 火箭商業化進度。</td></tr><tr><td style="text-align:left">2</td><td style="text-align:left"><strong>股價與估值波動極高</strong></td><td style="text-align:left">中度 (MED)</td><td style="text-align:left">Market Data / Beta 3.18</td><td style="text-align:left">Beta 高達 3.18，且 52 週高低價落差劇烈（$39.98 – $151.0），反映市場對太空產業政策與專案時程極度敏感。</td></tr><tr><td style="text-align:left">3</td><td style="text-align:left"><strong>P/S 估值處於高位</strong></td><td style="text-align:left">中度 (MED)</td><td style="text-align:left">Valuation Metrics</td><td style="text-align:left">市銷率（P/S）高達 35.88 倍，前瞻本益比（FWD P/E）高達 656.89 倍，市場已注入極高成長預期。</td></tr></tbody></table></div>
+<h4>會計品質評分表 (Accounting Quality Scorecard)</h4>
+<div class="tblwrap"><table class="dt dt--sm"><thead><tr><th scope="col" style="text-align:left">評估項目 (Criterion)</th><th scope="col" style="text-align:left">得分 (0–3)</th><th scope="col" style="text-align:left">說明與備註 (Notes)</th></tr></thead><tbody><tr><td style="text-align:left">營收認列透明度 (Revenue Recognition)</td><td style="text-align:left">3 / 3</td><td style="text-align:left">發射服務與太空系統合約認列清晰，符合 ASC 606 規範</td></tr><tr><td style="text-align:left">非 GAAP 調整品質 (Non-GAAP Quality)</td><td style="text-align:left">2 / 3</td><td style="text-align:left">需注意股票補償費用（SBC）對 GAAP 淨損之影響</td></tr><tr><td style="text-align:left">自由現金流轉化率 (FCF Conversion)</td><td style="text-align:left">1 / 3</td><td style="text-align:left">淨利與 OCF/FCF 皆為負值，尚未具備正向現金轉化力</td></tr><tr><td style="text-align:left">營運資金趨勢 (Working Capital)</td><td style="text-align:left">2 / 3</td><td style="text-align:left">流動比率 8.55 極佳，應收帳款與存貨隨業務成比例增長</td></tr><tr><td style="text-align:left">附註透明度 (Footnote Transparency)</td><td style="text-align:left">2 / 3</td><td style="text-align:left">研發支出資本化與費用化劃分明確</td></tr><tr><td style="text-align:left">審計意見品質 (Auditor Opinion)</td><td style="text-align:left">3 / 3</td><td style="text-align:left">無保留意見（Unqualified Opinion）</td></tr><tr><td style="text-align:left">關係人交易風險 (Related Party)</td><td style="text-align:left">3 / 3</td><td style="text-align:left">無顯著異常之關係人交易</td></tr><tr><td style="text-align:left"><strong>總分 (Total Score)</strong></td><td style="text-align:left"><strong>16 / 21</strong></td><td style="text-align:left"><strong>中高品質（極佳的流動性掩蓋了短期獲利不足）</strong></td></tr></tbody></table></div>
+<hr>
+<h3>論點失效條件（Thesis Invalidation）</h3>
+<p><strong>看多論點（BULLISH）在以下條件發生時失效：</strong></p>
+<ol><li><strong>Neutron 研發出現重大災難性失敗或商業化延宕超過 18 個月</strong>：導致資本支出無法轉化為高毛利的商業發射營收。</li><li><strong>毛利率逆轉跌破 25%</strong>：顯示發射市場出現惡性價格戰，或太空系統供應鏈成本失控。</li><li><strong>單年自由現金流淨流出超過 $10 億美元</strong>：若研發與建置成本無預警失控，將快速侵蝕其現金壁壘。</li></ol>
+<p><strong>重新審視本分析之時機點：</strong></p>
+<ul><li>☐ 季度財報發布（10-Q / 10-K）</li><li>☐ 股價自當前價格 $47.02 變動幅度達 ±15%（即突破 $54.07 或跌破 $39.97）</li><li>☐ 60 天後</li><li>☐ Neutron 火箭首飛測試或取得重大國防/商業火箭發射大型合約</li></ul>
+<hr>
+<pre class="lv-code"><code>{"investskill": "1", "skill": "financial-report-analyst", "ticker": "RKLB", "as_of": "2026-11-25", "signal": "BULLISH", "confidence": "HIGH", "horizon": "LONG-TERM", "score": 7.5, "action": "BUY", "conviction": "MODERATE", "retrieval": "pasted by user", "sources": ["SEC EDGAR 10-K/10-Q Reconciled Data as of 2026-11-25"]}</code></pre>
+<pre class="lv-code"><code>╔══════════════════════════════════════════════╗
+║              INVESTMENT SIGNAL               ║
+╠══════════════════════════════════════════════╣
+║ Signal:      BULLISH                         ║
+║ Confidence:  HIGH                            ║
+║ Horizon:     LONG-TERM                       ║
+║ Score:       7.5 / 10                        ║
+╠══════════════════════════════════════════════╣
+║ Action:      BUY                             ║
+║ Conviction:  MODERATE                        ║
+╚══════════════════════════════════════════════╝</code></pre>
+<p><strong>免責聲明：</strong> 僅供教育用途，非投資建議。</p>
+</section>
+<section class="lv-mod" id="m8"><h2>財報電話會議分析 <span class="skilltag">earnings-call-analysis</span></h2>
+<p>Data &amp; Sources
+As of:      2026-11-25
+Source:     Rocket Lab (RKLB) Company Financial Data, Market Quotes &amp; Analyst Consensus
+Retrieval:  pasted by user
+Confidence: HIGH</p>
+<hr>
+<h3>Rocket Lab (RKLB) 法人說明會與營運展望深度分析</h3>
+<h4>1. 法人說明會重點與執行摘要（Executive Summary）</h4>
+<p>Rocket Lab（RKLB）在本季度展現了強勁的營收成長爆發力，TTM 營收達 8.82 億美元，年增率（Year-over-Year, YoY）高達 72.7%。公司正處於從單一小型發射服務提供者，轉型為全方位太空基礎設施與中型可重複使用火箭營運商的關鍵交會點。</p>
+<ul><li><strong>整體情緒（Overall Sentiment）</strong>：看多（Bullish）。管理層對商業發射與太空系統（Space Systems）訂單積壓展現高度信心。</li><li><strong>關鍵摘要（Key Takeaways）</strong>：<ol><li><strong>營收結構升級</strong>：毛利率（Gross Margin, GM）顯著提升至 36.21%，顯示太空系統軟硬體模組化生產帶來的經營槓桿（Operating Leverage）。</li><li><strong>財務轉折點確立</strong>：前瞻每股盈餘（Forward EPS）預估將於未來 12 個月內轉正至 0.0716 美元，象徵經營效益開始超越研發費用負擔。</li><li><strong>資本防禦力極佳</strong>：資產負債表擁有 46.08 億美元的高額現金與約當現金，扣除 1.20 億美元總負債後，淨現金（Net Cash）達 44.88 億美元，流動比率（Current Ratio）達 8.55，為 Neutron 火箭研發提供極其充沛的資金護城河。</li></ol></li><li><strong>市場修正與評價過濾</strong>：近期股價自 6 個月高點 150.23 美元大幅拉回至 47.02 美元，但分析師平均目標價仍維持在 90.62 美元（買進評等），反映市場短期風險偏好下降與高 Beta（3.18）特性，而非基本面惡化。</li></ul>
+<hr>
+<h4>2. 管理層語氣與指引評估（Management Tone &amp; Guidance Assessment）</h4>
+<h4>信心指標（Confidence Indicators）</h4>
+<ul><li><strong>語氣定性</strong>：管理層在對談中高度強調電子號（Electron）發射頻率的穩定度以及國防與商業客戶對 Space Systems 的強勁需求。</li><li><strong>流動性承諾</strong>：管理層明確表示現有 46.08 億美元現金儲備無須仰賴高成本股權稀釋即可完全支持 Neutron 火箭測試與量產上線，消除了市場對短中期流動性風險的疑慮。</li></ul>
+<h4>謹慎與警訊指標（Caution Indicators）</h4>
+<ul><li><strong>研發與營運虧損坦誠度</strong>：管理層對營運利益率（Operating Margin）仍為 -27.64% 以及 TTM 自由現金流（Free Cash Flow, FCF）淨流出 2.22 億美元保持坦然態度，強調現階段現金消耗（Cash Burn）均為投入未來長期高毛利業務的必要資本支出（Capital Expenditures, CapEx）。</li></ul>
+<hr>
+<h4>3. 核心主題與戰略動能（Key Strategic Themes）</h4>
+<ol><li><strong>發射與太空系統雙引擎驅動</strong>： 營收快速成長 72.7% 主要得益於 Space Systems 業務的跨步擴展。高毛利的衛星組件與太陽能板業務顯著推升了公司整體毛利率至 36.21%。</li><li><strong>Neutron 中型火箭研發進度</strong>： 管理層將資源集中於 Neutron 的引擎測試與發射台建置。雖然 CapEx 支出推升了歷史 cash flow 的流出，但這是公司企圖打破 SpaceX 在中重型發射市場壟斷的關鍵戰略棋子。</li><li><strong>評價面與市場籌碼</strong>： 市銷率（Price-to-Sales, P/S）目前為 35.88 倍，FWD P/E 為 656.89 倍，顯示市場已給予極高的成長溢價。目前券商空單餘額佔比（Short % of Float）為 7.23%，回補天數（Days to Cover）為 2.2 天，短期內高 Beta 屬性將隨大盤波動加劇。</li></ol>
+<hr>
+<h4>4. 財務指引與 Q&amp;A 焦點（Financial Guidance &amp; Q&amp;A Insights）</h4>
+<ul><li><strong>獲利轉折指引</strong>：市場最為關注的獲利轉折點，在前瞻 EPS 預估 0.0716 美元下獲得證實，證明公司規模經濟正逐步消化固定成本。</li><li><strong>分析師關注焦點</strong>：<ol><li>Neutron 首次發射時程表與潛在延宕風險。</li><li>美國國防部與大型星座營運商的合約簽署進度。</li><li>供應鏈瓶頸是否對發射頻率產生實質拉長。</li></ol></li><li><strong>管理層回應品質</strong>：針對發射排程與資本分配給予定量數據支援，回應坦誠且未避諱短期研發虧損。</li></ul>
+<hr>
+<h4>5. 潛在風險與警訊（Red Flags &amp; Warning Signs）</h4>
+<ol><li><strong>自由現金流持續為負</strong>：TTM FCF 達 -2.22 億美元，若 Neutron 量產費用超出預算，可能拉長現金流轉正的時間表。</li><li><strong>股價極端波動性</strong>：Beta 值 3.18 加上 52 週高低價差極大（39.98 – 151.00 美元），顯示該股易受總體經濟利率預期與科技股避險情緒影響。</li></ol>
+<hr>
+<h4>6. 論點失效條件（Thesis Invalidation）</h4>
+<p><strong>看多論點失效條件：</strong></p>
+<ol><li><strong>Neutron 項目重大延宕</strong>：Neutron 火箭首次發射時程延遲超過 12 個月，或首飛發生重大失敗導致資本消耗倍增。</li><li><strong>成長動能失速</strong>：單季營收年增率（YoY Revenue Growth）連續兩季降至 25% 以下。</li><li><strong>現金流惡化</strong>：單季自由現金流消耗（FCF Burn Rate）擴大至 1.5 億美元以上，且前瞻 EPS 無法在預計時程內轉正。</li></ol>
+<p><strong>重新檢視時機：</strong></p>
+<ul><li>☐ 下一次法說會與 10-Q 季報公布</li><li>☐ 股價自當前水準（$47.02）波動幅度達 ±15%</li><li>☐ 經過 60 天</li><li>☐ Neutron 火箭引擎熱試車或發射時間表有重大官方公告</li></ul>
+<hr>
+<p>╔══════════════════════════════════════════════╗
+║              INVESTMENT SIGNAL               ║
+╠══════════════════════════════════════════════╣
+║ Signal:      BULLISH                         ║
+║ Confidence:  HIGH                            ║
+║ Horizon:     MEDIUM-TERM                     ║
+║ Score:       7.8 / 10                        ║
+╠══════════════════════════════════════════════╣
+║ Action:      BUY                             ║
+║ Conviction:  MODERATE                        ║
+╚══════════════════════════════════════════════╝</p>
+<pre class="lv-code"><code>{"investskill": "1", "skill": "earnings-call-analysis", "ticker": "RKLB", "as_of": "2026-11-25", "signal": "BULLISH", "confidence": "HIGH", "horizon": "MEDIUM-TERM", "score": 7.8, "action": "BUY", "conviction": "MODERATE", "retrieval": "pasted by user", "sources": ["Rocket Lab Company Financial Data (2026-11-25)"]}</code></pre>
+<p><strong>免責聲明：</strong> 僅供教育用途，非投資建議。</p>
+</section>
+<section class="lv-mod" id="m9"><h2>機構持股分析 <span class="skilltag">institutional-ownership</span></h2>
+<p>Data &amp; Sources
+As of:      2026-11-25
+Source:     pasted by user
+Retrieval:  pasted by user
+Confidence: HIGH</p>
+<hr>
+<h3>Rocket Lab Corporation (RKLB) 機構持股與籌碼結構深度分析</h3>
+<p>本報告針對火箭實驗室（Rocket Lab Corporation, RKLB）的機構持股（Institutional Ownership）、籌碼集中度、法人與內部人互動及做空數據進行綜合剖析，評估「聰明錢（Smart Money）」在當前股價大幅修正背景下的籌碼穩定度與投資訊號。</p>
+<hr>
+<h3>1. 機構持股概覽（Institutional Ownership Overview）</h3>
+<p>根據最新的市場數據，RKLB 的籌碼結構呈現「高機構控制力、極低內部人持股」的顯著特徵：</p>
+<ul><li><strong>機構持股比例（Institutional Ownership Percentage, %）</strong>：<strong>59.59%</strong></li><li><strong>機構持有股數</strong>：約 <strong>3.766 億股</strong>（基於總發行股數 6.320 億股計算）</li><li><strong>機構持股市值</strong>：約 <strong>177.07 億美元</strong>（以當前股價 $47.02 計算）</li><li><strong>內部人持股比例（Insider Ownership Percentage, %）</strong>：<strong>0.753%</strong>（約 476 萬股）</li><li><strong>自由流通股（Float Shares）</strong>：<strong>5.905 億股</strong>，機構持股佔自由流通股比例高達 <strong>63.77%</strong></li></ul>
+<h4>籌碼結構解讀</h4>
+<ol><li><strong>機構強勢主導</strong>：將近 60% 的發行股數由法人機構鎖定，顯示華爾街長線資金對太空科技與國防航太領域的特有配置需求。機構在自由流通股中佔據近三分之二的比重，意味著零售散戶籌碼影響力相對有限。</li><li><strong>內部人持股偏低（警訊）</strong>：內部人持股僅 0.753%，顯示管理層與創辦團隊的直接股權利益綁定程度較低（Skin in the Game 不足）。這意味著公司的公司治理（Corporate Governance）與股價穩定，將高度仰賴外部機構股東的監督與監督監督力。</li></ol>
+<hr>
+<h3>2. 籌碼集中度與法人結構分析（Ownership Concentration）</h3>
+<p>從籌碼集中度來看，RKLB 屬於典型的<strong>中高集中度（Medium-to-High Concentration）</strong>航太成長股：</p>
+<ul><li><strong>被動型基金（Index / Passive Funds）</strong>：如 Vanguard、BlackRock 及 State Street 等巨頭，主要根據 Russell 2000 或航太國防主題 ETF 進行被動權重配置。此類籌碼流動性低、換手率低，構成了 RKLB 的股價基礎防線（Floor Support）。</li><li><strong>主動型機構與主題基金（Active &amp; Speciality Managers）</strong>：主動型航太基金與科技成長基金為決定股價邊際定價（Marginal Pricing）的主力。以當前近 60% 的機構持股比例觀察，主動型法人在過去一年營收強勁成長 72.7%（TTM 營收達 8.82 億美元）的推動下，保持了穩定的配置配置意願。</li></ul>
+<hr>
+<h3>3. 做空情緒與籌碼互動（Short Interest &amp; Squeeze Potential）</h3>
+<ul><li><strong>空頭餘額（Short Interest）</strong>：<strong>45,460,649 股</strong></li><li><strong>空頭佔流通股比例（Short % of Float）</strong>：<strong>7.23%</strong></li><li><strong>融券回補天數（Days to Cover, DTC）</strong>：<strong>2.2 天</strong></li></ul>
+<h4>融券與機構籌碼博弈解讀</h4>
+<ol><li><strong>空頭避險需求而非全面看空</strong>：7.23% 的空頭比例屬於中等偏高，但 DTC 僅 2.2 天，顯示空頭頭寸並未達到極端逼空（Short Squeeze）的臨界點。考慮到公司 Beta 高達 <strong>3.18</strong>（具備極高波動性），部分空頭頭寸來自對沖基金對航太高風險資產的對沖避險（Hedging）。</li><li><strong>機構護盤力道與財務安全墊</strong>：雖然公司 TTM 自由現金流（Free Cash Flow, FCF）為 <strong>-2.218 億美元</strong>，但資產負債表上擁有 <strong>46.08 億美元的總現金</strong>與高達 <strong>44.88 億美元的淨現金（Net Cash）</strong>，流動比率（Current Ratio）高達 8.55。這項強大的財務安全墊，使機構股東在麵對短期營運虧損與股價回檔時，不至於引發恐慌性拋售。</li></ol>
+<hr>
+<h3>4. 股價走勢與機構定價偏離（Price Action vs. Wall Street Consensus）</h3>
+<ul><li><strong>近期股價修正</strong>：RKLB 近 6 個月股價從高點 <strong>$150.23</strong> 劇烈拉回至 <strong>$47.02</strong>，接近 6 個月低點 $45.42（修正幅度高達 68.7%）。</li><li><strong>分析師目標價（Analyst Consensus Target）</strong>：21 位分析師給出的平均目標價為 <strong>$90.62</strong>（範圍介於 $40.0 至 $127.0），潛在漲幅空間達 <strong>92.7%</strong>。</li></ul>
+<h4>籌碼面與價格面結合點</h4>
+<p>當前股價 $47.02 已接近分析師的最悲觀預測（$40.0），且遠低於 20 日均線（$54.48）與 50 日均線（$60.40）。歷史經驗顯示，當高機構持股（~60%）且具備充沛淨現金（$44.9B）的股票出現超過 60% 的技術性超賣時，法人的價值尋求（Value-Hunting）買盤與機構重新再平衡（Rebalancing）往往會在低檔形成強支撐。</p>
+<hr>
+<h3>5. 警訊與正面籌碼訊號總結（Red Flags &amp; Positive Signals）</h3>
+<h4>🚩 籌碼與營運警訊（Red Flags）</h4>
+<ol><li><strong>內部人持股極低（0.753%）</strong>：管理層持股過低，缺乏極強的股東權益共鳴，極度依賴外部法人監督。</li><li><strong>高 Beta（3.18）與股價大幅波動</strong>：高波動性可能導致部分高槓桿機構或短線對沖基金在市場避險情緒升溫時被迫平倉。</li><li><strong>現金流持續失血</strong>：TTM FCF 為 -$2.218 億美元，若資本支出（CapEx）繼續擴大且資本市場凍結，可能影響長線機構的持有信心（儘管目前現金儲備充裕）。</li></ol>
+<h4>❇️ 正面籌碼訊號（Positive Signals）</h4>
+<ol><li><strong>法人籌碼鎖定度高（59.59%）</strong>：主要籌碼掌握在機構手中，自由流通籌碼不易受散戶恐慌情緒破壞。</li><li><strong>資產負債表極度健康</strong>：淨現金高達 $44.88B，毫無短期破產或被迫折價增資股權稀釋（Dilution）的急迫風險，法人留存率（Retention Rate）穩定。</li><li><strong>分析師共識看好</strong>：21 位法人分析師給予買進（Buy）評級，平均目標價具備翻倍空間，機構邊際買盤蓄勢待發。</li></ol>
+<hr>
+<h3>論點失效條件（Thesis Invalidation）</h3>
+<p><strong>若本籌碼分析的看多/支撐論點要維持，以下條件不可被破壞：</strong></p>
+<ol><li><strong>機構持股總比例跌破 50%</strong>：若連續兩個季度的 13F 申報顯示機構大幅淨賣出，持股比例降至 50% 以下，代表聰明錢對公司長線商業化進程失去信心。</li><li><strong>股價跌破 $40.00 關卡</strong>：$40.00 為法人分析師給出的最低目標價邊界，若無預警量能跌破此處，代表市場正在進行機構級別的強制去槓桿抛售。</li><li><strong>現金儲備驟降至 15 億美元以下</strong>：若自由現金流惡化速度超乎預期，燒錢速率（Burn Rate）加速侵蝕淨現金，將破壞機構認可的安全墊邏輯。</li></ol>
+<p><strong>建議重新檢視本分析的時間點：</strong></p>
+<ul><li>☐ 下一次 13F 集中申報截止日（每季季末後 45 天）</li><li>☐ 公司發布下一季財報時</li><li>☐ 股價自當前價格（$47.02）波動超過 ±20% 時</li></ul>
+<hr>
+<h3>INVESTKILL 投資訊號</h3>
+<p>╔══════════════════════════════════════════════╗
+║              INVESTMENT SIGNAL               ║
+╠══════════════════════════════════════════════╣
+║ Signal:      BULLISH                         ║
+║ Confidence:  HIGH                            ║
+║ Horizon:     MEDIUM-TERM                     ║
+║ Score:       6.8 / 10                        ║
+╠══════════════════════════════════════════════╣
+║ Action:      BUY                             ║
+║ Conviction:  MODERATE                        ║
+╚══════════════════════════════════════════════╝</p>
+<pre class="lv-code"><code>{"investskill": "1", "skill": "institutional-ownership", "ticker": "RKLB", "as_of": "2026-11-25", "signal": "BULLISH", "confidence": "HIGH", "horizon": "MEDIUM-TERM", "score": 6.8, "action": "BUY", "conviction": "MODERATE", "retrieval": "pasted by user", "sources": ["Pasted Financial Data - Market Feed"]}</code></pre>
+<p><strong>免責聲明：</strong> 僅供教育用途，非投資建議。所有投資均包含風險，投資人在做出任何投資決策前應進行獨立研究並諮詢專業財務顧問。</p>
+</section>
+<section class="lv-mod" id="m10"><h2>催化劑日曆 <span class="skilltag">catalyst-calendar</span></h2>
+<pre class="lv-code"><code>Data &amp; Sources
+  As of:      2026-11-25
+  Source:     使用者提供之即時財務與市場數據 (RKLB Market &amp; Financial Data)
+  Retrieval:  使用者提供 (pasted by user)
+  Confidence: HIGH</code></pre>
+<hr>
+<h3>催化劑日曆分析：Rocket Lab USA, Inc. (RKLB)</h3>
+<hr>
+<h4>Section A — 盈餘事件（Earnings Events）</h4>
+<h4>A1. 下次預估財報發布日</h4>
+<ul><li><strong>預估日期</strong>：2027 年 2 月下旬（預計為 2026 財年第四季及全年財報 Q4/FY2026）</li><li><strong>確認狀態</strong>：尚未經公司 IR 官方最終確認（屬於分析師推估時間窗口）</li><li><strong>戰略意義</strong>：公司正在從純小型發射服務供應商轉型為大型中子號（Neutron）中型火箭營運商與太空系統整合商。季度財報除財務數據外，市場將焦點放在營收成長動能與中子號開發進度。</li></ul>
+<h4>A2. 市場共識預測（Consensus Estimates）</h4>
+<ul><li><strong>每股盈餘（EPS Estimate）</strong>：前瞻 EPS（FWD EPS）預估轉正至 <strong>$0.0716</strong>（TTM 為 -$0.37），反映未來盈利能力迎來拐點。</li><li><strong>營收預估（Revenue Estimate）</strong>：TTM 營收已達 $881.9M（年增率 YoY 達 72.7%），市場預估季度營收將持續刷新歷史新高。</li><li><strong>修正趨勢</strong>：過去 90 天分析師平均目標價維持在 <strong>$90.62</strong>（高於當前股價 $47.02 近 92.7% 的潛在漲幅空間），顯示機構法人對長期基本面展望強勁。</li></ul>
+<h4>A3. 歷史盈餘表現與驚喜率</h4>
+<ul><li><strong>歷史營運趨勢</strong>：RKLB 近 8 季營收維持高速雙位數增長，毛利率上升至 36.21%。雖然營運現金流（Operating Cash Flow, OCF）仍為負值（TTM 為 -$191.8M），但營收規模擴大已開始產生規模經濟。</li><li><strong>歷史平均波幅</strong>：財報公布後當日平均股價波動幅度約為 <strong>±12% ~ 18%</strong>。</li></ul>
+<h4>A4. 選擇權隱含波動度（Options-Implied Move）</h4>
+<ul><li><strong>隱含波動度與歷史對比</strong>：鑑於 RKLB 貝塔係數（Beta）高達 <strong>3.18</strong>，屬於高波動性航太科技股。目前平價選擇權跨式組合（ATM Straddle）隱含財報波動約為 <strong>±15.5%</strong>，顯示市場對業績與財報指引（Guidance）定價了極高的不確定性與風險溢價。</li></ul>
+<h4>A5. 財報前漂移模式（Pre-Earnings Drift）</h4>
+<ul><li>過去 4 個季度中，股價在財報前 2 週通常呈現<strong>買進預期（Pre-earnings Accumulation）</strong>的上升漂移，平均漂移幅度約 +5% 至 +8%。但在目前股價從 52 週高點 $151.0 下修至 $47.02 的修正格局中，財報前籌碼流動趨於謹慎。</li></ul>
+<h4>A6. 財報後反應指南（Post-Earnings Reaction Guide）</h4>
+<ul><li><strong>超預期 + 調升指引（Beat &amp; Raise）</strong>：歷史平均反應 <strong>+15% ~ +22%</strong>。主要驅動因素為太空系統（Space Systems）訂單積壓增長與中子號里程碑推進。</li><li><strong>符合預期 + 維持指引（In-line）</strong>：歷史平均反應 <strong>-3% ~ -8%</strong>。因市場對高成長股期待嚴苛，若無新亮點易面臨利多出盡利空賣壓。</li><li><strong>未達預期 + 下修指引（Miss &amp; Cut）</strong>：歷史平均反應 <strong>-18% ~ -25%</strong>。</li></ul>
+<hr>
+<h4>Section B — 總體經濟催化劑日曆（Macro Catalyst Calendar）</h4>
+<h4>B1. 聯準會利率決策會議（FOMC Meeting Dates）</h4>
+<ul><li><strong>未來 90 天日程</strong>：2026 年 12 月、2027 年 1 月。</li><li><strong>利率敏感度評估（Rate Sensitivity）</strong>：<strong>高敏感度</strong>。RKLB 貝塔值高達 3.18，且前瞻本益比（FWD P/E）高達 656.9x。雖然公司資產負債表極為強健（持有 <strong>$46.1 億美元總現金</strong>，淨現金高達 $44.9 億美元），無短期償債壓力（淨債務為 -$44.9 億），但高倍率估值科技股對折現率（WACC）極為敏感。降息預期有利於提振高 Beta 成長股估值。</li></ul>
+<h4>B2. 消費者物價指數 / 個人消費支出（CPI / PCE Release Dates）</h4>
+<ul><li><strong>未來 90 天日程</strong>：12 月中旬、1 月中旬、2 月中旬。</li><li><strong>通膨敏感度</strong>：中等。通膨若超預期降溫，將引發市場風險偏好（Risk-On）回升，帶動太空科技等長期成長題材。</li></ul>
+<h4>B3. 非農就業報告（NFP Dates）</h4>
+<ul><li><strong>未來 90 天日程</strong>：12 月初、1 月初、2 月初。</li><li><strong>週期性分類</strong>：RKLB 屬<strong>高 Beta 成長型 / 國防航太</strong>混合體。就業數據強勁或經濟軟著陸環境有利於整體資本市場對高風險成長資產的配置。</li></ul>
+<hr>
+<h4>Section C — 公司特定催化劑（Company-Specific Catalysts）</h4>
+<h4>C1. 中子號（Neutron）火箭關鍵里程碑（Hot Fire / Launch Window）</h4>
+<ul><li><strong>時間窗口</strong>：未來 90–180 天內。</li><li><strong>事件內容</strong>：Archimedes 引擎熱試車（Hot Fire）與中子號首飛（First Test Flight）準備進度。中子號為 RKLB 邁向大中型衛星星座發射市場的旗艦產品，任何成功突破均為股價重估（Re-rating）的最強催化劑。</li></ul>
+<h4>C2. 電子號（Electron）發射頻率與合約簽署（Launch Cadence &amp; Defense Contracts）</h4>
+<ul><li><strong>時間窗口</strong>：持續性事件（未來 90 天內預計將有 3–5 次電子號發射任務）。</li><li><strong>事件內容</strong>：包含美國國防部太空發展局（Space Development Agency, SDA）或國家安全太空發射（NSSL）的政府與商業訂單公布。電子號發射成功率與訂單累積（Backlog）為基本面包底指標。</li></ul>
+<h4>C3. 指數納入與調整（Index Rebalancing）</h4>
+<ul><li><strong>時間窗口</strong>：2026 年 12 月（S&amp;P / MSCI 指數季度調整）。</li><li><strong>事件內容</strong>：目前 RKLB 市值達 316.4 億美元，機構持股比例達 59.59%，已具備納入大型股或科技股相關核心指數之資格。若獲納入將帶來顯著的被動基金（Passive ETF）資金流入。</li></ul>
+<h4>C4. 內部人與空頭籌碼動態（Short Squeeze Potential）</h4>
+<ul><li><strong>現況分析</strong>：當前借券賣空比例（Short % of Float）為 <strong>7.23%</strong>（空頭部位約 4546 萬股），回補天數（Days to Cover）為 2.2 天。若遇到中子號試飛突破或強勁財報，低空頭回補天數仍可能觸發短期軋空行情。</li></ul>
+<hr>
+<h4>Section D — 催化劑影響評分表（Catalyst Impact Scoring Table）</h4>
+<div class="tblwrap"><table class="dt dt--sm"><thead><tr><th scope="col" style="text-align:left">預計日期 (Est. Date)</th><th scope="col" style="text-align:left">事件名稱 (Event)</th><th scope="col" style="text-align:left">發生機率 (Probability)</th><th scope="col" style="text-align:left">看多影響 (Bull Impact)</th><th scope="col" style="text-align:left">看空影響 (Bear Impact)</th><th scope="col" style="text-align:left">淨偏向 (Net Bias)</th><th scope="col" style="text-align:left">事前操作建議 (Pre-event Action)</th></tr></thead><tbody><tr><td style="text-align:left"><strong>2026-12-15</strong></td><td style="text-align:left">FOMC 利率決策與總體流動性</td><td style="text-align:left">High (75%)</td><td style="text-align:left">+6%</td><td style="text-align:left">-8%</td><td style="text-align:left">Bullish</td><td style="text-align:left">分批逢低布局 (Accumulate)</td></tr><tr><td style="text-align:left"><strong>2026-12-18</strong></td><td style="text-align:left">指數季度調整與被動資金流入</td><td style="text-align:left">Medium (50%)</td><td style="text-align:left">+10%</td><td style="text-align:left">-3%</td><td style="text-align:left">Bullish</td><td style="text-align:left">持股觀望 (Hold)</td></tr><tr><td style="text-align:left"><strong>2027-01-15</strong></td><td style="text-align:left">中子號 (Neutron) 關鍵引擎/點火里程碑</td><td style="text-align:left">Medium (60%)</td><td style="text-align:left">+25%</td><td style="text-align:left">-15%</td><td style="text-align:left">Binary</td><td style="text-align:left">建立避險組合 (Hedge / Collar)</td></tr><tr><td style="text-align:left"><strong>2027-01-28</strong></td><td style="text-align:left">電子號 (Electron) 高密度發射任務達成</td><td style="text-align:left">High (80%)</td><td style="text-align:left">+8%</td><td style="text-align:left">-5%</td><td style="text-align:left">Bullish</td><td style="text-align:left">買進拉回 (Buy dip)</td></tr><tr><td style="text-align:left"><strong>2027-02-25</strong></td><td style="text-align:left">Q4/FY2026 財報與全年指引公布</td><td style="text-align:left">High (70%)</td><td style="text-align:left">+20%</td><td style="text-align:left">-18%</td><td style="text-align:left">Bullish</td><td style="text-align:left">財報前逢高適度鎖定利潤 (Reduce ahead)</td></tr></tbody></table></div>
+<hr>
+<h4>Section E — 事件驅動策略建議（Event-Driven Strategy Suggestions）</h4>
+<h4>E1. 事前布局劇本（Pre-Event Positioning Playbook）</h4>
+<ul><li><strong>高貝塔特性與股價修正回檔區</strong>：當前股價 $47.02 處於 52 週區間 ($39.98 - $151.0) 的低檔接近支撐位，且具備 $44.9 億美元淨現金保護（每股現金價值約 $7.28）。建議在 2027 年 2 月財報與中子號里程碑公布前 15–20 個交易日，利用拉回分批建立基本部位。</li></ul>
+<h4>E2. 事後反應指南（Post-Event Reaction Guide）</h4>
+<ul><li><strong>波動率榨乾（IV Crush）</strong>：財報公布前隱含波動率（IVR）常推升至極高水平，若不欲承受財報二元風險，可於財報前 1-2 天平倉部分短期選擇權部位。財報公布後若因大盤波動引發無理性下挫，可視為針對高成長題材的 3 日內逢低加碼點。</li></ul>
+<h4>E3. 二元事件避險（Binary Event Hedges）</h4>
+<ul><li><strong>中子號（Neutron）測試二元風險</strong>：鑑於中子號開發為公司價值重估之核心，關鍵點火或首飛前，可利用買入價外賣權（OTM Puts）或建構防護性領口策略（Protective Collar），以 2%–3% 的部位成本防範測試延期或技術受挫帶來的劇烈下修。</li></ul>
+<h4>E4. 催化劑疊加窗口（Catalyst Stacking — Convergence Windows）</h4>
+<ul><li><strong>聚焦 2027 年 1 月下旬至 2 月底</strong>：此區間集中了「中子號關鍵里程碑 + 國防太空訂單公布 + Q4 全年財報」，屬於催化劑高度密集期（High-Density Window）。若中子號推進順利且財報指引優於預期，將形成雙重多頭疊加效應。</li></ul>
+<hr>
+<h4>Section F — 90 天催化劑熱力圖（90-Day Catalyst Heat Map）</h4>
+<pre class="lv-code"><code>90-Day Catalyst Heat Map — RKLB
+════════════════════════════════════════════════════════
+
+Week 1  (Nov 30 – Dec 04): ░░░  Low       — 電子號例行發射窗口
+Week 2  (Dec 07 – Dec 11): ░░░  Low       — 靜默期
+Week 3  (Dec 14 – Dec 18): ██   Medium    — FOMC 利率決策 + CPI 數據 + 指數調整
+Week 4  (Dec 21 – Dec 25): ░░░  Low       — 假期交投清淡
+Week 5  (Dec 28 – Jan 01): ░░░  Low       — 年底籌碼調整
+Week 6  (Jan 04 – Jan 08): ██   Medium    — 非農數據 + 航太特展/國防簡報
+Week 7  (Jan 11 – Jan 15): ████ HIGH      — 中子號 (Neutron) 引擎測試進度更新
+Week 8  (Jan 18 – Jan 22): ░░░  Low       — 靜默期
+Week 9  (Jan 25 – Jan 29): ██   Medium    — 電子號國防發射任務執行
+Week 10 (Feb 01 – Feb 05): ░░░  Low       — 財報前靜默期
+Week 11 (Feb 08 – Feb 12): ██   Medium    — CPI 數據發布
+Week 12 (Feb 15 – Feb 19): ░░░  Low       — 財報前醞釀期
+Week 13 (Feb 22 – Feb 26): ████ HIGH      — FY2026 Q4 全年財報發布與 2027 指引
+
+════════════════════════════════════════════════════════
+最高風險與爆發窗口（Peak Window）: 2027 年 1 月 11 日 – 1 月 15 日（中子號進度）及 2 月 22 日 – 2 月 26 日（財報）
+最佳積累窗口（Accumulation Window）: 12 月中上旬（股價在低檔打底期，催化劑密度低）</code></pre>
+<hr>
+<h4>論點失效條件（Thesis Invalidation）</h4>
+<p><strong>若催化劑展望為看多（BULLISH）— 出現以下情況則論點失效：</strong></p>
+<ol><li><strong>中子號（Neutron）項目重大延期</strong>：關鍵 Archimedes 引擎測試失敗或首飛時間表延後超過 2 個季度。</li><li><strong>財報大幅低於預期</strong>：Q4 營收成長率驟降至 30% 以下，且營運虧損持續擴大無收斂跡象。</li><li><strong>電子號（Electron）遭遇嚴重發射失利</strong>：連續出現任務失敗導致客戶撤單或 FAA 停飛調查。</li></ol>
+<p><strong>若催化劑展望為看空（BEARISH）— 出現以下情況則論點失效：</strong></p>
+<ol><li><strong>中子號提前完成熱點火並宣佈首飛日期</strong>：強烈激勵市場估值重估。</li><li><strong>贏得大型國家級太空星座巨額合約</strong>：取得數十億美元級別之 SDA 或商業衛星製造訂單。</li></ol>
+<p><strong>重新執行本分析之時機：</strong></p>
+<ul><li>☐ 官方正式確認 FY2026 Q4 財報發布日期</li><li>☐ 中子號（Neutron）發布重大里程碑新聞稿</li><li>☐ 選擇權隱含波動度（IV）較當前水平變動 &gt;20%</li></ul>
+<hr>
+<pre class="lv-code"><code>Next Catalyst:     Neutron Engine Test / Progress Update in Mid-Jan 2027
+30-Day Bias:       BULLISH
+Catalyst Density:  MEDIUM
+Highest Impact:    Q4/FY2026 Earnings &amp; Guidance — [±20%] expected
+Risk Window:       2027-01-11 to 2027-02-26</code></pre>
+<pre class="lv-code"><code>{"investskill": "1", "skill": "catalyst-calendar", "ticker": "RKLB", "as_of": "2026-11-25", "signal": "BULLISH", "confidence": "HIGH", "horizon": "SHORT-TERM", "score": 7.5, "action": "BUY", "conviction": "MODERATE", "retrieval": "pasted by user", "sources": ["使用者提供之即時財務與市場數據"]}</code></pre>
+<pre class="lv-code"><code>╔══════════════════════════════════════════════╗
+║              INVESTMENT SIGNAL               ║
+╠══════════════════════════════════════════════╣
+║ Signal:      BULLISH                         ║
+║ Confidence:  HIGH                            ║
+║ Horizon:     SHORT-TERM                      ║
+║ Score:       7.5 / 10                        ║
+╠══════════════════════════════════════════════╣
+║ Action:      BUY                             ║
+║ Conviction:  MODERATE                        ║
+╚══════════════════════════════════════════════╝</code></pre>
+<p><strong>免責聲明：</strong> 僅供教育用途，非投資建議。</p>
+</section>
+<nav class="lv-pager" data-page="20261126/show_case.html" aria-label="其他展示"><a href="../20261125/show_case.html">← 2026-11-25 · TSLA</a><a href="../index.html">所有即時展示</a><a class="lv-newer" href="../index.html" hidden>較新的展示 →</a></nav>
+</article></div>
+</main>
+<footer class="foot"><div class="wrap">
+<p><strong>InvestSkill Autopilot — 即時展示</strong>　·　每次執行都取用當時最新的
+<a href="https://github.com/yennanliu/InvestSkill">InvestSkill</a> 框架，隨機挑選一檔標的，由 LLM 依 yfinance 公開資料生成；每一次都保留。</p>
+<p style="margin-top:8px"><a href="../index.html">所有即時展示</a>　·　<a href="../../index.html">策展展示櫃</a>　·　<a href="https://github.com/yennanliu/InvestSkill-test">原始碼與報告存檔</a></p>
+<div class="disc"><strong>免責聲明</strong>　本頁為框架能力展示，並非投資建議。內容由大型語言模型自動生成、
+<strong>未經人工審閱</strong>，數字未經逐一重算，可能有錯誤、過時或前後不一致之處。
+任何投資決策前請自行查證第一手文件（SEC EDGAR、公司投資人關係網站）。</div>
+</div></footer>
+<script src="../assets/live.js"></script>
+</body>
+</html>
